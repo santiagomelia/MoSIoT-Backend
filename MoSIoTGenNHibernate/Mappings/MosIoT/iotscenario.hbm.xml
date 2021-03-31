@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="IoTScenarioEN" table="IoTScenario"> 
+				  	
+						<id name="Id" column="idIoTScenario" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Entity" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idIoTScenario_idScenario"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Recipes" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idIoTScenario_idIoTScenario"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RecipeEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Association" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idIoTScenario_idIoTScenario"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AssociationEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="IoTScenarioENReadAllHQL">from IoTScenarioEN</query>
+		</hibernate-mapping>
+	

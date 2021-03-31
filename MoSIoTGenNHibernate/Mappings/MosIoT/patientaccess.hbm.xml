@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="PatientAccessEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" table="PatientAccess"> 
+	<key>
+    	
+				<column name="id"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="AccessMode" class="MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN" >
+									<column name="FK_idAccessMode_idAccessMode"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="PatientAccessENReadAllHQL">from PatientAccessEN</query>
+		</hibernate-mapping>
+	

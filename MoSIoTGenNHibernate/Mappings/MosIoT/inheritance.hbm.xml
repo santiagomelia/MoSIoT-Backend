@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="InheritanceEN" table="Inheritance"> 
+				  	
+						<id name="Id" column="idInheritance" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+			
+			
+		  			
+						<bag name="Father" table="[entity_inheritance]" inverse="true" >
+							<key>
+								
+									<column name="FK_idInheritance_idInheritanceFather"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN">
+									<column name="FK_id_idFather"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="Son" class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" >	
+								<column name="FK_id_idEntity"/> 
+						</many-to-one>
+											 					
+			
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="InheritanceENReadAllHQL">from InheritanceEN</query>
+		</hibernate-mapping>
+	

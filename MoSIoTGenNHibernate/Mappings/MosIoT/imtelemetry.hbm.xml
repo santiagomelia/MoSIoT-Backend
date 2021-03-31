@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="IMTelemetryEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" table="IMTelemetry"> 
+	<key>
+    	
+				<column name="id"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+		  			
+						<many-to-one name="Telemetry" class="MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN" >	
+								<column name="FK_idTelemetry_idTelemetry"/> 
+						</many-to-one>
+											 					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="IMTelemetryENReadAllHQL">from IMTelemetryEN</query>
+		</hibernate-mapping>
+	

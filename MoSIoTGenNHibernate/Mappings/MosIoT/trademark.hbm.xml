@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="TrademarkEN" table="Trademark"> 
+				  	
+						<id name="Id" column="idTrademark" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Device" >
+							<key>
+							
+								
+								<column name="FK_idTrademark_idTrademark"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.DeviceEN"/>
+					    </bag>
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="TrademarkENReadAllHQL">from TrademarkEN</query>
+		</hibernate-mapping>
+	

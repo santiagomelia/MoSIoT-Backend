@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="StateDeviceEN" table="StateDevice"> 
+				  	
+						<id name="Id" column="idStateDevice" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Value" type="string"> 
+						<column name="value"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="StateTelemetry" class="MoSIoTGenNHibernate.EN.MosIoT.StateTelemetryEN" >	
+								<column name="FK_idSpecificTelemetry_idStateTelemetry"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="StateDeviceENReadAllHQL">from StateDeviceEN</query>
+		</hibernate-mapping>
+	

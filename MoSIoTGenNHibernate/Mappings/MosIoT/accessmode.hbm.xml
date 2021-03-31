@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="AccessModeEN" table="AccessMode"> 
+				  	
+						<id name="Id" column="idAccessMode" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="TypeAccessMode" > 
+						<column name="typeAccessMode"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="Patient" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >	
+								<column name="FK_id_idPatient"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+		  			
+						<bag name="AdaptationDetailRequired" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idAccessMode_idAccessModeRequired"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AdaptationDetailRequiredEN"/>
+					    </bag>
+					
+			
+			
+			
+		  			
+						<bag name="AdaptationTypeRequired" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idAccessMode_idAccessMode"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AdaptationTypeRequiredEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="AdaptationRequest" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idAccessMode_idAccessMode"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AdaptationRequestEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Disability" class="MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN" >	
+								<column name="FK_idDisability_idDisability"/> 
+						</many-to-one>
+											 					
+			
+					
+					
+					
+					
+					
+					
+						<bag name="DeviceTemplate" table="[deviceTemplate_accessModeRequired]" >
+							<key>
+									<column name="FK_idAccessMode_idAccessModeRequired"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN">
+									<column name="FK_idDeviceTemplate_idDeviceTemplate"/> 
+      						</many-to-many>
+    					</bag>		
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="AccessModeENReadAllHQL">from AccessModeEN</query>
+		</hibernate-mapping>
+	

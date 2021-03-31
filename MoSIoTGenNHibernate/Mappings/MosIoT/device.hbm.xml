@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="DeviceEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" table="Device"> 
+	<key>
+    	
+				<column name="id"/>
+		
+    	
+   	</key>
+
+			
+					
+					<property name="DeviceSwitch" type="boolean"> 
+						<column name="deviceSwitch"  not-null="true"/>
+					</property>
+					<property name="Tag" type="string"> 
+						<column name="tag"  not-null="true"/>
+					</property>
+					<property name="IsSimulated" type="boolean"> 
+						<column name="isSimulated"  not-null="true"/>
+					</property>
+					<property name="SerialNumber" type="string"> 
+						<column name="serialNumber"  not-null="true"/>
+					</property>
+					<property name="FirmVersion" type="string"> 
+						<column name="firmVersion"  not-null="true"/>
+					</property>
+					<property name="Trademark" type="string"> 
+						<column name="trademark"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+						<many-to-one name="DeviceTemplate" class="MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN" >
+									<column name="FK_idDeviceTemplate_idDeviceTemplate"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="DeviceENReadAllHQL">from DeviceEN</query>
+		</hibernate-mapping>
+	

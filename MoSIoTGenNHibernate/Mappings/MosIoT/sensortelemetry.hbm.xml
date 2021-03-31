@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="SensorTelemetryEN" extends="MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN" table="SensorTelemetry"> 
+	<key>
+    	
+				<column name="idSpecificTelemetry"/>
+		
+    	
+   	</key>
+
+			
+					
+					<property name="SensorType" type="string"> 
+						<column name="sensorType"  not-null="true"/>
+					</property>
+			
+			
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="SensorTelemetryENReadAllHQL">from SensorTelemetryEN</query>
+		</hibernate-mapping>
+	

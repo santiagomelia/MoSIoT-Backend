@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="CareActivityEN" table="CareActivity"> 
+				  	
+						<id name="Id" column="idCareActivity" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Periodicity" > 
+						<column name="periodicity"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Duration" type="integer"> 
+						<column name="duration"  not-null="true"/>
+					</property>
+					<property name="Location" type="string"> 
+						<column name="location"  not-null="true"/>
+					</property>
+					<property name="OutcomeCode" type="string"> 
+						<column name="outcomeCode"  not-null="true"/>
+					</property>
+					<property name="TypeActivity" > 
+						<column name="typeActivity"  not-null="true"/>
+					</property>
+					<property name="ActivityCode" type="string"> 
+						<column name="activityCode"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="CarePlan" class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN" >	
+								<column name="FK_idCarePlanTemplate_idCarePlan"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+			
+		  			
+					
+							<many-to-one name="Medication" class="MoSIoTGenNHibernate.EN.MosIoT.MedicationEN" cascade="delete">
+								<column name="FK_productReferenceMedication_idMedication"/> 
+        					</many-to-one>
+					 
+						
+			
+			
+			
+		  			
+					
+							<many-to-one name="NutritionOrder" class="MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN" cascade="delete">
+								<column name="FK_idNutritionOrder_idNutritionOrder"/> 
+        					</many-to-one>
+					 
+						
+			
+			
+		  			
+					
+							<many-to-one name="NextActivity" class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN" >
+								<column name="FK_idCareActivity_idCareActivity_0"/> 
+        					</many-to-one>
+							<one-to-one name="PreviousActivity" class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN" property-ref="NextActivity" />
+						
+			
+		  			
+					
+						
+			
+		  			
+						<bag name="Notification" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idCareActivity_idCareActivity"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN"/>
+					    </bag>
+					
+			
+			
+			
+		  			
+						<bag name="Appointment" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idCareActivity_idCareActivity"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="CareActivityENReadAllHQL">from CareActivityEN</query>
+		</hibernate-mapping>
+	

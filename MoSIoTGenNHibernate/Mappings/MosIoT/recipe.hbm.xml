@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="RecipeEN" table="Rule_"> 
+				  	
+						<id name="Id" column="idRecipe" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="IsEnabled" type="boolean"> 
+						<column name="isEnabled"  not-null="true"/>
+					</property>
+					<property name="IntervalTime" type="double"> 
+						<column name="intervalTime"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+					
+							<many-to-one name="Triggers" class="MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN" cascade="delete">
+								<column name="FK_idRecipeTrigger_idTrigger"/> 
+        					</many-to-one>
+					 
+						
+			
+		  			
+						<bag name="RecipeAction" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idRecipe_idRecipe"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RecipeActionEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="IoTScenario" class="MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN" >	
+								<column name="FK_idIoTScenario_idIoTScenario"/> 
+						</many-to-one>
+											 					
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="RecipeENReadAllHQL">from RecipeEN</query>
+		</hibernate-mapping>
+	

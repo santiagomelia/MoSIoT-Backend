@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="NotificationEN" table="Notification"> 
+				  	
+						<id name="Id" column="idNotification" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Severity" > 
+						<column name="severity"  not-null="true"/>
+					</property>
+					<property name="Message" type="string"> 
+						<column name="message"  not-null="true"/>
+					</property>
+					<property name="SendDate" type="timestamp"> 
+						<column name="sendDate"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Receivers" table="[notification_user]"  >
+							<key>
+								
+									<column name="FK_idNotification_idNotification"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.UserEN">
+									<column name="FK_email_idReceivers"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="CarePlan" class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanEN" >	
+								<column name="FK_idCarePlan_idCarePlan"/> 
+						</many-to-one>
+											 					
+			
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="NotificationENReadAllHQL">from NotificationEN</query>
+		</hibernate-mapping>
+	

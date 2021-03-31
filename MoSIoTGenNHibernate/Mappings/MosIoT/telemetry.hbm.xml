@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="TelemetryEN" table="Telemetry"> 
+				  	
+						<id name="Id" column="idTelemetry" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Frecuency" type="double"> 
+						<column name="frecuency"  not-null="true"/>
+					</property>
+					<property name="Schema" > 
+						<column name="schema_"  not-null="true"/>
+					</property>
+					<property name="Unit" > 
+						<column name="unit"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="DeviceTemplate" class="MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN" >	
+								<column name="FK_idDeviceTemplate_idDeviceTemplate"/> 
+						</many-to-one>
+											 					
+			
+			
+		  			
+					
+							<many-to-one name="TypeTelemetry" class="MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN" >
+								<column name="FK_idSpecificTelemetry_idTypeTelemetry"/> 
+        					</many-to-one>
+					 
+						
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Properties" table="[property_telemetry]" inverse="true" >
+							<key>
+								
+									<column name="FK_idTelemetry_idTelemetry"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.PropertyEN">
+									<column name="FK_idProperty_idProperties"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="VitalSign" class="MoSIoTGenNHibernate.EN.MosIoT.MeasureEN" >	
+								<column name="FK_idMeasure_idVitalSign"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="IMTelemetry" >
+							<key>
+							
+								
+								<column name="FK_idTelemetry_idTelemetry"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="TelemetryENReadAllHQL">from TelemetryEN</query>
+		</hibernate-mapping>
+	

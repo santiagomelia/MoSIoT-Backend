@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="RecipeTriggerEN" table="RecipeTrigger"> 
+				  	
+						<id name="Id" column="idRecipeTrigger" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Operator_" > 
+						<column name="operator"  not-null="true"/>
+					</property>
+					<property name="Value" type="string"> 
+						<column name="value"  not-null="true"/>
+					</property>
+			
+			
+		  			
+					
+							   <one-to-one name="Recipe" class="MoSIoTGenNHibernate.EN.MosIoT.RecipeEN" property-ref="Triggers" />							
+					 
+						
+			
+			
+			
+			
+		  			
+						<bag name="EntityAttributes" table="[entityAttributes_ruleCondition]" inverse="true" >
+							<key>
+								
+									<column name="FK_idRecipeTrigger_idTrigger"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN">
+									<column name="FK_idEntityAttributes_idEntityAttributes"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<many-to-one name="Event_" class="MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN" >	
+								<column name="FK_idEntityOperation_idEvent"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="RecipeTriggerENReadAllHQL">from RecipeTriggerEN</query>
+		</hibernate-mapping>
+	

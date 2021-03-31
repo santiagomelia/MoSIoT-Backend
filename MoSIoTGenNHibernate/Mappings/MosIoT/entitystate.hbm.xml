@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="EntityStateEN" table="EntityState"> 
+				  	
+						<id name="Id" column="idEntityState" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+			
+		  			
+						<many-to-one name="VirtualEntity" class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" >	
+								<column name="FK_id_idVirtualEntity"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="OriginOperations" >
+							<key>
+							
+								
+								<column name="FK_idEntityState_idOriginState"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="TargetOperations" >
+							<key>
+							
+								
+								<column name="FK_idEntityState_idTargetStates"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN"/>
+					    </bag>
+					
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EntityStateENReadAllHQL">from EntityStateEN</query>
+		</hibernate-mapping>
+	

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="SpecificTelemetryEN" table="SpecificTelemetry"> 
+				  	
+						<id name="Id" column="idSpecificTelemetry" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+			
+			
+		  			
+					
+							   <one-to-one name="Telemetry" class="MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN" property-ref="TypeTelemetry" />							
+					 
+						
+			
+			
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="SpecificTelemetryENReadAllHQL">from SpecificTelemetryEN</query>
+		</hibernate-mapping>
+	

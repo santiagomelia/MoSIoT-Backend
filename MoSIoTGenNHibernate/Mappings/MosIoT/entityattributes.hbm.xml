@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="EntityAttributesEN" table="EntityAttributes"> 
+				  	
+						<id name="Id" column="idEntityAttributes" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+					<property name="IsOID" type="boolean"> 
+						<column name="isOID"  not-null="true"/>
+					</property>
+					<property name="AssociationType" > 
+						<column name="associationType"  not-null="true"/>
+					</property>
+					<property name="IsWritable" type="boolean"> 
+						<column name="isWritable"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="TargetAssociation" >
+							<key>
+							
+								
+								<column name="FK_idEntityAttributes_idRolTarget"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AssociationEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="OriginAsociation" >
+							<key>
+							
+								
+								<column name="FK_idEntityAttributes_idRolOrigin"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AssociationEN"/>
+					    </bag>
+					
+			
+			
+			
+			
+		  			
+						<many-to-one name="Entity" class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" >	
+								<column name="FK_id_idvEntity"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Trigger" table="[entityAttributes_ruleCondition]"  >
+							<key>
+								
+									<column name="FK_idEntityAttributes_idEntityAttributes"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN">
+									<column name="FK_idRecipeTrigger_idTrigger"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EntityAttributesENReadAllHQL">from EntityAttributesEN</query>
+		</hibernate-mapping>
+	

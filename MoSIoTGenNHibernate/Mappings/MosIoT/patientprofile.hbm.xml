@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="PatientProfileEN" table="PatientProfile"> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="PreferredLanguage" > 
+						<column name="preferredLanguage"  not-null="true"/>
+					</property>
+					<property name="Region" type="string"> 
+						<column name="region"  not-null="true"/>
+					</property>
+					<property name="HazardAvoidance" > 
+						<column name="hazardAvoidance"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<bag name="AccessMode" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idPatient"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN"/>
+					    </bag>
+					
+			
+			
+			
+			
+		  			
+						<bag name="Disability" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idPatient"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN"/>
+					    </bag>
+					
+			
+			
+		  			
+						<bag name="CarePlan" >
+							<key>
+							
+								
+								<column name="FK_id_idPatientProfile"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Diseases" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idPatientProfile"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.ConditionEN"/>
+					    </bag>
+					
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PatientProfileENReadAllHQL">from PatientProfileEN</query>
+		</hibernate-mapping>
+	

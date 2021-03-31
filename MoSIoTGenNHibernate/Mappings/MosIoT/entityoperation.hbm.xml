@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="EntityOperationEN" table="EntityOperation"> 
+				  	
+						<id name="Id" column="idEntityOperation" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+					<property name="ServiceType" > 
+						<column name="serviceType"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="EntityArgument" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idEntityOperation_idEntityOperation"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityArgumentEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Entity" class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" >	
+								<column name="FK_id_idvEntity"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="RuleAction" >
+							<key>
+							
+								
+								<column name="FK_idEntityOperation_idOperation"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RecipeActionEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="OriginState" class="MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN" >	
+								<column name="FK_idEntityState_idOriginState"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="TargetState" class="MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN" >	
+								<column name="FK_idEntityState_idTargetStates"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="Triggers" >
+							<key>
+							
+								
+								<column name="FK_idEntityOperation_idEvent"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EntityOperationENReadAllHQL">from EntityOperationEN</query>
+		</hibernate-mapping>
+	

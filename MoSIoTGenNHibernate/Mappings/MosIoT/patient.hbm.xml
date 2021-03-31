@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="PatientEN" extends="MoSIoTGenNHibernate.EN.MosIoT.UserEN" table="Patient"> 
+	<key>
+    	
+				<column name="idUser"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >
+									<column name="FK_id_idPatientProfile"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="PatientENReadAllHQL">from PatientEN</query>
+		</hibernate-mapping>
+	

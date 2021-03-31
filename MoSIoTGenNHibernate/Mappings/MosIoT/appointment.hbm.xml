@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="AppointmentEN" table="Appointment"> 
+				  	
+						<id name="Id" column="idAppointment" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="IsVirtual" type="boolean"> 
+						<column name="isVirtual"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Direction" type="string"> 
+						<column name="direction"  not-null="true"/>
+					</property>
+					<property name="ReasonCode" type="string"> 
+						<column name="reasonCode"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="CareActivity" class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN" >	
+								<column name="FK_idCareActivity_idCareActivity"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="AppointmentENReadAllHQL">from AppointmentEN</query>
+		</hibernate-mapping>
+	

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="RelatedPersonEN" extends="MoSIoTGenNHibernate.EN.MosIoT.UserEN" table="RelatedPerson"> 
+	<key>
+    	
+				<column name="idUser"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="RelatedPersonENReadAllHQL">from RelatedPersonEN</query>
+		</hibernate-mapping>
+	

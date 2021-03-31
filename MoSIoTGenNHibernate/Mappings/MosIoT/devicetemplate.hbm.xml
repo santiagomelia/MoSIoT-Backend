@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="DeviceTemplateEN" table="DeviceTemplate"> 
+				  	
+						<id name="Id" column="idDeviceTemplate" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+					<property name="IsEdge" type="boolean"> 
+						<column name="isEdge"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="Property" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idDeviceTemplate_idDeviceTemplate"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.PropertyEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Command" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idDeviceTemplate_idDeviceTemplate"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.CommandEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Telemetry" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idDeviceTemplate_idDeviceTemplate"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN"/>
+					    </bag>
+					
+			
+			
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="DeviceTemplateENReadAllHQL">from DeviceTemplateEN</query>
+		</hibernate-mapping>
+	

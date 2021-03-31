@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="utf-8"?>
+		<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		  <PropertyGroup>
+		    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		    <ProductVersion>8.0.30703</ProductVersion>
+		    <SchemaVersion>2.0</SchemaVersion>
+		    <ProjectGuid>{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}</ProjectGuid>
+		    <OutputType>Library</OutputType>
+		    <AppDesignerFolder>Properties</AppDesignerFolder>
+		    <RootNamespace>MoSIoTGenNHibernate</RootNamespace>
+		    <AssemblyName>MoSIoTGenNHibernate</AssemblyName>
+		    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+		    <FileAlignment>512</FileAlignment>
+		    <PublishUrl>publish\</PublishUrl>
+		    <Install>true</Install>
+		    <InstallFrom>Disk</InstallFrom>
+		    <UpdateEnabled>false</UpdateEnabled>
+		    <UpdateMode>Foreground</UpdateMode>
+		    <UpdateInterval>7</UpdateInterval>
+		    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		    <UpdatePeriodically>false</UpdatePeriodically>
+		    <UpdateRequired>false</UpdateRequired>
+		    <MapFileExtensions>true</MapFileExtensions>
+		    <ApplicationRevision>0</ApplicationRevision>
+		    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		    <IsWebBootstrapper>false</IsWebBootstrapper>
+		    <UseApplicationTrust>false</UseApplicationTrust>
+		    <BootstrapperEnabled>true</BootstrapperEnabled>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		    <DebugSymbols>true</DebugSymbols>
+		    <DebugType>full</DebugType>
+		    <Optimize>false</Optimize>
+		    <OutputPath>bin\Debug\</OutputPath>
+		    <DefineConstants>DEBUG;TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		    <DebugType>pdbonly</DebugType>
+		    <Optimize>true</Optimize>
+		    <OutputPath>bin\Release\</OutputPath>
+		    <DefineConstants>TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		<ItemGroup>
+		    <Reference Include="Castle.DynamicProxy2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\MoSIoTGenNHibernate\AppLib\Castle.DynamicProxy2.dll</HintPath>
+		    </Reference>
+		    <Reference Include="LinFu.DynamicProxy, Version=1.0.3.14911, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\MoSIoTGenNHibernate\AppLib\LinFu.DynamicProxy.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\MoSIoTGenNHibernate\AppLib\NHibernate.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\MoSIoTGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\MoSIoTGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll</HintPath>
+		    </Reference>
+		    <Reference Include="Newtonsoft.Json, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\MoSIoTGenNHibernate\AppLib\Newtonsoft.Json.dll</HintPath>
+		    </Reference>
+		     <Reference Include="jose-jwt, Version=4.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\MoSIoTGenNHibernate\AppLib\jose-jwt.dll</HintPath>
+		    </Reference>
+		    <Reference Include="System" />
+		    <Reference Include="System.Core">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    
+		    <Reference Include="System.Transactions" />
+		    <Reference Include="System.Xml.Linq">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data.DataSetExtensions">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data" />
+		    <Reference Include="System.Xml" />
+		</ItemGroup>
+		
+		<ItemGroup>
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\Antlr3.Runtime.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\Castle.DynamicProxy2.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\Iesi.Collections.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\LinFu.DynamicProxy.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\log4net.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\NHibernate.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\nunit.core.dll" />
+		    <Content Include="..\MoSIoTGenNHibernate\AppLib\nunit.framework.dll" />
+  		    <Content Include="..\MoSIoTGenNHibernate\AppLib\jose-jwt.dll" />
+  		</ItemGroup>
+  		
+		<ItemGroup>
+			<Compile Include="NHibernateHelper.cs" />
+		    <Compile Include="Utils\Util.cs" />
+		    <Compile Include="Exceptions\ModelException.cs"/>
+		    <Compile Include="Exceptions\DataLayerException.cs"/>
+		    
+	<Compile Include="CAD\BasicCAD.cs"/>
+	<Compile Include="CP\BasicCP.cs"/>
+	<Compile Include="EN\MosIoT\PatientProfileEN.cs" />
+	<Compile Include="CEN\MosIoT\PatientProfileCEN.cs" />
+	<Compile Include="CAD\MosIoT\IPatientProfileCAD.cs" />
+	<Compile Include="CAD\MosIoT\PatientProfileCAD.cs" />
+	<Compile Include="CP\MosIoT\PatientProfileCP.cs" />
+			<Compile Include="CEN\MosIoT\PatientProfileCEN_New_.cs" />
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\DeviceEN.cs" />
+	<Compile Include="CEN\MosIoT\DeviceCEN.cs" />
+	<Compile Include="CAD\MosIoT\IDeviceCAD.cs" />
+	<Compile Include="CAD\MosIoT\DeviceCAD.cs" />
+	<Compile Include="CP\MosIoT\DeviceCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\AccessModeEN.cs" />
+	<Compile Include="CEN\MosIoT\AccessModeCEN.cs" />
+	<Compile Include="CAD\MosIoT\IAccessModeCAD.cs" />
+	<Compile Include="CAD\MosIoT\AccessModeCAD.cs" />
+	<Compile Include="CP\MosIoT\AccessModeCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\AdaptationTypeRequiredEN.cs" />
+	<Compile Include="CEN\MosIoT\AdaptationTypeRequiredCEN.cs" />
+	<Compile Include="CAD\MosIoT\IAdaptationTypeRequiredCAD.cs" />
+	<Compile Include="CAD\MosIoT\AdaptationTypeRequiredCAD.cs" />
+	<Compile Include="CP\MosIoT\AdaptationTypeRequiredCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\AdaptationDetailRequiredEN.cs" />
+	<Compile Include="CEN\MosIoT\AdaptationDetailRequiredCEN.cs" />
+	<Compile Include="CAD\MosIoT\IAdaptationDetailRequiredCAD.cs" />
+	<Compile Include="CAD\MosIoT\AdaptationDetailRequiredCAD.cs" />
+	<Compile Include="CP\MosIoT\AdaptationDetailRequiredCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\UserEN.cs" />
+	<Compile Include="CEN\MosIoT\UserCEN.cs" />
+	<Compile Include="CAD\MosIoT\IUserCAD.cs" />
+	<Compile Include="CAD\MosIoT\UserCAD.cs" />
+	<Compile Include="CP\MosIoT\UserCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\EntityAttributesEN.cs" />
+	<Compile Include="CEN\MosIoT\EntityAttributesCEN.cs" />
+	<Compile Include="CAD\MosIoT\IEntityAttributesCAD.cs" />
+	<Compile Include="CAD\MosIoT\EntityAttributesCAD.cs" />
+	<Compile Include="CP\MosIoT\EntityAttributesCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\DisabilityEN.cs" />
+	<Compile Include="CEN\MosIoT\DisabilityCEN.cs" />
+	<Compile Include="CAD\MosIoT\IDisabilityCAD.cs" />
+	<Compile Include="CAD\MosIoT\DisabilityCAD.cs" />
+	<Compile Include="CP\MosIoT\DisabilityCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\MeasureEN.cs" />
+	<Compile Include="CEN\MosIoT\MeasureCEN.cs" />
+	<Compile Include="CAD\MosIoT\IMeasureCAD.cs" />
+	<Compile Include="CAD\MosIoT\MeasureCAD.cs" />
+	<Compile Include="CP\MosIoT\MeasureCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\EntityOperationEN.cs" />
+	<Compile Include="CEN\MosIoT\EntityOperationCEN.cs" />
+	<Compile Include="CAD\MosIoT\IEntityOperationCAD.cs" />
+	<Compile Include="CAD\MosIoT\EntityOperationCAD.cs" />
+	<Compile Include="CP\MosIoT\EntityOperationCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\EntityArgumentEN.cs" />
+	<Compile Include="CEN\MosIoT\EntityArgumentCEN.cs" />
+	<Compile Include="CAD\MosIoT\IEntityArgumentCAD.cs" />
+	<Compile Include="CAD\MosIoT\EntityArgumentCAD.cs" />
+	<Compile Include="CP\MosIoT\EntityArgumentCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\EntityEN.cs" />
+	<Compile Include="CEN\MosIoT\EntityCEN.cs" />
+	<Compile Include="CAD\MosIoT\IEntityCAD.cs" />
+	<Compile Include="CAD\MosIoT\EntityCAD.cs" />
+	<Compile Include="CP\MosIoT\EntityCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\AssociationEN.cs" />
+	<Compile Include="CEN\MosIoT\AssociationCEN.cs" />
+	<Compile Include="CAD\MosIoT\IAssociationCAD.cs" />
+	<Compile Include="CAD\MosIoT\AssociationCAD.cs" />
+	<Compile Include="CP\MosIoT\AssociationCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\RecipeEN.cs" />
+	<Compile Include="CEN\MosIoT\RecipeCEN.cs" />
+	<Compile Include="CAD\MosIoT\IRecipeCAD.cs" />
+	<Compile Include="CAD\MosIoT\RecipeCAD.cs" />
+	<Compile Include="CP\MosIoT\RecipeCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\RecipeTriggerEN.cs" />
+	<Compile Include="CEN\MosIoT\RecipeTriggerCEN.cs" />
+	<Compile Include="CAD\MosIoT\IRecipeTriggerCAD.cs" />
+	<Compile Include="CAD\MosIoT\RecipeTriggerCAD.cs" />
+	<Compile Include="CP\MosIoT\RecipeTriggerCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\RecipeActionEN.cs" />
+	<Compile Include="CEN\MosIoT\RecipeActionCEN.cs" />
+	<Compile Include="CAD\MosIoT\IRecipeActionCAD.cs" />
+	<Compile Include="CAD\MosIoT\RecipeActionCAD.cs" />
+	<Compile Include="CP\MosIoT\RecipeActionCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IoTScenarioEN.cs" />
+	<Compile Include="CEN\MosIoT\IoTScenarioCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIoTScenarioCAD.cs" />
+	<Compile Include="CAD\MosIoT\IoTScenarioCAD.cs" />
+	<Compile Include="CP\MosIoT\IoTScenarioCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\DeviceTemplateEN.cs" />
+	<Compile Include="CEN\MosIoT\DeviceTemplateCEN.cs" />
+	<Compile Include="CAD\MosIoT\IDeviceTemplateCAD.cs" />
+	<Compile Include="CAD\MosIoT\DeviceTemplateCAD.cs" />
+	<Compile Include="CP\MosIoT\DeviceTemplateCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\PropertyEN.cs" />
+	<Compile Include="CEN\MosIoT\PropertyCEN.cs" />
+	<Compile Include="CAD\MosIoT\IPropertyCAD.cs" />
+	<Compile Include="CAD\MosIoT\PropertyCAD.cs" />
+	<Compile Include="CP\MosIoT\PropertyCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\CommandEN.cs" />
+	<Compile Include="CEN\MosIoT\CommandCEN.cs" />
+	<Compile Include="CAD\MosIoT\ICommandCAD.cs" />
+	<Compile Include="CAD\MosIoT\CommandCAD.cs" />
+	<Compile Include="CP\MosIoT\CommandCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\TelemetryEN.cs" />
+	<Compile Include="CEN\MosIoT\TelemetryCEN.cs" />
+	<Compile Include="CAD\MosIoT\ITelemetryCAD.cs" />
+	<Compile Include="CAD\MosIoT\TelemetryCAD.cs" />
+	<Compile Include="CP\MosIoT\TelemetryCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\SpecificTelemetryEN.cs" />
+	<Compile Include="CEN\MosIoT\SpecificTelemetryCEN.cs" />
+	<Compile Include="CAD\MosIoT\ISpecificTelemetryCAD.cs" />
+	<Compile Include="CAD\MosIoT\SpecificTelemetryCAD.cs" />
+	<Compile Include="CP\MosIoT\SpecificTelemetryCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\SensorTelemetryEN.cs" />
+	<Compile Include="CEN\MosIoT\SensorTelemetryCEN.cs" />
+	<Compile Include="CAD\MosIoT\ISensorTelemetryCAD.cs" />
+	<Compile Include="CAD\MosIoT\SensorTelemetryCAD.cs" />
+	<Compile Include="CP\MosIoT\SensorTelemetryCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\StateTelemetryEN.cs" />
+	<Compile Include="CEN\MosIoT\StateTelemetryCEN.cs" />
+	<Compile Include="CAD\MosIoT\IStateTelemetryCAD.cs" />
+	<Compile Include="CAD\MosIoT\StateTelemetryCAD.cs" />
+	<Compile Include="CP\MosIoT\StateTelemetryCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\LocationTelemetryEN.cs" />
+	<Compile Include="CEN\MosIoT\LocationTelemetryCEN.cs" />
+	<Compile Include="CAD\MosIoT\ILocationTelemetryCAD.cs" />
+	<Compile Include="CAD\MosIoT\LocationTelemetryCAD.cs" />
+	<Compile Include="CP\MosIoT\LocationTelemetryCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\EventTelemetryEN.cs" />
+	<Compile Include="CEN\MosIoT\EventTelemetryCEN.cs" />
+	<Compile Include="CAD\MosIoT\IEventTelemetryCAD.cs" />
+	<Compile Include="CAD\MosIoT\EventTelemetryCAD.cs" />
+	<Compile Include="CP\MosIoT\EventTelemetryCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\CarePlanTemplateEN.cs" />
+	<Compile Include="CEN\MosIoT\CarePlanTemplateCEN.cs" />
+	<Compile Include="CAD\MosIoT\ICarePlanTemplateCAD.cs" />
+	<Compile Include="CAD\MosIoT\CarePlanTemplateCAD.cs" />
+	<Compile Include="CP\MosIoT\CarePlanTemplateCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\ComunicationEN.cs" />
+	<Compile Include="CEN\MosIoT\ComunicationCEN.cs" />
+	<Compile Include="CAD\MosIoT\IComunicationCAD.cs" />
+	<Compile Include="CAD\MosIoT\ComunicationCAD.cs" />
+	<Compile Include="CP\MosIoT\ComunicationCP.cs" />
+			
+			
+			
+	<Compile Include="EN\MosIoT\CareActivityEN.cs" />
+	<Compile Include="CEN\MosIoT\CareActivityCEN.cs" />
+	<Compile Include="CAD\MosIoT\ICareActivityCAD.cs" />
+	<Compile Include="CAD\MosIoT\CareActivityCAD.cs" />
+	<Compile Include="CP\MosIoT\CareActivityCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\MedicationEN.cs" />
+	<Compile Include="CEN\MosIoT\MedicationCEN.cs" />
+	<Compile Include="CAD\MosIoT\IMedicationCAD.cs" />
+	<Compile Include="CAD\MosIoT\MedicationCAD.cs" />
+	<Compile Include="CP\MosIoT\MedicationCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\AdaptationRequestEN.cs" />
+	<Compile Include="CEN\MosIoT\AdaptationRequestCEN.cs" />
+	<Compile Include="CAD\MosIoT\IAdaptationRequestCAD.cs" />
+	<Compile Include="CAD\MosIoT\AdaptationRequestCAD.cs" />
+	<Compile Include="CP\MosIoT\AdaptationRequestCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\ConditionEN.cs" />
+	<Compile Include="CEN\MosIoT\ConditionCEN.cs" />
+	<Compile Include="CAD\MosIoT\IConditionCAD.cs" />
+	<Compile Include="CAD\MosIoT\ConditionCAD.cs" />
+	<Compile Include="CP\MosIoT\ConditionCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\GoalEN.cs" />
+	<Compile Include="CEN\MosIoT\GoalCEN.cs" />
+	<Compile Include="CAD\MosIoT\IGoalCAD.cs" />
+	<Compile Include="CAD\MosIoT\GoalCAD.cs" />
+	<Compile Include="CP\MosIoT\GoalCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\TargetEN.cs" />
+	<Compile Include="CEN\MosIoT\TargetCEN.cs" />
+	<Compile Include="CAD\MosIoT\ITargetCAD.cs" />
+	<Compile Include="CAD\MosIoT\TargetCAD.cs" />
+	<Compile Include="CP\MosIoT\TargetCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\StateDeviceEN.cs" />
+	<Compile Include="CEN\MosIoT\StateDeviceCEN.cs" />
+	<Compile Include="CAD\MosIoT\IStateDeviceCAD.cs" />
+	<Compile Include="CAD\MosIoT\StateDeviceCAD.cs" />
+	<Compile Include="CP\MosIoT\StateDeviceCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\AppointmentEN.cs" />
+	<Compile Include="CEN\MosIoT\AppointmentCEN.cs" />
+	<Compile Include="CAD\MosIoT\IAppointmentCAD.cs" />
+	<Compile Include="CAD\MosIoT\AppointmentCAD.cs" />
+	<Compile Include="CP\MosIoT\AppointmentCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\NutritionOrderEN.cs" />
+	<Compile Include="CEN\MosIoT\NutritionOrderCEN.cs" />
+	<Compile Include="CAD\MosIoT\INutritionOrderCAD.cs" />
+	<Compile Include="CAD\MosIoT\NutritionOrderCAD.cs" />
+	<Compile Include="CP\MosIoT\NutritionOrderCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\CarePlanEN.cs" />
+	<Compile Include="CEN\MosIoT\CarePlanCEN.cs" />
+	<Compile Include="CAD\MosIoT\ICarePlanCAD.cs" />
+	<Compile Include="CAD\MosIoT\CarePlanCAD.cs" />
+	<Compile Include="CP\MosIoT\CarePlanCP.cs" />
+			
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\PatientEN.cs" />
+	<Compile Include="CEN\MosIoT\PatientCEN.cs" />
+	<Compile Include="CAD\MosIoT\IPatientCAD.cs" />
+	<Compile Include="CAD\MosIoT\PatientCAD.cs" />
+	<Compile Include="CP\MosIoT\PatientCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\PractitionerEN.cs" />
+	<Compile Include="CEN\MosIoT\PractitionerCEN.cs" />
+	<Compile Include="CAD\MosIoT\IPractitionerCAD.cs" />
+	<Compile Include="CAD\MosIoT\PractitionerCAD.cs" />
+	<Compile Include="CP\MosIoT\PractitionerCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\RelatedPersonEN.cs" />
+	<Compile Include="CEN\MosIoT\RelatedPersonCEN.cs" />
+	<Compile Include="CAD\MosIoT\IRelatedPersonCAD.cs" />
+	<Compile Include="CAD\MosIoT\RelatedPersonCAD.cs" />
+	<Compile Include="CP\MosIoT\RelatedPersonCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\VitalSignEN.cs" />
+	<Compile Include="CEN\MosIoT\VitalSignCEN.cs" />
+	<Compile Include="CAD\MosIoT\IVitalSignCAD.cs" />
+	<Compile Include="CAD\MosIoT\VitalSignCAD.cs" />
+	<Compile Include="CP\MosIoT\VitalSignCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\PatientAccessEN.cs" />
+	<Compile Include="CEN\MosIoT\PatientAccessCEN.cs" />
+	<Compile Include="CAD\MosIoT\IPatientAccessCAD.cs" />
+	<Compile Include="CAD\MosIoT\PatientAccessCAD.cs" />
+	<Compile Include="CP\MosIoT\PatientAccessCP.cs" />
+			
+			
+			
+	<Compile Include="EN\MosIoT\EntityStateEN.cs" />
+	<Compile Include="CEN\MosIoT\EntityStateCEN.cs" />
+	<Compile Include="CAD\MosIoT\IEntityStateCAD.cs" />
+	<Compile Include="CAD\MosIoT\EntityStateCAD.cs" />
+	<Compile Include="CP\MosIoT\EntityStateCP.cs" />
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMTelemetryEN.cs" />
+	<Compile Include="CEN\MosIoT\IMTelemetryCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMTelemetryCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMTelemetryCAD.cs" />
+	<Compile Include="CP\MosIoT\IMTelemetryCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="Enumerated\MosIoT\AccessModeValueEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\AdaptationDetailValueEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\HazardValueEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\AdaptationTypeValueEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\DisabilityTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\AssociationTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\CardinalityTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\OperationTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\DataTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\OperatorTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\ServiceTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\SeverityEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\TypeUnitEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\SeverityEventEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\DeviceTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\TypePeriodicityEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\TypeActivityEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\LanguageCodeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\UserTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\GenderTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\CareStatusEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\CarePlanInentEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\ClinicalStatusEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\FormTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\DiseaseEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\PriorityTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\TelemetryTypeEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\CategoryGoalEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\StateTypeEnum.cs" />
+	
+	
+
+		    
+	
+
+		    <Compile Include="Properties\AssemblyInfo.cs" />
+		    <Compile Include="Properties\Settings.Designer.cs">
+		      <AutoGen>True</AutoGen>
+		      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+		      <DependentUpon>Settings.settings</DependentUpon>
+		    </Compile>
+		  </ItemGroup>
+		  <ItemGroup>
+		  
+	<EmbeddedResource Include="Mappings\MosIoT\patientprofile.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\device.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\accessmode.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\adaptationtyperequired.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\adaptationdetailrequired.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\user.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\entityattributes.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\disability.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\measure.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\entityoperation.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\entityargument.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\entity.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\association.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\recipe.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\recipetrigger.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\recipeaction.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\iotscenario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\devicetemplate.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\property.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\command.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\telemetry.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\specifictelemetry.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\sensortelemetry.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\statetelemetry.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\locationtelemetry.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\eventtelemetry.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\careplantemplate.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\comunication.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\careactivity.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\medication.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\adaptationrequest.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\condition.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\goal.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\target.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\statedevice.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\appointment.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\nutritionorder.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\careplan.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\patient.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\practitioner.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\relatedperson.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\vitalsign.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\patientaccess.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\entitystate.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imtelemetry.hbm.xml" />
+	
+	
+
+		  </ItemGroup>
+		  <ItemGroup>
+		    <Content Include="hibernate.cfg.xml">
+		      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		    </Content>
+		  </ItemGroup>
+		  <ItemGroup>
+		    <None Include="app.config" />
+		    <None Include="Properties\Settings.settings">
+		      <Generator>SettingsSingleFileGenerator</Generator>
+		      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		    </None>
+		        <None Include="Resources\xsd\nhibernate-configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\xsd\nhibernate-mapping.xsd">
+      <SubType>Designer</SubType>
+    </None>
+		  </ItemGroup>
+	 	
+		
+	
+		<ItemGroup>
+		    <ProjectReference Include="..\APIExterna\APIExterna.csproj">
+		      <Project>{4ade35c8-a0c3-49da-9e1a-11a53ca19214}</Project>
+		      <Name>APIExterna</Name>
+		    </ProjectReference>
+	    </ItemGroup>
+	    
+		  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+		  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+		       Other similar extension points exist, see Microsoft.Common.targets.
+		  <Target Name="BeforeBuild">
+		  </Target>
+		  <Target Name="AfterBuild">
+		  </Target>
+		  -->
+		</Project>

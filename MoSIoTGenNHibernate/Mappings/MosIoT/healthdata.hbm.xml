@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="HealthDataEN" table="HealthData"> 
+				  	
+						<id name="Id" column="idHealthData" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Language" > 
+						<column name="language"  not-null="true"/>
+					</property>
+					<property name="System" type="string"> 
+						<column name="system"  not-null="true"/>
+					</property>
+					<property name="Code" type="string"> 
+						<column name="code"  not-null="true"/>
+					</property>
+					<property name="Display" type="string"> 
+						<column name="display"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="HealthDataENReadAllHQL">from HealthDataEN</query>
+		</hibernate-mapping>
+	

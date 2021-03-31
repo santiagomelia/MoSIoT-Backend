@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="LocationTelemetryEN" extends="MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN" table="LocationTelemetry"> 
+	<key>
+    	
+				<column name="idSpecificTelemetry"/>
+		
+    	
+   	</key>
+
+			
+					
+					<property name="Latitude" type="integer"> 
+						<column name="latitude"  not-null="true"/>
+					</property>
+					<property name="Longitude" type="integer"> 
+						<column name="longitude"  not-null="true"/>
+					</property>
+					<property name="Altitude" type="integer"> 
+						<column name="altitude"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+					
+					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="LocationTelemetryENReadAllHQL">from LocationTelemetryEN</query>
+		</hibernate-mapping>
+	

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="ComunicationEN" table="Comunication"> 
+				  	
+						<id name="Id" column="idComunication" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Severity" > 
+						<column name="severity"  not-null="true"/>
+					</property>
+					<property name="Message" type="string"> 
+						<column name="message"  not-null="true"/>
+					</property>
+					<property name="SendDate" type="timestamp"> 
+						<column name="sendDate"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="EventTelemetry" >
+							<key>
+							
+								
+								<column name="FK_idComunication_idNotification"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EventTelemetryEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="CareActivity" class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN" >	
+								<column name="FK_idCareActivity_idCareActivity"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="CarePlanTemplate" class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN" >	
+								<column name="FK_idCarePlanTemplate_idCarePlanTemplate"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ComunicationENReadAllHQL">from ComunicationEN</query>
+		</hibernate-mapping>
+	

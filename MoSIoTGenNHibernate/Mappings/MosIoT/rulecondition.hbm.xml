@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="RuleConditionEN" table="RuleCondition"> 
+				  	
+						<id name="Id" column="idRuleCondition" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Operator_" > 
+						<column name="operator"  not-null="true"/>
+					</property>
+					<property name="Value" type="string"> 
+						<column name="value"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="Rule" class="MoSIoTGenNHibernate.EN.MosIoT.RuleEN" >	
+								<column name="FK_idRule_idRule"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+		  			
+						<bag name="EntityAttributes" table="[entityAttributes_ruleCondition]" inverse="true" >
+							<key>
+								
+									<column name="FK_idRuleCondition_idRuleCondition"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN">
+									<column name="FK_idEntityAttributes_idEntityAttributes"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="RuleConditionENReadAllHQL">from RuleConditionEN</query>
+		</hibernate-mapping>
+	

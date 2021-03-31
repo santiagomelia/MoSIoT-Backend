@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="UserEN" table="Patient_"> 
+				  	
+						<id name="Id" column="idUser" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="BirthDate" type="date"> 
+						<column name="birthDate" />
+					</property>
+					<property name="Address" type="string"> 
+						<column name="address" />
+					</property>
+					<property name="Surnames" type="string"> 
+						<column name="surnames"  not-null="true"/>
+					</property>
+					<property name="Phone" type="string"> 
+						<column name="phone" />
+					</property>
+					<property name="Photo" type="string"> 
+						<column name="photo" />
+					</property>
+					<property name="IsActive" type="boolean"> 
+						<column name="isActive"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type" />
+					</property>
+					<property name="IsDiseased" type="boolean"> 
+						<column name="isDiseased"  not-null="true"/>
+					</property>
+					<property name="Pass" type="string"> 
+						<column name="pass"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Email" type="string"> 
+						<column name="email"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="UserENReadAllHQL">from UserEN</query>
+		</hibernate-mapping>
+	

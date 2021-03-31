@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="MedicationEN" table="Medication"> 
+						<id name="ProductReference" column="productReferenceMedication"/> 
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Manufacturer" type="string"> 
+						<column name="manufacturer"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Dosage" type="string"> 
+						<column name="dosage"  not-null="true"/>
+					</property>
+					<property name="Form" > 
+						<column name="form"  not-null="true"/>
+					</property>
+					<property name="MedicationCode" type="string"> 
+						<column name="medicationCode"  not-null="true"/>
+					</property>
+			
+			
+		  			
+					
+							   <one-to-one name="CareActivity" class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN" property-ref="Medication" />							
+					 
+						
+			
+			
+			
+			
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="MedicationENReadAllHQL">from MedicationEN</query>
+		</hibernate-mapping>
+	

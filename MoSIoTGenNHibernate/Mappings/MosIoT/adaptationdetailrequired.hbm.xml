@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="AdaptationDetailRequiredEN" table="AdaptationDetailRequired"> 
+				  	
+						<id name="Id" column="idAdaptationDetailRequired" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="AdaptationRequest" > 
+						<column name="adaptationRequest"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="AccessMode" class="MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN" >	
+								<column name="FK_idAccessMode_idAccessModeRequired"/> 
+						</many-to-one>
+											 					
+			
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="AdaptationDetailRequiredENReadAllHQL">from AdaptationDetailRequiredEN</query>
+		</hibernate-mapping>
+	

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="StateTelemetryEN" extends="MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN" table="StateTelemetry"> 
+	<key>
+    	
+				<column name="idSpecificTelemetry"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+		  			
+						<bag name="RangeStates" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idSpecificTelemetry_idStateTelemetry"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.StateDeviceEN"/>
+					    </bag>
+					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="StateTelemetryENReadAllHQL">from StateTelemetryEN</query>
+		</hibernate-mapping>
+	

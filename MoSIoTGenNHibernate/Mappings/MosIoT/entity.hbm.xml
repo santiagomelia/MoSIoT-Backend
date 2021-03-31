@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="EntityEN" table="Entity"> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<bag name="OriginAssociation" >
+							<key>
+							
+								
+								<column name="FK_id_idEntityOrigin"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AssociationEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="TargetAssociation" >
+							<key>
+							
+								
+								<column name="FK_id_idEntityTarget"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AssociationEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="Scenario" class="MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN" >	
+								<column name="FK_idIoTScenario_idScenario"/> 
+						</many-to-one>
+											 					
+			
+			
+		  			
+						<bag name="Operations" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idvEntity"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Attributes" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idvEntity"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="States" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_id_idVirtualEntity"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EntityENReadAllHQL">from EntityEN</query>
+		</hibernate-mapping>
+	

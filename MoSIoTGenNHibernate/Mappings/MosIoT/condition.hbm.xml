@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="ConditionEN" table="Condition"> 
+				  	
+						<id name="Id" column="idCondition" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="DateInitial" type="timestamp"> 
+						<column name="dateInitial"  not-null="true"/>
+					</property>
+					<property name="DateEnd" type="timestamp"> 
+						<column name="dateEnd" />
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="ClinicalStatus" > 
+						<column name="clinicalStatus"  not-null="true"/>
+					</property>
+					<property name="Disease" > 
+						<column name="disease"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >	
+								<column name="FK_id_idPatientProfile"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+			
+		  			
+						<bag name="Disabilities" >
+							<key>
+							
+								
+								<column name="FK_idCondition_idOrigin"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN"/>
+					    </bag>
+					
+			
+			
+			
+		  			
+						<bag name="CarePlan" table="[condition_carePlan]"  >
+							<key>
+								
+									<column name="FK_idCondition_idAddressConditions"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN">
+									<column name="FK_idCarePlanTemplate_idCarePlan"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Goal" >
+							<key>
+							
+								
+								<column name="FK_idCondition_idCondition"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.GoalEN"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ConditionENReadAllHQL">from ConditionEN</query>
+		</hibernate-mapping>
+	

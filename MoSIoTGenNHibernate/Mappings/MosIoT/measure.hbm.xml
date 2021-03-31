@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="MeasureEN" table="Measure"> 
+				  	
+						<id name="Id" column="idMeasure" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="LOINCcode" type="string"> 
+						<column name="LOINCcode"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Target" >
+							<key>
+							
+								
+								<column name="FK_idMeasure_idMeasures"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.TargetEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Telemetry" >
+							<key>
+							
+								
+								<column name="FK_idMeasure_idVitalSign"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="MeasureENReadAllHQL">from MeasureEN</query>
+		</hibernate-mapping>
+	

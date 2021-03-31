@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="CommandEN" table="Command"> 
+				  	
+						<id name="Id" column="idCommand" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="IsSynchronous" type="boolean"> 
+						<column name="isSynchronous"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="DeviceTemplate" class="MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN" >	
+								<column name="FK_idDeviceTemplate_idDeviceTemplate"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+		  			
+						<bag name="Telemetries" >
+							<key>
+							
+								
+								<column name="FK_idCommand_idCommand"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.EventTelemetryEN"/>
+					    </bag>
+					
+			
+			
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="CommandENReadAllHQL">from CommandEN</query>
+		</hibernate-mapping>
+	

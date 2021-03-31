@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="DisabilityEN" table="Disability"> 
+				  	
+						<id name="Id" column="idDisability" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+					<property name="Severity" > 
+						<column name="severity"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="Patient" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >	
+								<column name="FK_id_idPatient"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Origin" class="MoSIoTGenNHibernate.EN.MosIoT.ConditionEN" >	
+								<column name="FK_idCondition_idOrigin"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<bag name="AccessMode" >
+							<key>
+							
+								
+								<column name="FK_idDisability_idDisability"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="DisabilityENReadAllHQL">from DisabilityEN</query>
+		</hibernate-mapping>
+	

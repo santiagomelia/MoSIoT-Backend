@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="AssociationEN" table="Association"> 
+				  	
+						<id name="Id" column="idAssociation" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+					<property name="CardinalityOrigin" > 
+						<column name="cardinalityOrigin"  not-null="true"/>
+					</property>
+					<property name="CardinalityTarget" > 
+						<column name="cardinalityTarget"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="RolOrigin" class="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" >	
+								<column name="FK_idEntityAttributes_idRolOrigin"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="RolTarget" class="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" >	
+								<column name="FK_idEntityAttributes_idRolTarget"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+		  			
+						<many-to-one name="EntityOrigin" class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" >	
+								<column name="FK_id_idEntityOrigin"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="EntityTarget" class="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" >	
+								<column name="FK_id_idEntityTarget"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="IoTScenario" class="MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN" >	
+								<column name="FK_idIoTScenario_idIoTScenario"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="AssociationENReadAllHQL">from AssociationEN</query>
+		</hibernate-mapping>
+	

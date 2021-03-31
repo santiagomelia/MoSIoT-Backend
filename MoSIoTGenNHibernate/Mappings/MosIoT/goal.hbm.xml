@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="GoalEN" table="Goal"> 
+				  	
+						<id name="Id" column="idGoal" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Priority" > 
+						<column name="priority"  not-null="true"/>
+					</property>
+					<property name="Status" > 
+						<column name="status"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Category" > 
+						<column name="category"  not-null="true"/>
+					</property>
+					<property name="OutcomeCode" type="string"> 
+						<column name="outcomeCode"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<many-to-one name="CarePlan" class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN" >	
+								<column name="FK_idCarePlanTemplate_idCarePlan"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+		  			
+						<bag name="Targets" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idGoal_idGoal"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.TargetEN"/>
+					    </bag>
+					
+			
+			
+		  			
+						<many-to-one name="Condition" class="MoSIoTGenNHibernate.EN.MosIoT.ConditionEN" >	
+								<column name="FK_idCondition_idCondition"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="GoalENReadAllHQL">from GoalEN</query>
+		</hibernate-mapping>
+	

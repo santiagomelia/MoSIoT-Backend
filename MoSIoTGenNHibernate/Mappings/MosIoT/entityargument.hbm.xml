@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="EntityArgumentEN" table="EntityArgument"> 
+				  	
+						<id name="Id" column="idEntityArgument" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Type" > 
+						<column name="type"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="EntityOperation" class="MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN" >	
+								<column name="FK_idEntityOperation_idEntityOperation"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="EntityArgumentENReadAllHQL">from EntityArgumentEN</query>
+		</hibernate-mapping>
+	

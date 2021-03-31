@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="RuleEN" table="Rule_"> 
+				  	
+						<id name="Id" column="idRule" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="IsEnabled" type="boolean"> 
+						<column name="isEnabled"  not-null="true"/>
+					</property>
+					<property name="IntervalTime" type="double"> 
+						<column name="intervalTime"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Condition" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idRule_idRule"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RuleConditionEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="RuleAction" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idRule_idRule"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RuleActionEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="IoTScenario" class="MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN" >	
+								<column name="FK_idIoTScenario_idIoTScenario"/> 
+						</many-to-one>
+											 					
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="RuleENReadAllHQL">from RuleEN</query>
+		</hibernate-mapping>
+	

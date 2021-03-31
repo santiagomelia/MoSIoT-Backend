@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="CarePlanTemplateEN" table="CarePlanTemplate"> 
+				  	
+						<id name="Id" column="idCarePlanTemplate" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Status" > 
+						<column name="status"  not-null="true"/>
+					</property>
+					<property name="Intent" > 
+						<column name="intent"  not-null="true"/>
+					</property>
+					<property name="Title" type="string"> 
+						<column name="title"  not-null="true"/>
+					</property>
+					<property name="Modified" type="date"> 
+						<column name="modified"  not-null="true"/>
+					</property>
+					<property name="DurationDays" type="integer"> 
+						<column name="durationDays"  not-null="true"/>
+					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
+			
+			
+		  			
+						<bag name="CareActivity" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idCarePlanTemplate_idCarePlan"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN"/>
+					    </bag>
+					
+			
+		  			
+						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >	
+								<column name="FK_id_idPatientProfile"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+			
+		  			
+						<bag name="Goals" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idCarePlanTemplate_idCarePlan"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.GoalEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="AddressConditions" table="[condition_carePlan]" inverse="true" >
+							<key>
+								
+									<column name="FK_idCarePlanTemplate_idCarePlan"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.ConditionEN">
+									<column name="FK_idCondition_idAddressConditions"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Comunication" cascade="delete">
+							<key>
+							
+								
+								<column name="FK_idCarePlanTemplate_idCarePlanTemplate"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN"/>
+					    </bag>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="CarePlanTemplateENReadAllHQL">from CarePlanTemplateEN</query>
+		</hibernate-mapping>
+	
