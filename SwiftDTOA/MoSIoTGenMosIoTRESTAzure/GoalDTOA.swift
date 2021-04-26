@@ -18,6 +18,7 @@ class GoalDTOA : DTOA
 	var description: String?;
 	var category: CategoryGoal?;
 	var outcomeCode: String?;
+	var name: String?;
 	
 	/* Rol: Goal o--> Target */
 	var targets: [TargetDTOA]?;
@@ -56,6 +57,7 @@ class GoalDTOA : DTOA
 			self.category = CategoryGoal(rawValue: enumValue);
 		}
 		self.outcomeCode = json["OutcomeCode"].object as? String;
+		self.name = json["Name"].object as? String;
 		
 		if (json["Targets"] != JSON.null)
 		{
@@ -95,6 +97,11 @@ class GoalDTOA : DTOA
 
 	
 		dictionary["OutcomeCode"] = self.outcomeCode;
+	
+	
+
+	
+		dictionary["Name"] = self.name;
 	
 	
 		

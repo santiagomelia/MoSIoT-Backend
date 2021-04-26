@@ -92,7 +92,6 @@ public HttpResponseMessage ReadAll ()
 
 
 
-
 [HttpGet]
 // [Route("{idCareActivity}", Name="GetOIDCareActivity")]
 

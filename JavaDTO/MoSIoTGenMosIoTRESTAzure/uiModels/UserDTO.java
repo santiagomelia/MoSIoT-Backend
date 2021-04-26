@@ -69,6 +69,22 @@
 				public String getEmail () { return email; } 
 				public void setEmail  (String value) { email = value;  } 
 				    	 
+				private ArrayList<Integer> relatedPerson_oid;
+				public ArrayList<Integer>  getRelatedPerson_oid () { return relatedPerson_oid; } 
+				public void setRelatedPerson_oid (ArrayList<Integer> value) { relatedPerson_oid = value;  } 
+				    	 
+				private ArrayList<Integer> practitioner_oid;
+				public ArrayList<Integer>  getPractitioner_oid () { return practitioner_oid; } 
+				public void setPractitioner_oid (ArrayList<Integer> value) { practitioner_oid = value;  } 
+				    	 
+				private ArrayList<Integer> patient_oid;
+				public ArrayList<Integer>  getPatient_oid () { return patient_oid; } 
+				public void setPatient_oid (ArrayList<Integer> value) { patient_oid = value;  } 
+				    	 
+				private ArrayList<Integer> notifications_oid;
+				public ArrayList<Integer>  getNotifications_oid () { return notifications_oid; } 
+				public void setNotifications_oid (ArrayList<Integer> value) { notifications_oid = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -120,6 +136,50 @@
 				
 						  json.put("Email", this.email);
 				
+
+						if (this.relatedPerson_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.relatedPerson_oid.size(); ++i)
+							{
+								jsonArray.put(this.relatedPerson_oid.get(i));
+							}
+							json.put("RelatedPerson_oid", jsonArray);
+						}
+		
+
+						if (this.practitioner_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.practitioner_oid.size(); ++i)
+							{
+								jsonArray.put(this.practitioner_oid.get(i));
+							}
+							json.put("Practitioner_oid", jsonArray);
+						}
+		
+
+						if (this.patient_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.patient_oid.size(); ++i)
+							{
+								jsonArray.put(this.patient_oid.get(i));
+							}
+							json.put("Patient_oid", jsonArray);
+						}
+		
+
+						if (this.notifications_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.notifications_oid.size(); ++i)
+							{
+								jsonArray.put(this.notifications_oid.get(i));
+							}
+							json.put("Notifications_oid", jsonArray);
+						}
+		
 						
 					}
 					catch (JSONException e)

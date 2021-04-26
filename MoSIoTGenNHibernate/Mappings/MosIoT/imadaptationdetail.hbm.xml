@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="IMAdaptationDetailEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" table="IMAdaptationDetail"> 
+	<key>
+    	
+				<column name="idEntityAttributes"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="AdaptationDetailRequired" class="MoSIoTGenNHibernate.EN.MosIoT.AdaptationDetailRequiredEN" >
+									<column name="FK_idAdaptationDetailRequired_idAdaptationDetailRequired"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="IMAdaptationDetailENReadAllHQL">from IMAdaptationDetailEN</query>
+		</hibernate-mapping>
+	

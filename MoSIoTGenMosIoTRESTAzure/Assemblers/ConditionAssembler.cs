@@ -36,12 +36,6 @@ public static ConditionDTOA Convert (ConditionEN en, NHibernate.ISession session
 
                 dto.Id = en.Id;
 
-                dto.DateInitial = en.DateInitial;
-
-
-                dto.DateEnd = en.DateEnd;
-
-
                 dto.Description = en.Description;
 
 

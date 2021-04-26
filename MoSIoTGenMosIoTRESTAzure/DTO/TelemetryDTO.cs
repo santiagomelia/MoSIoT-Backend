@@ -55,12 +55,5 @@ private int vitalSign_oid;
 public int VitalSign_oid {
         get { return vitalSign_oid; } set { vitalSign_oid = value;  }
 }
-
-
-
-private System.Collections.Generic.IList<int> iMTelemetry_oid;
-public System.Collections.Generic.IList<int> IMTelemetry_oid {
-        get { return iMTelemetry_oid; } set { iMTelemetry_oid = value;  }
-}
 }
 }

@@ -96,6 +96,9 @@ public void ModifyDefault (IoTScenarioEN ioTScenario)
 
 
 
+
+                ioTScenarioEN.Description = ioTScenario.Description;
+
                 session.Update (ioTScenarioEN);
                 SessionCommit ();
         }
@@ -149,6 +152,9 @@ public void Modify (IoTScenarioEN ioTScenario)
                 IoTScenarioEN ioTScenarioEN = (IoTScenarioEN)session.Load (typeof(IoTScenarioEN), ioTScenario.Id);
 
                 ioTScenarioEN.Name = ioTScenario.Name;
+
+
+                ioTScenarioEN.Description = ioTScenario.Description;
 
                 session.Update (ioTScenarioEN);
                 SessionCommit ();

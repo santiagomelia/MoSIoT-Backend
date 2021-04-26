@@ -338,6 +338,50 @@ public HttpResponseMessage Destroy (int p_target_oid)
 
 
 
+[HttpPut]
+
+
+[Route ("~/api/Target/AddMeasure")]
+
+public HttpResponseMessage AddMeasure (int p_target_oid, int p_measure_oid)
+{
+        // CAD, CEN, returnValue
+        TargetRESTCAD targetRESTCAD = null;
+        TargetCEN targetCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                targetRESTCAD = new TargetRESTCAD (session);
+                targetCEN = new TargetCEN (targetRESTCAD);
+
+                // Relationer
+                targetCEN.AddMeasure (p_target_oid, p_measure_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
 
 
 

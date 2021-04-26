@@ -13,8 +13,6 @@ class ConditionDTOA : DTOA
 
 	var id: Int?;
 	
-	var dateInitial: NSDate?;
-	var dateEnd: NSDate?;
 	var description: String?;
 	var clinicalStatus: ClinicalStatus?;
 	var disease: Disease?;
@@ -40,10 +38,6 @@ class ConditionDTOA : DTOA
 		self.id = json["Id"].object as? Int
 		
 	
-	
-		self.dateInitial = NSDate.initFromString(json["DateInitial"].object as? String);
-	
-		self.dateEnd = NSDate.initFromString(json["DateEnd"].object as? String);
 		self.description = json["Description"].object as? String;
 		if let enumValue = json["ClinicalStatus"].object as? Int
 		{
@@ -64,16 +58,6 @@ class ConditionDTOA : DTOA
 		
 		dictionary["Id"] = self.id;
 		
-	
-
-	
-		dictionary["DateInitial"] = self.dateInitial?.toString();
-	
-	
-
-	
-		dictionary["DateEnd"] = self.dateEnd?.toString();
-	
 	
 
 	

@@ -48,6 +48,7 @@ public static RecipeTriggerEN Convert (RecipeTriggerDTO dto)
 
                                 newinstance.Event_ = entityOperationCAD.ReadOIDDefault (dto.Event__oid);
                         }
+                        newinstance.Description = dto.Description;
                 }
         }
         catch (Exception ex)

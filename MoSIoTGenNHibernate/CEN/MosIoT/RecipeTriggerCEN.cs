@@ -39,7 +39,7 @@ public IRecipeTriggerCAD get_IRecipeTriggerCAD ()
         return this._IRecipeTriggerCAD;
 }
 
-public int New_ (int p_recipe, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum p_operator, string p_value)
+public int New_ (int p_recipe, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum p_operator, string p_value, string p_description)
 {
         RecipeTriggerEN recipeTriggerEN = null;
         int oid;
@@ -58,13 +58,15 @@ public int New_ (int p_recipe, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTyp
 
         recipeTriggerEN.Value = p_value;
 
+        recipeTriggerEN.Description = p_description;
+
         //Call to RecipeTriggerCAD
 
         oid = _IRecipeTriggerCAD.New_ (recipeTriggerEN);
         return oid;
 }
 
-public void Modify (int p_RecipeTrigger_OID, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum p_operator, string p_value)
+public void Modify (int p_RecipeTrigger_OID, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum p_operator, string p_value, string p_description)
 {
         RecipeTriggerEN recipeTriggerEN = null;
 
@@ -73,6 +75,7 @@ public void Modify (int p_RecipeTrigger_OID, MoSIoTGenNHibernate.Enumerated.MosI
         recipeTriggerEN.Id = p_RecipeTrigger_OID;
         recipeTriggerEN.Operator_ = p_operator;
         recipeTriggerEN.Value = p_value;
+        recipeTriggerEN.Description = p_description;
         //Call to RecipeTriggerCAD
 
         _IRecipeTriggerCAD.Modify (recipeTriggerEN);

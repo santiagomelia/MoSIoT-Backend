@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="IMPropertyEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" table="IMProperty"> 
+	<key>
+    	
+				<column name="idEntityAttributes"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="Property" class="MoSIoTGenNHibernate.EN.MosIoT.PropertyEN" >
+									<column name="FK_idProperty_idProperty"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="IMPropertyENReadAllHQL">from IMPropertyEN</query>
+		</hibernate-mapping>
+	

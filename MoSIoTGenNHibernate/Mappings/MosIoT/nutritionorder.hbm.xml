@@ -18,6 +18,9 @@
 					<property name="DietCode" type="string"> 
 						<column name="dietCode"  not-null="true"/>
 					</property>
+					<property name="Name" type="string"> 
+						<column name="name"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -28,6 +31,8 @@
 							   <one-to-one name="CareActivity" class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN" property-ref="NutritionOrder" />							
 					 
 						
+			
+					
 					
 					
 					

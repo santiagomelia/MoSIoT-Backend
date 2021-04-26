@@ -48,6 +48,9 @@ public static TargetDTOA Convert (TargetEN en, NHibernate.ISession session = nul
                 //
                 // TravesalLink
 
+                /* Rol: Target o--> Measure */
+                dto.Measure = MeasureAssembler.Convert ((MeasureEN)en.Measure, session);
+
 
                 //
                 // Service

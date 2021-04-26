@@ -1,0 +1,103 @@
+
+using System;
+using System.Text;
+using NHibernate;
+using NHibernate.Cfg;
+using NHibernate.Criterion;
+using NHibernate.Exceptions;
+
+using System.Collections.Generic;
+
+using MoSIoTGenNHibernate.EN.MosIoT;
+using MoSIoTGenNHibernate.CAD.MosIoT;
+using MoSIoTGenNHibernate.CEN.MosIoT;
+
+namespace MoSIoTGenScenarioMoSIoTRESTAzure.CAD
+{
+public class PatientRESTCAD : PatientCAD
+{
+public PatientRESTCAD()
+        : base ()
+{
+}
+
+public PatientRESTCAD(ISession sessionAux)
+        : base (sessionAux)
+{
+}
+
+
+
+public PatientProfileEN PatientProfile (int id)
+{
+        PatientProfileEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.PatientProfile FROM PatientEN self " +
+                             "where self.Id = :p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.UniqueResult<PatientProfileEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public UserEN UserData (int id)
+{
+        UserEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.UserPatient FROM PatientEN self " +
+                             "where self.Id = :p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.UniqueResult<UserEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+}
+}

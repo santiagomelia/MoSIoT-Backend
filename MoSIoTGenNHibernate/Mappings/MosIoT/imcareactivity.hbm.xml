@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="IMCareActivityEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" table="IMCareActivity"> 
+	<key>
+    	
+				<column name="id"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="CareActivity" class="MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN" >
+									<column name="FK_idCareActivity_idCareActivity"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="IMCareActivityENReadAllHQL">from IMCareActivityEN</query>
+		</hibernate-mapping>
+	

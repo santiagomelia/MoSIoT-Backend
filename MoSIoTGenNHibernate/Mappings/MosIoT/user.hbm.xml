@@ -62,6 +62,54 @@
 			
 			
 			
+			
+		  			
+						<bag name="RelatedPerson" >
+							<key>
+							
+								
+								<column name="FK_idUser_idUserRelatedPerson"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RelatedPersonEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Practitioner" >
+							<key>
+							
+								
+								<column name="FK_idUser_idUser_0"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.PractitionerEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Patient" >
+							<key>
+							
+								
+								<column name="FK_idUser_idUserPatient"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.PatientEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Notifications" table="[user_notify]"  >
+							<key>
+								
+									<column name="FK_idUser_idUser"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.NotifyEN">
+									<column name="FK_idEntityOperation_idNotify"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
 					
 					
 					

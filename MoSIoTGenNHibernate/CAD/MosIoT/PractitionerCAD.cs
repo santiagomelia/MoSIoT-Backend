@@ -90,6 +90,7 @@ public void ModifyDefault (PractitionerEN practitioner)
         {
                 SessionInitializeTransaction ();
                 PractitionerEN practitionerEN = (PractitionerEN)session.Load (typeof(PractitionerEN), practitioner.Id);
+
                 session.Update (practitionerEN);
                 SessionCommit ();
         }
@@ -114,6 +115,20 @@ public int New_ (PractitionerEN practitioner)
         try
         {
                 SessionInitializeTransaction ();
+                if (practitioner.Scenario != null) {
+                        // Argumento OID y no colección.
+                        practitioner.Scenario = (MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN), practitioner.Scenario.Id);
+
+                        practitioner.Scenario.Entity
+                        .Add (practitioner);
+                }
+                if (practitioner.UserPractitioner != null) {
+                        // Argumento OID y no colección.
+                        practitioner.UserPractitioner = (MoSIoTGenNHibernate.EN.MosIoT.UserEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.UserEN), practitioner.UserPractitioner.Id);
+
+                        practitioner.UserPractitioner.Practitioner
+                        .Add (practitioner);
+                }
 
                 session.Save (practitioner);
                 SessionCommit ();
@@ -142,25 +157,10 @@ public void Modify (PractitionerEN practitioner)
                 SessionInitializeTransaction ();
                 PractitionerEN practitionerEN = (PractitionerEN)session.Load (typeof(PractitionerEN), practitioner.Id);
 
-                practitionerEN.Surnames = practitioner.Surnames;
-
-
-                practitionerEN.IsActive = practitioner.IsActive;
-
-
-                practitionerEN.IsDiseased = practitioner.IsDiseased;
-
-
-                practitionerEN.Pass = practitioner.Pass;
-
-
                 practitionerEN.Name = practitioner.Name;
 
 
                 practitionerEN.Description = practitioner.Description;
-
-
-                practitionerEN.Email = practitioner.Email;
 
                 session.Update (practitionerEN);
                 SessionCommit ();

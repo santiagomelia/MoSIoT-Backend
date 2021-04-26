@@ -36,5 +36,14 @@ public Nullable<DateTime> DueDate
         get { return dueDate; }
         set { dueDate = value; }
 }
+
+
+/* Rol: Target o--> Measure */
+private MeasureDTOA measure;
+public MeasureDTOA Measure
+{
+        get { return measure; }
+        set { measure = value; }
+}
 }
 }

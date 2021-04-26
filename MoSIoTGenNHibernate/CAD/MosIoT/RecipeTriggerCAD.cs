@@ -99,6 +99,9 @@ public void ModifyDefault (RecipeTriggerEN recipeTrigger)
 
 
 
+
+                recipeTriggerEN.Description = recipeTrigger.Description;
+
                 session.Update (recipeTriggerEN);
                 SessionCommit ();
         }
@@ -162,6 +165,9 @@ public void Modify (RecipeTriggerEN recipeTrigger)
 
 
                 recipeTriggerEN.Value = recipeTrigger.Value;
+
+
+                recipeTriggerEN.Description = recipeTrigger.Description;
 
                 session.Update (recipeTriggerEN);
                 SessionCommit ();

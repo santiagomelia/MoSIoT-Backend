@@ -35,6 +35,14 @@ public class PatientProfileCareDTOA extends DTOA
 	public HazardValue getHazardAvoidance () { return hazardAvoidance; }
 	public void setHazardAvoidance (HazardValue hazardAvoidance) { this.hazardAvoidance = hazardAvoidance; }
 	
+	private String name;
+	public String getName () { return name; }
+	public void setName (String name) { this.name = name; }
+	
+	private String description;
+	public String getDescription () { return description; }
+	public void setDescription (String description) { this.description = description; }
+	
 	
 	
 	
@@ -80,6 +88,20 @@ public class PatientProfileCareDTOA extends DTOA
 				this.hazardAvoidance = HazardValue.fromRawValue(enumRawValue);
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Name")))
+			{
+			 
+				this.name = (String) json.opt("Name");
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("Description")))
+			{
+			 
+				this.description = (String) json.opt("Description");
+			 
+			}
 			
 			
 		}
@@ -111,6 +133,14 @@ public class PatientProfileCareDTOA extends DTOA
 		  if (this.hazardAvoidance != null)
 			json.put("HazardAvoidance", this.hazardAvoidance.getRawValue());
 		
+		
+		  if (this.name != null)
+			json.put("Name", this.name);
+		
+		
+		  if (this.description != null)
+			json.put("Description", this.description);
+		
 			
 			
 		}
@@ -137,6 +167,10 @@ public class PatientProfileCareDTOA extends DTOA
 	dto.setRegion (this.getRegion());
 
 	dto.setHazardAvoidance (this.getHazardAvoidance());
+
+	dto.setName (this.getName());
+
+	dto.setDescription (this.getDescription());
 
 		
 		

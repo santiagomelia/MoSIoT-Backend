@@ -33,6 +33,10 @@
 				public String getName () { return name; } 
 				public void setName  (String value) { name = value;  } 
 				    	 
+				private String description;
+				public String getDescription () { return description; } 
+				public void setDescription  (String value) { description = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -55,6 +59,9 @@
 						}
 				
 						  json.put("Name", this.name);
+				
+				
+						  json.put("Description", this.description);
 				
 						
 					}

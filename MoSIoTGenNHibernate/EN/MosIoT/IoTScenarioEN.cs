@@ -40,6 +40,13 @@ private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.Associati
 
 
 
+/**
+ *	Atributo description
+ */
+private string description;
+
+
+
 
 
 
@@ -73,6 +80,12 @@ public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.As
 
 
 
+public virtual string Description {
+        get { return description; } set { description = value;  }
+}
+
+
+
 
 
 public IoTScenarioEN()
@@ -84,20 +97,20 @@ public IoTScenarioEN()
 
 
 
-public IoTScenarioEN(int id, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityEN> entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeEN> recipes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> association
+public IoTScenarioEN(int id, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityEN> entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeEN> recipes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> association, string description
                      )
 {
-        this.init (Id, name, entity, recipes, association);
+        this.init (Id, name, entity, recipes, association, description);
 }
 
 
 public IoTScenarioEN(IoTScenarioEN ioTScenario)
 {
-        this.init (Id, ioTScenario.Name, ioTScenario.Entity, ioTScenario.Recipes, ioTScenario.Association);
+        this.init (Id, ioTScenario.Name, ioTScenario.Entity, ioTScenario.Recipes, ioTScenario.Association, ioTScenario.Description);
 }
 
 private void init (int id
-                   , string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityEN> entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeEN> recipes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> association)
+                   , string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityEN> entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeEN> recipes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> association, string description)
 {
         this.Id = id;
 
@@ -109,6 +122,8 @@ private void init (int id
         this.Recipes = recipes;
 
         this.Association = association;
+
+        this.Description = description;
 }
 
 public override bool Equals (object obj)

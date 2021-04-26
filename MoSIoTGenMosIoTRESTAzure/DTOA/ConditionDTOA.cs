@@ -16,20 +16,6 @@ public int Id
 }
 
 
-private Nullable<DateTime> dateInitial;
-public Nullable<DateTime> DateInitial
-{
-        get { return dateInitial; }
-        set { dateInitial = value; }
-}
-
-private Nullable<DateTime> dateEnd;
-public Nullable<DateTime> DateEnd
-{
-        get { return dateEnd; }
-        set { dateEnd = value; }
-}
-
 private string description;
 public string Description
 {

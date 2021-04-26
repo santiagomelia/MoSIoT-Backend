@@ -47,20 +47,6 @@ private MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum typeActivity;
 public MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum TypeActivity {
         get { return typeActivity; } set { typeActivity = value;  }
 }
-
-
-private int nextActivity_oid;
-public int NextActivity_oid {
-        get { return nextActivity_oid; } set { nextActivity_oid = value;  }
-}
-
-
-
-private int previousActivity_oid;
-public int PreviousActivity_oid {
-        get { return previousActivity_oid; } set { previousActivity_oid = value;  }
-}
-
 private System.Collections.Generic.IList<ComunicationDTO> notification;
 public System.Collections.Generic.IList<ComunicationDTO> Notification {
         get { return notification; } set { notification = value;  }

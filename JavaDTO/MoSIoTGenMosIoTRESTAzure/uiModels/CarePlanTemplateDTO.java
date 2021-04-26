@@ -29,9 +29,9 @@
 				public CareStatus getStatus () { return status; } 
 				public void setStatus  (CareStatus value) { status = value;  } 
 				    	 
-				private CarePlanInent intent;
-				public CarePlanInent getIntent () { return intent; } 
-				public void setIntent  (CarePlanInent value) { intent = value;  } 
+				private CarePlanIntent intent;
+				public CarePlanIntent getIntent () { return intent; } 
+				public void setIntent  (CarePlanIntent value) { intent = value;  } 
 				    	 
 				private String title;
 				public String getTitle () { return title; } 

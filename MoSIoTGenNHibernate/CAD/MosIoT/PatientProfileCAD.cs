@@ -103,7 +103,6 @@ public void ModifyDefault (PatientProfileEN patientProfile)
 
 
 
-
                 patientProfileEN.Name = patientProfile.Name;
 
 

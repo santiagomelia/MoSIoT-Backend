@@ -33,6 +33,10 @@
 				public Integer  getAccessMode_oid () { return accessMode_oid; } 
 				public void setAccessMode_oid (Integer value) { accessMode_oid = value;  } 
 				    	 
+				private ArrayList<Integer> iMAdaptationType_oid;
+				public ArrayList<Integer>  getIMAdaptationType_oid () { return iMAdaptationType_oid; } 
+				public void setIMAdaptationType_oid (ArrayList<Integer> value) { iMAdaptationType_oid = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -54,6 +58,17 @@
 						{
 							json.put("AccessMode_oid", this.accessMode_oid.intValue());
 						}
+
+						if (this.iMAdaptationType_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.iMAdaptationType_oid.size(); ++i)
+							{
+								jsonArray.put(this.iMAdaptationType_oid.get(i));
+							}
+							json.put("IMAdaptationType_oid", jsonArray);
+						}
+		
 						
 					}
 					catch (JSONException e)

@@ -57,6 +57,10 @@
 				public Integer  getIoTScenario_oid () { return ioTScenario_oid; } 
 				public void setIoTScenario_oid (Integer value) { ioTScenario_oid = value;  } 
 				    	 
+				private String description;
+				public String getDescription () { return description; } 
+				public void setDescription  (String value) { description = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -104,6 +108,9 @@
 						{
 							json.put("IoTScenario_oid", this.ioTScenario_oid.intValue());
 						}
+				
+						  json.put("Description", this.description);
+				
 						
 					}
 					catch (JSONException e)

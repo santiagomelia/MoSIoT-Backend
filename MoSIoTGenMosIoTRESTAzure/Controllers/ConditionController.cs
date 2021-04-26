@@ -179,7 +179,6 @@ public HttpResponseMessage New_ ( [FromBody] ConditionDTO dto)
                         // attr.estaRelacionado: true
                         dto.PatientProfile_oid                 // association role
 
-                        , dto.DateInitial                                                                                                                                                //Atributo Primitivo: p_dateInitial
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
                         , dto.ClinicalStatus                                                                                                                                                     //Atributo Primitivo: p_clinicalStatus
                         , dto.Disease                                                                                                                                                    //Atributo Primitivo: p_disease
@@ -253,8 +252,6 @@ public HttpResponseMessage Modify (int idCondition, [FromBody] ConditionDTO dto)
 
                 // Modify
                 conditionCEN.Modify (idCondition,
-                        dto.DateInitial
-                        ,
                         dto.Description
                         ,
                         dto.ClinicalStatus

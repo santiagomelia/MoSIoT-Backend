@@ -60,5 +60,10 @@ private int ioTScenario_oid;
 public int IoTScenario_oid {
         get { return ioTScenario_oid; } set { ioTScenario_oid = value;  }
 }
+
+private string description;
+public string Description {
+        get { return description; } set { description = value;  }
+}
 }
 }

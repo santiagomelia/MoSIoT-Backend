@@ -61,5 +61,17 @@ private System.Collections.Generic.IList<int> trigger_oid;
 public System.Collections.Generic.IList<int> Trigger_oid {
         get { return trigger_oid; } set { trigger_oid = value;  }
 }
+
+
+
+private System.Collections.Generic.IList<int> register_oid;
+public System.Collections.Generic.IList<int> Register_oid {
+        get { return register_oid; } set { register_oid = value;  }
+}
+
+private string value;
+public string Value {
+        get { return value; } set { value = value;  }
+}
 }
 }

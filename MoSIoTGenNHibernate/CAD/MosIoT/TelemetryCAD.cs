@@ -109,7 +109,6 @@ public void ModifyDefault (TelemetryEN telemetry)
 
 
 
-
                 session.Update (telemetryEN);
                 SessionCommit ();
         }

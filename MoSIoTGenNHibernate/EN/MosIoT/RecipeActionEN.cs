@@ -33,6 +33,13 @@ private string name;
 
 
 
+/**
+ *	Atributo description
+ */
+private string description;
+
+
+
 
 
 
@@ -60,6 +67,12 @@ public virtual string Name {
 
 
 
+public virtual string Description {
+        get { return description; } set { description = value;  }
+}
+
+
+
 
 
 public RecipeActionEN()
@@ -68,20 +81,20 @@ public RecipeActionEN()
 
 
 
-public RecipeActionEN(int id, MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN operation, string name
+public RecipeActionEN(int id, MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN operation, string name, string description
                       )
 {
-        this.init (Id, recipe, operation, name);
+        this.init (Id, recipe, operation, name, description);
 }
 
 
 public RecipeActionEN(RecipeActionEN recipeAction)
 {
-        this.init (Id, recipeAction.Recipe, recipeAction.Operation, recipeAction.Name);
+        this.init (Id, recipeAction.Recipe, recipeAction.Operation, recipeAction.Name, recipeAction.Description);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN operation, string name)
+                   , MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN operation, string name, string description)
 {
         this.Id = id;
 
@@ -91,6 +104,8 @@ private void init (int id
         this.Operation = operation;
 
         this.Name = name;
+
+        this.Description = description;
 }
 
 public override bool Equals (object obj)

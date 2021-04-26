@@ -35,6 +35,7 @@ public static NutritionOrderEN Convert (NutritionOrderDTO dto)
 
                                 newinstance.CareActivity = careActivityCAD.ReadOIDDefault (dto.CareActivity_oid);
                         }
+                        newinstance.Name = dto.Name;
                 }
         }
         catch (Exception ex)

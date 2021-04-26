@@ -15,14 +15,6 @@ private int id;
 public int Id {
         get { return id; } set { id = value;  }
 }
-private Nullable<DateTime> dateInitial;
-public Nullable<DateTime> DateInitial {
-        get { return dateInitial; } set { dateInitial = value;  }
-}
-private Nullable<DateTime> dateEnd;
-public Nullable<DateTime> DateEnd {
-        get { return dateEnd; } set { dateEnd = value;  }
-}
 private string description;
 public string Description {
         get { return description; } set { description = value;  }
@@ -42,13 +34,6 @@ private MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum disease;
 public MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum Disease {
         get { return disease; } set { disease = value;  }
 }
-
-
-private System.Collections.Generic.IList<int> carePlan_oid;
-public System.Collections.Generic.IList<int> CarePlan_oid {
-        get { return carePlan_oid; } set { carePlan_oid = value;  }
-}
-
 
 
 private System.Collections.Generic.IList<int> goal_oid;

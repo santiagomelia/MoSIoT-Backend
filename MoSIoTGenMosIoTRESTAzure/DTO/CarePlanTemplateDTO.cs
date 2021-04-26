@@ -21,8 +21,8 @@ private MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status;
 public MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum Status {
         get { return status; } set { status = value;  }
 }
-private MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum intent;
-public MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum Intent {
+private MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum intent;
+public MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum Intent {
         get { return intent; } set { intent = value;  }
 }
 private string title;

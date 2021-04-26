@@ -99,5 +99,39 @@ public NutritionOrderEN NutritionOrders (int id)
 
         return result;
 }
+
+public IList<AppointmentEN> Appointments (int id)
+{
+        IList<AppointmentEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM AppointmentEN self inner join self.CareActivity as target with target.Id=:p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<AppointmentEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in CareActivityRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

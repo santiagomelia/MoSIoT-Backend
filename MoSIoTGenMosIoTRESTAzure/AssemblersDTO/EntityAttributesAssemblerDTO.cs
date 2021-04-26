@@ -63,6 +63,15 @@ public static EntityAttributesEN Convert (EntityAttributesDTO dto)
                                         newinstance.Trigger.Add (recipeTriggerCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        if (dto.Register_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IRegisterCAD registerCAD = new MoSIoTGenNHibernate.CAD.MosIoT.RegisterCAD ();
+
+                                newinstance.Register = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN>();
+                                foreach (int entry in dto.Register_oid) {
+                                        newinstance.Register.Add (registerCAD.ReadOIDDefault (entry));
+                                }
+                        }
+                        newinstance.Value = dto.Value;
                 }
         }
         catch (Exception ex)

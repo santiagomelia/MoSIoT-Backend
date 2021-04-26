@@ -39,7 +39,7 @@ public IRecipeActionCAD get_IRecipeActionCAD ()
         return this._IRecipeActionCAD;
 }
 
-public int New_ (int p_recipe, int p_operation, string p_name)
+public int New_ (int p_recipe, int p_operation, string p_name, string p_description)
 {
         RecipeActionEN recipeActionEN = null;
         int oid;
@@ -64,13 +64,15 @@ public int New_ (int p_recipe, int p_operation, string p_name)
 
         recipeActionEN.Name = p_name;
 
+        recipeActionEN.Description = p_description;
+
         //Call to RecipeActionCAD
 
         oid = _IRecipeActionCAD.New_ (recipeActionEN);
         return oid;
 }
 
-public void Modify (int p_RecipeAction_OID, string p_name)
+public void Modify (int p_RecipeAction_OID, string p_name, string p_description)
 {
         RecipeActionEN recipeActionEN = null;
 
@@ -78,6 +80,7 @@ public void Modify (int p_RecipeAction_OID, string p_name)
         recipeActionEN = new RecipeActionEN ();
         recipeActionEN.Id = p_RecipeAction_OID;
         recipeActionEN.Name = p_name;
+        recipeActionEN.Description = p_description;
         //Call to RecipeActionCAD
 
         _IRecipeActionCAD.Modify (recipeActionEN);

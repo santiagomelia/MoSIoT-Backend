@@ -6,10 +6,10 @@
 		    
 			
 				
-<joined-subclass name="RelatedPersonEN" extends="MoSIoTGenNHibernate.EN.MosIoT.UserEN" table="RelatedPerson"> 
+<joined-subclass name="RelatedPersonEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" table="RelatedPerson"> 
 	<key>
     	
-				<column name="idUser"/>
+				<column name="id"/>
 		
     	
    	</key>
@@ -17,6 +17,13 @@
 			
 					
 			
+			
+		  			
+						<many-to-one name="UserRelatedPerson" class="MoSIoTGenNHibernate.EN.MosIoT.UserEN" >	
+								<column name="FK_idUser_idUserRelatedPerson"/> 
+						</many-to-one>
+											 					
+					
 		
  	  
 		 </joined-subclass>

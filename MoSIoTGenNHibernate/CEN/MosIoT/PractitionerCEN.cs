@@ -39,26 +39,32 @@ public IPractitionerCAD get_IPractitionerCAD ()
         return this._IPractitionerCAD;
 }
 
-public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
+public int New_ (string p_name, int p_scenario, string p_description, int p_userPractitioner)
 {
         PractitionerEN practitionerEN = null;
         int oid;
 
         //Initialized PractitionerEN
         practitionerEN = new PractitionerEN ();
-        practitionerEN.Surnames = p_surnames;
-
-        practitionerEN.IsActive = p_isActive;
-
-        practitionerEN.IsDiseased = p_isDiseased;
-
-        practitionerEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
-
         practitionerEN.Name = p_name;
+
+
+        if (p_scenario != -1) {
+                // El argumento p_scenario -> Property scenario es oid = false
+                // Lista de oids id
+                practitionerEN.Scenario = new MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ();
+                practitionerEN.Scenario.Id = p_scenario;
+        }
 
         practitionerEN.Description = p_description;
 
-        practitionerEN.Email = p_email;
+
+        if (p_userPractitioner != -1) {
+                // El argumento p_userPractitioner -> Property userPractitioner es oid = false
+                // Lista de oids id
+                practitionerEN.UserPractitioner = new MoSIoTGenNHibernate.EN.MosIoT.UserEN ();
+                practitionerEN.UserPractitioner.Id = p_userPractitioner;
+        }
 
         //Call to PractitionerCAD
 
@@ -66,20 +72,15 @@ public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p
         return oid;
 }
 
-public void Modify (int p_Practitioner_OID, string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
+public void Modify (int p_Practitioner_OID, string p_name, string p_description)
 {
         PractitionerEN practitionerEN = null;
 
         //Initialized PractitionerEN
         practitionerEN = new PractitionerEN ();
         practitionerEN.Id = p_Practitioner_OID;
-        practitionerEN.Surnames = p_surnames;
-        practitionerEN.IsActive = p_isActive;
-        practitionerEN.IsDiseased = p_isDiseased;
-        practitionerEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         practitionerEN.Name = p_name;
         practitionerEN.Description = p_description;
-        practitionerEN.Email = p_email;
         //Call to PractitionerCAD
 
         _IPractitionerCAD.Modify (practitionerEN);

@@ -39,7 +39,7 @@ public IEntityAttributesCAD get_IEntityAttributesCAD ()
         return this._IEntityAttributesCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum p_associationType, bool p_isWritable, string p_description, int p_entity)
+public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value)
 {
         EntityAttributesEN entityAttributesEN = null;
         int oid;
@@ -51,8 +51,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         entityAttributesEN.Type = p_type;
 
         entityAttributesEN.IsOID = p_isOID;
-
-        entityAttributesEN.AssociationType = p_associationType;
 
         entityAttributesEN.IsWritable = p_isWritable;
 
@@ -66,13 +64,15 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 entityAttributesEN.Entity.Id = p_entity;
         }
 
+        entityAttributesEN.Value = p_value;
+
         //Call to EntityAttributesCAD
 
         oid = _IEntityAttributesCAD.New_ (entityAttributesEN);
         return oid;
 }
 
-public void Modify (int p_EntityAttributes_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum p_associationType, bool p_isWritable, string p_description)
+public void Modify (int p_EntityAttributes_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
 {
         EntityAttributesEN entityAttributesEN = null;
 
@@ -82,9 +82,9 @@ public void Modify (int p_EntityAttributes_OID, string p_name, MoSIoTGenNHiberna
         entityAttributesEN.Name = p_name;
         entityAttributesEN.Type = p_type;
         entityAttributesEN.IsOID = p_isOID;
-        entityAttributesEN.AssociationType = p_associationType;
         entityAttributesEN.IsWritable = p_isWritable;
         entityAttributesEN.Description = p_description;
+        entityAttributesEN.Value = p_value;
         //Call to EntityAttributesCAD
 
         _IEntityAttributesCAD.Modify (entityAttributesEN);

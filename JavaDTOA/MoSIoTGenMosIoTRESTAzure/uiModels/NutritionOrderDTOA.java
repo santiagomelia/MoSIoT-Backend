@@ -31,6 +31,10 @@ public class NutritionOrderDTOA extends DTOA
 	public String getDietCode () { return dietCode; }
 	public void setDietCode (String dietCode) { this.dietCode = dietCode; }
 	
+	private String name;
+	public String getName () { return name; }
+	public void setName (String name) { this.name = name; }
+	
 	
 	
 	
@@ -69,6 +73,13 @@ public class NutritionOrderDTOA extends DTOA
 				this.dietCode = (String) json.opt("DietCode");
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Name")))
+			{
+			 
+				this.name = (String) json.opt("Name");
+			 
+			}
 			
 			
 		}
@@ -96,6 +107,10 @@ public class NutritionOrderDTOA extends DTOA
 		  if (this.dietCode != null)
 			json.put("DietCode", this.dietCode);
 		
+		
+		  if (this.name != null)
+			json.put("Name", this.name);
+		
 			
 			
 		}
@@ -120,6 +135,8 @@ public class NutritionOrderDTOA extends DTOA
 	dto.setDescription (this.getDescription());
 
 	dto.setDietCode (this.getDietCode());
+
+	dto.setName (this.getName());
 
 		
 		

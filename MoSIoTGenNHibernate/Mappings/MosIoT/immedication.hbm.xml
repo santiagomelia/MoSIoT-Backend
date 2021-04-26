@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="IMMedicationEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" table="IMMedication"> 
+	<key>
+    	
+				<column name="idEntityAttributes"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="Medication" class="MoSIoTGenNHibernate.EN.MosIoT.MedicationEN" >
+									<column name="FK_productReferenceMedication_idMedication"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="IMMedicationENReadAllHQL">from IMMedicationEN</query>
+		</hibernate-mapping>
+	

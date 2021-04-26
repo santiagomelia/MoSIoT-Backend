@@ -209,7 +209,7 @@ enum CareStatus: Int
 	case Canceled = 6
 }
 
-enum CarePlanInent: Int
+enum CarePlanIntent: Int
 {
 	case Proposal = 1
 	case Plan = 2

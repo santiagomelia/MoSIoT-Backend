@@ -75,13 +75,6 @@ private MoSIoTGenNHibernate.EN.MosIoT.MeasureEN vitalSign;
 
 
 
-/**
- *	Atributo iMTelemetry
- */
-private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN> iMTelemetry;
-
-
-
 
 
 
@@ -145,36 +138,29 @@ public virtual MoSIoTGenNHibernate.EN.MosIoT.MeasureEN VitalSign {
 
 
 
-public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN> IMTelemetry {
-        get { return iMTelemetry; } set { iMTelemetry = value;  }
-}
-
-
-
 
 
 public TelemetryEN()
 {
         properties = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN>();
-        iMTelemetry = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN>();
 }
 
 
 
-public TelemetryEN(int id, MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN deviceTemplate, double frecuency, MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN typeTelemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum schema, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeUnitEnum unit, string name, MoSIoTGenNHibernate.Enumerated.MosIoT.TelemetryTypeEnum type, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> properties, MoSIoTGenNHibernate.EN.MosIoT.MeasureEN vitalSign, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN> iMTelemetry
+public TelemetryEN(int id, MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN deviceTemplate, double frecuency, MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN typeTelemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum schema, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeUnitEnum unit, string name, MoSIoTGenNHibernate.Enumerated.MosIoT.TelemetryTypeEnum type, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> properties, MoSIoTGenNHibernate.EN.MosIoT.MeasureEN vitalSign
                    )
 {
-        this.init (Id, deviceTemplate, frecuency, typeTelemetry, schema, unit, name, type, properties, vitalSign, iMTelemetry);
+        this.init (Id, deviceTemplate, frecuency, typeTelemetry, schema, unit, name, type, properties, vitalSign);
 }
 
 
 public TelemetryEN(TelemetryEN telemetry)
 {
-        this.init (Id, telemetry.DeviceTemplate, telemetry.Frecuency, telemetry.TypeTelemetry, telemetry.Schema, telemetry.Unit, telemetry.Name, telemetry.Type, telemetry.Properties, telemetry.VitalSign, telemetry.IMTelemetry);
+        this.init (Id, telemetry.DeviceTemplate, telemetry.Frecuency, telemetry.TypeTelemetry, telemetry.Schema, telemetry.Unit, telemetry.Name, telemetry.Type, telemetry.Properties, telemetry.VitalSign);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN deviceTemplate, double frecuency, MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN typeTelemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum schema, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeUnitEnum unit, string name, MoSIoTGenNHibernate.Enumerated.MosIoT.TelemetryTypeEnum type, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> properties, MoSIoTGenNHibernate.EN.MosIoT.MeasureEN vitalSign, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN> iMTelemetry)
+                   , MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN deviceTemplate, double frecuency, MoSIoTGenNHibernate.EN.MosIoT.SpecificTelemetryEN typeTelemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum schema, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeUnitEnum unit, string name, MoSIoTGenNHibernate.Enumerated.MosIoT.TelemetryTypeEnum type, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> properties, MoSIoTGenNHibernate.EN.MosIoT.MeasureEN vitalSign)
 {
         this.Id = id;
 
@@ -196,8 +182,6 @@ private void init (int id
         this.Properties = properties;
 
         this.VitalSign = vitalSign;
-
-        this.IMTelemetry = iMTelemetry;
 }
 
 public override bool Equals (object obj)

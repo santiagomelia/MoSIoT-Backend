@@ -262,5 +262,44 @@ public System.Collections.Generic.IList<MeasureEN> ReadAll (int first, int size)
 
         return result;
 }
+
+public void AddTelemetries (int p_Measure_OID, System.Collections.Generic.IList<int> p_telemetry_OIDs)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.MeasureEN measureEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                measureEN = (MeasureEN)session.Load (typeof(MeasureEN), p_Measure_OID);
+                MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN telemetryENAux = null;
+                if (measureEN.Telemetry == null) {
+                        measureEN.Telemetry = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN>();
+                }
+
+                foreach (int item in p_telemetry_OIDs) {
+                        telemetryENAux = new MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN ();
+                        telemetryENAux = (MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN), item);
+                        telemetryENAux.VitalSign = measureEN;
+
+                        measureEN.Telemetry.Add (telemetryENAux);
+                }
+
+
+                session.Update (measureEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in MeasureCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

@@ -26,5 +26,9 @@ private System.Collections.Generic.IList<AssociationDTO> association;
 public System.Collections.Generic.IList<AssociationDTO> Association {
         get { return association; } set { association = value;  }
 }
+private string description;
+public string Description {
+        get { return description; } set { description = value;  }
+}
 }
 }

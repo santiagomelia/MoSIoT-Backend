@@ -33,6 +33,13 @@ private MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN careActivity;
 
 
 
+/**
+ *	Atributo name
+ */
+private string name;
+
+
+
 
 
 
@@ -60,6 +67,12 @@ public virtual MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN CareActivity {
 
 
 
+public virtual string Name {
+        get { return name; } set { name = value;  }
+}
+
+
+
 
 
 public NutritionOrderEN()
@@ -68,20 +81,20 @@ public NutritionOrderEN()
 
 
 
-public NutritionOrderEN(int id, string description, string dietCode, MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN careActivity
+public NutritionOrderEN(int id, string description, string dietCode, MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN careActivity, string name
                         )
 {
-        this.init (Id, description, dietCode, careActivity);
+        this.init (Id, description, dietCode, careActivity, name);
 }
 
 
 public NutritionOrderEN(NutritionOrderEN nutritionOrder)
 {
-        this.init (Id, nutritionOrder.Description, nutritionOrder.DietCode, nutritionOrder.CareActivity);
+        this.init (Id, nutritionOrder.Description, nutritionOrder.DietCode, nutritionOrder.CareActivity, nutritionOrder.Name);
 }
 
 private void init (int id
-                   , string description, string dietCode, MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN careActivity)
+                   , string description, string dietCode, MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN careActivity, string name)
 {
         this.Id = id;
 
@@ -91,6 +104,8 @@ private void init (int id
         this.DietCode = dietCode;
 
         this.CareActivity = careActivity;
+
+        this.Name = name;
 }
 
 public override bool Equals (object obj)

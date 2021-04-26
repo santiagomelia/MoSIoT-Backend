@@ -113,8 +113,6 @@ public void ModifyDefault (CareActivityEN careActivity)
 
 
 
-
-
                 careActivityEN.ActivityCode = careActivity.ActivityCode;
 
 

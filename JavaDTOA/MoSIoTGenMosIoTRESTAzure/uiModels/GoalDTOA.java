@@ -43,6 +43,10 @@ public class GoalDTOA extends DTOA
 	public String getOutcomeCode () { return outcomeCode; }
 	public void setOutcomeCode (String outcomeCode) { this.outcomeCode = outcomeCode; }
 	
+	private String name;
+	public String getName () { return name; }
+	public void setName (String name) { this.name = name; }
+	
 	
 	/* Rol: Goal o--> Target */
 	private ArrayList<TargetDTOA> targets;
@@ -107,6 +111,13 @@ public class GoalDTOA extends DTOA
 				this.outcomeCode = (String) json.opt("OutcomeCode");
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Name")))
+			{
+			 
+				this.name = (String) json.opt("Name");
+			 
+			}
 			
 
 			JSONObject jsonTargets = json.optJSONObject("Targets");
@@ -155,6 +166,10 @@ public class GoalDTOA extends DTOA
 		  if (this.outcomeCode != null)
 			json.put("OutcomeCode", this.outcomeCode);
 		
+		
+		  if (this.name != null)
+			json.put("Name", this.name);
+		
 			
 
 			if (this.targets != null)
@@ -191,6 +206,8 @@ public class GoalDTOA extends DTOA
 	dto.setCategory (this.getCategory());
 
 	dto.setOutcomeCode (this.getOutcomeCode());
+
+	dto.setName (this.getName());
 
 		
 		

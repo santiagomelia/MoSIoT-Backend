@@ -35,6 +35,14 @@ public static AdaptationTypeRequiredEN Convert (AdaptationTypeRequiredDTO dto)
 
                                 newinstance.AccessMode = accessModeCAD.ReadOIDDefault (dto.AccessMode_oid);
                         }
+                        if (dto.IMAdaptationType_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IIMAdaptationTypeCAD iMAdaptationTypeCAD = new MoSIoTGenNHibernate.CAD.MosIoT.IMAdaptationTypeCAD ();
+
+                                newinstance.IMAdaptationType = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN>();
+                                foreach (int entry in dto.IMAdaptationType_oid) {
+                                        newinstance.IMAdaptationType.Add (iMAdaptationTypeCAD.ReadOIDDefault (entry));
+                                }
+                        }
                 }
         }
         catch (Exception ex)

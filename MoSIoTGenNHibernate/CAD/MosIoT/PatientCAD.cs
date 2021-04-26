@@ -91,6 +91,7 @@ public void ModifyDefault (PatientEN patient)
                 SessionInitializeTransaction ();
                 PatientEN patientEN = (PatientEN)session.Load (typeof(PatientEN), patient.Id);
 
+
                 session.Update (patientEN);
                 SessionCommit ();
         }
@@ -115,9 +116,23 @@ public int New_ (PatientEN patient)
         try
         {
                 SessionInitializeTransaction ();
+                if (patient.Scenario != null) {
+                        // Argumento OID y no colección.
+                        patient.Scenario = (MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN), patient.Scenario.Id);
+
+                        patient.Scenario.Entity
+                        .Add (patient);
+                }
                 if (patient.PatientProfile != null) {
                         // Argumento OID y no colección.
                         patient.PatientProfile = (MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN), patient.PatientProfile.Id);
+                }
+                if (patient.UserPatient != null) {
+                        // Argumento OID y no colección.
+                        patient.UserPatient = (MoSIoTGenNHibernate.EN.MosIoT.UserEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.UserEN), patient.UserPatient.Id);
+
+                        patient.UserPatient.Patient
+                        .Add (patient);
                 }
 
                 session.Save (patient);
@@ -147,25 +162,10 @@ public void Modify (PatientEN patient)
                 SessionInitializeTransaction ();
                 PatientEN patientEN = (PatientEN)session.Load (typeof(PatientEN), patient.Id);
 
-                patientEN.Surnames = patient.Surnames;
-
-
-                patientEN.IsActive = patient.IsActive;
-
-
-                patientEN.IsDiseased = patient.IsDiseased;
-
-
-                patientEN.Pass = patient.Pass;
-
-
                 patientEN.Name = patient.Name;
 
 
                 patientEN.Description = patient.Description;
-
-
-                patientEN.Email = patient.Email;
 
                 session.Update (patientEN);
                 SessionCommit ();

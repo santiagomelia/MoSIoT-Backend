@@ -51,6 +51,13 @@ public string OutcomeCode
         set { outcomeCode = value; }
 }
 
+private string name;
+public string Name
+{
+        get { return name; }
+        set { name = value; }
+}
+
 
 /* Rol: Goal o--> Target */
 private IList<TargetDTOA> targets;

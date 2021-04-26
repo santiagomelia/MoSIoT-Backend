@@ -39,26 +39,32 @@ public IRelatedPersonCAD get_IRelatedPersonCAD ()
         return this._IRelatedPersonCAD;
 }
 
-public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
+public int New_ (string p_name, int p_scenario, string p_description, int p_userRelatedPerson)
 {
         RelatedPersonEN relatedPersonEN = null;
         int oid;
 
         //Initialized RelatedPersonEN
         relatedPersonEN = new RelatedPersonEN ();
-        relatedPersonEN.Surnames = p_surnames;
-
-        relatedPersonEN.IsActive = p_isActive;
-
-        relatedPersonEN.IsDiseased = p_isDiseased;
-
-        relatedPersonEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
-
         relatedPersonEN.Name = p_name;
+
+
+        if (p_scenario != -1) {
+                // El argumento p_scenario -> Property scenario es oid = false
+                // Lista de oids id
+                relatedPersonEN.Scenario = new MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ();
+                relatedPersonEN.Scenario.Id = p_scenario;
+        }
 
         relatedPersonEN.Description = p_description;
 
-        relatedPersonEN.Email = p_email;
+
+        if (p_userRelatedPerson != -1) {
+                // El argumento p_userRelatedPerson -> Property userRelatedPerson es oid = false
+                // Lista de oids id
+                relatedPersonEN.UserRelatedPerson = new MoSIoTGenNHibernate.EN.MosIoT.UserEN ();
+                relatedPersonEN.UserRelatedPerson.Id = p_userRelatedPerson;
+        }
 
         //Call to RelatedPersonCAD
 
@@ -66,20 +72,15 @@ public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p
         return oid;
 }
 
-public void Modify (int p_RelatedPerson_OID, string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
+public void Modify (int p_RelatedPerson_OID, string p_name, string p_description)
 {
         RelatedPersonEN relatedPersonEN = null;
 
         //Initialized RelatedPersonEN
         relatedPersonEN = new RelatedPersonEN ();
         relatedPersonEN.Id = p_RelatedPerson_OID;
-        relatedPersonEN.Surnames = p_surnames;
-        relatedPersonEN.IsActive = p_isActive;
-        relatedPersonEN.IsDiseased = p_isDiseased;
-        relatedPersonEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         relatedPersonEN.Name = p_name;
         relatedPersonEN.Description = p_description;
-        relatedPersonEN.Email = p_email;
         //Call to RelatedPersonCAD
 
         _IRelatedPersonCAD.Modify (relatedPersonEN);

@@ -18,12 +18,11 @@
 					
 			
 			
-		  			
-						<many-to-one name="Telemetry" class="MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN" >	
-								<column name="FK_idTelemetry_idTelemetry"/> 
-						</many-to-one>
-											 					
 					
+					
+						<many-to-one name="Telemetry" class="MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN" >
+									<column name="FK_idTelemetry_idTelemetry"/> 
+						</many-to-one>
 		
  	  
 		 </joined-subclass>

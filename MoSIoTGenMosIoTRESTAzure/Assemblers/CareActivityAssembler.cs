@@ -48,23 +48,29 @@ public static CareActivityDTOA Convert (CareActivityEN en, NHibernate.ISession s
                 dto.Location = en.Location;
 
 
+                dto.TypeActivity = en.TypeActivity;
+
+
+                dto.Name = en.Name;
+
+
                 //
                 // TravesalLink
 
                 /* Rol: CareActivity o--> Medication */
                 dto.Medications = MedicationAssembler.Convert ((MedicationEN)en.Medication, session);
 
-                /* GetAll: Appointment */
-                dto.Appointments = null;
-                List<AppointmentEN> appointments_list = new AppointmentCAD (session).ReadAllDefault (0, -1).ToList ();
-                if (appointments_list != null) {
-                        dto.Appointments = new List<AppointmentDTOA>();
-                        foreach (AppointmentEN entry in appointments_list)
-                                dto.Appointments.Add (AppointmentAssembler.Convert (entry, session));
-                }
-
                 /* Rol: CareActivity o--> NutritionOrder */
                 dto.NutritionOrders = NutritionOrderAssembler.Convert ((NutritionOrderEN)en.NutritionOrder, session);
+
+                /* Rol: CareActivity o--> Appointment */
+                dto.Appointments = null;
+                List<AppointmentEN> Appointments = careActivityRESTCAD.Appointments (en.Id).ToList ();
+                if (Appointments != null) {
+                        dto.Appointments = new List<AppointmentDTOA>();
+                        foreach (AppointmentEN entry in Appointments)
+                                dto.Appointments.Add (AppointmentAssembler.Convert (entry, session));
+                }
 
 
                 //

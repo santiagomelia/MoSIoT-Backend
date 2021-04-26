@@ -33,6 +33,10 @@
 				public Integer  getCareActivity_oid () { return careActivity_oid; } 
 				public void setCareActivity_oid (Integer value) { careActivity_oid = value;  } 
 				    	 
+				private String name;
+				public String getName () { return name; } 
+				public void setName  (String value) { name = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -54,6 +58,9 @@
 						{
 							json.put("CareActivity_oid", this.careActivity_oid.intValue());
 						}
+				
+						  json.put("Name", this.name);
+				
 						
 					}
 					catch (JSONException e)

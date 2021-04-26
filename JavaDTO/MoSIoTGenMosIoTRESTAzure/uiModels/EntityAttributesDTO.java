@@ -61,6 +61,14 @@
 				public ArrayList<Integer>  getTrigger_oid () { return trigger_oid; } 
 				public void setTrigger_oid (ArrayList<Integer> value) { trigger_oid = value;  } 
 				    	 
+				private ArrayList<Integer> register_oid;
+				public ArrayList<Integer>  getRegister_oid () { return register_oid; } 
+				public void setRegister_oid (ArrayList<Integer> value) { register_oid = value;  } 
+				    	 
+				private String value;
+				public String getValue () { return value; } 
+				public void setValue  (String value) { value = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -102,9 +110,10 @@
 							json.put("OriginAsociation_oid", jsonArray);
 						}
 		
-				
+					    if (this.associationType != null){											
 						  json.put("AssociationType", this.associationType.getRawValue());
 				
+						}
 				
 						  json.put("IsWritable", this.isWritable);
 				
@@ -127,6 +136,20 @@
 							json.put("Trigger_oid", jsonArray);
 						}
 		
+
+						if (this.register_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.register_oid.size(); ++i)
+							{
+								jsonArray.put(this.register_oid.get(i));
+							}
+							json.put("Register_oid", jsonArray);
+						}
+		
+				
+						  json.put("Value", this.value);
+				
 						
 					}
 					catch (JSONException e)

@@ -39,7 +39,7 @@ public ICarePlanTemplateCAD get_ICarePlanTemplateCAD ()
         return this._ICarePlanTemplateCAD;
 }
 
-public int New_ (MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum p_status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum p_intent, string p_title, Nullable<DateTime> p_modified, int p_durationDays, string p_name, string p_description)
+public int New_ (MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum p_status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum p_intent, string p_title, Nullable<DateTime> p_modified, int p_durationDays, string p_name, string p_description)
 {
         CarePlanTemplateEN carePlanTemplateEN = null;
         int oid;
@@ -66,7 +66,7 @@ public int New_ (MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum p_status, 
         return oid;
 }
 
-public void Modify (int p_CarePlanTemplate_OID, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum p_status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum p_intent, string p_title, Nullable<DateTime> p_modified, int p_durationDays, string p_name, string p_description)
+public void Modify (int p_CarePlanTemplate_OID, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum p_status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum p_intent, string p_title, Nullable<DateTime> p_modified, int p_durationDays, string p_name, string p_description)
 {
         CarePlanTemplateEN carePlanTemplateEN = null;
 
@@ -112,6 +112,12 @@ public System.Collections.Generic.IList<CarePlanTemplateEN> ReadAll (int first, 
 
         list = _ICarePlanTemplateCAD.ReadAll (first, size);
         return list;
+}
+public void AddPatientProfile (int p_CarePlanTemplate_OID, int p_patientProfile_OID)
+{
+        //Call to CarePlanTemplateCAD
+
+        _ICarePlanTemplateCAD.AddPatientProfile (p_CarePlanTemplate_OID, p_patientProfile_OID);
 }
 }
 }

@@ -90,6 +90,7 @@ public void ModifyDefault (RelatedPersonEN relatedPerson)
         {
                 SessionInitializeTransaction ();
                 RelatedPersonEN relatedPersonEN = (RelatedPersonEN)session.Load (typeof(RelatedPersonEN), relatedPerson.Id);
+
                 session.Update (relatedPersonEN);
                 SessionCommit ();
         }
@@ -114,6 +115,20 @@ public int New_ (RelatedPersonEN relatedPerson)
         try
         {
                 SessionInitializeTransaction ();
+                if (relatedPerson.Scenario != null) {
+                        // Argumento OID y no colección.
+                        relatedPerson.Scenario = (MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN), relatedPerson.Scenario.Id);
+
+                        relatedPerson.Scenario.Entity
+                        .Add (relatedPerson);
+                }
+                if (relatedPerson.UserRelatedPerson != null) {
+                        // Argumento OID y no colección.
+                        relatedPerson.UserRelatedPerson = (MoSIoTGenNHibernate.EN.MosIoT.UserEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.UserEN), relatedPerson.UserRelatedPerson.Id);
+
+                        relatedPerson.UserRelatedPerson.RelatedPerson
+                        .Add (relatedPerson);
+                }
 
                 session.Save (relatedPerson);
                 SessionCommit ();
@@ -142,25 +157,10 @@ public void Modify (RelatedPersonEN relatedPerson)
                 SessionInitializeTransaction ();
                 RelatedPersonEN relatedPersonEN = (RelatedPersonEN)session.Load (typeof(RelatedPersonEN), relatedPerson.Id);
 
-                relatedPersonEN.Surnames = relatedPerson.Surnames;
-
-
-                relatedPersonEN.IsActive = relatedPerson.IsActive;
-
-
-                relatedPersonEN.IsDiseased = relatedPerson.IsDiseased;
-
-
-                relatedPersonEN.Pass = relatedPerson.Pass;
-
-
                 relatedPersonEN.Name = relatedPerson.Name;
 
 
                 relatedPersonEN.Description = relatedPerson.Description;
-
-
-                relatedPersonEN.Email = relatedPerson.Email;
 
                 session.Update (relatedPersonEN);
                 SessionCommit ();

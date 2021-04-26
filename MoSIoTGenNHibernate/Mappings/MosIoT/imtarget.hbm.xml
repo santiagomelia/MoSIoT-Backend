@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="IMTargetEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" table="IMTarget"> 
+	<key>
+    	
+				<column name="idEntityAttributes"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="Target" class="MoSIoTGenNHibernate.EN.MosIoT.TargetEN" >
+									<column name="FK_idTarget_idTarget"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="IMTargetENReadAllHQL">from IMTargetEN</query>
+		</hibernate-mapping>
+	

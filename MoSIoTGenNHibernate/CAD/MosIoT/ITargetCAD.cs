@@ -29,5 +29,8 @@ TargetEN ReadOID (int id
 
 
 System.Collections.Generic.IList<TargetEN> ReadAll (int first, int size);
+
+
+void AddMeasure (int p_Target_OID, int p_measure_OID);
 }
 }

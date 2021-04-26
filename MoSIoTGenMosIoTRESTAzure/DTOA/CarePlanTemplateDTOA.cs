@@ -23,8 +23,8 @@ public MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum Status
         set { status = value; }
 }
 
-private MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum intent;
-public MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum Intent
+private MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum intent;
+public MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum Intent
 {
         get { return intent; }
         set { intent = value; }
@@ -42,6 +42,27 @@ public Nullable<DateTime> Modified
 {
         get { return modified; }
         set { modified = value; }
+}
+
+private int durationDays;
+public int DurationDays
+{
+        get { return durationDays; }
+        set { durationDays = value; }
+}
+
+private string name;
+public string Name
+{
+        get { return name; }
+        set { name = value; }
+}
+
+private string description;
+public string Description
+{
+        get { return description; }
+        set { description = value; }
 }
 
 
@@ -67,6 +88,14 @@ public PatientProfileCareDTOA Patient
 {
         get { return patient; }
         set { patient = value; }
+}
+
+/* Rol: CarePlanTemplate o--> Condition_CarePlan */
+private IList<Condition_CarePlanDTOA> addressConditions;
+public IList<Condition_CarePlanDTOA> AddressConditions
+{
+        get { return addressConditions; }
+        set { addressConditions = value; }
 }
 }
 }

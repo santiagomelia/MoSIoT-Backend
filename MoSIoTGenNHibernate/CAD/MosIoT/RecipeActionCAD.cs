@@ -95,6 +95,9 @@ public void ModifyDefault (RecipeActionEN recipeAction)
 
                 recipeActionEN.Name = recipeAction.Name;
 
+
+                recipeActionEN.Description = recipeAction.Description;
+
                 session.Update (recipeActionEN);
                 SessionCommit ();
         }
@@ -162,6 +165,9 @@ public void Modify (RecipeActionEN recipeAction)
                 RecipeActionEN recipeActionEN = (RecipeActionEN)session.Load (typeof(RecipeActionEN), recipeAction.Id);
 
                 recipeActionEN.Name = recipeAction.Name;
+
+
+                recipeActionEN.Description = recipeAction.Description;
 
                 session.Update (recipeActionEN);
                 SessionCommit ();

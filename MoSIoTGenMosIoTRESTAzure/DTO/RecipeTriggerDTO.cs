@@ -36,5 +36,10 @@ private int event__oid;
 public int Event__oid {
         get { return event__oid; } set { event__oid = value;  }
 }
+
+private string description;
+public string Description {
+        get { return description; } set { description = value;  }
+}
 }
 }

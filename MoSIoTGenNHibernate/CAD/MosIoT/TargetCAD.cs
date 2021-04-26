@@ -269,5 +269,36 @@ public System.Collections.Generic.IList<TargetEN> ReadAll (int first, int size)
 
         return result;
 }
+
+public void AddMeasure (int p_Target_OID, int p_measure_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.TargetEN targetEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                targetEN = (TargetEN)session.Load (typeof(TargetEN), p_Target_OID);
+                targetEN.Measure = (MoSIoTGenNHibernate.EN.MosIoT.MeasureEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.MeasureEN), p_measure_OID);
+
+                targetEN.Measure.Target.Add (targetEN);
+
+
+
+                session.Update (targetEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in TargetCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

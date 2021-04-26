@@ -18,6 +18,9 @@
 					<property name="Value" type="string"> 
 						<column name="value"  not-null="true"/>
 					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
 			
 			
 		  			
@@ -45,6 +48,8 @@
 								<column name="FK_idEntityOperation_idEvent"/> 
 						</many-to-one>
 											 					
+			
+					
 					
 					
 					

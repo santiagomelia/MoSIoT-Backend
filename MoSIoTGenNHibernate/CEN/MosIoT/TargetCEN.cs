@@ -103,5 +103,11 @@ public System.Collections.Generic.IList<TargetEN> ReadAll (int first, int size)
         list = _ITargetCAD.ReadAll (first, size);
         return list;
 }
+public void AddMeasure (int p_Target_OID, int p_measure_OID)
+{
+        //Call to TargetCAD
+
+        _ITargetCAD.AddMeasure (p_Target_OID, p_measure_OID);
+}
 }
 }

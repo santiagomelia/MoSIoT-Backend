@@ -29,5 +29,8 @@ MeasureEN ReadOID (int id
 
 
 System.Collections.Generic.IList<MeasureEN> ReadAll (int first, int size);
+
+
+void AddTelemetries (int p_Measure_OID, System.Collections.Generic.IList<int> p_telemetry_OIDs);
 }
 }

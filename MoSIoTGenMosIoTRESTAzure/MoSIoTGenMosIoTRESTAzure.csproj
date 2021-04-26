@@ -242,6 +242,38 @@
 	<Compile Include="AssemblersDTO\EntityStateAssemblerDTO.cs" />
 	<Compile Include="DTO\IMTelemetryDTO.cs" />
 	<Compile Include="AssemblersDTO\IMTelemetryAssemblerDTO.cs" />
+	<Compile Include="DTO\IMCareActivityDTO.cs" />
+	<Compile Include="AssemblersDTO\IMCareActivityAssemblerDTO.cs" />
+	<Compile Include="DTO\IMMedicationDTO.cs" />
+	<Compile Include="AssemblersDTO\IMMedicationAssemblerDTO.cs" />
+	<Compile Include="DTO\IMGoalDTO.cs" />
+	<Compile Include="AssemblersDTO\IMGoalAssemblerDTO.cs" />
+	<Compile Include="DTO\IMTargetDTO.cs" />
+	<Compile Include="AssemblersDTO\IMTargetAssemblerDTO.cs" />
+	<Compile Include="DTO\IMNutritionOrderDTO.cs" />
+	<Compile Include="AssemblersDTO\IMNutritionOrderAssemblerDTO.cs" />
+	<Compile Include="DTO\IMDisabilityDTO.cs" />
+	<Compile Include="AssemblersDTO\IMDisabilityAssemblerDTO.cs" />
+	<Compile Include="DTO\IMConditionDTO.cs" />
+	<Compile Include="AssemblersDTO\IMConditionAssemblerDTO.cs" />
+	<Compile Include="DTO\IMAdaptationRequestDTO.cs" />
+	<Compile Include="AssemblersDTO\IMAdaptationRequestAssemblerDTO.cs" />
+	<Compile Include="DTO\IMAdaptationTypeDTO.cs" />
+	<Compile Include="AssemblersDTO\IMAdaptationTypeAssemblerDTO.cs" />
+	<Compile Include="DTO\IMAdaptationDetailDTO.cs" />
+	<Compile Include="AssemblersDTO\IMAdaptationDetailAssemblerDTO.cs" />
+	<Compile Include="DTO\IMPropertyDTO.cs" />
+	<Compile Include="AssemblersDTO\IMPropertyAssemblerDTO.cs" />
+	<Compile Include="DTO\IMCommandDTO.cs" />
+	<Compile Include="AssemblersDTO\IMCommandAssemblerDTO.cs" />
+	<Compile Include="DTO\NotifyDTO.cs" />
+	<Compile Include="AssemblersDTO\NotifyAssemblerDTO.cs" />
+	<Compile Include="DTO\RegisterDTO.cs" />
+	<Compile Include="AssemblersDTO\RegisterAssemblerDTO.cs" />
+	<Compile Include="DTO\IMCommunicationDTO.cs" />
+	<Compile Include="AssemblersDTO\IMCommunicationAssemblerDTO.cs" />
+	<Compile Include="DTO\IMAppointmentDTO.cs" />
+	<Compile Include="AssemblersDTO\IMAppointmentAssemblerDTO.cs" />
 	
 
     
@@ -379,6 +411,21 @@
 		<Compile Include="DTOA\StateDeviceDTOA.cs" />
 		<Compile Include="Assemblers\StateDeviceAssembler.cs" />
 		<Compile Include="Controllers\StateDeviceController.cs" />
+		
+		<Compile Include="CAD\Condition_CarePlanRESTCAD.cs" />
+		<Compile Include="DTOA\Condition_CarePlanDTOA.cs" />
+		<Compile Include="Assemblers\Condition_CarePlanAssembler.cs" />
+		<Compile Include="Controllers\Condition_CarePlanController.cs" />
+		
+		<Compile Include="CAD\Telemetry_2RESTCAD.cs" />
+		<Compile Include="DTOA\Telemetry_2DTOA.cs" />
+		<Compile Include="Assemblers\Telemetry_2Assembler.cs" />
+		<Compile Include="Controllers\Telemetry_2Controller.cs" />
+		
+		<Compile Include="CAD\MeasureRESTCAD.cs" />
+		<Compile Include="DTOA\MeasureDTOA.cs" />
+		<Compile Include="Assemblers\MeasureAssembler.cs" />
+		<Compile Include="Controllers\MeasureController.cs" />
 		
 	
 	

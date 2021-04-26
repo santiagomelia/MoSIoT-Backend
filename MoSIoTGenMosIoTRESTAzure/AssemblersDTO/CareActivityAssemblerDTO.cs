@@ -51,16 +51,6 @@ public static CareActivityEN Convert (CareActivityDTO dto)
                                 newinstance.NutritionOrder = NutritionOrderAssemblerDTO.Convert (dto.NutritionOrder);
                         }
                         newinstance.TypeActivity = dto.TypeActivity;
-                        if (dto.NextActivity_oid != -1) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.ICareActivityCAD careActivityCAD = new MoSIoTGenNHibernate.CAD.MosIoT.CareActivityCAD ();
-
-                                newinstance.NextActivity = careActivityCAD.ReadOIDDefault (dto.NextActivity_oid);
-                        }
-                        if (dto.PreviousActivity_oid != -1) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.ICareActivityCAD careActivityCAD = new MoSIoTGenNHibernate.CAD.MosIoT.CareActivityCAD ();
-
-                                newinstance.PreviousActivity = careActivityCAD.ReadOIDDefault (dto.PreviousActivity_oid);
-                        }
 
                         if (dto.Notification != null) {
                                 MoSIoTGenNHibernate.CAD.MosIoT.IComunicationCAD comunicationCAD = new MoSIoTGenNHibernate.CAD.MosIoT.ComunicationCAD ();

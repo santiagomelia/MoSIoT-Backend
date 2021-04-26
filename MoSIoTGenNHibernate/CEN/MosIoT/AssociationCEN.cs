@@ -39,7 +39,7 @@ public IAssociationCAD get_IAssociationCAD ()
         return this._IAssociationCAD;
 }
 
-public int New_ (string p_name, int p_rolOrigin, int p_rolTarget, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum p_type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityTarget, int p_entityOrigin, int p_entityTarget, int p_ioTScenario)
+public int New_ (string p_name, int p_rolOrigin, int p_rolTarget, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum p_type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityTarget, int p_entityOrigin, int p_entityTarget, int p_ioTScenario, string p_description)
 {
         AssociationEN associationEN = null;
         int oid;
@@ -94,13 +94,15 @@ public int New_ (string p_name, int p_rolOrigin, int p_rolTarget, MoSIoTGenNHibe
                 associationEN.IoTScenario.Id = p_ioTScenario;
         }
 
+        associationEN.Description = p_description;
+
         //Call to AssociationCAD
 
         oid = _IAssociationCAD.New_ (associationEN);
         return oid;
 }
 
-public void Modify (int p_Association_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum p_type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityTarget)
+public void Modify (int p_Association_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum p_type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum p_cardinalityTarget, string p_description)
 {
         AssociationEN associationEN = null;
 
@@ -111,6 +113,7 @@ public void Modify (int p_Association_OID, string p_name, MoSIoTGenNHibernate.En
         associationEN.Type = p_type;
         associationEN.CardinalityOrigin = p_cardinalityOrigin;
         associationEN.CardinalityTarget = p_cardinalityTarget;
+        associationEN.Description = p_description;
         //Call to AssociationCAD
 
         _IAssociationCAD.Modify (associationEN);

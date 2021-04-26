@@ -207,6 +207,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\EntityOperationEN.cs" />
 	<Compile Include="CEN\MosIoT\EntityOperationCEN.cs" />
 	<Compile Include="CAD\MosIoT\IEntityOperationCAD.cs" />
@@ -389,6 +390,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\ComunicationEN.cs" />
 	<Compile Include="CEN\MosIoT\ComunicationCEN.cs" />
 	<Compile Include="CAD\MosIoT\IComunicationCAD.cs" />
@@ -457,6 +459,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\StateDeviceEN.cs" />
 	<Compile Include="CEN\MosIoT\StateDeviceCEN.cs" />
 	<Compile Include="CAD\MosIoT\IStateDeviceCAD.cs" />
@@ -492,9 +495,6 @@
 	<Compile Include="CAD\MosIoT\ICarePlanCAD.cs" />
 	<Compile Include="CAD\MosIoT\CarePlanCAD.cs" />
 	<Compile Include="CP\MosIoT\CarePlanCP.cs" />
-			
-			
-			
 			
 			
 			
@@ -548,6 +548,8 @@
 			
 			
 			
+			
+			
 	<Compile Include="EN\MosIoT\EntityStateEN.cs" />
 	<Compile Include="CEN\MosIoT\EntityStateCEN.cs" />
 	<Compile Include="CAD\MosIoT\IEntityStateCAD.cs" />
@@ -561,6 +563,166 @@
 	<Compile Include="CAD\MosIoT\IIMTelemetryCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMTelemetryCAD.cs" />
 	<Compile Include="CP\MosIoT\IMTelemetryCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMCareActivityEN.cs" />
+	<Compile Include="CEN\MosIoT\IMCareActivityCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMCareActivityCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMCareActivityCAD.cs" />
+	<Compile Include="CP\MosIoT\IMCareActivityCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMMedicationEN.cs" />
+	<Compile Include="CEN\MosIoT\IMMedicationCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMMedicationCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMMedicationCAD.cs" />
+	<Compile Include="CP\MosIoT\IMMedicationCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMGoalEN.cs" />
+	<Compile Include="CEN\MosIoT\IMGoalCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMGoalCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMGoalCAD.cs" />
+	<Compile Include="CP\MosIoT\IMGoalCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMTargetEN.cs" />
+	<Compile Include="CEN\MosIoT\IMTargetCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMTargetCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMTargetCAD.cs" />
+	<Compile Include="CP\MosIoT\IMTargetCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMNutritionOrderEN.cs" />
+	<Compile Include="CEN\MosIoT\IMNutritionOrderCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMNutritionOrderCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMNutritionOrderCAD.cs" />
+	<Compile Include="CP\MosIoT\IMNutritionOrderCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMDisabilityEN.cs" />
+	<Compile Include="CEN\MosIoT\IMDisabilityCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMDisabilityCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMDisabilityCAD.cs" />
+	<Compile Include="CP\MosIoT\IMDisabilityCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMConditionEN.cs" />
+	<Compile Include="CEN\MosIoT\IMConditionCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMConditionCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMConditionCAD.cs" />
+	<Compile Include="CP\MosIoT\IMConditionCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMAdaptationRequestEN.cs" />
+	<Compile Include="CEN\MosIoT\IMAdaptationRequestCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMAdaptationRequestCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMAdaptationRequestCAD.cs" />
+	<Compile Include="CP\MosIoT\IMAdaptationRequestCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMAdaptationTypeEN.cs" />
+	<Compile Include="CEN\MosIoT\IMAdaptationTypeCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMAdaptationTypeCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMAdaptationTypeCAD.cs" />
+	<Compile Include="CP\MosIoT\IMAdaptationTypeCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMAdaptationDetailEN.cs" />
+	<Compile Include="CEN\MosIoT\IMAdaptationDetailCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMAdaptationDetailCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMAdaptationDetailCAD.cs" />
+	<Compile Include="CP\MosIoT\IMAdaptationDetailCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMPropertyEN.cs" />
+	<Compile Include="CEN\MosIoT\IMPropertyCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMPropertyCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMPropertyCAD.cs" />
+	<Compile Include="CP\MosIoT\IMPropertyCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMCommandEN.cs" />
+	<Compile Include="CEN\MosIoT\IMCommandCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMCommandCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMCommandCAD.cs" />
+	<Compile Include="CP\MosIoT\IMCommandCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\NotifyEN.cs" />
+	<Compile Include="CEN\MosIoT\NotifyCEN.cs" />
+	<Compile Include="CAD\MosIoT\INotifyCAD.cs" />
+	<Compile Include="CAD\MosIoT\NotifyCAD.cs" />
+	<Compile Include="CP\MosIoT\NotifyCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\RegisterEN.cs" />
+	<Compile Include="CEN\MosIoT\RegisterCEN.cs" />
+	<Compile Include="CAD\MosIoT\IRegisterCAD.cs" />
+	<Compile Include="CAD\MosIoT\RegisterCAD.cs" />
+	<Compile Include="CP\MosIoT\RegisterCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMCommunicationEN.cs" />
+	<Compile Include="CEN\MosIoT\IMCommunicationCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMCommunicationCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMCommunicationCAD.cs" />
+	<Compile Include="CP\MosIoT\IMCommunicationCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="EN\MosIoT\IMAppointmentEN.cs" />
+	<Compile Include="CEN\MosIoT\IMAppointmentCEN.cs" />
+	<Compile Include="CAD\MosIoT\IIMAppointmentCAD.cs" />
+	<Compile Include="CAD\MosIoT\IMAppointmentCAD.cs" />
+	<Compile Include="CP\MosIoT\IMAppointmentCP.cs" />
 			
 			
 			
@@ -587,7 +749,7 @@
 	<Compile Include="Enumerated\MosIoT\UserTypeEnum.cs" />
 	<Compile Include="Enumerated\MosIoT\GenderTypeEnum.cs" />
 	<Compile Include="Enumerated\MosIoT\CareStatusEnum.cs" />
-	<Compile Include="Enumerated\MosIoT\CarePlanInentEnum.cs" />
+	<Compile Include="Enumerated\MosIoT\CarePlanIntentEnum.cs" />
 	<Compile Include="Enumerated\MosIoT\ClinicalStatusEnum.cs" />
 	<Compile Include="Enumerated\MosIoT\FormTypeEnum.cs" />
 	<Compile Include="Enumerated\MosIoT\DiseaseEnum.cs" />
@@ -655,6 +817,22 @@
 	<EmbeddedResource Include="Mappings\MosIoT\patientaccess.hbm.xml" />
 	<EmbeddedResource Include="Mappings\MosIoT\entitystate.hbm.xml" />
 	<EmbeddedResource Include="Mappings\MosIoT\imtelemetry.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imcareactivity.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\immedication.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imgoal.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imtarget.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imnutritionorder.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imdisability.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imcondition.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imadaptationrequest.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imadaptationtype.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imadaptationdetail.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\improperty.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imcommand.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\notify.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\register.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imcommunication.hbm.xml" />
+	<EmbeddedResource Include="Mappings\MosIoT\imappointment.hbm.xml" />
 	
 	
 

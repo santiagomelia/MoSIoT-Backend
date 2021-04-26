@@ -23,14 +23,6 @@ public class ConditionDTOA extends DTOA
 	public void setId (Integer id) { this.id = id; }
 
 	
-	private java.util.Date dateInitial;
-	public java.util.Date getDateInitial () { return dateInitial; }
-	public void setDateInitial (java.util.Date dateInitial) { this.dateInitial = dateInitial; }
-	
-	private java.util.Date dateEnd;
-	public java.util.Date getDateEnd () { return dateEnd; }
-	public void setDateEnd (java.util.Date dateEnd) { this.dateEnd = dateEnd; }
-	
 	private String description;
 	public String getDescription () { return description; }
 	public void setDescription (String description) { this.description = description; }
@@ -71,22 +63,6 @@ public class ConditionDTOA extends DTOA
 				this.id = (Integer) json.opt("Id");
 			}
 			
-
-			if (!JSONObject.NULL.equals(json.opt("DateInitial")))
-			{
-			 
-			 	String stringDate = (String) json.opt("DateInitial");
-				this.dateInitial = DateUtils.stringToDateFormat(stringDate);
-			 
-			}
-
-			if (!JSONObject.NULL.equals(json.opt("DateEnd")))
-			{
-			 
-			 	String stringDate = (String) json.opt("DateEnd");
-				this.dateEnd = DateUtils.stringToDateFormat(stringDate);
-			 
-			}
 
 			if (!JSONObject.NULL.equals(json.opt("Description")))
 			{
@@ -135,14 +111,6 @@ public class ConditionDTOA extends DTOA
 			}
 			
 		
-		  if (this.dateInitial != null)
-			json.put("DateInitial", DateUtils.dateToFormatString(this.dateInitial));
-		
-		
-		  if (this.dateEnd != null)
-			json.put("DateEnd", DateUtils.dateToFormatString(this.dateEnd));
-		
-		
 		  if (this.description != null)
 			json.put("Description", this.description);
 		
@@ -179,10 +147,6 @@ public class ConditionDTOA extends DTOA
 	dto.setId (this.getId());
 
 		
-	dto.setDateInitial (this.getDateInitial());
-
-	dto.setDateEnd (this.getDateEnd());
-
 	dto.setDescription (this.getDescription());
 
 	dto.setClinicalStatus (this.getClinicalStatus());

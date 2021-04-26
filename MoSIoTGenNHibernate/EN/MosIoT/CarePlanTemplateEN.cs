@@ -29,7 +29,7 @@ private MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status;
 /**
  *	Atributo intent
  */
-private MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum intent;
+private MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum intent;
 
 
 
@@ -117,7 +117,7 @@ public virtual MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum Status {
 
 
 
-public virtual MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum Intent {
+public virtual MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum Intent {
         get { return intent; } set { intent = value;  }
 }
 
@@ -189,7 +189,7 @@ public CarePlanTemplateEN()
 
 
 
-public CarePlanTemplateEN(int id, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN> careActivity, MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum intent, string title, Nullable<DateTime> modified, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goals, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> addressConditions, int durationDays, string name, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> comunication
+public CarePlanTemplateEN(int id, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN> careActivity, MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum intent, string title, Nullable<DateTime> modified, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goals, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> addressConditions, int durationDays, string name, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> comunication
                           )
 {
         this.init (Id, careActivity, patientProfile, status, intent, title, modified, goals, addressConditions, durationDays, name, description, comunication);
@@ -202,7 +202,7 @@ public CarePlanTemplateEN(CarePlanTemplateEN carePlanTemplate)
 }
 
 private void init (int id
-                   , System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN> careActivity, MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanInentEnum intent, string title, Nullable<DateTime> modified, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goals, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> addressConditions, int durationDays, string name, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> comunication)
+                   , System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN> careActivity, MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.Enumerated.MosIoT.CarePlanIntentEnum intent, string title, Nullable<DateTime> modified, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goals, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> addressConditions, int durationDays, string name, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> comunication)
 {
         this.Id = id;
 

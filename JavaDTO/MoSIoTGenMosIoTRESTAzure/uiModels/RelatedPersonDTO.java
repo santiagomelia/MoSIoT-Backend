@@ -15,9 +15,13 @@
 		 */
 		
 		
-		public class RelatedPersonDTO extends    		UserDTO
+		public class RelatedPersonDTO extends    		EntityDTO
 	    implements IDTO
 	    {
+				private Integer userRelatedPerson_oid;
+				public Integer  getUserRelatedPerson_oid () { return userRelatedPerson_oid; } 
+				public void setUserRelatedPerson_oid (Integer value) { userRelatedPerson_oid = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -25,7 +29,12 @@
 					
 					try
 					{
-				 		
+
+						if (this.userRelatedPerson_oid != null)
+						{
+							json.put("UserRelatedPerson_oid", this.userRelatedPerson_oid.intValue());
+						}
+						
 					}
 					catch (JSONException e)
 					{

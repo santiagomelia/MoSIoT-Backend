@@ -112,6 +112,10 @@ public void ModifyDefault (EntityAttributesEN entityAttributes)
 
 
 
+
+
+                entityAttributesEN.Value = entityAttributes.Value;
+
                 session.Update (entityAttributesEN);
                 SessionCommit ();
         }
@@ -180,13 +184,13 @@ public void Modify (EntityAttributesEN entityAttributes)
                 entityAttributesEN.IsOID = entityAttributes.IsOID;
 
 
-                entityAttributesEN.AssociationType = entityAttributes.AssociationType;
-
-
                 entityAttributesEN.IsWritable = entityAttributes.IsWritable;
 
 
                 entityAttributesEN.Description = entityAttributes.Description;
+
+
+                entityAttributesEN.Value = entityAttributes.Value;
 
                 session.Update (entityAttributesEN);
                 SessionCommit ();

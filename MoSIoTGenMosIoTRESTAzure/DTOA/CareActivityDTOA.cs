@@ -44,6 +44,20 @@ public string Location
         set { location = value; }
 }
 
+private MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum typeActivity;
+public MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum TypeActivity
+{
+        get { return typeActivity; }
+        set { typeActivity = value; }
+}
+
+private string name;
+public string Name
+{
+        get { return name; }
+        set { name = value; }
+}
+
 
 /* Rol: CareActivity o--> Medication */
 private MedicationDTOA medications;
@@ -53,20 +67,20 @@ public MedicationDTOA Medications
         set { medications = value; }
 }
 
-/* GetAll: Appointment */
-private IList<AppointmentDTOA> appointments;
-public IList<AppointmentDTOA> Appointments
-{
-        get { return appointments; }
-        set { appointments = value; }
-}
-
 /* Rol: CareActivity o--> NutritionOrder */
 private NutritionOrderDTOA nutritionOrders;
 public NutritionOrderDTOA NutritionOrders
 {
         get { return nutritionOrders; }
         set { nutritionOrders = value; }
+}
+
+/* Rol: CareActivity o--> Appointment */
+private IList<AppointmentDTOA> appointments;
+public IList<AppointmentDTOA> Appointments
+{
+        get { return appointments; }
+        set { appointments = value; }
 }
 }
 }

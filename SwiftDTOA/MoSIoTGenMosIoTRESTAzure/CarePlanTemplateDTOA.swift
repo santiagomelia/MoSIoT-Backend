@@ -14,9 +14,12 @@ class CarePlanTemplateDTOA : DTOA
 	var id: Int?;
 	
 	var status: CareStatus?;
-	var intent: CarePlanInent?;
+	var intent: CarePlanIntent?;
 	var title: String?;
 	var modified: NSDate?;
+	var durationDays: Int?;
+	var name: String?;
+	var description: String?;
 	
 	/* Rol: CarePlanTemplate o--> CareActivity */
 	var careActivities: [CareActivityDTOA]?;
@@ -26,6 +29,9 @@ class CarePlanTemplateDTOA : DTOA
 
 	/* Rol: CarePlanTemplate o--> PatientProfileCare */
 	var patient: PatientProfileCareDTOA?;
+
+	/* Rol: CarePlanTemplate o--> Condition_CarePlan */
+	var addressConditions: [Condition_CarePlanDTOA]?;
 
 	
 	
@@ -53,11 +59,14 @@ class CarePlanTemplateDTOA : DTOA
 		}
 		if let enumValue = json["Intent"].object as? Int
 		{
-			self.intent = CarePlanInent(rawValue: enumValue);
+			self.intent = CarePlanIntent(rawValue: enumValue);
 		}
 		self.title = json["Title"].object as? String;
 	
 		self.modified = NSDate.initFromString(json["Modified"].object as? String);
+		self.durationDays = json["DurationDays"].object as? Int;
+		self.name = json["Name"].object as? String;
+		self.description = json["Description"].object as? String;
 		
 		if (json["CareActivities"] != JSON.null)
 		{
@@ -72,6 +81,11 @@ class CarePlanTemplateDTOA : DTOA
 		if (json["Patient"] != JSON.null)
 		{
 			self.patient = PatientProfileCareDTOA(fromJSONObject: json["Patient"]);
+		}
+
+		if (json["AddressConditions"] != JSON.null)
+		{
+			self.addressConditions = Condition_CarePlanDTOA(fromJSONObject: json["AddressConditions"]);
 		}
 
 		
@@ -104,12 +118,29 @@ class CarePlanTemplateDTOA : DTOA
 		dictionary["Modified"] = self.modified?.toString();
 	
 	
+
+	
+		dictionary["DurationDays"] = self.durationDays;
+	
+	
+
+	
+		dictionary["Name"] = self.name;
+	
+	
+
+	
+		dictionary["Description"] = self.description;
+	
+	
 		
 		dictionary["CareActivities"] = self.careActivities?.toDictionary() ?? NSNull();
 
 		dictionary["Goals"] = self.goals?.toDictionary() ?? NSNull();
 
 		dictionary["Patient"] = self.patient?.toDictionary() ?? NSNull();
+
+		dictionary["AddressConditions"] = self.addressConditions?.toDictionary() ?? NSNull();
 
 		
 		

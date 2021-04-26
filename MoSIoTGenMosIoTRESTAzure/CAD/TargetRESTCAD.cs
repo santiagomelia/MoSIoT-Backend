@@ -25,5 +25,43 @@ public TargetRESTCAD(ISession sessionAux)
         : base (sessionAux)
 {
 }
+
+
+
+public MeasureEN Measure (int id)
+{
+        MeasureEN result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                String sql = @"select self.Measure FROM TargetEN self " +
+                             "where self.Id = :p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.UniqueResult<MeasureEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in TargetRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

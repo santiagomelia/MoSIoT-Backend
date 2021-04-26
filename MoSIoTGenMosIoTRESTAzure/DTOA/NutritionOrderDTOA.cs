@@ -29,5 +29,12 @@ public string DietCode
         get { return dietCode; }
         set { dietCode = value; }
 }
+
+private string name;
+public string Name
+{
+        get { return name; }
+        set { name = value; }
+}
 }
 }

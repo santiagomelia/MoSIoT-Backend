@@ -39,7 +39,7 @@ public IIoTScenarioCAD get_IIoTScenarioCAD ()
         return this._IIoTScenarioCAD;
 }
 
-public int New_ (string p_name)
+public int New_ (string p_name, string p_description)
 {
         IoTScenarioEN ioTScenarioEN = null;
         int oid;
@@ -48,13 +48,15 @@ public int New_ (string p_name)
         ioTScenarioEN = new IoTScenarioEN ();
         ioTScenarioEN.Name = p_name;
 
+        ioTScenarioEN.Description = p_description;
+
         //Call to IoTScenarioCAD
 
         oid = _IIoTScenarioCAD.New_ (ioTScenarioEN);
         return oid;
 }
 
-public void Modify (int p_IoTScenario_OID, string p_name)
+public void Modify (int p_IoTScenario_OID, string p_name, string p_description)
 {
         IoTScenarioEN ioTScenarioEN = null;
 
@@ -62,6 +64,7 @@ public void Modify (int p_IoTScenario_OID, string p_name)
         ioTScenarioEN = new IoTScenarioEN ();
         ioTScenarioEN.Id = p_IoTScenario_OID;
         ioTScenarioEN.Name = p_name;
+        ioTScenarioEN.Description = p_description;
         //Call to IoTScenarioCAD
 
         _IIoTScenarioCAD.Modify (ioTScenarioEN);

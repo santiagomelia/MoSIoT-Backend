@@ -42,6 +42,9 @@ public static NutritionOrderDTOA Convert (NutritionOrderEN en, NHibernate.ISessi
                 dto.DietCode = en.DietCode;
 
 
+                dto.Name = en.Name;
+
+
                 //
                 // TravesalLink
 

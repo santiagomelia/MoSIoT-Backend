@@ -27,9 +27,9 @@ public class CarePlanTemplateDTOA extends DTOA
 	public CareStatus getStatus () { return status; }
 	public void setStatus (CareStatus status) { this.status = status; }
 	
-	private CarePlanInent intent;
-	public CarePlanInent getIntent () { return intent; }
-	public void setIntent (CarePlanInent intent) { this.intent = intent; }
+	private CarePlanIntent intent;
+	public CarePlanIntent getIntent () { return intent; }
+	public void setIntent (CarePlanIntent intent) { this.intent = intent; }
 	
 	private String title;
 	public String getTitle () { return title; }
@@ -38,6 +38,18 @@ public class CarePlanTemplateDTOA extends DTOA
 	private java.util.Date modified;
 	public java.util.Date getModified () { return modified; }
 	public void setModified (java.util.Date modified) { this.modified = modified; }
+	
+	private Integer durationDays;
+	public Integer getDurationDays () { return durationDays; }
+	public void setDurationDays (Integer durationDays) { this.durationDays = durationDays; }
+	
+	private String name;
+	public String getName () { return name; }
+	public void setName (String name) { this.name = name; }
+	
+	private String description;
+	public String getDescription () { return description; }
+	public void setDescription (String description) { this.description = description; }
 	
 	
 	/* Rol: CarePlanTemplate o--> CareActivity */
@@ -54,6 +66,11 @@ public class CarePlanTemplateDTOA extends DTOA
 	private PatientProfileCareDTOA patient;
 	public PatientProfileCareDTOA getPatient () { return patient; }
 	public void setPatient (PatientProfileCareDTOA patient) { this.patient = patient; }
+
+	/* Rol: CarePlanTemplate o--> Condition_CarePlan */
+	private ArrayList<Condition_CarePlanDTOA> addressConditions;
+	public ArrayList<Condition_CarePlanDTOA> getAddressConditions () { return addressConditions; }
+	public void setAddressConditions (ArrayList<Condition_CarePlanDTOA> addressConditions) { this.addressConditions = addressConditions; }
 
 	
 	
@@ -89,7 +106,7 @@ public class CarePlanTemplateDTOA extends DTOA
 			if (!JSONObject.NULL.equals(json.opt("Intent")))
 			{
 				int enumRawValue = (int) json.opt("Intent");
-				this.intent = CarePlanInent.fromRawValue(enumRawValue);
+				this.intent = CarePlanIntent.fromRawValue(enumRawValue);
 			 
 			}
 
@@ -105,6 +122,27 @@ public class CarePlanTemplateDTOA extends DTOA
 			 
 			 	String stringDate = (String) json.opt("Modified");
 				this.modified = DateUtils.stringToDateFormat(stringDate);
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("DurationDays")))
+			{
+			 
+				this.durationDays = (Integer) json.opt("DurationDays");
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("Name")))
+			{
+			 
+				this.name = (String) json.opt("Name");
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("Description")))
+			{
+			 
+				this.description = (String) json.opt("Description");
 			 
 			}
 			
@@ -133,6 +171,15 @@ public class CarePlanTemplateDTOA extends DTOA
 				PatientProfileCareDTOA tmp = new PatientProfileCareDTOA();
 				tmp.setFromJSON(jsonPatient);
 				this.patient = tmp;
+			}
+
+
+			JSONObject jsonAddressConditions = json.optJSONObject("AddressConditions");
+			if (jsonAddressConditions != null)
+			{
+				Condition_CarePlanDTOA tmp = new Condition_CarePlanDTOA();
+				tmp.setFromJSON(jsonAddressConditions);
+				this.addressConditions = tmp;
 			}
 
 			
@@ -169,6 +216,18 @@ public class CarePlanTemplateDTOA extends DTOA
 		  if (this.modified != null)
 			json.put("Modified", DateUtils.dateToFormatString(this.modified));
 		
+		
+		  if (this.durationDays != null)
+			json.put("DurationDays", this.durationDays.intValue());
+		
+		
+		  if (this.name != null)
+			json.put("Name", this.name);
+		
+		
+		  if (this.description != null)
+			json.put("Description", this.description);
+		
 			
 
 			if (this.careActivities != null)
@@ -186,6 +245,12 @@ public class CarePlanTemplateDTOA extends DTOA
 			if (this.patient != null)
 			{
 				json.put("Patient", this.patient.toJSON());
+			}
+
+
+			if (this.addressConditions != null)
+			{
+				json.put("AddressConditions", this.addressConditions.toJSON());
 			}
 
 			
@@ -216,12 +281,19 @@ public class CarePlanTemplateDTOA extends DTOA
 
 	dto.setModified (this.getModified());
 
+	dto.setDurationDays (this.getDurationDays());
+
+	dto.setName (this.getName());
+
+	dto.setDescription (this.getDescription());
+
 		
 		
 		// Roles
 					// TODO: from DTOA [ CareActivities ] (dataType : ArrayList<CareActivityDTOA>) to DTO [ CareActivity ]
 					// TODO: from DTOA [ Goals ] (dataType : ArrayList<GoalDTOA>) to DTO [ Goals ]
 					// TODO: from DTOA [ Patient ] (dataType : PatientProfileCareDTOA) to DTO [ PatientProfile ]
+					// TODO: from DTOA [ AddressConditions ] (dataType : ArrayList<Condition_CarePlanDTOA>) to DTO [ AddressConditions ]
 		
 		
 		return dto;

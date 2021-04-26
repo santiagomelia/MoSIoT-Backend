@@ -45,6 +45,12 @@ public static PatientProfileCareDTOA Convert (PatientProfileEN en, NHibernate.IS
                 dto.HazardAvoidance = en.HazardAvoidance;
 
 
+                dto.Name = en.Name;
+
+
+                dto.Description = en.Description;
+
+
                 //
                 // TravesalLink
 

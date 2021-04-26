@@ -25,14 +25,6 @@
 				public Integer getId () { return id; } 
 				public void setId  (Integer value) { id = value;  } 
 				    	 
-				private java.util.Date dateInitial;
-				public java.util.Date getDateInitial () { return dateInitial; } 
-				public void setDateInitial  (java.util.Date value) { dateInitial = value;  } 
-				    	 
-				private java.util.Date dateEnd;
-				public java.util.Date getDateEnd () { return dateEnd; } 
-				public void setDateEnd  (java.util.Date value) { dateEnd = value;  } 
-				    	 
 				private String description;
 				public String getDescription () { return description; } 
 				public void setDescription  (String value) { description = value;  } 
@@ -48,10 +40,6 @@
 				private Disease disease;
 				public Disease getDisease () { return disease; } 
 				public void setDisease  (Disease value) { disease = value;  } 
-				    	 
-				private ArrayList<Integer> carePlan_oid;
-				public ArrayList<Integer>  getCarePlan_oid () { return carePlan_oid; } 
-				public void setCarePlan_oid (ArrayList<Integer> value) { carePlan_oid = value;  } 
 				    	 
 				private ArrayList<Integer> goal_oid;
 				public ArrayList<Integer>  getGoal_oid () { return goal_oid; } 
@@ -77,13 +65,6 @@
 						  json.put("Id", this.id.intValue());
 				
 				
-						  json.put("DateInitial", DateUtils.dateToFormatString(this.dateInitial));
-				
-					    if (this.dateEnd != null){											
-						  json.put("DateEnd", DateUtils.dateToFormatString(this.dateEnd));
-				
-						}
-				
 						  json.put("Description", this.description);
 				
 
@@ -103,17 +84,6 @@
 				
 						  json.put("Disease", this.disease.getRawValue());
 				
-
-						if (this.carePlan_oid != null)
-						{
-							JSONArray jsonArray = new JSONArray();
-							for (int i = 0; i < this.carePlan_oid.size(); ++i)
-							{
-								jsonArray.put(this.carePlan_oid.get(i));
-							}
-							json.put("CarePlan_oid", jsonArray);
-						}
-		
 
 						if (this.goal_oid != null)
 						{

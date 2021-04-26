@@ -92,12 +92,6 @@ public void ModifyDefault (ConditionEN condition)
                 ConditionEN conditionEN = (ConditionEN)session.Load (typeof(ConditionEN), condition.Id);
 
 
-                conditionEN.DateInitial = condition.DateInitial;
-
-
-                conditionEN.DateEnd = condition.DateEnd;
-
-
                 conditionEN.Description = condition.Description;
 
 
@@ -106,7 +100,6 @@ public void ModifyDefault (ConditionEN condition)
 
 
                 conditionEN.Disease = condition.Disease;
-
 
 
 
@@ -170,9 +163,6 @@ public void Modify (ConditionEN condition)
         {
                 SessionInitializeTransaction ();
                 ConditionEN conditionEN = (ConditionEN)session.Load (typeof(ConditionEN), condition.Id);
-
-                conditionEN.DateInitial = condition.DateInitial;
-
 
                 conditionEN.Description = condition.Description;
 

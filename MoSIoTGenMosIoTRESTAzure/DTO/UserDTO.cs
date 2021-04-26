@@ -58,5 +58,32 @@ private string email;
 public string Email {
         get { return email; } set { email = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> relatedPerson_oid;
+public System.Collections.Generic.IList<int> RelatedPerson_oid {
+        get { return relatedPerson_oid; } set { relatedPerson_oid = value;  }
+}
+
+
+
+private System.Collections.Generic.IList<int> practitioner_oid;
+public System.Collections.Generic.IList<int> Practitioner_oid {
+        get { return practitioner_oid; } set { practitioner_oid = value;  }
+}
+
+
+
+private System.Collections.Generic.IList<int> patient_oid;
+public System.Collections.Generic.IList<int> Patient_oid {
+        get { return patient_oid; } set { patient_oid = value;  }
+}
+
+
+
+private System.Collections.Generic.IList<int> notifications_oid;
+public System.Collections.Generic.IList<int> Notifications_oid {
+        get { return notifications_oid; } set { notifications_oid = value;  }
+}
 }
 }

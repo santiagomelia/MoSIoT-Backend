@@ -245,7 +245,6 @@ public void AddCondition (int p_CarePlanTemplate_OID, System.Collections.Generic
                 foreach (int item in p_addressConditions_OIDs) {
                         addressConditionsENAux = new MoSIoTGenNHibernate.EN.MosIoT.ConditionEN ();
                         addressConditionsENAux = (MoSIoTGenNHibernate.EN.MosIoT.ConditionEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.ConditionEN), item);
-                        addressConditionsENAux.CarePlan.Add (carePlanTemplateEN);
 
                         carePlanTemplateEN.AddressConditions.Add (addressConditionsENAux);
                 }
@@ -327,6 +326,35 @@ public System.Collections.Generic.IList<CarePlanTemplateEN> ReadAll (int first, 
         }
 
         return result;
+}
+
+public void AddPatientProfile (int p_CarePlanTemplate_OID, int p_patientProfile_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlanTemplateEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                carePlanTemplateEN = (CarePlanTemplateEN)session.Load (typeof(CarePlanTemplateEN), p_CarePlanTemplate_OID);
+                carePlanTemplateEN.PatientProfile = (MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN), p_patientProfile_OID);
+
+
+
+                session.Update (carePlanTemplateEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in CarePlanTemplateCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

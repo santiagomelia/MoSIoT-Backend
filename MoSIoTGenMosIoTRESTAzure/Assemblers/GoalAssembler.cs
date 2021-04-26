@@ -51,6 +51,9 @@ public static GoalDTOA Convert (GoalEN en, NHibernate.ISession session = null)
                 dto.OutcomeCode = en.OutcomeCode;
 
 
+                dto.Name = en.Name;
+
+
                 //
                 // TravesalLink
 

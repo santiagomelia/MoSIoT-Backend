@@ -36,6 +36,11 @@ public class TargetDTOA extends DTOA
 	public void setDueDate (java.util.Date dueDate) { this.dueDate = dueDate; }
 	
 	
+	/* Rol: Target o--> Measure */
+	private MeasureDTOA measure;
+	public MeasureDTOA getMeasure () { return measure; }
+	public void setMeasure (MeasureDTOA measure) { this.measure = measure; }
+
 	
 	
 	// endregion
@@ -82,6 +87,15 @@ public class TargetDTOA extends DTOA
 			 
 			}
 			
+
+			JSONObject jsonMeasure = json.optJSONObject("Measure");
+			if (jsonMeasure != null)
+			{
+				MeasureDTOA tmp = new MeasureDTOA();
+				tmp.setFromJSON(jsonMeasure);
+				this.measure = tmp;
+			}
+
 			
 		}
 		catch (Exception e)
@@ -113,6 +127,12 @@ public class TargetDTOA extends DTOA
 			json.put("DueDate", DateUtils.dateToFormatString(this.dueDate));
 		
 			
+
+			if (this.measure != null)
+			{
+				json.put("Measure", this.measure.toJSON());
+			}
+
 			
 		}
 		catch (JSONException e)
@@ -142,6 +162,7 @@ public class TargetDTOA extends DTOA
 		
 		
 		// Roles
+					// TODO: from DTOA [ Measure ] (dataType : MeasureDTOA) to DTO [ Measure ]
 		
 		
 		return dto;

@@ -39,7 +39,7 @@ public IConditionCAD get_IConditionCAD ()
         return this._IConditionCAD;
 }
 
-public int New_ (int p_patientProfile, Nullable<DateTime> p_dateInitial, string p_description, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum p_clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum p_disease, string p_name)
+public int New_ (int p_patientProfile, string p_description, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum p_clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum p_disease, string p_name)
 {
         ConditionEN conditionEN = null;
         int oid;
@@ -53,8 +53,6 @@ public int New_ (int p_patientProfile, Nullable<DateTime> p_dateInitial, string 
                 conditionEN.PatientProfile = new MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN ();
                 conditionEN.PatientProfile.Id = p_patientProfile;
         }
-
-        conditionEN.DateInitial = p_dateInitial;
 
         conditionEN.Description = p_description;
 
@@ -70,14 +68,13 @@ public int New_ (int p_patientProfile, Nullable<DateTime> p_dateInitial, string 
         return oid;
 }
 
-public void Modify (int p_Condition_OID, Nullable<DateTime> p_dateInitial, string p_description, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum p_clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum p_disease, string p_name)
+public void Modify (int p_Condition_OID, string p_description, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum p_clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum p_disease, string p_name)
 {
         ConditionEN conditionEN = null;
 
         //Initialized ConditionEN
         conditionEN = new ConditionEN ();
         conditionEN.Id = p_Condition_OID;
-        conditionEN.DateInitial = p_dateInitial;
         conditionEN.Description = p_description;
         conditionEN.ClinicalStatus = p_clinicalStatus;
         conditionEN.Disease = p_disease;

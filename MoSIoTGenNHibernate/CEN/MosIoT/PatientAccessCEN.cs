@@ -91,5 +91,22 @@ public void Destroy (int id
 {
         _IPatientAccessCAD.Destroy (id);
 }
+
+public PatientAccessEN ReadOID (int id
+                                )
+{
+        PatientAccessEN patientAccessEN = null;
+
+        patientAccessEN = _IPatientAccessCAD.ReadOID (id);
+        return patientAccessEN;
+}
+
+public System.Collections.Generic.IList<PatientAccessEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<PatientAccessEN> list = null;
+
+        list = _IPatientAccessCAD.ReadAll (first, size);
+        return list;
+}
 }
 }

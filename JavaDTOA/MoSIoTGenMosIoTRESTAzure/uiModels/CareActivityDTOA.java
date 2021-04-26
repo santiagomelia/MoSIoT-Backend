@@ -39,21 +39,29 @@ public class CareActivityDTOA extends DTOA
 	public String getLocation () { return location; }
 	public void setLocation (String location) { this.location = location; }
 	
+	private TypeActivity typeActivity;
+	public TypeActivity getTypeActivity () { return typeActivity; }
+	public void setTypeActivity (TypeActivity typeActivity) { this.typeActivity = typeActivity; }
+	
+	private String name;
+	public String getName () { return name; }
+	public void setName (String name) { this.name = name; }
+	
 	
 	/* Rol: CareActivity o--> Medication */
 	private MedicationDTOA medications;
 	public MedicationDTOA getMedications () { return medications; }
 	public void setMedications (MedicationDTOA medications) { this.medications = medications; }
 
-	/* GetAll: Appointment */
-	private ArrayList<AppointmentDTOA> appointments;
-	public ArrayList<AppointmentDTOA> getAppointments () { return appointments; }
-	public void setAppointments (ArrayList<AppointmentDTOA> appointments) { this.appointments = appointments; }
-
 	/* Rol: CareActivity o--> NutritionOrder */
 	private NutritionOrderDTOA nutritionOrders;
 	public NutritionOrderDTOA getNutritionOrders () { return nutritionOrders; }
 	public void setNutritionOrders (NutritionOrderDTOA nutritionOrders) { this.nutritionOrders = nutritionOrders; }
+
+	/* Rol: CareActivity o--> Appointment */
+	private ArrayList<AppointmentDTOA> appointments;
+	public ArrayList<AppointmentDTOA> getAppointments () { return appointments; }
+	public void setAppointments (ArrayList<AppointmentDTOA> appointments) { this.appointments = appointments; }
 
 	
 	
@@ -106,6 +114,20 @@ public class CareActivityDTOA extends DTOA
 				this.location = (String) json.opt("Location");
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("TypeActivity")))
+			{
+				int enumRawValue = (int) json.opt("TypeActivity");
+				this.typeActivity = TypeActivity.fromRawValue(enumRawValue);
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("Name")))
+			{
+			 
+				this.name = (String) json.opt("Name");
+			 
+			}
 			
 
 			JSONObject jsonMedications = json.optJSONObject("Medications");
@@ -117,26 +139,21 @@ public class CareActivityDTOA extends DTOA
 			}
 
 
-			JSONArray arrayAppointments = json.optJSONArray("Appointments");
-			if (arrayAppointments != null)
-			{
-				this.appointments = new ArrayList<AppointmentDTOA>();
-				for (int i = 0; i < arrayAppointments.length(); ++i)
-				{
-					JSONObject subJson = (JSONObject) arrayAppointments.opt(i);
-					AppointmentDTOA tmp = new AppointmentDTOA();
-					tmp.setFromJSON(subJson);
-					this.appointments.add(tmp);
-				}
-			}
-
-
 			JSONObject jsonNutritionOrders = json.optJSONObject("NutritionOrders");
 			if (jsonNutritionOrders != null)
 			{
 				NutritionOrderDTOA tmp = new NutritionOrderDTOA();
 				tmp.setFromJSON(jsonNutritionOrders);
 				this.nutritionOrders = tmp;
+			}
+
+
+			JSONObject jsonAppointments = json.optJSONObject("Appointments");
+			if (jsonAppointments != null)
+			{
+				AppointmentDTOA tmp = new AppointmentDTOA();
+				tmp.setFromJSON(jsonAppointments);
+				this.appointments = tmp;
 			}
 
 			
@@ -173,6 +190,14 @@ public class CareActivityDTOA extends DTOA
 		  if (this.location != null)
 			json.put("Location", this.location);
 		
+		
+		  if (this.typeActivity != null)
+			json.put("TypeActivity", this.typeActivity.getRawValue());
+		
+		
+		  if (this.name != null)
+			json.put("Name", this.name);
+		
 			
 
 			if (this.medications != null)
@@ -181,20 +206,15 @@ public class CareActivityDTOA extends DTOA
 			}
 
 
-			if (this.appointments != null)
-			{
-				JSONArray jsonArray = new JSONArray();
-				for (int i = 0; i < this.appointments.size(); ++i)
-				{
-					jsonArray.put(this.appointments.get(i).toJSON());
-				}
-				json.put("Appointments", jsonArray);
-			}
-
-
 			if (this.nutritionOrders != null)
 			{
 				json.put("NutritionOrders", this.nutritionOrders.toJSON());
+			}
+
+
+			if (this.appointments != null)
+			{
+				json.put("Appointments", this.appointments.toJSON());
 			}
 
 			
@@ -225,11 +245,16 @@ public class CareActivityDTOA extends DTOA
 
 	dto.setLocation (this.getLocation());
 
+	dto.setTypeActivity (this.getTypeActivity());
+
+	dto.setName (this.getName());
+
 		
 		
 		// Roles
 					// TODO: from DTOA [ Medications ] (dataType : MedicationDTOA) to DTO [ Medication ]
 					// TODO: from DTOA [ NutritionOrders ] (dataType : NutritionOrderDTOA) to DTO [ NutritionOrder ]
+					// TODO: from DTOA [ Appointments ] (dataType : ArrayList<AppointmentDTOA>) to DTO [ Appointment ]
 		
 		
 		return dto;

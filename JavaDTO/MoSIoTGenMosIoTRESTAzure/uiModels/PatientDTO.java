@@ -15,12 +15,16 @@
 		 */
 		
 		
-		public class PatientDTO extends    		UserDTO
+		public class PatientDTO extends    		EntityDTO
 	    implements IDTO
 	    {
 				private Integer patientProfile_oid;
 				public Integer  getPatientProfile_oid () { return patientProfile_oid; } 
 				public void setPatientProfile_oid (Integer value) { patientProfile_oid = value;  } 
+				    	 
+				private Integer userPatient_oid;
+				public Integer  getUserPatient_oid () { return userPatient_oid; } 
+				public void setUserPatient_oid (Integer value) { userPatient_oid = value;  } 
 				    	 
 	   
 			    public JSONObject toJSON ()
@@ -33,6 +37,11 @@
 						if (this.patientProfile_oid != null)
 						{
 							json.put("PatientProfile_oid", this.patientProfile_oid.intValue());
+						}
+
+						if (this.userPatient_oid != null)
+						{
+							json.put("UserPatient_oid", this.userPatient_oid.intValue());
 						}
 						
 					}

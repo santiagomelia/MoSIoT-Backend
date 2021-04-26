@@ -39,7 +39,7 @@ public INutritionOrderCAD get_INutritionOrderCAD ()
         return this._INutritionOrderCAD;
 }
 
-public int New_ (string p_description, string p_dietCode, int p_careActivity)
+public int New_ (string p_description, string p_dietCode, int p_careActivity, string p_name)
 {
         NutritionOrderEN nutritionOrderEN = null;
         int oid;
@@ -58,13 +58,15 @@ public int New_ (string p_description, string p_dietCode, int p_careActivity)
                 nutritionOrderEN.CareActivity.Id = p_careActivity;
         }
 
+        nutritionOrderEN.Name = p_name;
+
         //Call to NutritionOrderCAD
 
         oid = _INutritionOrderCAD.New_ (nutritionOrderEN);
         return oid;
 }
 
-public void Modify (int p_NutritionOrder_OID, string p_description, string p_dietCode)
+public void Modify (int p_NutritionOrder_OID, string p_description, string p_dietCode, string p_name)
 {
         NutritionOrderEN nutritionOrderEN = null;
 
@@ -73,6 +75,7 @@ public void Modify (int p_NutritionOrder_OID, string p_description, string p_die
         nutritionOrderEN.Id = p_NutritionOrder_OID;
         nutritionOrderEN.Description = p_description;
         nutritionOrderEN.DietCode = p_dietCode;
+        nutritionOrderEN.Name = p_name;
         //Call to NutritionOrderCAD
 
         _INutritionOrderCAD.Modify (nutritionOrderEN);

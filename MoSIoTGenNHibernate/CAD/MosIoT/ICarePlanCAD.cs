@@ -29,14 +29,5 @@ CarePlanEN ReadOID (int id
 
 
 System.Collections.Generic.IList<CarePlanEN> ReadAll (int first, int size);
-
-
-int New2 (CarePlanEN carePlan);
-
-void Modify2 (CarePlanEN carePlan);
-
-
-void Destroy2 (int id
-               );
 }
 }

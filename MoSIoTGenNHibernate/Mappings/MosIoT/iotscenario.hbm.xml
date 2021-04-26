@@ -15,6 +15,9 @@
 					<property name="Name" type="string"> 
 						<column name="name"  not-null="true"/>
 					</property>
+					<property name="Description" type="string"> 
+						<column name="description"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -50,6 +53,8 @@
 					      	</key>
 							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AssociationEN"/>
 					    </bag>
+					
+			
 					
 					
 					

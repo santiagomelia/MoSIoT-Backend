@@ -75,6 +75,13 @@ private MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ioTScenario;
 
 
 
+/**
+ *	Atributo description
+ */
+private string description;
+
+
+
 
 
 
@@ -138,6 +145,12 @@ public virtual MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN IoTScenario {
 
 
 
+public virtual string Description {
+        get { return description; } set { description = value;  }
+}
+
+
+
 
 
 public AssociationEN()
@@ -146,20 +159,20 @@ public AssociationEN()
 
 
 
-public AssociationEN(int id, string name, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolTarget, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityTarget, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityTarget, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ioTScenario
+public AssociationEN(int id, string name, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolTarget, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityTarget, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityTarget, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ioTScenario, string description
                      )
 {
-        this.init (Id, name, rolOrigin, rolTarget, type, cardinalityOrigin, cardinalityTarget, entityOrigin, entityTarget, ioTScenario);
+        this.init (Id, name, rolOrigin, rolTarget, type, cardinalityOrigin, cardinalityTarget, entityOrigin, entityTarget, ioTScenario, description);
 }
 
 
 public AssociationEN(AssociationEN association)
 {
-        this.init (Id, association.Name, association.RolOrigin, association.RolTarget, association.Type, association.CardinalityOrigin, association.CardinalityTarget, association.EntityOrigin, association.EntityTarget, association.IoTScenario);
+        this.init (Id, association.Name, association.RolOrigin, association.RolTarget, association.Type, association.CardinalityOrigin, association.CardinalityTarget, association.EntityOrigin, association.EntityTarget, association.IoTScenario, association.Description);
 }
 
 private void init (int id
-                   , string name, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolTarget, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityTarget, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityTarget, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ioTScenario)
+                   , string name, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN rolTarget, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum type, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityOrigin, MoSIoTGenNHibernate.Enumerated.MosIoT.CardinalityTypeEnum cardinalityTarget, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityOrigin, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entityTarget, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ioTScenario, string description)
 {
         this.Id = id;
 
@@ -181,6 +194,8 @@ private void init (int id
         this.EntityTarget = entityTarget;
 
         this.IoTScenario = ioTScenario;
+
+        this.Description = description;
 }
 
 public override bool Equals (object obj)

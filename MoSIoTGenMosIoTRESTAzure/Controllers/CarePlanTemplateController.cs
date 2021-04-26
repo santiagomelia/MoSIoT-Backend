@@ -388,6 +388,50 @@ public HttpResponseMessage AddCondition (int p_careplantemplate_oid, System.Coll
 
 
 
+[HttpPut]
+
+
+[Route ("~/api/CarePlanTemplate/AddPatientProfile")]
+
+public HttpResponseMessage AddPatientProfile (int p_careplantemplate_oid, int p_patientprofile_oid)
+{
+        // CAD, CEN, returnValue
+        CarePlanTemplateRESTCAD carePlanTemplateRESTCAD = null;
+        CarePlanTemplateCEN carePlanTemplateCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                carePlanTemplateRESTCAD = new CarePlanTemplateRESTCAD (session);
+                carePlanTemplateCEN = new CarePlanTemplateCEN (carePlanTemplateRESTCAD);
+
+                // Relationer
+                carePlanTemplateCEN.AddPatientProfile (p_careplantemplate_oid, p_patientprofile_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
 
 
 

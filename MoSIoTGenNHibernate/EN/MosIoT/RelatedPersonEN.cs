@@ -3,58 +3,70 @@ using System;
 // Definición clase RelatedPersonEN
 namespace MoSIoTGenNHibernate.EN.MosIoT
 {
-public partial class RelatedPersonEN                                                                        : MoSIoTGenNHibernate.EN.MosIoT.UserEN
+public partial class RelatedPersonEN                                                                        : MoSIoTGenNHibernate.EN.MosIoT.EntityEN
 
 
 {
+/**
+ *	Atributo userRelatedPerson
+ */
+private MoSIoTGenNHibernate.EN.MosIoT.UserEN userRelatedPerson;
+
+
+
+
+
+
+public virtual MoSIoTGenNHibernate.EN.MosIoT.UserEN UserRelatedPerson {
+        get { return userRelatedPerson; } set { userRelatedPerson = value;  }
+}
+
+
+
+
+
 public RelatedPersonEN() : base ()
 {
 }
 
 
 
-public RelatedPersonEN(int id,
-                       Nullable<DateTime> birthDate, string address, string surnames, string phone, string photo, bool isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum type, bool isDiseased, String pass, string name, string description, string email
+public RelatedPersonEN(int id, MoSIoTGenNHibernate.EN.MosIoT.UserEN userRelatedPerson
+                       , string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN scenario, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN> operations, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> attributes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN> states
                        )
 {
-        this.init (Id, birthDate, address, surnames, phone, photo, isActive, type, isDiseased, pass, name, description, email);
+        this.init (Id, userRelatedPerson, name, originAssociation, targetAssociation, scenario, description, operations, attributes, states);
 }
 
 
 public RelatedPersonEN(RelatedPersonEN relatedPerson)
 {
-        this.init (Id, relatedPerson.BirthDate, relatedPerson.Address, relatedPerson.Surnames, relatedPerson.Phone, relatedPerson.Photo, relatedPerson.IsActive, relatedPerson.Type, relatedPerson.IsDiseased, relatedPerson.Pass, relatedPerson.Name, relatedPerson.Description, relatedPerson.Email);
+        this.init (Id, relatedPerson.UserRelatedPerson, relatedPerson.Name, relatedPerson.OriginAssociation, relatedPerson.TargetAssociation, relatedPerson.Scenario, relatedPerson.Description, relatedPerson.Operations, relatedPerson.Attributes, relatedPerson.States);
 }
 
 private void init (int id
-                   , Nullable<DateTime> birthDate, string address, string surnames, string phone, string photo, bool isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum type, bool isDiseased, String pass, string name, string description, string email)
+                   , MoSIoTGenNHibernate.EN.MosIoT.UserEN userRelatedPerson, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN scenario, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN> operations, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> attributes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN> states)
 {
         this.Id = id;
 
 
-        this.BirthDate = birthDate;
-
-        this.Address = address;
-
-        this.Surnames = surnames;
-
-        this.Phone = phone;
-
-        this.Photo = photo;
-
-        this.IsActive = isActive;
-
-        this.Type = type;
-
-        this.IsDiseased = isDiseased;
-
-        this.Pass = pass;
+        this.UserRelatedPerson = userRelatedPerson;
 
         this.Name = name;
 
+        this.OriginAssociation = originAssociation;
+
+        this.TargetAssociation = targetAssociation;
+
+        this.Scenario = scenario;
+
         this.Description = description;
 
-        this.Email = email;
+        this.Operations = operations;
+
+        this.Attributes = attributes;
+
+        this.States = states;
 }
 
 public override bool Equals (object obj)

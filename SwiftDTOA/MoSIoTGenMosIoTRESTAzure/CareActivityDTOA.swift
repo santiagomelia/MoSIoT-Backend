@@ -17,15 +17,17 @@ class CareActivityDTOA : DTOA
 	var description: String?;
 	var duration: Int?;
 	var location: String?;
+	var typeActivity: TypeActivity?;
+	var name: String?;
 	
 	/* Rol: CareActivity o--> Medication */
 	var medications: MedicationDTOA?;
 
-	/* GetAll: Appointment */
-	var appointments: [AppointmentDTOA]?;
-
 	/* Rol: CareActivity o--> NutritionOrder */
 	var nutritionOrders: NutritionOrderDTOA?;
+
+	/* Rol: CareActivity o--> Appointment */
+	var appointments: [AppointmentDTOA]?;
 
 	
 	
@@ -54,24 +56,25 @@ class CareActivityDTOA : DTOA
 		self.description = json["Description"].object as? String;
 		self.duration = json["Duration"].object as? Int;
 		self.location = json["Location"].object as? String;
+		if let enumValue = json["TypeActivity"].object as? Int
+		{
+			self.typeActivity = TypeActivity(rawValue: enumValue);
+		}
+		self.name = json["Name"].object as? String;
 		
 		if (json["Medications"] != JSON.null)
 		{
 			self.medications = MedicationDTOA(fromJSONObject: json["Medications"]);
 		}
 
-		if (json["Appointments"] != JSON.null)
-		{
-			self.appointments = [];
-			for subJson in json["Appointments"].arrayValue
-			{
-				self.appointments!.append(AppointmentDTOA(fromJSONObject: subJson));
-			}
-		}
-
 		if (json["NutritionOrders"] != JSON.null)
 		{
 			self.nutritionOrders = NutritionOrderDTOA(fromJSONObject: json["NutritionOrders"]);
+		}
+
+		if (json["Appointments"] != JSON.null)
+		{
+			self.appointments = AppointmentDTOA(fromJSONObject: json["Appointments"]);
 		}
 
 		
@@ -104,22 +107,22 @@ class CareActivityDTOA : DTOA
 		dictionary["Location"] = self.location;
 	
 	
+
+	
+		dictionary["TypeActivity"] = self.typeActivity?.rawValue;
+	
+	
+
+	
+		dictionary["Name"] = self.name;
+	
+	
 		
 		dictionary["Medications"] = self.medications?.toDictionary() ?? NSNull();
 
-		dictionary["Appointments"] = NSNull();
-		if (self.appointments != nil)
-		{
-			var arrayOfDictionary: [[String : AnyObject]] = [];
-			for item in self.appointments!
-			{
-				arrayOfDictionary.append(item.toDictionary());
-			}
-			
-			dictionary["Appointments"] = arrayOfDictionary;
-		}
-
 		dictionary["NutritionOrders"] = self.nutritionOrders?.toDictionary() ?? NSNull();
+
+		dictionary["Appointments"] = self.appointments?.toDictionary() ?? NSNull();
 
 		
 		

@@ -200,5 +200,65 @@ public void Destroy (int id
                 SessionClose ();
         }
 }
+
+//Sin e: ReadOID
+//Con e: PatientAccessEN
+public PatientAccessEN ReadOID (int id
+                                )
+{
+        PatientAccessEN patientAccessEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                patientAccessEN = (PatientAccessEN)session.Get (typeof(PatientAccessEN), id);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientAccessCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return patientAccessEN;
+}
+
+public System.Collections.Generic.IList<PatientAccessEN> ReadAll (int first, int size)
+{
+        System.Collections.Generic.IList<PatientAccessEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PatientAccessEN)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PatientAccessEN>();
+                else
+                        result = session.CreateCriteria (typeof(PatientAccessEN)).List<PatientAccessEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientAccessCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

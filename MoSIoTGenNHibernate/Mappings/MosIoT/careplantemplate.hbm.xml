@@ -46,11 +46,6 @@
 					    </bag>
 					
 			
-		  			
-						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >	
-								<column name="FK_id_idPatientProfile"/> 
-						</many-to-one>
-											 					
 			
 			
 			
@@ -67,16 +62,6 @@
 					    </bag>
 					
 			
-		  			
-						<bag name="AddressConditions" table="[condition_carePlan]" inverse="true" >
-							<key>
-								
-									<column name="FK_idCarePlanTemplate_idCarePlan"/> 
-							</key>
-      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.ConditionEN">
-									<column name="FK_idCondition_idAddressConditions"/> 
-      						</many-to-many>
-    					</bag>
 			
 			
 			
@@ -95,11 +80,24 @@
 					
 					
 					
+						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >
+									<column name="FK_id_idPatientProfile"/> 
+						</many-to-one>
 					
 					
 					
 					
 					
+					
+					
+						<bag name="AddressConditions" table="[condition_carePlan]" >
+							<key>
+									<column name="FK_idCarePlanTemplate_idCarePlan"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.ConditionEN">
+									<column name="FK_idCondition_idAddressConditions"/> 
+      						</many-to-many>
+    					</bag>		
 					
 					
 					

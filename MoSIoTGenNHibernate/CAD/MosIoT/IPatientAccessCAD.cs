@@ -22,5 +22,12 @@ void Modify (PatientAccessEN patientAccess);
 
 void Destroy (int id
               );
+
+
+PatientAccessEN ReadOID (int id
+                         );
+
+
+System.Collections.Generic.IList<PatientAccessEN> ReadAll (int first, int size);
 }
 }

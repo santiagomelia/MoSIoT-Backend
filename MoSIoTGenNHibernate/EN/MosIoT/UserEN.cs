@@ -96,6 +96,34 @@ private string email;
 
 
 
+/**
+ *	Atributo relatedPerson
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RelatedPersonEN> relatedPerson;
+
+
+
+/**
+ *	Atributo practitioner
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PractitionerEN> practitioner;
+
+
+
+/**
+ *	Atributo patient
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PatientEN> patient;
+
+
+
+/**
+ *	Atributo notifications
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.NotifyEN> notifications;
+
+
+
 
 
 
@@ -177,28 +205,56 @@ public virtual string Email {
 
 
 
-
-
-public UserEN()
-{
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RelatedPersonEN> RelatedPerson {
+        get { return relatedPerson; } set { relatedPerson = value;  }
 }
 
 
 
-public UserEN(int id, Nullable<DateTime> birthDate, string address, string surnames, string phone, string photo, bool isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum type, bool isDiseased, String pass, string name, string description, string email
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PractitionerEN> Practitioner {
+        get { return practitioner; } set { practitioner = value;  }
+}
+
+
+
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PatientEN> Patient {
+        get { return patient; } set { patient = value;  }
+}
+
+
+
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.NotifyEN> Notifications {
+        get { return notifications; } set { notifications = value;  }
+}
+
+
+
+
+
+public UserEN()
+{
+        relatedPerson = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.RelatedPersonEN>();
+        practitioner = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.PractitionerEN>();
+        patient = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.PatientEN>();
+        notifications = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.NotifyEN>();
+}
+
+
+
+public UserEN(int id, Nullable<DateTime> birthDate, string address, string surnames, string phone, string photo, bool isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum type, bool isDiseased, String pass, string name, string description, string email, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RelatedPersonEN> relatedPerson, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PractitionerEN> practitioner, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PatientEN> patient, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.NotifyEN> notifications
               )
 {
-        this.init (Id, birthDate, address, surnames, phone, photo, isActive, type, isDiseased, pass, name, description, email);
+        this.init (Id, birthDate, address, surnames, phone, photo, isActive, type, isDiseased, pass, name, description, email, relatedPerson, practitioner, patient, notifications);
 }
 
 
 public UserEN(UserEN user)
 {
-        this.init (Id, user.BirthDate, user.Address, user.Surnames, user.Phone, user.Photo, user.IsActive, user.Type, user.IsDiseased, user.Pass, user.Name, user.Description, user.Email);
+        this.init (Id, user.BirthDate, user.Address, user.Surnames, user.Phone, user.Photo, user.IsActive, user.Type, user.IsDiseased, user.Pass, user.Name, user.Description, user.Email, user.RelatedPerson, user.Practitioner, user.Patient, user.Notifications);
 }
 
 private void init (int id
-                   , Nullable<DateTime> birthDate, string address, string surnames, string phone, string photo, bool isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum type, bool isDiseased, String pass, string name, string description, string email)
+                   , Nullable<DateTime> birthDate, string address, string surnames, string phone, string photo, bool isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum type, bool isDiseased, String pass, string name, string description, string email, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RelatedPersonEN> relatedPerson, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PractitionerEN> practitioner, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PatientEN> patient, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.NotifyEN> notifications)
 {
         this.Id = id;
 
@@ -226,6 +282,14 @@ private void init (int id
         this.Description = description;
 
         this.Email = email;
+
+        this.RelatedPerson = relatedPerson;
+
+        this.Practitioner = practitioner;
+
+        this.Patient = patient;
+
+        this.Notifications = notifications;
 }
 
 public override bool Equals (object obj)

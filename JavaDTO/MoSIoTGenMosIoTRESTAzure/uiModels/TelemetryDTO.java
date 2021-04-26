@@ -57,10 +57,6 @@
 				public Integer  getVitalSign_oid () { return vitalSign_oid; } 
 				public void setVitalSign_oid (Integer value) { vitalSign_oid = value;  } 
 				    	 
-				private ArrayList<Integer> iMTelemetry_oid;
-				public ArrayList<Integer>  getIMTelemetry_oid () { return iMTelemetry_oid; } 
-				public void setIMTelemetry_oid (ArrayList<Integer> value) { iMTelemetry_oid = value;  } 
-				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -112,17 +108,6 @@
 						{
 							json.put("VitalSign_oid", this.vitalSign_oid.intValue());
 						}
-
-						if (this.iMTelemetry_oid != null)
-						{
-							JSONArray jsonArray = new JSONArray();
-							for (int i = 0; i < this.iMTelemetry_oid.size(); ++i)
-							{
-								jsonArray.put(this.iMTelemetry_oid.get(i));
-							}
-							json.put("IMTelemetry_oid", jsonArray);
-						}
-		
 						
 					}
 					catch (JSONException e)

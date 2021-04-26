@@ -56,14 +56,6 @@ public static TelemetryEN Convert (TelemetryDTO dto)
 
                                 newinstance.VitalSign = measureCAD.ReadOIDDefault (dto.VitalSign_oid);
                         }
-                        if (dto.IMTelemetry_oid != null) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.IIMTelemetryCAD iMTelemetryCAD = new MoSIoTGenNHibernate.CAD.MosIoT.IMTelemetryCAD ();
-
-                                newinstance.IMTelemetry = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN>();
-                                foreach (int entry in dto.IMTelemetry_oid) {
-                                        newinstance.IMTelemetry.Add (iMTelemetryCAD.ReadOIDDefault (entry));
-                                }
-                        }
                 }
         }
         catch (Exception ex)

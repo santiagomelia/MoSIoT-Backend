@@ -80,8 +80,11 @@ public static void InitializeData ()
                 // Insert the initilizations of entities using the CEN classes
 
 
+
                 UserCEN userCEN = new UserCEN ();
                 userCEN.New_ ("shahabsur", true, false, "1234", "shahab", "Shahab", "shahab@ua.es");
+
+                int idUser = userCEN.New_ ("Lucas Grijander", true, true, "1234", "Chiquito", "Paciente Alzheimer", "lucas@ua.es");
 
 
                 DeviceTemplateCEN deviceTCEN = new DeviceTemplateCEN ();
@@ -96,25 +99,25 @@ public static void InitializeData ()
                 PropertyCEN propertyCEN = new PropertyCEN ();
                 propertyCEN.New_ (deviceT1, "property 1", true, true);
 
+                TelemetryCEN telemetryCEN = new TelemetryCEN ();
+                int idTelemetry = telemetryCEN.New_ (deviceT1, 2, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum.Integer, TypeUnitEnum.steps, "Heart beats", TelemetryTypeEnum.event_);
+
 
                 EventTelemetryCEN eventTelemetry = new EventTelemetryCEN ();
-                int eventTel1 = eventTelemetry.New_ ("evento", MoSIoTGenNHibernate.Enumerated.MosIoT.SeverityEventEnum.info);
-
-                TelemetryCEN telemetryCEN = new TelemetryCEN ();
-                telemetryCEN.New_ (deviceT1, 2, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum.Integer, TypeUnitEnum.steps, "Heart beats", TelemetryTypeEnum.event_);
+                int eventTel1 = eventTelemetry.New_ (idTelemetry, "evento", MoSIoTGenNHibernate.Enumerated.MosIoT.SeverityEventEnum.info);
 
 
                 PatientProfileCEN patientProfile = new PatientProfileCEN ();
-                int idPatient = patientProfile.New_ (LanguageCodeEnum.es, "Espana", "patient with Alzheimer", "patient with a mild Alzheimer with a cognitive disability");
+                int idPatientProfile = patientProfile.New_ (LanguageCodeEnum.es, "Espana", HazardValueEnum.olfactoryHazard, "patient with Alzheimer", "patient with a mild Alzheimer with a cognitive disability");
 
                 ConditionCEN conditionCEN = new ConditionCEN ();
-                conditionCEN.New_ (idPatient, DateTime.Today, "Alzheimer", ClinicalStatusEnum.active, DiseaseEnum.Alzheimer, "Alzheimer");
+                int idCondition = conditionCEN.New_ (idPatientProfile, "Alzheimer", ClinicalStatusEnum.active, DiseaseEnum.Alzheimer, "Alzheimer");
 
                 DisabilityCEN disabilityCEN = new DisabilityCEN ();
-                int idDisability = disabilityCEN.New_ (idPatient, "cognitive", DisabilityTypeEnum.cognitive, SeverityEnum.mild, "Cognitive Disability");
+                int idDisability = disabilityCEN.New_ (idPatientProfile, "cognitive", DisabilityTypeEnum.cognitive, SeverityEnum.mild, "Cognitive Disability");
 
                 AccessModeCEN accessMode = new AccessModeCEN ();
-                int idAccessMode = accessMode.New_ (idPatient, AccessModeValueEnum.textual, "Acceso al Smartphone", idDisability, "accessMode Smartphone");
+                int idAccessMode = accessMode.New_ (idPatientProfile, AccessModeValueEnum.textual, "Acceso al Smartphone", idDisability, "accessMode Smartphone");
 
                 AdaptationRequestCEN adaptRequest = new AdaptationRequestCEN ();
                 adaptRequest.New_ (AccessModeValueEnum.auditory, idAccessMode, LanguageCodeEnum.es, "adaptation auditive");
@@ -126,16 +129,53 @@ public static void InitializeData ()
                 adaptationDetail.New_ (AdaptationDetailValueEnum.record, idAccessMode, "Se graba el la voz generada");
 
 
+                CarePlanTemplateCEN carePlan = new CarePlanTemplateCEN ();
+                int idCarePlanT = carePlan.New_ (CareStatusEnum.active, CarePlanIntentEnum.proposal, "Plan de cuidados para persona con Alzheimer", DateTime.Now, 100, "cuidadosAlzheimer", "Se describen todos los objetivos y actividades necesarias para que se cuide a una persona que presenta Alzheimer");
+
+
+                CareActivityCEN careActivity = new CareActivityCEN ();
+                careActivity.New_ (idCarePlanT, TypePeriodicityEnum.daily, "Realizar un paseo", 40, "parque", "", TypeActivityEnum.sportActivity, " ", "Paseo");
+
+                int idActivityMed = careActivity.New_ (idCarePlanT, TypePeriodicityEnum.perHour, "Tomar Ceregumil", 0, "en casa", "", TypeActivityEnum.medication, "", "Tomar medicamento mente activa");
+
+                MedicationCEN medicationCEN = new MedicationCEN ();
+                medicationCEN.New_ (idActivityMed, 346864, "Ceregumil Original 500 ml", " ", "Tomar una cucharada 3 veces al dia", "cucharada", FormTypeEnum.powder, "346864");
+
+                GoalCEN goal = new GoalCEN ();
+                int idGoal = goal.New_ (idCarePlanT, PriorityTypeEnum.high, CareStatusEnum.active, idCondition, "Mejorar los indicadores cognitivos", CategoryGoalEnum.behavioral, " ", "Mejora cognitiva");
+
+                TargetCEN target = new TargetCEN ();
+
+                int idTarget = target.New_ (idGoal, "70", "Reducir las pulsaciones a 70", DateTime.Today.AddDays (60));
+
+
+                MeasureCEN measureCEN = new MeasureCEN ();
+                int idMeasure = measureCEN.New_ ("Pulsaciones_minuto", "Pulsaciones por minuto", " ");
+
+                target.AddMeasure (idTarget, idMeasure);
+
+                measureCEN.AddTelemetries (idMeasure, new List<int> { idTelemetry });
 
 
 
+                // SCENARIO
+
+                IoTScenarioCEN scenarioCEN = new IoTScenarioCEN ();
+                int idScenarioIoT = scenarioCEN.New_ ("Escenario Paciente con Alzheimer", "Se reproducen los elementos de un enfermo de alzheimer con discapacidad cognitiva");
 
 
+                PatientCEN patientCEN = new PatientCEN ();
+                patientCEN.New_ ("Juan Lucas", idScenarioIoT, "Es un paciente nuevo", idPatientProfile, idUser);
 
-                // p.e. CustomerCEN customer = new CustomerCEN();
-                // customer.New_ (p_user:"user", p_password:"1234");
+                PatientAccessCEN patientAccessCEN = new PatientAccessCEN ();
+                patientAccessCEN.New_ ("PatientAccessSmartphone", idScenarioIoT, "patient Access Smartphone", idAccessMode);
 
 
+                DeviceCEN deviceCEN = new DeviceCEN ();
+                deviceCEN.New_ ("Iphone 12", idScenarioIoT, "Iphone 12 120 Gb", false, "1212", true, "1818181818181", "firm1", "Apple", deviceT2);
+
+                CarePlanCEN carePlanCEN = new CarePlanCEN ();
+                carePlanCEN.New_ ("Care Plan Alzheimer", idScenarioIoT, "El carePlan adecuado para el alzheimer", idCarePlanT);
 
                 /*PROTECTED REGION END*/
         }

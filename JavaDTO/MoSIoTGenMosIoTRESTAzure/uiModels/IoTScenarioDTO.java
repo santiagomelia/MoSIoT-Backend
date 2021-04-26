@@ -37,6 +37,10 @@
 				public ArrayList<AssociationDTO> getAssociation () { return association; } 
 				public void setAssociation (ArrayList<AssociationDTO> value) { association = value;  } 
 				    	 
+				private String description;
+				public String getDescription () { return description; } 
+				public void setDescription  (String value) { description = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -80,6 +84,9 @@
 							}
 							json.put("Association", jsonArray);
 						}
+				
+						  json.put("Description", this.description);
+				
 						
 					}
 					catch (JSONException e)

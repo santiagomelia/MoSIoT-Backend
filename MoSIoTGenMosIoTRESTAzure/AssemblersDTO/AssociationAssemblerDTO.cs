@@ -57,6 +57,7 @@ public static AssociationEN Convert (AssociationDTO dto)
 
                                 newinstance.IoTScenario = ioTScenarioCAD.ReadOIDDefault (dto.IoTScenario_oid);
                         }
+                        newinstance.Description = dto.Description;
                 }
         }
         catch (Exception ex)

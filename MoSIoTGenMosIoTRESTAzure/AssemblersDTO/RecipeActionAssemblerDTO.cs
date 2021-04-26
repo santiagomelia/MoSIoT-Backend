@@ -39,6 +39,7 @@ public static RecipeActionEN Convert (RecipeActionDTO dto)
                                 newinstance.Operation = entityOperationCAD.ReadOIDDefault (dto.Operation_oid);
                         }
                         newinstance.Name = dto.Name;
+                        newinstance.Description = dto.Description;
                 }
         }
         catch (Exception ex)

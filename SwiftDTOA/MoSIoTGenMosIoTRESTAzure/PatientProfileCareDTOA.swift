@@ -16,6 +16,8 @@ class PatientProfileCareDTOA : DTOA
 	var preferredLanguage: LanguageCode?;
 	var region: String?;
 	var hazardAvoidance: HazardValue?;
+	var name: String?;
+	var description: String?;
 	
 	
 	
@@ -46,6 +48,8 @@ class PatientProfileCareDTOA : DTOA
 		{
 			self.hazardAvoidance = HazardValue(rawValue: enumValue);
 		}
+		self.name = json["Name"].object as? String;
+		self.description = json["Description"].object as? String;
 		
 		
 	}
@@ -70,6 +74,16 @@ class PatientProfileCareDTOA : DTOA
 
 	
 		dictionary["HazardAvoidance"] = self.hazardAvoidance?.rawValue;
+	
+	
+
+	
+		dictionary["Name"] = self.name;
+	
+	
+
+	
+		dictionary["Description"] = self.description;
 	
 	
 		

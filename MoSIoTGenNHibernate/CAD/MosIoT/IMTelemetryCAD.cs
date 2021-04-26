@@ -125,9 +125,6 @@ public int New_ (IMTelemetryEN iMTelemetry)
                 if (iMTelemetry.Telemetry != null) {
                         // Argumento OID y no colección.
                         iMTelemetry.Telemetry = (MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN), iMTelemetry.Telemetry.Id);
-
-                        iMTelemetry.Telemetry.IMTelemetry
-                        .Add (iMTelemetry);
                 }
 
                 session.Save (iMTelemetry);

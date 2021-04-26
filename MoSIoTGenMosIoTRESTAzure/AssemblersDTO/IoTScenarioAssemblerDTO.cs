@@ -56,6 +56,7 @@ public static IoTScenarioEN Convert (IoTScenarioDTO dto)
                                         newinstance.Association.Add (AssociationAssemblerDTO.Convert (entry));
                                 }
                         }
+                        newinstance.Description = dto.Description;
                 }
         }
         catch (Exception ex)

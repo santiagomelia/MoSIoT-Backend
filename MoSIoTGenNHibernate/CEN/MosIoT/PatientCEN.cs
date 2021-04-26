@@ -39,26 +39,24 @@ public IPatientCAD get_IPatientCAD ()
         return this._IPatientCAD;
 }
 
-public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email, int p_patientProfile)
+public int New_ (string p_name, int p_scenario, string p_description, int p_patientProfile, int p_userPatient)
 {
         PatientEN patientEN = null;
         int oid;
 
         //Initialized PatientEN
         patientEN = new PatientEN ();
-        patientEN.Surnames = p_surnames;
-
-        patientEN.IsActive = p_isActive;
-
-        patientEN.IsDiseased = p_isDiseased;
-
-        patientEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
-
         patientEN.Name = p_name;
 
-        patientEN.Description = p_description;
 
-        patientEN.Email = p_email;
+        if (p_scenario != -1) {
+                // El argumento p_scenario -> Property scenario es oid = false
+                // Lista de oids id
+                patientEN.Scenario = new MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ();
+                patientEN.Scenario.Id = p_scenario;
+        }
+
+        patientEN.Description = p_description;
 
 
         if (p_patientProfile != -1) {
@@ -68,26 +66,29 @@ public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p
                 patientEN.PatientProfile.Id = p_patientProfile;
         }
 
+
+        if (p_userPatient != -1) {
+                // El argumento p_userPatient -> Property userPatient es oid = false
+                // Lista de oids id
+                patientEN.UserPatient = new MoSIoTGenNHibernate.EN.MosIoT.UserEN ();
+                patientEN.UserPatient.Id = p_userPatient;
+        }
+
         //Call to PatientCAD
 
         oid = _IPatientCAD.New_ (patientEN);
         return oid;
 }
 
-public void Modify (int p_Patient_OID, string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
+public void Modify (int p_Patient_OID, string p_name, string p_description)
 {
         PatientEN patientEN = null;
 
         //Initialized PatientEN
         patientEN = new PatientEN ();
         patientEN.Id = p_Patient_OID;
-        patientEN.Surnames = p_surnames;
-        patientEN.IsActive = p_isActive;
-        patientEN.IsDiseased = p_isDiseased;
-        patientEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         patientEN.Name = p_name;
         patientEN.Description = p_description;
-        patientEN.Email = p_email;
         //Call to PatientCAD
 
         _IPatientCAD.Modify (patientEN);

@@ -47,6 +47,13 @@ private MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN event_;
 
 
 
+/**
+ *	Atributo description
+ */
+private string description;
+
+
+
 
 
 
@@ -86,6 +93,12 @@ public virtual MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN Event_ {
 
 
 
+public virtual string Description {
+        get { return description; } set { description = value;  }
+}
+
+
+
 
 
 public RecipeTriggerEN()
@@ -95,20 +108,20 @@ public RecipeTriggerEN()
 
 
 
-public RecipeTriggerEN(int id, MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum operator_, string value, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> entityAttributes, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN event_
+public RecipeTriggerEN(int id, MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum operator_, string value, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> entityAttributes, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN event_, string description
                        )
 {
-        this.init (Id, recipe, operator_, value, entityAttributes, event_);
+        this.init (Id, recipe, operator_, value, entityAttributes, event_, description);
 }
 
 
 public RecipeTriggerEN(RecipeTriggerEN recipeTrigger)
 {
-        this.init (Id, recipeTrigger.Recipe, recipeTrigger.Operator_, recipeTrigger.Value, recipeTrigger.EntityAttributes, recipeTrigger.Event_);
+        this.init (Id, recipeTrigger.Recipe, recipeTrigger.Operator_, recipeTrigger.Value, recipeTrigger.EntityAttributes, recipeTrigger.Event_, recipeTrigger.Description);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum operator_, string value, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> entityAttributes, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN event_)
+                   , MoSIoTGenNHibernate.EN.MosIoT.RecipeEN recipe, MoSIoTGenNHibernate.Enumerated.MosIoT.OperatorTypeEnum operator_, string value, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> entityAttributes, MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN event_, string description)
 {
         this.Id = id;
 
@@ -122,6 +135,8 @@ private void init (int id
         this.EntityAttributes = entityAttributes;
 
         this.Event_ = event_;
+
+        this.Description = description;
 }
 
 public override bool Equals (object obj)

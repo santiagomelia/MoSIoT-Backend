@@ -97,6 +97,9 @@ public void ModifyDefault (NutritionOrderEN nutritionOrder)
                 nutritionOrderEN.DietCode = nutritionOrder.DietCode;
 
 
+
+                nutritionOrderEN.Name = nutritionOrder.Name;
+
                 session.Update (nutritionOrderEN);
                 SessionCommit ();
         }
@@ -160,6 +163,9 @@ public void Modify (NutritionOrderEN nutritionOrder)
 
 
                 nutritionOrderEN.DietCode = nutritionOrder.DietCode;
+
+
+                nutritionOrderEN.Name = nutritionOrder.Name;
 
                 session.Update (nutritionOrderEN);
                 SessionCommit ();

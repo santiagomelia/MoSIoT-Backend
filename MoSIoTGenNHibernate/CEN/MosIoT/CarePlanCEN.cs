@@ -108,57 +108,5 @@ public System.Collections.Generic.IList<CarePlanEN> ReadAll (int first, int size
         list = _ICarePlanCAD.ReadAll (first, size);
         return list;
 }
-public int New2 (string p_name, int p_scenario, string p_description, int p_template)
-{
-        CarePlanEN carePlanEN = null;
-        int oid;
-
-        //Initialized CarePlanEN
-        carePlanEN = new CarePlanEN ();
-        carePlanEN.Name = p_name;
-
-
-        if (p_scenario != -1) {
-                // El argumento p_scenario -> Property scenario es oid = false
-                // Lista de oids id
-                carePlanEN.Scenario = new MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ();
-                carePlanEN.Scenario.Id = p_scenario;
-        }
-
-        carePlanEN.Description = p_description;
-
-
-        if (p_template != -1) {
-                // El argumento p_template -> Property template es oid = false
-                // Lista de oids id
-                carePlanEN.Template = new MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN ();
-                carePlanEN.Template.Id = p_template;
-        }
-
-        //Call to CarePlanCAD
-
-        oid = _ICarePlanCAD.New2 (carePlanEN);
-        return oid;
-}
-
-public void Modify2 (int p_CarePlan_OID, string p_name, string p_description)
-{
-        CarePlanEN carePlanEN = null;
-
-        //Initialized CarePlanEN
-        carePlanEN = new CarePlanEN ();
-        carePlanEN.Id = p_CarePlan_OID;
-        carePlanEN.Name = p_name;
-        carePlanEN.Description = p_description;
-        //Call to CarePlanCAD
-
-        _ICarePlanCAD.Modify2 (carePlanEN);
-}
-
-public void Destroy2 (int id
-                      )
-{
-        _ICarePlanCAD.Destroy2 (id);
-}
 }
 }

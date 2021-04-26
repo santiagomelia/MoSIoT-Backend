@@ -57,14 +57,6 @@
 				public TypeActivity getTypeActivity () { return typeActivity; } 
 				public void setTypeActivity  (TypeActivity value) { typeActivity = value;  } 
 				    	 
-				private Integer nextActivity_oid;
-				public Integer  getNextActivity_oid () { return nextActivity_oid; } 
-				public void setNextActivity_oid (Integer value) { nextActivity_oid = value;  } 
-				    	 
-				private Integer previousActivity_oid;
-				public Integer  getPreviousActivity_oid () { return previousActivity_oid; } 
-				public void setPreviousActivity_oid (Integer value) { previousActivity_oid = value;  } 
-				    	 
 				private ArrayList<ComunicationDTO> notification;
 				public ArrayList<ComunicationDTO> getNotification () { return notification; } 
 				public void setNotification (ArrayList<ComunicationDTO> value) { notification = value;  } 
@@ -124,16 +116,6 @@
 				
 						  json.put("TypeActivity", this.typeActivity.getRawValue());
 				
-
-						if (this.nextActivity_oid != null)
-						{
-							json.put("NextActivity_oid", this.nextActivity_oid.intValue());
-						}
-
-						if (this.previousActivity_oid != null)
-						{
-							json.put("PreviousActivity_oid", this.previousActivity_oid.intValue());
-						}
 
 						if (this.notification != null)
 						{

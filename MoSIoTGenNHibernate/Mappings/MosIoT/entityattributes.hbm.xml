@@ -22,13 +22,16 @@
 						<column name="isOID"  not-null="true"/>
 					</property>
 					<property name="AssociationType" > 
-						<column name="associationType"  not-null="true"/>
+						<column name="associationType" />
 					</property>
 					<property name="IsWritable" type="boolean"> 
 						<column name="isWritable"  not-null="true"/>
 					</property>
 					<property name="Description" type="string"> 
 						<column name="description"  not-null="true"/>
+					</property>
+					<property name="Value" type="string"> 
+						<column name="value"  not-null="true"/>
 					</property>
 			
 			
@@ -77,6 +80,20 @@
 									<column name="FK_idRecipeTrigger_idTrigger"/> 
       						</many-to-many>
     					</bag>
+			
+		  			
+						<bag name="Register" >
+							<key>
+							
+								
+								<column name="FK_idEntityAttributes_idEntityAttributes"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.RegisterEN"/>
+					    </bag>
+					
+			
+					
+					
 					
 					
 					

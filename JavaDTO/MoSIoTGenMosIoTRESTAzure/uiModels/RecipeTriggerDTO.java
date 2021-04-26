@@ -41,6 +41,10 @@
 				public Integer  getEvent__oid () { return event__oid; } 
 				public void setEvent__oid (Integer value) { event__oid = value;  } 
 				    	 
+				private String description;
+				public String getDescription () { return description; } 
+				public void setDescription  (String value) { description = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -78,6 +82,9 @@
 						{
 							json.put("Event__oid", this.event__oid.intValue());
 						}
+				
+						  json.put("Description", this.description);
+				
 						
 					}
 					catch (JSONException e)

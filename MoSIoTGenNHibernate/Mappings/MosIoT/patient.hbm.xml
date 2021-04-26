@@ -6,10 +6,10 @@
 		    
 			
 				
-<joined-subclass name="PatientEN" extends="MoSIoTGenNHibernate.EN.MosIoT.UserEN" table="Patient"> 
+<joined-subclass name="PatientEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" table="Patient"> 
 	<key>
     	
-				<column name="idUser"/>
+				<column name="id"/>
 		
     	
    	</key>
@@ -18,11 +18,18 @@
 					
 			
 			
+			
+		  			
+						<many-to-one name="UserPatient" class="MoSIoTGenNHibernate.EN.MosIoT.UserEN" >	
+								<column name="FK_idUser_idUserPatient"/> 
+						</many-to-one>
+											 					
 					
 					
 						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >
 									<column name="FK_id_idPatientProfile"/> 
 						</many-to-one>
+					
 		
  	  
 		 </joined-subclass>

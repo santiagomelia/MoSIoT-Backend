@@ -97,6 +97,7 @@ public void ModifyDefault (AdaptationTypeRequiredEN adaptationTypeRequired)
                 adaptationTypeRequiredEN.Description = adaptationTypeRequired.Description;
 
 
+
                 session.Update (adaptationTypeRequiredEN);
                 SessionCommit ();
         }

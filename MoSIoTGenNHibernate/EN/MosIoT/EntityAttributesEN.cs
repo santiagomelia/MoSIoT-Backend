@@ -82,6 +82,20 @@ private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeTri
 
 
 
+/**
+ *	Atributo register
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN> register;
+
+
+
+/**
+ *	Atributo value
+ */
+private string value;
+
+
+
 
 
 
@@ -151,6 +165,18 @@ public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.Re
 
 
 
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN> Register {
+        get { return register; } set { register = value;  }
+}
+
+
+
+public virtual string Value {
+        get { return value; } set { value = value;  }
+}
+
+
+
 
 
 public EntityAttributesEN()
@@ -158,24 +184,25 @@ public EntityAttributesEN()
         targetAssociation = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN>();
         originAsociation = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN>();
         trigger = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN>();
+        register = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN>();
 }
 
 
 
-public EntityAttributesEN(int id, string name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum type, bool isOID, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAsociation, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum associationType, bool isWritable, string description, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN> trigger
+public EntityAttributesEN(int id, string name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum type, bool isOID, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAsociation, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum associationType, bool isWritable, string description, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN> trigger, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN> register, string value
                           )
 {
-        this.init (Id, name, type, isOID, targetAssociation, originAsociation, associationType, isWritable, description, entity, trigger);
+        this.init (Id, name, type, isOID, targetAssociation, originAsociation, associationType, isWritable, description, entity, trigger, register, value);
 }
 
 
 public EntityAttributesEN(EntityAttributesEN entityAttributes)
 {
-        this.init (Id, entityAttributes.Name, entityAttributes.Type, entityAttributes.IsOID, entityAttributes.TargetAssociation, entityAttributes.OriginAsociation, entityAttributes.AssociationType, entityAttributes.IsWritable, entityAttributes.Description, entityAttributes.Entity, entityAttributes.Trigger);
+        this.init (Id, entityAttributes.Name, entityAttributes.Type, entityAttributes.IsOID, entityAttributes.TargetAssociation, entityAttributes.OriginAsociation, entityAttributes.AssociationType, entityAttributes.IsWritable, entityAttributes.Description, entityAttributes.Entity, entityAttributes.Trigger, entityAttributes.Register, entityAttributes.Value);
 }
 
 private void init (int id
-                   , string name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum type, bool isOID, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAsociation, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum associationType, bool isWritable, string description, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN> trigger)
+                   , string name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum type, bool isOID, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAsociation, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum associationType, bool isWritable, string description, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN> trigger, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN> register, string value)
 {
         this.Id = id;
 
@@ -199,6 +226,10 @@ private void init (int id
         this.Entity = entity;
 
         this.Trigger = trigger;
+
+        this.Register = register;
+
+        this.Value = value;
 }
 
 public override bool Equals (object obj)

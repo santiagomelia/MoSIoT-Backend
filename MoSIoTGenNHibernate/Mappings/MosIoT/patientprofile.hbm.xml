@@ -56,17 +56,6 @@
 			
 			
 		  			
-						<bag name="CarePlan" >
-							<key>
-							
-								
-								<column name="FK_id_idPatientProfile"/>
-					      	</key>
-							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN"/>
-					    </bag>
-					
-			
-		  			
 						<bag name="Diseases" cascade="delete">
 							<key>
 							
@@ -78,7 +67,6 @@
 					
 			
 			
-					
 					
 					
 					

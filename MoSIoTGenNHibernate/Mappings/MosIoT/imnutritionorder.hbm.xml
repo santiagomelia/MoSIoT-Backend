@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				
+<joined-subclass name="IMNutritionOrderEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" table="IMNutritionOrder"> 
+	<key>
+    	
+				<column name="idEntityAttributes"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+					
+					
+						<many-to-one name="NutritionOrder" class="MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN" >
+									<column name="FK_idNutritionOrder_idNutritionOrder"/> 
+						</many-to-one>
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="IMNutritionOrderENReadAllHQL">from IMNutritionOrderEN</query>
+		</hibernate-mapping>
+	

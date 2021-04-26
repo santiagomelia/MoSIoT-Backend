@@ -48,6 +48,15 @@ public static CarePlanTemplateDTOA Convert (CarePlanTemplateEN en, NHibernate.IS
                 dto.Modified = en.Modified;
 
 
+                dto.DurationDays = en.DurationDays;
+
+
+                dto.Name = en.Name;
+
+
+                dto.Description = en.Description;
+
+
                 //
                 // TravesalLink
 
@@ -71,6 +80,15 @@ public static CarePlanTemplateDTOA Convert (CarePlanTemplateEN en, NHibernate.IS
 
                 /* Rol: CarePlanTemplate o--> PatientProfileCare */
                 dto.Patient = PatientProfileCareAssembler.Convert ((PatientProfileEN)en.PatientProfile, session);
+
+                /* Rol: CarePlanTemplate o--> Condition_CarePlan */
+                dto.AddressConditions = null;
+                List<ConditionEN> AddressConditions = carePlanTemplateRESTCAD.AddressConditions (en.Id).ToList ();
+                if (AddressConditions != null) {
+                        dto.AddressConditions = new List<Condition_CarePlanDTOA>();
+                        foreach (ConditionEN entry in AddressConditions)
+                                dto.AddressConditions.Add (Condition_CarePlanAssembler.Convert (entry, session));
+                }
 
 
                 //

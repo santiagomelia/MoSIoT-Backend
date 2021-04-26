@@ -107,6 +107,9 @@ public void ModifyDefault (AssociationEN association)
 
 
 
+
+                associationEN.Description = association.Description;
+
                 session.Update (associationEN);
                 SessionCommit ();
         }
@@ -204,6 +207,9 @@ public void Modify (AssociationEN association)
 
 
                 associationEN.CardinalityTarget = association.CardinalityTarget;
+
+
+                associationEN.Description = association.Description;
 
                 session.Update (associationEN);
                 SessionCommit ();
