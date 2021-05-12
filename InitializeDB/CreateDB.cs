@@ -133,6 +133,9 @@ public static void InitializeData ()
                 int idCarePlanT = carePlan.New_ (CareStatusEnum.active, CarePlanIntentEnum.proposal, "Plan de cuidados para persona con Alzheimer", DateTime.Now, 100, "cuidadosAlzheimer", "Se describen todos los objetivos y actividades necesarias para que se cuide a una persona que presenta Alzheimer");
 
 
+                carePlan.AddCondition(idCarePlanT, new List<int> { idCondition });
+
+
                 CareActivityCEN careActivity = new CareActivityCEN ();
                 careActivity.New_ (idCarePlanT, TypePeriodicityEnum.daily, "Realizar un paseo", 40, "parque", "", TypeActivityEnum.sportActivity, " ", "Paseo");
 

@@ -28,6 +28,9 @@
 				var disease: Disease?;
 				    	 
 		 
+				var carePlanTemplate_oid: [Int]?;
+				    	 
+		 
 				var goal_oid: [Int]?;
 				    	 
 		 
@@ -72,6 +75,9 @@
 				
 					dictionary["disease"] = self.disease?.rawValue;
 				
+
+					dictionary["carePlanTemplate_oid"] = self.carePlanTemplate_oid;
+			
 
 					dictionary["goal_oid"] = self.goal_oid;
 			

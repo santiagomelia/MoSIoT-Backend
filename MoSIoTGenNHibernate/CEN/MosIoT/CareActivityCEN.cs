@@ -39,7 +39,7 @@ public ICareActivityCAD get_ICareActivityCAD ()
         return this._ICareActivityCAD;
 }
 
-public int New_ (int p_carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.TypePeriodicityEnum p_periodicity, string p_description, int p_duration, string p_location, string p_outcomeCode, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum p_typeActivity, string p_activityCode, string p_name)
+public int New_ (int p_carePlanTemplate, MoSIoTGenNHibernate.Enumerated.MosIoT.TypePeriodicityEnum p_periodicity, string p_description, int p_duration, string p_location, string p_outcomeCode, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum p_typeActivity, string p_activityCode, string p_name)
 {
         CareActivityEN careActivityEN = null;
         int oid;
@@ -47,11 +47,11 @@ public int New_ (int p_carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.TypePerio
         //Initialized CareActivityEN
         careActivityEN = new CareActivityEN ();
 
-        if (p_carePlan != -1) {
-                // El argumento p_carePlan -> Property carePlan es oid = false
+        if (p_carePlanTemplate != -1) {
+                // El argumento p_carePlanTemplate -> Property carePlanTemplate es oid = false
                 // Lista de oids id
-                careActivityEN.CarePlan = new MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN ();
-                careActivityEN.CarePlan.Id = p_carePlan;
+                careActivityEN.CarePlanTemplate = new MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN ();
+                careActivityEN.CarePlanTemplate.Id = p_carePlanTemplate;
         }
 
         careActivityEN.Periodicity = p_periodicity;

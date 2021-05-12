@@ -143,11 +143,11 @@ public int New_ (CareActivityEN careActivity)
         try
         {
                 SessionInitializeTransaction ();
-                if (careActivity.CarePlan != null) {
+                if (careActivity.CarePlanTemplate != null) {
                         // Argumento OID y no colección.
-                        careActivity.CarePlan = (MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN), careActivity.CarePlan.Id);
+                        careActivity.CarePlanTemplate = (MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN), careActivity.CarePlanTemplate.Id);
 
-                        careActivity.CarePlan.CareActivity
+                        careActivity.CarePlanTemplate.CareActivity
                         .Add (careActivity);
                 }
 

@@ -39,8 +39,8 @@
 			
 			
 		  			
-						<many-to-one name="CarePlan" class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN" >	
-								<column name="FK_idCarePlanTemplate_idCarePlan"/> 
+						<many-to-one name="CarePlanTemplate" class="MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN" >	
+								<column name="FK_idCarePlanTemplate_idCarePlanTemplate"/> 
 						</many-to-one>
 											 					
 			

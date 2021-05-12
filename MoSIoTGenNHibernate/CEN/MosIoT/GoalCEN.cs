@@ -39,7 +39,7 @@ public IGoalCAD get_IGoalCAD ()
         return this._IGoalCAD;
 }
 
-public int New_ (int p_carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.PriorityTypeEnum p_priority, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum p_status, int p_condition, string p_description, MoSIoTGenNHibernate.Enumerated.MosIoT.CategoryGoalEnum p_category, string p_outcomeCode, string p_name)
+public int New_ (int p_carePlanTemplate, MoSIoTGenNHibernate.Enumerated.MosIoT.PriorityTypeEnum p_priority, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum p_status, int p_condition, string p_description, MoSIoTGenNHibernate.Enumerated.MosIoT.CategoryGoalEnum p_category, string p_outcomeCode, string p_name)
 {
         GoalEN goalEN = null;
         int oid;
@@ -47,11 +47,11 @@ public int New_ (int p_carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.PriorityT
         //Initialized GoalEN
         goalEN = new GoalEN ();
 
-        if (p_carePlan != -1) {
-                // El argumento p_carePlan -> Property carePlan es oid = false
+        if (p_carePlanTemplate != -1) {
+                // El argumento p_carePlanTemplate -> Property carePlanTemplate es oid = false
                 // Lista de oids id
-                goalEN.CarePlan = new MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN ();
-                goalEN.CarePlan.Id = p_carePlan;
+                goalEN.CarePlanTemplate = new MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN ();
+                goalEN.CarePlanTemplate.Id = p_carePlanTemplate;
         }
 
         goalEN.Priority = p_priority;

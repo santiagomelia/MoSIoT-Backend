@@ -48,6 +48,13 @@ private MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum disease;
 
 
 /**
+ *	Atributo carePlanTemplate
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> carePlanTemplate;
+
+
+
+/**
  *	Atributo goal
  */
 private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goal;
@@ -100,6 +107,12 @@ public virtual MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum Disease {
 
 
 
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> CarePlanTemplate {
+        get { return carePlanTemplate; } set { carePlanTemplate = value;  }
+}
+
+
+
 public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> Goal {
         get { return goal; } set { goal = value;  }
 }
@@ -117,25 +130,26 @@ public virtual string Name {
 public ConditionEN()
 {
         disabilities = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN>();
+        carePlanTemplate = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN>();
         goal = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.GoalEN>();
 }
 
 
 
-public ConditionEN(int id, MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disabilities, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum disease, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goal, string name
+public ConditionEN(int id, MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disabilities, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum disease, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> carePlanTemplate, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goal, string name
                    )
 {
-        this.init (Id, patientProfile, description, disabilities, clinicalStatus, disease, goal, name);
+        this.init (Id, patientProfile, description, disabilities, clinicalStatus, disease, carePlanTemplate, goal, name);
 }
 
 
 public ConditionEN(ConditionEN condition)
 {
-        this.init (Id, condition.PatientProfile, condition.Description, condition.Disabilities, condition.ClinicalStatus, condition.Disease, condition.Goal, condition.Name);
+        this.init (Id, condition.PatientProfile, condition.Description, condition.Disabilities, condition.ClinicalStatus, condition.Disease, condition.CarePlanTemplate, condition.Goal, condition.Name);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disabilities, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum disease, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goal, string name)
+                   , MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN patientProfile, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disabilities, MoSIoTGenNHibernate.Enumerated.MosIoT.ClinicalStatusEnum clinicalStatus, MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum disease, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> carePlanTemplate, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.GoalEN> goal, string name)
 {
         this.Id = id;
 
@@ -149,6 +163,8 @@ private void init (int id
         this.ClinicalStatus = clinicalStatus;
 
         this.Disease = disease;
+
+        this.CarePlanTemplate = carePlanTemplate;
 
         this.Goal = goal;
 

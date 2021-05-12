@@ -6,9 +6,9 @@ namespace MoSIoTGenNHibernate.EN.MosIoT
 public partial class CareActivityEN
 {
 /**
- *	Atributo carePlan
+ *	Atributo carePlanTemplate
  */
-private MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlan;
+private MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlanTemplate;
 
 
 
@@ -106,8 +106,8 @@ private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.Appointme
 
 
 
-public virtual MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN CarePlan {
-        get { return carePlan; } set { carePlan = value;  }
+public virtual MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN CarePlanTemplate {
+        get { return carePlanTemplate; } set { carePlanTemplate = value;  }
 }
 
 
@@ -200,25 +200,25 @@ public CareActivityEN()
 
 
 
-public CareActivityEN(int id, MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.TypePeriodicityEnum periodicity, string description, int duration, MoSIoTGenNHibernate.EN.MosIoT.MedicationEN medication, string location, string outcomeCode, MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN nutritionOrder, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum typeActivity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> notification, string activityCode, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN> appointment
+public CareActivityEN(int id, MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlanTemplate, MoSIoTGenNHibernate.Enumerated.MosIoT.TypePeriodicityEnum periodicity, string description, int duration, MoSIoTGenNHibernate.EN.MosIoT.MedicationEN medication, string location, string outcomeCode, MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN nutritionOrder, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum typeActivity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> notification, string activityCode, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN> appointment
                       )
 {
-        this.init (Id, carePlan, periodicity, description, duration, medication, location, outcomeCode, nutritionOrder, typeActivity, notification, activityCode, name, appointment);
+        this.init (Id, carePlanTemplate, periodicity, description, duration, medication, location, outcomeCode, nutritionOrder, typeActivity, notification, activityCode, name, appointment);
 }
 
 
 public CareActivityEN(CareActivityEN careActivity)
 {
-        this.init (Id, careActivity.CarePlan, careActivity.Periodicity, careActivity.Description, careActivity.Duration, careActivity.Medication, careActivity.Location, careActivity.OutcomeCode, careActivity.NutritionOrder, careActivity.TypeActivity, careActivity.Notification, careActivity.ActivityCode, careActivity.Name, careActivity.Appointment);
+        this.init (Id, careActivity.CarePlanTemplate, careActivity.Periodicity, careActivity.Description, careActivity.Duration, careActivity.Medication, careActivity.Location, careActivity.OutcomeCode, careActivity.NutritionOrder, careActivity.TypeActivity, careActivity.Notification, careActivity.ActivityCode, careActivity.Name, careActivity.Appointment);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.TypePeriodicityEnum periodicity, string description, int duration, MoSIoTGenNHibernate.EN.MosIoT.MedicationEN medication, string location, string outcomeCode, MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN nutritionOrder, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum typeActivity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> notification, string activityCode, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN> appointment)
+                   , MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlanTemplate, MoSIoTGenNHibernate.Enumerated.MosIoT.TypePeriodicityEnum periodicity, string description, int duration, MoSIoTGenNHibernate.EN.MosIoT.MedicationEN medication, string location, string outcomeCode, MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN nutritionOrder, MoSIoTGenNHibernate.Enumerated.MosIoT.TypeActivityEnum typeActivity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN> notification, string activityCode, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN> appointment)
 {
         this.Id = id;
 
 
-        this.CarePlan = carePlan;
+        this.CarePlanTemplate = carePlanTemplate;
 
         this.Periodicity = periodicity;
 

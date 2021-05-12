@@ -6,9 +6,9 @@ namespace MoSIoTGenNHibernate.EN.MosIoT
 public partial class GoalEN
 {
 /**
- *	Atributo carePlan
+ *	Atributo carePlanTemplate
  */
-private MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlan;
+private MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlanTemplate;
 
 
 
@@ -78,8 +78,8 @@ private string name;
 
 
 
-public virtual MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN CarePlan {
-        get { return carePlan; } set { carePlan = value;  }
+public virtual MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN CarePlanTemplate {
+        get { return carePlanTemplate; } set { carePlanTemplate = value;  }
 }
 
 
@@ -147,25 +147,25 @@ public GoalEN()
 
 
 
-public GoalEN(int id, MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.PriorityTypeEnum priority, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TargetEN> targets, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.EN.MosIoT.ConditionEN condition, string description, MoSIoTGenNHibernate.Enumerated.MosIoT.CategoryGoalEnum category, string outcomeCode, string name
+public GoalEN(int id, MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlanTemplate, MoSIoTGenNHibernate.Enumerated.MosIoT.PriorityTypeEnum priority, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TargetEN> targets, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.EN.MosIoT.ConditionEN condition, string description, MoSIoTGenNHibernate.Enumerated.MosIoT.CategoryGoalEnum category, string outcomeCode, string name
               )
 {
-        this.init (Id, carePlan, priority, targets, status, condition, description, category, outcomeCode, name);
+        this.init (Id, carePlanTemplate, priority, targets, status, condition, description, category, outcomeCode, name);
 }
 
 
 public GoalEN(GoalEN goal)
 {
-        this.init (Id, goal.CarePlan, goal.Priority, goal.Targets, goal.Status, goal.Condition, goal.Description, goal.Category, goal.OutcomeCode, goal.Name);
+        this.init (Id, goal.CarePlanTemplate, goal.Priority, goal.Targets, goal.Status, goal.Condition, goal.Description, goal.Category, goal.OutcomeCode, goal.Name);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlan, MoSIoTGenNHibernate.Enumerated.MosIoT.PriorityTypeEnum priority, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TargetEN> targets, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.EN.MosIoT.ConditionEN condition, string description, MoSIoTGenNHibernate.Enumerated.MosIoT.CategoryGoalEnum category, string outcomeCode, string name)
+                   , MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN carePlanTemplate, MoSIoTGenNHibernate.Enumerated.MosIoT.PriorityTypeEnum priority, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TargetEN> targets, MoSIoTGenNHibernate.Enumerated.MosIoT.CareStatusEnum status, MoSIoTGenNHibernate.EN.MosIoT.ConditionEN condition, string description, MoSIoTGenNHibernate.Enumerated.MosIoT.CategoryGoalEnum category, string outcomeCode, string name)
 {
         this.Id = id;
 
 
-        this.CarePlan = carePlan;
+        this.CarePlanTemplate = carePlanTemplate;
 
         this.Priority = priority;
 

@@ -245,6 +245,7 @@ public void AddCondition (int p_CarePlanTemplate_OID, System.Collections.Generic
                 foreach (int item in p_addressConditions_OIDs) {
                         addressConditionsENAux = new MoSIoTGenNHibernate.EN.MosIoT.ConditionEN ();
                         addressConditionsENAux = (MoSIoTGenNHibernate.EN.MosIoT.ConditionEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.ConditionEN), item);
+                        addressConditionsENAux.CarePlanTemplate.Add (carePlanTemplateEN);
 
                         carePlanTemplateEN.AddressConditions.Add (addressConditionsENAux);
                 }

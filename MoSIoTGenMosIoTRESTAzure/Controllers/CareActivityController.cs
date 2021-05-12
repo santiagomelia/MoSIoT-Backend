@@ -175,9 +175,9 @@ public HttpResponseMessage New_ ( [FromBody] CareActivityDTO dto)
                 // Create
                 returnOID = careActivityCEN.New_ (
 
-                        //Atributo OID: p_carePlan
+                        //Atributo OID: p_carePlanTemplate
                         // attr.estaRelacionado: true
-                        dto.CarePlan_oid                 // association role
+                        dto.CarePlanTemplate_oid                 // association role
 
                         , dto.Periodicity                                                                                                                                                //Atributo Primitivo: p_periodicity
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description

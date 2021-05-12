@@ -27,10 +27,10 @@ public static GoalEN Convert (GoalDTO dto)
 
 
 
-                        if (dto.CarePlan_oid != -1) {
+                        if (dto.CarePlanTemplate_oid != -1) {
                                 MoSIoTGenNHibernate.CAD.MosIoT.ICarePlanTemplateCAD carePlanTemplateCAD = new MoSIoTGenNHibernate.CAD.MosIoT.CarePlanTemplateCAD ();
 
-                                newinstance.CarePlan = carePlanTemplateCAD.ReadOIDDefault (dto.CarePlan_oid);
+                                newinstance.CarePlanTemplate = carePlanTemplateCAD.ReadOIDDefault (dto.CarePlanTemplate_oid);
                         }
                         newinstance.Id = dto.Id;
                         newinstance.Priority = dto.Priority;

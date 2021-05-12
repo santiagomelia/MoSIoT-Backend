@@ -135,11 +135,11 @@ public int New_ (GoalEN goal)
         try
         {
                 SessionInitializeTransaction ();
-                if (goal.CarePlan != null) {
+                if (goal.CarePlanTemplate != null) {
                         // Argumento OID y no colección.
-                        goal.CarePlan = (MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN), goal.CarePlan.Id);
+                        goal.CarePlanTemplate = (MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN), goal.CarePlanTemplate.Id);
 
-                        goal.CarePlan.Goals
+                        goal.CarePlanTemplate.Goals
                         .Add (goal);
                 }
                 if (goal.Condition != null) {
