@@ -17,9 +17,9 @@
 		
 		public class GoalDTO 	    implements IDTO
 	    {
-				private Integer carePlan_oid;
-				public Integer  getCarePlan_oid () { return carePlan_oid; } 
-				public void setCarePlan_oid (Integer value) { carePlan_oid = value;  } 
+				private Integer carePlanTemplate_oid;
+				public Integer  getCarePlanTemplate_oid () { return carePlanTemplate_oid; } 
+				public void setCarePlanTemplate_oid (Integer value) { carePlanTemplate_oid = value;  } 
 				    	 
 				private Integer id;
 				public Integer getId () { return id; } 
@@ -65,9 +65,9 @@
 					try
 					{
 
-						if (this.carePlan_oid != null)
+						if (this.carePlanTemplate_oid != null)
 						{
-							json.put("CarePlan_oid", this.carePlan_oid.intValue());
+							json.put("CarePlanTemplate_oid", this.carePlanTemplate_oid.intValue());
 						}
 				
 						  json.put("Id", this.id.intValue());

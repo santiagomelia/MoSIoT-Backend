@@ -36,7 +36,7 @@ public IList<GoalEN> Goals (int id)
         {
                 SessionInitializeTransaction ();
 
-                String sql = @"select self FROM GoalEN self inner join self.CarePlan as target with target.Id=:p_Id";
+                String sql = @"select self FROM GoalEN self inner join self.CarePlanTemplate as target with target.Id=:p_Id";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
 
 
@@ -70,7 +70,7 @@ public IList<CareActivityEN> CareActivities (int id)
         {
                 SessionInitializeTransaction ();
 
-                String sql = @"select self FROM CareActivityEN self inner join self.CarePlan as target with target.Id=:p_Id";
+                String sql = @"select self FROM CareActivityEN self inner join self.CarePlanTemplate as target with target.Id=:p_Id";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
 
 

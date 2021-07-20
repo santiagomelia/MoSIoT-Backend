@@ -41,6 +41,7 @@ static void Main (string[] args)
                         System.Console.WriteLine ("The data has been inserted successfully!!");
                         System.Console.WriteLine ("-----------------------------------------");
                 }
+                System.Console.ReadKey ();
                 /*PROTECTED REGION END*/
         }
         catch (Exception e)

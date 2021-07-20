@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67ED5C38-E48C-4E10-969C-333A3E9C95AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>APIExterna</RootNamespace>
+    <AssemblyName>APIExterna</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.2\lib\net45\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\APIExterna\Class1.cs">
+      <Link>Class1.cs</Link>
+    </Compile>
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\AccessMode.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\AccessModeExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Association.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\AssociationExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\CarePlan.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\CarePlanExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Condition.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\ConditionExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Device.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\DeviceExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\DeviceTemplate.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\DeviceTemplateExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Disability.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\DisabilityExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Entity.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\EntityExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IAccessMode.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IAssociation.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\ICarePlan.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\ICondition.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IDevice.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IDeviceTemplate.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IDisability.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IEntity.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMAdaptationDetail.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMAdaptationRequest.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMAppointment.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMCommand.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMCommunication.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMCondition.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMDisability.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMMedication.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMProperty.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIMTelemetry.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IIoTScenario.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMAdaptationDetail.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMAdaptationDetailExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMAdaptationRequest.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMAdaptationRequestExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMAppointment.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMAppointmentExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMCommand.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMCommandExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMCommunication.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMCommunicationExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMCondition.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMConditionExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMDisability.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMDisabilityExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMMedication.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMMedicationExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMoSIoTGenScenarioMoSIoTRESTAzure.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMProperty.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMPropertyExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMTelemetry.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IMTelemetryExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IoTScenario.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IoTScenarioExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IPatient.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IPatientAccess.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IPractitioner.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IRelatedPerson.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\ITelemetry.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IUserAnonimous.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\IVitalSign.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\AssociationDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\CarePlanDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\DeviceDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\EntityArgumentDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\EntityAttributesDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\EntityDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\EntityOperationDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\EntityStateDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMAdaptationDetailDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMAdaptationRequestDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMAppointmentDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMCommandDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMCommunicationDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMConditionDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMDisabilityDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMMedicationDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMPropertyDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IMTelemetryDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\IoTScenarioDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\PatientAccessDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\PatientDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\PractitionerDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\RecipeActionDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\RecipeDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\RecipeTriggerDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\RelatedPersonDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\UserDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Models\VitalSignDTO.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\MoSIoTGenScenarioMoSIoTRESTAzure.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Patient.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\PatientAccess.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\PatientAccessExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\PatientExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Practitioner.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\PractitionerExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\RelatedPerson.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\RelatedPersonExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\Telemetry.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\TelemetryExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\UserAnonimous.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\UserAnonimousExtensions.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\VitalSign.cs" />
+    <Compile Include="MoSIoTGenScenarioMoSIoTRESTAzure\VitalSignExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\IoTCentral\IoTCentral.csproj">
+      <Project>{de7b9a1c-800c-4832-a06d-d26473f37f3c}</Project>
+      <Name>IoTCentral</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -10,7 +10,7 @@
 	
 		 class GoalDTO 	    {
 		 
-				var carePlan_oid: Int?;
+				var carePlanTemplate_oid: Int?;
 				    	 
 		 
 				var id: Int?;
@@ -57,7 +57,7 @@
 			
 
 
-					dictionary["carePlan_oid"] = self.carePlan_oid;
+					dictionary["carePlanTemplate_oid"] = self.carePlanTemplate_oid;
 			
 
 				

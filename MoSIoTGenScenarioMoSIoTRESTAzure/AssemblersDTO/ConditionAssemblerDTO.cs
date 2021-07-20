@@ -44,6 +44,14 @@ public static ConditionEN Convert (ConditionDTO dto)
                         }
                         newinstance.ClinicalStatus = dto.ClinicalStatus;
                         newinstance.Disease = dto.Disease;
+                        if (dto.CarePlanTemplate_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.ICarePlanTemplateCAD carePlanTemplateCAD = new MoSIoTGenNHibernate.CAD.MosIoT.CarePlanTemplateCAD ();
+
+                                newinstance.CarePlanTemplate = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN>();
+                                foreach (int entry in dto.CarePlanTemplate_oid) {
+                                        newinstance.CarePlanTemplate.Add (carePlanTemplateCAD.ReadOIDDefault (entry));
+                                }
+                        }
                         if (dto.Goal_oid != null) {
                                 MoSIoTGenNHibernate.CAD.MosIoT.IGoalCAD goalCAD = new MoSIoTGenNHibernate.CAD.MosIoT.GoalCAD ();
 

@@ -41,6 +41,10 @@
 				public Disease getDisease () { return disease; } 
 				public void setDisease  (Disease value) { disease = value;  } 
 				    	 
+				private ArrayList<Integer> carePlanTemplate_oid;
+				public ArrayList<Integer>  getCarePlanTemplate_oid () { return carePlanTemplate_oid; } 
+				public void setCarePlanTemplate_oid (ArrayList<Integer> value) { carePlanTemplate_oid = value;  } 
+				    	 
 				private ArrayList<Integer> goal_oid;
 				public ArrayList<Integer>  getGoal_oid () { return goal_oid; } 
 				public void setGoal_oid (ArrayList<Integer> value) { goal_oid = value;  } 
@@ -84,6 +88,17 @@
 				
 						  json.put("Disease", this.disease.getRawValue());
 				
+
+						if (this.carePlanTemplate_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.carePlanTemplate_oid.size(); ++i)
+							{
+								jsonArray.put(this.carePlanTemplate_oid.get(i));
+							}
+							json.put("CarePlanTemplate_oid", jsonArray);
+						}
+		
 
 						if (this.goal_oid != null)
 						{

@@ -9,6 +9,9 @@ using MoSIoTGenNHibernate.EN.MosIoT;
 using MoSIoTGenNHibernate.CEN.MosIoT;
 using MoSIoTGenNHibernate.CAD.MosIoT;
 using MoSIoTGenNHibernate.Enumerated.MosIoT;
+using APIExterna;
+
+
 /*PROTECTED REGION END*/
 namespace InitializeDB
 {
@@ -82,7 +85,8 @@ public static void InitializeData ()
 
 
                 UserCEN userCEN = new UserCEN ();
-                userCEN.New_ ("shahabsur", true, false, "1234", "shahab", "Shahab", "shahab@ua.es");
+                int idUserShahab = userCEN.New_ ("shahabsur", true, false, "1234", "shahab", "Shahab", "shahab@ua.es");
+
 
                 int idUser = userCEN.New_ ("Lucas Grijander", true, true, "1234", "Chiquito", "Paciente Alzheimer", "lucas@ua.es");
 
@@ -133,7 +137,7 @@ public static void InitializeData ()
                 int idCarePlanT = carePlan.New_ (CareStatusEnum.active, CarePlanIntentEnum.proposal, "Plan de cuidados para persona con Alzheimer", DateTime.Now, 100, "cuidadosAlzheimer", "Se describen todos los objetivos y actividades necesarias para que se cuide a una persona que presenta Alzheimer");
 
 
-                carePlan.AddCondition(idCarePlanT, new List<int> { idCondition });
+                carePlan.AddCondition (idCarePlanT, new List<int> { idCondition });
 
 
                 CareActivityCEN careActivity = new CareActivityCEN ();
@@ -179,6 +183,30 @@ public static void InitializeData ()
 
                 CarePlanCEN carePlanCEN = new CarePlanCEN ();
                 carePlanCEN.New_ ("Care Plan Alzheimer", idScenarioIoT, "El carePlan adecuado para el alzheimer", idCarePlanT);
+
+
+                int idUserRelated = userCEN.New_ ("Berna", true, false, "1234", "Juana", "Madre de Lucas", "juana@gmail.com");
+
+                PractitionerCEN practitionerCEN = new PractitionerCEN ();
+                practitionerCEN.New_ ("Medico Shahab", idScenarioIoT, "Medico Shahab", idUserShahab);
+
+                RelatedPersonCEN relatedPersonCEN = new RelatedPersonCEN ();
+                relatedPersonCEN.New_ ("Juana Berna", idScenarioIoT, "Madre de Berna", idUserRelated);
+
+
+                // Invocamos a la fachada REST de Azure IoT Central
+                //IoTCentralAdapterREST iotAdapter = new IoTCentralAdapterREST();
+                ////  iotAdapter.ListarDeviceTemplate();
+                //iotAdapter.GetToken();
+                //iotAdapter.ListarDeviceTemplates();
+
+
+                // Invocamos a la fachada MQTT de Azure IoT Central
+                // IoTCentralAdapterMQTT ioTMQTTAdapter = new IoTCentralAdapterMQTT();
+
+                //ioTMQTTAdapter.initializeAzureDeviceClient();
+
+
 
                 /*PROTECTED REGION END*/
         }

@@ -8,6 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoSIoTGenNHibernate", "MoSI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoSIoTGenMosIoTRESTAzure", "MoSIoTGenMosIoTRESTAzure\MoSIoTGenMosIoTRESTAzure.csproj", "{3069D642-C1CD-4615-85ED-C16A7DBFC94A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIExterna", "APIExterna\APIExterna.csproj", "{57521058-E2D7-4570-9794-9630AA545D06}"
+EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +41,14 @@ Global
 		{3069D642-C1CD-4615-85ED-C16A7DBFC94A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3069D642-C1CD-4615-85ED-C16A7DBFC94A}.Release|x86.ActiveCfg = Release|Any CPU
 		{3069D642-C1CD-4615-85ED-C16A7DBFC94A}.Release|x86.Build.0 = Release|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Debug|x86.Build.0 = Debug|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Release|x86.ActiveCfg = Release|Any CPU
+		{57521058-E2D7-4570-9794-9630AA545D06}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

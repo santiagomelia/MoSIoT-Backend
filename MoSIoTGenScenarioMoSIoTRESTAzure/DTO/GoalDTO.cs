@@ -6,9 +6,9 @@ namespace MoSIoTGenScenarioMoSIoTRESTAzure.DTO
 {
 public partial class GoalDTO
 {
-private int carePlan_oid;
-public int CarePlan_oid {
-        get { return carePlan_oid; } set { carePlan_oid = value;  }
+private int carePlanTemplate_oid;
+public int CarePlanTemplate_oid {
+        get { return carePlanTemplate_oid; } set { carePlanTemplate_oid = value;  }
 }
 
 private int id;

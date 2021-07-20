@@ -36,6 +36,13 @@ public MoSIoTGenNHibernate.Enumerated.MosIoT.DiseaseEnum Disease {
 }
 
 
+private System.Collections.Generic.IList<int> carePlanTemplate_oid;
+public System.Collections.Generic.IList<int> CarePlanTemplate_oid {
+        get { return carePlanTemplate_oid; } set { carePlanTemplate_oid = value;  }
+}
+
+
+
 private System.Collections.Generic.IList<int> goal_oid;
 public System.Collections.Generic.IList<int> Goal_oid {
         get { return goal_oid; } set { goal_oid = value;  }
