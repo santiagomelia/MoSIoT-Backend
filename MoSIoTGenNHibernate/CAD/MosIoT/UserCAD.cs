@@ -273,6 +273,9 @@ public void Modify (UserEN user)
                 userEN.IsActive = user.IsActive;
 
 
+                userEN.Type = user.Type;
+
+
                 userEN.IsDiseased = user.IsDiseased;
 
 

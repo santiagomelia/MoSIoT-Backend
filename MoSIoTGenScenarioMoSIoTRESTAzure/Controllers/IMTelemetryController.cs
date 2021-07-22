@@ -93,9 +93,9 @@ public HttpResponseMessage ReadAll ()
 
 
 
-[Route ("~/api/IMTelemetry/IMTelemetries")]
+[Route ("~/api/IMTelemetry/IMTelemetriesScenario")]
 
-public HttpResponseMessage IMTelemetries (int idIoTScenario)
+public HttpResponseMessage IMTelemetriesScenario (int idIoTScenario)
 {
         // CAD, EN
         IoTScenarioRESTCAD ioTScenarioRESTCAD = null;
@@ -120,7 +120,7 @@ public HttpResponseMessage IMTelemetries (int idIoTScenario)
                 // TODO: paginación
 
 
-                en = ioTScenarioRESTCAD.IMTelemetries (idIoTScenario).ToList ();
+                en = ioTScenarioRESTCAD.IMTelemetriesScenario (idIoTScenario).ToList ();
 
 
 

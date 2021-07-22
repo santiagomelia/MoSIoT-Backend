@@ -93,9 +93,9 @@ public HttpResponseMessage ReadAll ()
 
 
 
-[Route ("~/api/VitalSign/VitalSigns")]
+[Route ("~/api/VitalSign/VitalSignsScenario")]
 
-public HttpResponseMessage VitalSigns (int idIoTScenario)
+public HttpResponseMessage VitalSignsScenario (int idIoTScenario)
 {
         // CAD, EN
         IoTScenarioRESTCAD ioTScenarioRESTCAD = null;
@@ -120,7 +120,7 @@ public HttpResponseMessage VitalSigns (int idIoTScenario)
                 // TODO: paginación
 
 
-                en = ioTScenarioRESTCAD.VitalSigns (idIoTScenario).ToList ();
+                en = ioTScenarioRESTCAD.VitalSignsScenario (idIoTScenario).ToList ();
 
 
 

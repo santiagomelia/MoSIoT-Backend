@@ -72,7 +72,7 @@ public string Login (int p_User_OID, string p_pass)
         return result;
 }
 
-public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
+public int New_ (string p_surnames, bool p_isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum p_type, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
 {
         UserEN userEN = null;
         int oid;
@@ -82,6 +82,8 @@ public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p
         userEN.Surnames = p_surnames;
 
         userEN.IsActive = p_isActive;
+
+        userEN.Type = p_type;
 
         userEN.IsDiseased = p_isDiseased;
 
@@ -99,7 +101,7 @@ public int New_ (string p_surnames, bool p_isActive, bool p_isDiseased, String p
         return oid;
 }
 
-public void Modify (int p_User_OID, string p_surnames, bool p_isActive, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
+public void Modify (int p_User_OID, string p_surnames, bool p_isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum p_type, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
 {
         UserEN userEN = null;
 
@@ -108,6 +110,7 @@ public void Modify (int p_User_OID, string p_surnames, bool p_isActive, bool p_i
         userEN.Id = p_User_OID;
         userEN.Surnames = p_surnames;
         userEN.IsActive = p_isActive;
+        userEN.Type = p_type;
         userEN.IsDiseased = p_isDiseased;
         userEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         userEN.Name = p_name;

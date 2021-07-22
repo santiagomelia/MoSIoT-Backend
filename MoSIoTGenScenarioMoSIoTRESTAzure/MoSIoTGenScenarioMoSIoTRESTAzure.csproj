@@ -507,6 +507,11 @@
 		<Compile Include="Assemblers\IMAppointmentAssembler.cs" />
 		<Compile Include="Controllers\IMAppointmentController.cs" />
 		
+		<Compile Include="CAD\IMCareActivityRESTCAD.cs" />
+		<Compile Include="DTOA\IMCareActivityDTOA.cs" />
+		<Compile Include="Assemblers\IMCareActivityAssembler.cs" />
+		<Compile Include="Controllers\IMCareActivityController.cs" />
+		
 	
 	
 	

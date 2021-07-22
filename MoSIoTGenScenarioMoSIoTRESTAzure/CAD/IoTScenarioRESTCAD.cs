@@ -28,7 +28,7 @@ public IoTScenarioRESTCAD(ISession sessionAux)
 
 
 
-public IList<PatientEN> Patients (int id)
+public IList<PatientEN> PatientScenario (int id)
 {
         IList<PatientEN> result = null;
 
@@ -96,7 +96,7 @@ public IList<EntityEN> Entities (int id)
         return result;
 }
 
-public IList<PatientAccessEN> PatientAccess (int id)
+public IList<PatientAccessEN> PatientAccessScenario (int id)
 {
         IList<PatientAccessEN> result = null;
 
@@ -130,7 +130,7 @@ public IList<PatientAccessEN> PatientAccess (int id)
         return result;
 }
 
-public IList<DeviceEN> Devices (int id)
+public IList<DeviceEN> DevicesScenario (int id)
 {
         IList<DeviceEN> result = null;
 
@@ -164,7 +164,7 @@ public IList<DeviceEN> Devices (int id)
         return result;
 }
 
-public IList<CarePlanEN> CarePlans (int id)
+public IList<CarePlanEN> CarePlanScenario (int id)
 {
         IList<CarePlanEN> result = null;
 
@@ -198,7 +198,7 @@ public IList<CarePlanEN> CarePlans (int id)
         return result;
 }
 
-public IList<VitalSignEN> VitalSigns (int id)
+public IList<VitalSignEN> VitalSignsScenario (int id)
 {
         IList<VitalSignEN> result = null;
 
@@ -232,7 +232,7 @@ public IList<VitalSignEN> VitalSigns (int id)
         return result;
 }
 
-public IList<IMTelemetryEN> IMTelemetries (int id)
+public IList<IMTelemetryEN> IMTelemetriesScenario (int id)
 {
         IList<IMTelemetryEN> result = null;
 
@@ -315,6 +315,108 @@ public IList<RelatedPersonEN> RelatedPeople (int id)
 
 
                 result = query.List<RelatedPersonEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IoTScenarioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<IMCareActivityEN> CareActivitiesScenario (int id)
+{
+        IList<IMCareActivityEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityEN self inner join self.Scenario as target with target.Id=:p_Id where self.class = IMCareActivityEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMCareActivityEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IoTScenarioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<IMCommunicationEN> CommunicationsScenario (int id)
+{
+        IList<IMCommunicationEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityEN self inner join self.Scenario as target with target.Id=:p_Id where self.class = IMCommunicationEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMCommunicationEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IoTScenarioRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<IMAppointmentEN> AppointmentsScenario (int id)
+{
+        IList<IMAppointmentEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityEN self inner join self.Scenario as target with target.Id=:p_Id where self.class = IMAppointmentEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMAppointmentEN>();
 
                 SessionCommit ();
         }

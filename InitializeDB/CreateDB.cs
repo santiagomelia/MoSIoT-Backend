@@ -85,10 +85,10 @@ public static void InitializeData ()
 
 
                 UserCEN userCEN = new UserCEN ();
-                int idUserShahab = userCEN.New_ ("shahabsur", true, false, "1234", "shahab", "Shahab", "shahab@ua.es");
+                int idUserShahab = userCEN.New_ ("shahabsur", true, GenderTypeEnum.male, false, "1234", "shahab", "Shahab", "shahab@ua.es");
 
 
-                int idUser = userCEN.New_ ("Lucas Grijander", true, true, "1234", "Chiquito", "Paciente Alzheimer", "lucas@ua.es");
+                int idUser = userCEN.New_ ("Lucas Grijander", true, GenderTypeEnum.male, true, "1234", "Chiquito", "Paciente Alzheimer", "lucas@ua.es");
 
 
                 DeviceTemplateCEN deviceTCEN = new DeviceTemplateCEN ();
@@ -185,7 +185,7 @@ public static void InitializeData ()
                 carePlanCEN.New_ ("Care Plan Alzheimer", idScenarioIoT, "El carePlan adecuado para el alzheimer", idCarePlanT);
 
 
-                int idUserRelated = userCEN.New_ ("Berna", true, false, "1234", "Juana", "Madre de Lucas", "juana@gmail.com");
+                int idUserRelated = userCEN.New_ ("Berna", true, GenderTypeEnum.female, false, "1234", "Juana", "Madre de Lucas", "juana@gmail.com");
 
                 PractitionerCEN practitionerCEN = new PractitionerCEN ();
                 practitionerCEN.New_ ("Medico Shahab", idScenarioIoT, "Medico Shahab", idUserShahab);

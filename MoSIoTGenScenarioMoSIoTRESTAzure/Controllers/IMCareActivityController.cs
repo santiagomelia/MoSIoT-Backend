@@ -15,7 +15,7 @@ using MoSIoTGenNHibernate.CEN.MosIoT;
 using MoSIoTGenNHibernate.CP.MosIoT;
 
 
-/*PROTECTED REGION ID(usingMoSIoTGenScenarioMoSIoTRESTAzure_IMAppointmentControllerAzure) ENABLED START*/
+/*PROTECTED REGION ID(usingMoSIoTGenScenarioMoSIoTRESTAzure_IMCareActivityControllerAzure) ENABLED START*/
 // Meter las referencias para las operaciones que invoquen a las CPs
 /*PROTECTED REGION END*/
 
@@ -23,8 +23,8 @@ using MoSIoTGenNHibernate.CP.MosIoT;
 
 namespace MoSIoTGenScenarioMoSIoTRESTAzure.Controllers
 {
-[RoutePrefix ("~/api/IMAppointment")]
-public class IMAppointmentController : BasicController
+[RoutePrefix ("~/api/IMCareActivity")]
+public class IMCareActivityController : BasicController
 {
 // Voy a generar el readAll
 
@@ -33,34 +33,34 @@ public class IMAppointmentController : BasicController
 // ReadAll Generado a partir del NavigationalOperation
 [HttpGet]
 
-[Route ("~/api/IMAppointment/ReadAll")]
+[Route ("~/api/IMCareActivity/ReadAll")]
 public HttpResponseMessage ReadAll ()
 {
         // CAD, CEN, EN, returnValue
-        IMAppointmentRESTCAD iMAppointmentRESTCAD = null;
-        IMAppointmentCEN iMAppointmentCEN = null;
+        IMCareActivityRESTCAD iMCareActivityRESTCAD = null;
+        IMCareActivityCEN iMCareActivityCEN = null;
 
-        List<IMAppointmentEN> iMAppointmentEN = null;
-        List<IMAppointmentDTOA> returnValue = null;
+        List<IMCareActivityEN> iMCareActivityEN = null;
+        List<IMCareActivityDTOA> returnValue = null;
 
         try
         {
                 SessionInitializeWithoutTransaction ();
 
 
-                iMAppointmentRESTCAD = new IMAppointmentRESTCAD (session);
-                iMAppointmentCEN = new IMAppointmentCEN (iMAppointmentRESTCAD);
+                iMCareActivityRESTCAD = new IMCareActivityRESTCAD (session);
+                iMCareActivityCEN = new IMCareActivityCEN (iMCareActivityRESTCAD);
 
                 // Data
                 // TODO: paginación
 
-                iMAppointmentEN = iMAppointmentCEN.ReadAll (0, -1).ToList ();
+                iMCareActivityEN = iMCareActivityCEN.ReadAll (0, -1).ToList ();
 
                 // Convert return
-                if (iMAppointmentEN != null) {
-                        returnValue = new List<IMAppointmentDTOA>();
-                        foreach (IMAppointmentEN entry in iMAppointmentEN)
-                                returnValue.Add (IMAppointmentAssembler.Convert (entry, session));
+                if (iMCareActivityEN != null) {
+                        returnValue = new List<IMCareActivityDTOA>();
+                        foreach (IMCareActivityEN entry in iMCareActivityEN)
+                                returnValue.Add (IMCareActivityAssembler.Convert (entry, session));
                 }
         }
 
@@ -93,17 +93,17 @@ public HttpResponseMessage ReadAll ()
 
 
 
-[Route ("~/api/IMAppointment/AppointmentsScenario")]
+[Route ("~/api/IMCareActivity/CareActivitiesScenario")]
 
-public HttpResponseMessage AppointmentsScenario (int idIoTScenario)
+public HttpResponseMessage CareActivitiesScenario (int idIoTScenario)
 {
         // CAD, EN
         IoTScenarioRESTCAD ioTScenarioRESTCAD = null;
         IoTScenarioEN ioTScenarioEN = null;
 
         // returnValue
-        List<IMAppointmentEN> en = null;
-        List<IMAppointmentDTOA> returnValue = null;
+        List<IMCareActivityEN> en = null;
+        List<IMCareActivityDTOA> returnValue = null;
 
         try
         {
@@ -120,15 +120,15 @@ public HttpResponseMessage AppointmentsScenario (int idIoTScenario)
                 // TODO: paginación
 
 
-                en = ioTScenarioRESTCAD.AppointmentsScenario (idIoTScenario).ToList ();
+                en = ioTScenarioRESTCAD.CareActivitiesScenario (idIoTScenario).ToList ();
 
 
 
                 // Convert return
                 if (en != null) {
-                        returnValue = new List<IMAppointmentDTOA>();
-                        foreach (IMAppointmentEN entry in en)
-                                returnValue.Add (IMAppointmentAssembler.Convert (entry, session));
+                        returnValue = new List<IMCareActivityDTOA>();
+                        foreach (IMCareActivityEN entry in en)
+                                returnValue.Add (IMCareActivityAssembler.Convert (entry, session));
                 }
         }
 
@@ -158,32 +158,32 @@ public HttpResponseMessage AppointmentsScenario (int idIoTScenario)
 
 
 [HttpGet]
-// [Route("{idIMAppointment}", Name="GetOIDIMAppointment")]
+// [Route("{idIMCareActivity}", Name="GetOIDIMCareActivity")]
 
-[Route ("~/api/IMAppointment/{idIMAppointment}")]
+[Route ("~/api/IMCareActivity/{idIMCareActivity}")]
 
-public HttpResponseMessage ReadOID (int idIMAppointment)
+public HttpResponseMessage ReadOID (int idIMCareActivity)
 {
         // CAD, CEN, EN, returnValue
-        IMAppointmentRESTCAD iMAppointmentRESTCAD = null;
-        IMAppointmentCEN iMAppointmentCEN = null;
-        IMAppointmentEN iMAppointmentEN = null;
-        IMAppointmentDTOA returnValue = null;
+        IMCareActivityRESTCAD iMCareActivityRESTCAD = null;
+        IMCareActivityCEN iMCareActivityCEN = null;
+        IMCareActivityEN iMCareActivityEN = null;
+        IMCareActivityDTOA returnValue = null;
 
         try
         {
                 SessionInitializeWithoutTransaction ();
 
 
-                iMAppointmentRESTCAD = new IMAppointmentRESTCAD (session);
-                iMAppointmentCEN = new IMAppointmentCEN (iMAppointmentRESTCAD);
+                iMCareActivityRESTCAD = new IMCareActivityRESTCAD (session);
+                iMCareActivityCEN = new IMCareActivityCEN (iMCareActivityRESTCAD);
 
                 // Data
-                iMAppointmentEN = iMAppointmentCEN.ReadOID (idIMAppointment);
+                iMCareActivityEN = iMCareActivityCEN.ReadOID (idIMCareActivity);
 
                 // Convert return
-                if (iMAppointmentEN != null) {
-                        returnValue = IMAppointmentAssembler.Convert (iMAppointmentEN, session);
+                if (iMCareActivityEN != null) {
+                        returnValue = IMCareActivityAssembler.Convert (iMCareActivityEN, session);
                 }
         }
 
@@ -212,17 +212,17 @@ public HttpResponseMessage ReadOID (int idIMAppointment)
 [HttpPost]
 
 
-[Route ("~/api/IMAppointment/New_")]
+[Route ("~/api/IMCareActivity/New_")]
 
 
 
 
-public HttpResponseMessage New_ ( [FromBody] IMAppointmentDTO dto)
+public HttpResponseMessage New_ ( [FromBody] IMCareActivityDTO dto)
 {
         // CAD, CEN, returnValue, returnOID
-        IMAppointmentRESTCAD iMAppointmentRESTCAD = null;
-        IMAppointmentCEN iMAppointmentCEN = null;
-        IMAppointmentDTOA returnValue = null;
+        IMCareActivityRESTCAD iMCareActivityRESTCAD = null;
+        IMCareActivityCEN iMCareActivityCEN = null;
+        IMCareActivityDTOA returnValue = null;
         int returnOID = -1;
 
         // HTTP response
@@ -234,11 +234,11 @@ public HttpResponseMessage New_ ( [FromBody] IMAppointmentDTO dto)
                 SessionInitializeTransaction ();
 
 
-                iMAppointmentRESTCAD = new IMAppointmentRESTCAD (session);
-                iMAppointmentCEN = new IMAppointmentCEN (iMAppointmentRESTCAD);
+                iMCareActivityRESTCAD = new IMCareActivityRESTCAD (session);
+                iMCareActivityCEN = new IMCareActivityCEN (iMCareActivityRESTCAD);
 
                 // Create
-                returnOID = iMAppointmentCEN.New_ (
+                returnOID = iMCareActivityCEN.New_ (
                         dto.Name                                                                                 //Atributo Primitivo: p_name
                         ,
                         //Atributo OID: p_scenario
@@ -246,17 +246,16 @@ public HttpResponseMessage New_ ( [FromBody] IMAppointmentDTO dto)
                         dto.Scenario_oid                 // association role
 
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
-                        , dto.Date                                                                                                                                                       //Atributo Primitivo: p_date
                         ,
-                        //Atributo OID: p_appointment
+                        //Atributo OID: p_careActivity
                         // attr.estaRelacionado: true
-                        dto.Appointment_oid                 // association role
+                        dto.CareActivity_oid                 // association role
 
                         );
                 SessionCommit ();
 
                 // Convert return
-                returnValue = IMAppointmentAssembler.Convert (iMAppointmentRESTCAD.ReadOIDDefault (returnOID), session);
+                returnValue = IMCareActivityAssembler.Convert (iMCareActivityRESTCAD.ReadOIDDefault (returnOID), session);
         }
 
         catch (Exception e)
@@ -283,7 +282,7 @@ public HttpResponseMessage New_ ( [FromBody] IMAppointmentDTO dto)
          * // TODO: y rolPaths
          * routeValues.Add("id", returnOID);
          *
-         * uri = Url.Link("GetOIDIMAppointment", routeValues);
+         * uri = Url.Link("GetOIDIMCareActivity", routeValues);
          * response.Headers.Location = new Uri(uri);
          */
 
@@ -298,14 +297,14 @@ public HttpResponseMessage New_ ( [FromBody] IMAppointmentDTO dto)
 [HttpPut]
 
 
-[Route ("~/api/IMAppointment/Modify")]
+[Route ("~/api/IMCareActivity/Modify")]
 
-public HttpResponseMessage Modify (int idIMAppointment, [FromBody] IMAppointmentDTO dto)
+public HttpResponseMessage Modify (int idIMCareActivity, [FromBody] IMCareActivityDTO dto)
 {
         // CAD, CEN, returnValue
-        IMAppointmentRESTCAD iMAppointmentRESTCAD = null;
-        IMAppointmentCEN iMAppointmentCEN = null;
-        IMAppointmentDTOA returnValue = null;
+        IMCareActivityRESTCAD iMCareActivityRESTCAD = null;
+        IMCareActivityCEN iMCareActivityCEN = null;
+        IMCareActivityDTOA returnValue = null;
 
         // HTTP response
         HttpResponseMessage response = null;
@@ -316,20 +315,18 @@ public HttpResponseMessage Modify (int idIMAppointment, [FromBody] IMAppointment
                 SessionInitializeTransaction ();
 
 
-                iMAppointmentRESTCAD = new IMAppointmentRESTCAD (session);
-                iMAppointmentCEN = new IMAppointmentCEN (iMAppointmentRESTCAD);
+                iMCareActivityRESTCAD = new IMCareActivityRESTCAD (session);
+                iMCareActivityCEN = new IMCareActivityCEN (iMCareActivityRESTCAD);
 
                 // Modify
-                iMAppointmentCEN.Modify (idIMAppointment,
+                iMCareActivityCEN.Modify (idIMCareActivity,
                         dto.Name
                         ,
                         dto.Description
-                        ,
-                        dto.Date
                         );
 
                 // Return modified object
-                returnValue = IMAppointmentAssembler.Convert (iMAppointmentRESTCAD.ReadOIDDefault (idIMAppointment), session);
+                returnValue = IMCareActivityAssembler.Convert (iMCareActivityRESTCAD.ReadOIDDefault (idIMCareActivity), session);
 
                 SessionCommit ();
         }
@@ -366,23 +363,23 @@ public HttpResponseMessage Modify (int idIMAppointment, [FromBody] IMAppointment
 [HttpDelete]
 
 
-[Route ("~/api/IMAppointment/Destroy")]
+[Route ("~/api/IMCareActivity/Destroy")]
 
-public HttpResponseMessage Destroy (int p_imappointment_oid)
+public HttpResponseMessage Destroy (int p_imcareactivity_oid)
 {
         // CAD, CEN
-        IMAppointmentRESTCAD iMAppointmentRESTCAD = null;
-        IMAppointmentCEN iMAppointmentCEN = null;
+        IMCareActivityRESTCAD iMCareActivityRESTCAD = null;
+        IMCareActivityCEN iMCareActivityCEN = null;
 
         try
         {
                 SessionInitializeTransaction ();
 
 
-                iMAppointmentRESTCAD = new IMAppointmentRESTCAD (session);
-                iMAppointmentCEN = new IMAppointmentCEN (iMAppointmentRESTCAD);
+                iMCareActivityRESTCAD = new IMCareActivityRESTCAD (session);
+                iMCareActivityCEN = new IMCareActivityCEN (iMCareActivityRESTCAD);
 
-                iMAppointmentCEN.Destroy (p_imappointment_oid);
+                iMCareActivityCEN.Destroy (p_imcareactivity_oid);
                 SessionCommit ();
         }
 
@@ -412,7 +409,7 @@ public HttpResponseMessage Destroy (int p_imappointment_oid)
 
 
 
-/*PROTECTED REGION ID(MoSIoTGenScenarioMoSIoTRESTAzure_IMAppointmentControllerAzure) ENABLED START*/
+/*PROTECTED REGION ID(MoSIoTGenScenarioMoSIoTRESTAzure_IMCareActivityControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 /*PROTECTED REGION END*/
 }

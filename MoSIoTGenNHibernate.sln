@@ -11,6 +11,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIExterna", "APIExterna\APIExterna.csproj", "{57521058-E2D7-4570-9794-9630AA545D06}"
 EndProject
 
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -87,6 +87,72 @@ public HttpResponseMessage ReadAll ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/IMCommunication/CommunicationsScenario")]
+
+public HttpResponseMessage CommunicationsScenario (int idIoTScenario)
+{
+        // CAD, EN
+        IoTScenarioRESTCAD ioTScenarioRESTCAD = null;
+        IoTScenarioEN ioTScenarioEN = null;
+
+        // returnValue
+        List<IMCommunicationEN> en = null;
+        List<IMCommunicationDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                ioTScenarioRESTCAD = new IoTScenarioRESTCAD (session);
+
+                // Exists IoTScenario
+                ioTScenarioEN = ioTScenarioRESTCAD.ReadOIDDefault (idIoTScenario);
+                if (ioTScenarioEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "IoTScenario#" + idIoTScenario + " not found"));
+
+                // Rol
+                // TODO: paginación
+
+
+                en = ioTScenarioRESTCAD.CommunicationsScenario (idIoTScenario).ToList ();
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new List<IMCommunicationDTOA>();
+                        foreach (IMCommunicationEN entry in en)
+                                returnValue.Add (IMCommunicationAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
 
 
 

@@ -31,7 +31,7 @@
 						<column name="isActive"  not-null="true"/>
 					</property>
 					<property name="Type" > 
-						<column name="type" />
+						<column name="type"  not-null="true"/>
 					</property>
 					<property name="IsDiseased" type="boolean"> 
 						<column name="isDiseased"  not-null="true"/>

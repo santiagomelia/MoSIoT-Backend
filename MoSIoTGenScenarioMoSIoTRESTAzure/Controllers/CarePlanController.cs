@@ -93,9 +93,9 @@ public HttpResponseMessage ReadAll ()
 
 
 
-[Route ("~/api/CarePlan/CarePlans")]
+[Route ("~/api/CarePlan/CarePlanScenario")]
 
-public HttpResponseMessage CarePlans (int idIoTScenario)
+public HttpResponseMessage CarePlanScenario (int idIoTScenario)
 {
         // CAD, EN
         IoTScenarioRESTCAD ioTScenarioRESTCAD = null;
@@ -120,7 +120,7 @@ public HttpResponseMessage CarePlans (int idIoTScenario)
                 // TODO: paginación
 
 
-                en = ioTScenarioRESTCAD.CarePlans (idIoTScenario).ToList ();
+                en = ioTScenarioRESTCAD.CarePlanScenario (idIoTScenario).ToList ();
 
 
 
