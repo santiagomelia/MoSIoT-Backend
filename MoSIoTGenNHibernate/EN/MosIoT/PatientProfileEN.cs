@@ -48,6 +48,13 @@ private int id;
 
 
 /**
+ *	Atributo carePlanTemplate
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> carePlanTemplate;
+
+
+
+/**
  *	Atributo diseases
  */
 private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> diseases;
@@ -107,6 +114,12 @@ public virtual int Id {
 
 
 
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> CarePlanTemplate {
+        get { return carePlanTemplate; } set { carePlanTemplate = value;  }
+}
+
+
+
 public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> Diseases {
         get { return diseases; } set { diseases = value;  }
 }
@@ -131,25 +144,26 @@ public PatientProfileEN()
 {
         accessMode = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN>();
         disability = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN>();
+        carePlanTemplate = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN>();
         diseases = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN>();
 }
 
 
 
-public PatientProfileEN(int id, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> accessMode, MoSIoTGenNHibernate.Enumerated.MosIoT.LanguageCodeEnum preferredLanguage, string region, MoSIoTGenNHibernate.Enumerated.MosIoT.HazardValueEnum hazardAvoidance, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disability, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> diseases, string name, string description
+public PatientProfileEN(int id, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> accessMode, MoSIoTGenNHibernate.Enumerated.MosIoT.LanguageCodeEnum preferredLanguage, string region, MoSIoTGenNHibernate.Enumerated.MosIoT.HazardValueEnum hazardAvoidance, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disability, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> carePlanTemplate, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> diseases, string name, string description
                         )
 {
-        this.init (Id, accessMode, preferredLanguage, region, hazardAvoidance, disability, diseases, name, description);
+        this.init (Id, accessMode, preferredLanguage, region, hazardAvoidance, disability, carePlanTemplate, diseases, name, description);
 }
 
 
 public PatientProfileEN(PatientProfileEN patientProfile)
 {
-        this.init (Id, patientProfile.AccessMode, patientProfile.PreferredLanguage, patientProfile.Region, patientProfile.HazardAvoidance, patientProfile.Disability, patientProfile.Diseases, patientProfile.Name, patientProfile.Description);
+        this.init (Id, patientProfile.AccessMode, patientProfile.PreferredLanguage, patientProfile.Region, patientProfile.HazardAvoidance, patientProfile.Disability, patientProfile.CarePlanTemplate, patientProfile.Diseases, patientProfile.Name, patientProfile.Description);
 }
 
 private void init (int id
-                   , System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> accessMode, MoSIoTGenNHibernate.Enumerated.MosIoT.LanguageCodeEnum preferredLanguage, string region, MoSIoTGenNHibernate.Enumerated.MosIoT.HazardValueEnum hazardAvoidance, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disability, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> diseases, string name, string description)
+                   , System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> accessMode, MoSIoTGenNHibernate.Enumerated.MosIoT.LanguageCodeEnum preferredLanguage, string region, MoSIoTGenNHibernate.Enumerated.MosIoT.HazardValueEnum hazardAvoidance, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN> disability, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN> carePlanTemplate, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.ConditionEN> diseases, string name, string description)
 {
         this.Id = id;
 
@@ -163,6 +177,8 @@ private void init (int id
         this.HazardAvoidance = hazardAvoidance;
 
         this.Disability = disability;
+
+        this.CarePlanTemplate = carePlanTemplate;
 
         this.Diseases = diseases;
 

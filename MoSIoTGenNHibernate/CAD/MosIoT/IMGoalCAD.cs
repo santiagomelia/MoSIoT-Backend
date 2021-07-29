@@ -122,10 +122,6 @@ public int New_ (IMGoalEN iMGoal)
                         iMGoal.Entity.Attributes
                         .Add (iMGoal);
                 }
-                if (iMGoal.Goal != null) {
-                        // Argumento OID y no colección.
-                        iMGoal.Goal = (MoSIoTGenNHibernate.EN.MosIoT.GoalEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.GoalEN), iMGoal.Goal.Id);
-                }
 
                 session.Save (iMGoal);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMGoalEN iMGoal)
                 iMGoalEN.Name = iMGoal.Name;
 
 
-                iMGoalEN.Type = iMGoal.Type;
-
-
-                iMGoalEN.IsOID = iMGoal.IsOID;
-
-
-                iMGoalEN.IsWritable = iMGoal.IsWritable;
-
-
                 iMGoalEN.Description = iMGoal.Description;
-
-
-                iMGoalEN.Value = iMGoal.Value;
 
                 session.Update (iMGoalEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMGoalEN> ReadAll (int first, int size)
         }
 
         return result;
+}
+
+public void AssignGoal (int p_IMGoal_OID, int p_goal_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMGoalEN iMGoalEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMGoalEN = (IMGoalEN)session.Load (typeof(IMGoalEN), p_IMGoal_OID);
+                iMGoalEN.Goal = (MoSIoTGenNHibernate.EN.MosIoT.GoalEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.GoalEN), p_goal_OID);
+
+
+
+                session.Update (iMGoalEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMGoalCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

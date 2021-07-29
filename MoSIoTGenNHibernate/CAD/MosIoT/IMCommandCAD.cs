@@ -122,10 +122,6 @@ public int New_ (IMCommandEN iMCommand)
                         iMCommand.Entity.Operations
                         .Add (iMCommand);
                 }
-                if (iMCommand.Command != null) {
-                        // Argumento OID y no colección.
-                        iMCommand.Command = (MoSIoTGenNHibernate.EN.MosIoT.CommandEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CommandEN), iMCommand.Command.Id);
-                }
 
                 session.Save (iMCommand);
                 SessionCommit ();
@@ -265,6 +261,35 @@ public System.Collections.Generic.IList<IMCommandEN> ReadAll (int first, int siz
         }
 
         return result;
+}
+
+public void AssignCommand (int p_IMCommand_OID, int p_command_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMCommandEN iMCommandEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMCommandEN = (IMCommandEN)session.Load (typeof(IMCommandEN), p_IMCommand_OID);
+                iMCommandEN.Command = (MoSIoTGenNHibernate.EN.MosIoT.CommandEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CommandEN), p_command_OID);
+
+
+
+                session.Update (iMCommandEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMCommandCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

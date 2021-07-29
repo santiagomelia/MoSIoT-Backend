@@ -122,13 +122,6 @@ public int New_ (IMAdaptationTypeEN iMAdaptationType)
                         iMAdaptationType.Entity.Attributes
                         .Add (iMAdaptationType);
                 }
-                if (iMAdaptationType.AdaptationTypeRequired != null) {
-                        // Argumento OID y no colección.
-                        iMAdaptationType.AdaptationTypeRequired = (MoSIoTGenNHibernate.EN.MosIoT.AdaptationTypeRequiredEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AdaptationTypeRequiredEN), iMAdaptationType.AdaptationTypeRequired.Id);
-
-                        iMAdaptationType.AdaptationTypeRequired.IMAdaptationType
-                        .Add (iMAdaptationType);
-                }
 
                 session.Save (iMAdaptationType);
                 SessionCommit ();
@@ -160,19 +153,7 @@ public void Modify (IMAdaptationTypeEN iMAdaptationType)
                 iMAdaptationTypeEN.Name = iMAdaptationType.Name;
 
 
-                iMAdaptationTypeEN.Type = iMAdaptationType.Type;
-
-
-                iMAdaptationTypeEN.IsOID = iMAdaptationType.IsOID;
-
-
-                iMAdaptationTypeEN.IsWritable = iMAdaptationType.IsWritable;
-
-
                 iMAdaptationTypeEN.Description = iMAdaptationType.Description;
-
-
-                iMAdaptationTypeEN.Value = iMAdaptationType.Value;
 
                 session.Update (iMAdaptationTypeEN);
                 SessionCommit ();
@@ -274,6 +255,35 @@ public System.Collections.Generic.IList<IMAdaptationTypeEN> ReadAll (int first, 
         }
 
         return result;
+}
+
+public void AssignAdaptationT (int p_IMAdaptationType_OID, int p_adaptationTypeRequired_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN iMAdaptationTypeEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMAdaptationTypeEN = (IMAdaptationTypeEN)session.Load (typeof(IMAdaptationTypeEN), p_IMAdaptationType_OID);
+                iMAdaptationTypeEN.AdaptationTypeRequired = (MoSIoTGenNHibernate.EN.MosIoT.AdaptationTypeRequiredEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AdaptationTypeRequiredEN), p_adaptationTypeRequired_OID);
+
+
+
+                session.Update (iMAdaptationTypeEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMAdaptationTypeCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

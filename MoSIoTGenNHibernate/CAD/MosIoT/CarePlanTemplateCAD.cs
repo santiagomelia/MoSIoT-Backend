@@ -338,6 +338,8 @@ public void AddPatientProfile (int p_CarePlanTemplate_OID, int p_patientProfile_
                 carePlanTemplateEN = (CarePlanTemplateEN)session.Load (typeof(CarePlanTemplateEN), p_CarePlanTemplate_OID);
                 carePlanTemplateEN.PatientProfile = (MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN), p_patientProfile_OID);
 
+                carePlanTemplateEN.PatientProfile.CarePlanTemplate.Add (carePlanTemplateEN);
+
 
 
                 session.Update (carePlanTemplateEN);

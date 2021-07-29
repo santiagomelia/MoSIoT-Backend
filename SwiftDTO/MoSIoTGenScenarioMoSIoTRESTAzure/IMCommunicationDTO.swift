@@ -8,7 +8,7 @@
 		import Foundation
 		import SwiftyJSON
 	
-		 class IMCommunicationDTO :    		EntityDTO
+		 class IMCommunicationDTO :    		EntityAttributesDTO
 	    {
 		 
 				var comunication_oid: Int?;

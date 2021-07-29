@@ -87,6 +87,72 @@ public HttpResponseMessage ReadAll ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/IMCondition/PatientConditions")]
+
+public HttpResponseMessage PatientConditions (int idPatient)
+{
+        // CAD, EN
+        PatientRESTCAD patientRESTCAD = null;
+        PatientEN patientEN = null;
+
+        // returnValue
+        List<IMConditionEN> en = null;
+        List<IMConditionDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                patientRESTCAD = new PatientRESTCAD (session);
+
+                // Exists Patient
+                patientEN = patientRESTCAD.ReadOIDDefault (idPatient);
+                if (patientEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "Patient#" + idPatient + " not found"));
+
+                // Rol
+                // TODO: paginación
+
+
+                en = patientRESTCAD.PatientConditions (idPatient).ToList ();
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new List<IMConditionDTOA>();
+                        foreach (IMConditionEN entry in en)
+                                returnValue.Add (IMConditionAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
 
 
 
@@ -174,20 +240,11 @@ public HttpResponseMessage New_ ( [FromBody] IMConditionDTO dto)
                 // Create
                 returnOID = iMConditionCEN.New_ (
                         dto.Name                                                                                 //Atributo Primitivo: p_name
-                        , dto.Type                                                                                                                                                       //Atributo Primitivo: p_type
-                        , dto.IsOID                                                                                                                                                      //Atributo Primitivo: p_isOID
-                        , dto.IsWritable                                                                                                                                                 //Atributo Primitivo: p_isWritable
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
                         ,
                         //Atributo OID: p_entity
                         // attr.estaRelacionado: true
                         dto.Entity_oid                 // association role
-
-                        , dto.Value                                                                                                                                                      //Atributo Primitivo: p_value
-                        ,
-                        //Atributo OID: p_condition
-                        // attr.estaRelacionado: true
-                        dto.Condition_oid                 // association role
 
                         );
                 SessionCommit ();
@@ -260,15 +317,7 @@ public HttpResponseMessage Modify (int idIMCondition, [FromBody] IMConditionDTO 
                 iMConditionCEN.Modify (idIMCondition,
                         dto.Name
                         ,
-                        dto.Type
-                        ,
-                        dto.IsOID
-                        ,
-                        dto.IsWritable
-                        ,
                         dto.Description
-                        ,
-                        dto.Value
                         );
 
                 // Return modified object
@@ -348,6 +397,50 @@ public HttpResponseMessage Destroy (int p_imcondition_oid)
 }
 
 
+
+
+
+[HttpPut]
+
+
+[Route ("~/api/IMCondition/AssignCondition")]
+
+public HttpResponseMessage AssignCondition (int p_imcondition_oid, int p_condition_oid)
+{
+        // CAD, CEN, returnValue
+        IMConditionRESTCAD iMConditionRESTCAD = null;
+        IMConditionCEN iMConditionCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                iMConditionRESTCAD = new IMConditionRESTCAD (session);
+                iMConditionCEN = new IMConditionCEN (iMConditionRESTCAD);
+
+                // Relationer
+                iMConditionCEN.AssignCondition (p_imcondition_oid, p_condition_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
 

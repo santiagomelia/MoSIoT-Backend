@@ -63,5 +63,107 @@ public AccessModeEN AccessMode (int id)
 
         return result;
 }
+
+public IList<IMAdaptationRequestEN> PaAdaptionRequest (int id)
+{
+        IList<IMAdaptationRequestEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityAttributesEN self inner join self.Entity as target with target.Id=:p_Id where self.class = IMAdaptationRequestEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMAdaptationRequestEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientAccessRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<IMAdaptationTypeEN> PaAdaptionType (int id)
+{
+        IList<IMAdaptationTypeEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityAttributesEN self inner join self.Entity as target with target.Id=:p_Id where self.class = IMAdaptationTypeEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMAdaptationTypeEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientAccessRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<IMAdaptationDetailEN> PaAdaptionDetails (int id)
+{
+        IList<IMAdaptationDetailEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityAttributesEN self inner join self.Entity as target with target.Id=:p_Id where self.class = IMAdaptationDetailEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMAdaptationDetailEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientAccessRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

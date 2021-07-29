@@ -29,5 +29,8 @@ IMAdaptationDetailEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMAdaptationDetailEN> ReadAll (int first, int size);
+
+
+void AssignAdaptationD (int p_IMAdaptationDetail_OID, int p_adaptationDetailRequired_OID);
 }
 }

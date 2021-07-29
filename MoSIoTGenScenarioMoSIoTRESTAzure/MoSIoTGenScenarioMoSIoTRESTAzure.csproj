@@ -512,6 +512,21 @@
 		<Compile Include="Assemblers\IMCareActivityAssembler.cs" />
 		<Compile Include="Controllers\IMCareActivityController.cs" />
 		
+		<Compile Include="CAD\IMTargetRESTCAD.cs" />
+		<Compile Include="DTOA\IMTargetDTOA.cs" />
+		<Compile Include="Assemblers\IMTargetAssembler.cs" />
+		<Compile Include="Controllers\IMTargetController.cs" />
+		
+		<Compile Include="CAD\IMGoalRESTCAD.cs" />
+		<Compile Include="DTOA\IMGoalDTOA.cs" />
+		<Compile Include="Assemblers\IMGoalAssembler.cs" />
+		<Compile Include="Controllers\IMGoalController.cs" />
+		
+		<Compile Include="CAD\IMNutritionOrderRESTCAD.cs" />
+		<Compile Include="DTOA\IMNutritionOrderDTOA.cs" />
+		<Compile Include="Assemblers\IMNutritionOrderAssembler.cs" />
+		<Compile Include="Controllers\IMNutritionOrderController.cs" />
+		
 	
 	
 	

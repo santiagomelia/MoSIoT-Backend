@@ -122,10 +122,6 @@ public int New_ (IMTargetEN iMTarget)
                         iMTarget.Entity.Attributes
                         .Add (iMTarget);
                 }
-                if (iMTarget.Target != null) {
-                        // Argumento OID y no colección.
-                        iMTarget.Target = (MoSIoTGenNHibernate.EN.MosIoT.TargetEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.TargetEN), iMTarget.Target.Id);
-                }
 
                 session.Save (iMTarget);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMTargetEN iMTarget)
                 iMTargetEN.Name = iMTarget.Name;
 
 
-                iMTargetEN.Type = iMTarget.Type;
-
-
-                iMTargetEN.IsOID = iMTarget.IsOID;
-
-
-                iMTargetEN.IsWritable = iMTarget.IsWritable;
-
-
                 iMTargetEN.Description = iMTarget.Description;
-
-
-                iMTargetEN.Value = iMTarget.Value;
 
                 session.Update (iMTargetEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMTargetEN> ReadAll (int first, int size
         }
 
         return result;
+}
+
+public void AssignTarget (int p_IMTarget_OID, int p_target_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMTargetEN iMTargetEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMTargetEN = (IMTargetEN)session.Load (typeof(IMTargetEN), p_IMTarget_OID);
+                iMTargetEN.Target = (MoSIoTGenNHibernate.EN.MosIoT.TargetEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.TargetEN), p_target_OID);
+
+
+
+                session.Update (iMTargetEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMTargetCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

@@ -122,10 +122,6 @@ public int New_ (PatientAccessEN patientAccess)
                         patientAccess.Scenario.Entity
                         .Add (patientAccess);
                 }
-                if (patientAccess.AccessMode != null) {
-                        // Argumento OID y no colección.
-                        patientAccess.AccessMode = (MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN), patientAccess.AccessMode.Id);
-                }
 
                 session.Save (patientAccess);
                 SessionCommit ();
@@ -259,6 +255,35 @@ public System.Collections.Generic.IList<PatientAccessEN> ReadAll (int first, int
         }
 
         return result;
+}
+
+public void AssignAccessMode (int p_PatientAccess_OID, int p_accessMode_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.PatientAccessEN patientAccessEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                patientAccessEN = (PatientAccessEN)session.Load (typeof(PatientAccessEN), p_PatientAccess_OID);
+                patientAccessEN.AccessMode = (MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN), p_accessMode_OID);
+
+
+
+                session.Update (patientAccessEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientAccessCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

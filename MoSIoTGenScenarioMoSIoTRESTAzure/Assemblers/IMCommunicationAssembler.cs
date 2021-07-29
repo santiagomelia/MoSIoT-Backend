@@ -14,7 +14,7 @@ namespace MoSIoTGenScenarioMoSIoTRESTAzure.Assemblers
 {
 public static class IMCommunicationAssembler
 {
-public static IMCommunicationDTOA Convert (EntityEN en, NHibernate.ISession session = null)
+public static IMCommunicationDTOA Convert (EntityAttributesEN en, NHibernate.ISession session = null)
 {
         IMCommunicationDTOA dto = null;
         IMCommunicationRESTCAD iMCommunicationRESTCAD = null;

@@ -59,6 +59,7 @@ public class TargetController : BasicController
 
 
 
+
 /*PROTECTED REGION ID(MoSIoTGenScenarioMoSIoTRESTAzure_TargetControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 /*PROTECTED REGION END*/

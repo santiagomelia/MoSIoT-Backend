@@ -39,7 +39,7 @@ public IIMCareActivityCAD get_IIMCareActivityCAD ()
         return this._IIMCareActivityCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, int p_careActivity)
+public int New_ (string p_name, int p_scenario, string p_description)
 {
         IMCareActivityEN iMCareActivityEN = null;
         int oid;
@@ -57,14 +57,6 @@ public int New_ (string p_name, int p_scenario, string p_description, int p_care
         }
 
         iMCareActivityEN.Description = p_description;
-
-
-        if (p_careActivity != -1) {
-                // El argumento p_careActivity -> Property careActivity es oid = false
-                // Lista de oids id
-                iMCareActivityEN.CareActivity = new MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN ();
-                iMCareActivityEN.CareActivity.Id = p_careActivity;
-        }
 
         //Call to IMCareActivityCAD
 
@@ -107,6 +99,12 @@ public System.Collections.Generic.IList<IMCareActivityEN> ReadAll (int first, in
 
         list = _IIMCareActivityCAD.ReadAll (first, size);
         return list;
+}
+public void AssignCareActivity (int p_IMCareActivity_OID, int p_careActivity_OID)
+{
+        //Call to IMCareActivityCAD
+
+        _IIMCareActivityCAD.AssignCareActivity (p_IMCareActivity_OID, p_careActivity_OID);
 }
 }
 }

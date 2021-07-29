@@ -122,10 +122,6 @@ public int New_ (IMTelemetryEN iMTelemetry)
                         iMTelemetry.Scenario.Entity
                         .Add (iMTelemetry);
                 }
-                if (iMTelemetry.Telemetry != null) {
-                        // Argumento OID y no colección.
-                        iMTelemetry.Telemetry = (MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN), iMTelemetry.Telemetry.Id);
-                }
 
                 session.Save (iMTelemetry);
                 SessionCommit ();
@@ -259,6 +255,35 @@ public System.Collections.Generic.IList<IMTelemetryEN> ReadAll (int first, int s
         }
 
         return result;
+}
+
+public void AssignTelemetry (int p_IMTelemetry_OID, int p_telemetry_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN iMTelemetryEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMTelemetryEN = (IMTelemetryEN)session.Load (typeof(IMTelemetryEN), p_IMTelemetry_OID);
+                iMTelemetryEN.Telemetry = (MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN), p_telemetry_OID);
+
+
+
+                session.Update (iMTelemetryEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMTelemetryCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

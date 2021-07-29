@@ -78,21 +78,11 @@ public System.Collections.Generic.IList<PatientProfileEN> ReadAll (int first, in
         list = _IPatientProfileCAD.ReadAll (first, size);
         return list;
 }
-public PatientProfileEN ReadOID2 (int id
-                                  )
+public void AssignCarePlanTemplate (int p_PatientProfile_OID, System.Collections.Generic.IList<int> p_carePlanTemplate_OIDs)
 {
-        PatientProfileEN patientProfileEN = null;
+        //Call to PatientProfileCAD
 
-        patientProfileEN = _IPatientProfileCAD.ReadOID2 (id);
-        return patientProfileEN;
-}
-
-public System.Collections.Generic.IList<PatientProfileEN> ReadAll2 (int first, int size)
-{
-        System.Collections.Generic.IList<PatientProfileEN> list = null;
-
-        list = _IPatientProfileCAD.ReadAll2 (first, size);
-        return list;
+        _IPatientProfileCAD.AssignCarePlanTemplate (p_PatientProfile_OID, p_carePlanTemplate_OIDs);
 }
 }
 }

@@ -49,7 +49,7 @@
 				var name: String?;
 				    	 
 		 
-				var appointment: [AppointmentDTO]?;
+				var appointment: AppointmentDTO?;
 				    	 
 	   	   
 			// MARK: - Constructor
@@ -127,17 +127,7 @@
 					dictionary["name"] = self.name;
 				
 
-					dictionary["appointment"] = NSNull();
-					if (self.appointment != nil)
-					{
-						var arrayOfDictionary: [[String : AnyObject]] = [];
-						for item in self.appointment!
-						{
-							arrayOfDictionary.append(item.toDictionary());
-						}
-						
-						dictionary["appointment"] = arrayOfDictionary;
-					}
+					dictionary["appointment"] = self.appointment?.toDictionary() ?? NSNull();
 			
 						
 				return dictionary;

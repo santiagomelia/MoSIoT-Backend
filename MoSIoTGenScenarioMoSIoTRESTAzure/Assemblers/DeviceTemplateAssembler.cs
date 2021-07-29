@@ -66,15 +66,6 @@ public static DeviceTemplateDTOA Convert (DeviceTemplateEN en, NHibernate.ISessi
                                 dto.Properties.Add (PropertyAssembler.Convert (entry, session));
                 }
 
-                /* Rol: DeviceTemplate o--> Telemetry */
-                dto.Telemetries = null;
-                List<TelemetryEN> Telemetries = deviceTemplateRESTCAD.Telemetries (en.Id).ToList ();
-                if (Telemetries != null) {
-                        dto.Telemetries = new List<TelemetryDTOA>();
-                        foreach (TelemetryEN entry in Telemetries)
-                                dto.Telemetries.Add (TelemetryAssembler.Convert (entry, session));
-                }
-
 
                 //
                 // Service

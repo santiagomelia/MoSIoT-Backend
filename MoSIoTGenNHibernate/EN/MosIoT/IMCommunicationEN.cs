@@ -3,7 +3,7 @@ using System;
 // Definición clase IMCommunicationEN
 namespace MoSIoTGenNHibernate.EN.MosIoT
 {
-public partial class IMCommunicationEN                                                                      : MoSIoTGenNHibernate.EN.MosIoT.EntityEN
+public partial class IMCommunicationEN                                                                      : MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN
 
 
 {
@@ -32,20 +32,20 @@ public IMCommunicationEN() : base ()
 
 
 public IMCommunicationEN(int id, MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN comunication
-                         , string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN scenario, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN> operations, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> attributes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN> states
+                         , string name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum type, bool isOID, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAsociation, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum associationType, bool isWritable, string description, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN> trigger, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN> register, string value
                          )
 {
-        this.init (Id, comunication, name, originAssociation, targetAssociation, scenario, description, operations, attributes, states);
+        this.init (Id, comunication, name, type, isOID, targetAssociation, originAsociation, associationType, isWritable, description, entity, trigger, register, value);
 }
 
 
 public IMCommunicationEN(IMCommunicationEN iMCommunication)
 {
-        this.init (Id, iMCommunication.Comunication, iMCommunication.Name, iMCommunication.OriginAssociation, iMCommunication.TargetAssociation, iMCommunication.Scenario, iMCommunication.Description, iMCommunication.Operations, iMCommunication.Attributes, iMCommunication.States);
+        this.init (Id, iMCommunication.Comunication, iMCommunication.Name, iMCommunication.Type, iMCommunication.IsOID, iMCommunication.TargetAssociation, iMCommunication.OriginAsociation, iMCommunication.AssociationType, iMCommunication.IsWritable, iMCommunication.Description, iMCommunication.Entity, iMCommunication.Trigger, iMCommunication.Register, iMCommunication.Value);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN comunication, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN scenario, string description, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN> operations, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN> attributes, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN> states)
+                   , MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN comunication, string name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum type, bool isOID, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> targetAssociation, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN> originAsociation, MoSIoTGenNHibernate.Enumerated.MosIoT.AssociationTypeEnum associationType, bool isWritable, string description, MoSIoTGenNHibernate.EN.MosIoT.EntityEN entity, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN> trigger, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN> register, string value)
 {
         this.Id = id;
 
@@ -54,19 +54,27 @@ private void init (int id
 
         this.Name = name;
 
-        this.OriginAssociation = originAssociation;
+        this.Type = type;
+
+        this.IsOID = isOID;
 
         this.TargetAssociation = targetAssociation;
 
-        this.Scenario = scenario;
+        this.OriginAsociation = originAsociation;
+
+        this.AssociationType = associationType;
+
+        this.IsWritable = isWritable;
 
         this.Description = description;
 
-        this.Operations = operations;
+        this.Entity = entity;
 
-        this.Attributes = attributes;
+        this.Trigger = trigger;
 
-        this.States = states;
+        this.Register = register;
+
+        this.Value = value;
 }
 
 public override bool Equals (object obj)

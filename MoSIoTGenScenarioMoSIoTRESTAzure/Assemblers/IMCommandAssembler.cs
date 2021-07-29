@@ -44,6 +44,12 @@ public static IMCommandDTOA Convert (EntityOperationEN en, NHibernate.ISession s
                 dto.Description = en.Description;
 
 
+                dto.Type = en.Type;
+
+
+                dto.ServiceType = en.ServiceType;
+
+
                 //
                 // TravesalLink
 

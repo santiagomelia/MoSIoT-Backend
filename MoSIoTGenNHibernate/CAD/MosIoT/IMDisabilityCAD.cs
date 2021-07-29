@@ -122,10 +122,6 @@ public int New_ (IMDisabilityEN iMDisability)
                         iMDisability.Entity.Attributes
                         .Add (iMDisability);
                 }
-                if (iMDisability.Disability != null) {
-                        // Argumento OID y no colección.
-                        iMDisability.Disability = (MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN), iMDisability.Disability.Id);
-                }
 
                 session.Save (iMDisability);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMDisabilityEN iMDisability)
                 iMDisabilityEN.Name = iMDisability.Name;
 
 
-                iMDisabilityEN.Type = iMDisability.Type;
-
-
-                iMDisabilityEN.IsOID = iMDisability.IsOID;
-
-
-                iMDisabilityEN.IsWritable = iMDisability.IsWritable;
-
-
                 iMDisabilityEN.Description = iMDisability.Description;
-
-
-                iMDisabilityEN.Value = iMDisability.Value;
 
                 session.Update (iMDisabilityEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMDisabilityEN> ReadAll (int first, int 
         }
 
         return result;
+}
+
+public void AssignDisability (int p_IMDisability_OID, int p_disability_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMDisabilityEN iMDisabilityEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMDisabilityEN = (IMDisabilityEN)session.Load (typeof(IMDisabilityEN), p_IMDisability_OID);
+                iMDisabilityEN.Disability = (MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN), p_disability_OID);
+
+
+
+                session.Update (iMDisabilityEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMDisabilityCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

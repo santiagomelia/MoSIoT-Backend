@@ -26,7 +26,7 @@ class CareActivityDTOA : DTOA
 	var comunications: [ComunicationDTOA]?;
 
 	/* Rol: CareActivity o--> Appointment */
-	var appointments: [AppointmentDTOA]?;
+	var appointments: AppointmentDTOA?;
 
 	/* Rol: CareActivity o--> Medication */
 	var medications: MedicationDTOA?;

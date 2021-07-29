@@ -16,22 +16,22 @@
 						<column name="name"  not-null="true"/>
 					</property>
 					<property name="Type" > 
-						<column name="type"  not-null="true"/>
+						<column name="type" />
 					</property>
 					<property name="IsOID" type="boolean"> 
-						<column name="isOID"  not-null="true"/>
+						<column name="isOID" />
 					</property>
 					<property name="AssociationType" > 
 						<column name="associationType" />
 					</property>
 					<property name="IsWritable" type="boolean"> 
-						<column name="isWritable"  not-null="true"/>
+						<column name="isWritable" />
 					</property>
 					<property name="Description" type="string"> 
 						<column name="description"  not-null="true"/>
 					</property>
 					<property name="Value" type="string"> 
-						<column name="value"  not-null="true"/>
+						<column name="value" />
 					</property>
 			
 			

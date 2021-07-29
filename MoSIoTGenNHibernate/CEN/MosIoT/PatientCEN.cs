@@ -39,7 +39,7 @@ public IPatientCAD get_IPatientCAD ()
         return this._IPatientCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, int p_patientProfile, int p_userPatient)
+public int New_ (string p_name, int p_scenario, string p_description, int p_userPatient)
 {
         PatientEN patientEN = null;
         int oid;
@@ -57,14 +57,6 @@ public int New_ (string p_name, int p_scenario, string p_description, int p_pati
         }
 
         patientEN.Description = p_description;
-
-
-        if (p_patientProfile != -1) {
-                // El argumento p_patientProfile -> Property patientProfile es oid = false
-                // Lista de oids id
-                patientEN.PatientProfile = new MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN ();
-                patientEN.PatientProfile.Id = p_patientProfile;
-        }
 
 
         if (p_userPatient != -1) {
@@ -115,6 +107,12 @@ public System.Collections.Generic.IList<PatientEN> ReadAll (int first, int size)
 
         list = _IPatientCAD.ReadAll (first, size);
         return list;
+}
+public void AssignPatientProfile (int p_Patient_OID, int p_patientProfile_OID)
+{
+        //Call to PatientCAD
+
+        _IPatientCAD.AssignPatientProfile (p_Patient_OID, p_patientProfile_OID);
 }
 }
 }

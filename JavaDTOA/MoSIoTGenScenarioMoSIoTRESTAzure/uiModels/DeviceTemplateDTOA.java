@@ -46,11 +46,6 @@ public class DeviceTemplateDTOA extends DTOA
 	public ArrayList<PropertyDTOA> getProperties () { return properties; }
 	public void setProperties (ArrayList<PropertyDTOA> properties) { this.properties = properties; }
 
-	/* Rol: DeviceTemplate o--> Telemetry */
-	private ArrayList<TelemetryDTOA> telemetries;
-	public ArrayList<TelemetryDTOA> getTelemetries () { return telemetries; }
-	public void setTelemetries (ArrayList<TelemetryDTOA> telemetries) { this.telemetries = telemetries; }
-
 	
 	
 	// endregion
@@ -114,15 +109,6 @@ public class DeviceTemplateDTOA extends DTOA
 				this.properties = tmp;
 			}
 
-
-			JSONObject jsonTelemetries = json.optJSONObject("Telemetries");
-			if (jsonTelemetries != null)
-			{
-				TelemetryDTOA tmp = new TelemetryDTOA();
-				tmp.setFromJSON(jsonTelemetries);
-				this.telemetries = tmp;
-			}
-
 			
 		}
 		catch (Exception e)
@@ -166,12 +152,6 @@ public class DeviceTemplateDTOA extends DTOA
 				json.put("Properties", this.properties.toJSON());
 			}
 
-
-			if (this.telemetries != null)
-			{
-				json.put("Telemetries", this.telemetries.toJSON());
-			}
-
 			
 		}
 		catch (JSONException e)
@@ -203,7 +183,6 @@ public class DeviceTemplateDTOA extends DTOA
 		// Roles
 					// TODO: from DTOA [ Commands ] (dataType : ArrayList<CommandDTOA>) to DTO [ Command ]
 					// TODO: from DTOA [ Properties ] (dataType : ArrayList<PropertyDTOA>) to DTO [ Property ]
-					// TODO: from DTOA [ Telemetries ] (dataType : ArrayList<TelemetryDTOA>) to DTO [ Telemetry ]
 		
 		
 		return dto;

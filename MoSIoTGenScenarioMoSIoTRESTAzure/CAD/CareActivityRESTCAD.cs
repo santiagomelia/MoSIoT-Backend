@@ -62,21 +62,23 @@ public IList<ComunicationEN> Comunications (int id)
         return result;
 }
 
-public IList<AppointmentEN> Appointments (int id)
+public AppointmentEN Appointments (int id)
 {
-        IList<AppointmentEN> result = null;
+        AppointmentEN result = null;
 
         try
         {
                 SessionInitializeTransaction ();
 
-                String sql = @"select self FROM AppointmentEN self inner join self.CareActivity as target with target.Id=:p_Id";
+
+                String sql = @"select self.Appointment FROM CareActivityEN self " +
+                             "where self.Id = :p_Id";
                 IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
 
 
 
 
-                result = query.List<AppointmentEN>();
+                result = query.UniqueResult<AppointmentEN>();
 
                 SessionCommit ();
         }

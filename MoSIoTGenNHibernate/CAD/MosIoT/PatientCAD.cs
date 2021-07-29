@@ -123,10 +123,6 @@ public int New_ (PatientEN patient)
                         patient.Scenario.Entity
                         .Add (patient);
                 }
-                if (patient.PatientProfile != null) {
-                        // Argumento OID y no colección.
-                        patient.PatientProfile = (MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN), patient.PatientProfile.Id);
-                }
                 if (patient.UserPatient != null) {
                         // Argumento OID y no colección.
                         patient.UserPatient = (MoSIoTGenNHibernate.EN.MosIoT.UserEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.UserEN), patient.UserPatient.Id);
@@ -267,6 +263,35 @@ public System.Collections.Generic.IList<PatientEN> ReadAll (int first, int size)
         }
 
         return result;
+}
+
+public void AssignPatientProfile (int p_Patient_OID, int p_patientProfile_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.PatientEN patientEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                patientEN = (PatientEN)session.Load (typeof(PatientEN), p_Patient_OID);
+                patientEN.PatientProfile = (MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN), p_patientProfile_OID);
+
+
+
+                session.Update (patientEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

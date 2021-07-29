@@ -122,10 +122,6 @@ public int New_ (IMCareActivityEN iMCareActivity)
                         iMCareActivity.Scenario.Entity
                         .Add (iMCareActivity);
                 }
-                if (iMCareActivity.CareActivity != null) {
-                        // Argumento OID y no colección.
-                        iMCareActivity.CareActivity = (MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN), iMCareActivity.CareActivity.Id);
-                }
 
                 session.Save (iMCareActivity);
                 SessionCommit ();
@@ -259,6 +255,35 @@ public System.Collections.Generic.IList<IMCareActivityEN> ReadAll (int first, in
         }
 
         return result;
+}
+
+public void AssignCareActivity (int p_IMCareActivity_OID, int p_careActivity_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMCareActivityEN iMCareActivityEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMCareActivityEN = (IMCareActivityEN)session.Load (typeof(IMCareActivityEN), p_IMCareActivity_OID);
+                iMCareActivityEN.CareActivity = (MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN), p_careActivity_OID);
+
+
+
+                session.Update (iMCareActivityEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMCareActivityCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

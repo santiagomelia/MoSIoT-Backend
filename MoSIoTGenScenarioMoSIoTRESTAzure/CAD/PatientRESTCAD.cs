@@ -99,5 +99,73 @@ public UserEN UserData (int id)
 
         return result;
 }
+
+public IList<IMDisabilityEN> PatientDisabilities (int id)
+{
+        IList<IMDisabilityEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityAttributesEN self inner join self.Entity as target with target.Id=:p_Id where self.class = IMDisabilityEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMDisabilityEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<IMConditionEN> PatientConditions (int id)
+{
+        IList<IMConditionEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityAttributesEN self inner join self.Entity as target with target.Id=:p_Id where self.class = IMConditionEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMConditionEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -28,6 +28,9 @@
 				var id: Int?;
 				    	 
 		 
+				var carePlanTemplate_oid: [Int]?;
+				    	 
+		 
 				var diseases: [ConditionDTO]?;
 				    	 
 		 
@@ -95,6 +98,9 @@
 				
 					dictionary["id"] = self.id;
 				
+
+					dictionary["carePlanTemplate_oid"] = self.carePlanTemplate_oid;
+			
 
 					dictionary["diseases"] = NSNull();
 					if (self.diseases != nil)

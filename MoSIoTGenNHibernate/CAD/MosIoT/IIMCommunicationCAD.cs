@@ -29,5 +29,8 @@ IMCommunicationEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMCommunicationEN> ReadAll (int first, int size);
+
+
+void AssignCommunication (int p_IMCommunication_OID, int p_comunication_OID);
 }
 }

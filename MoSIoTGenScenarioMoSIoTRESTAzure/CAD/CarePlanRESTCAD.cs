@@ -63,5 +63,73 @@ public CarePlanTemplateEN CarePlanTemplate (int id)
 
         return result;
 }
+
+public IList<IMGoalEN> GoalsCarePlan (int id)
+{
+        IList<IMGoalEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityAttributesEN self inner join self.Entity as target with target.Id=:p_Id where self.class = IMGoalEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMGoalEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in CarePlanRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+
+public IList<IMTargetEN> TargetsCarePlan (int id)
+{
+        IList<IMTargetEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM EntityAttributesEN self inner join self.Entity as target with target.Id=:p_Id where self.class = IMTargetEN";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMTargetEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in CarePlanRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

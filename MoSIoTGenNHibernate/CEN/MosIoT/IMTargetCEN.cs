@@ -39,7 +39,7 @@ public IIMTargetCAD get_IIMTargetCAD ()
         return this._IIMTargetCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value, int p_target)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMTargetEN iMTargetEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized IMTargetEN
         iMTargetEN = new IMTargetEN ();
         iMTargetEN.Name = p_name;
-
-        iMTargetEN.Type = p_type;
-
-        iMTargetEN.IsOID = p_isOID;
-
-        iMTargetEN.IsWritable = p_isWritable;
 
         iMTargetEN.Description = p_description;
 
@@ -64,23 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 iMTargetEN.Entity.Id = p_entity;
         }
 
-        iMTargetEN.Value = p_value;
-
-
-        if (p_target != -1) {
-                // El argumento p_target -> Property target es oid = false
-                // Lista de oids id
-                iMTargetEN.Target = new MoSIoTGenNHibernate.EN.MosIoT.TargetEN ();
-                iMTargetEN.Target.Id = p_target;
-        }
-
         //Call to IMTargetCAD
 
         oid = _IIMTargetCAD.New_ (iMTargetEN);
         return oid;
 }
 
-public void Modify (int p_IMTarget_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_IMTarget_OID, string p_name, string p_description)
 {
         IMTargetEN iMTargetEN = null;
 
@@ -88,11 +72,7 @@ public void Modify (int p_IMTarget_OID, string p_name, MoSIoTGenNHibernate.Enume
         iMTargetEN = new IMTargetEN ();
         iMTargetEN.Id = p_IMTarget_OID;
         iMTargetEN.Name = p_name;
-        iMTargetEN.Type = p_type;
-        iMTargetEN.IsOID = p_isOID;
-        iMTargetEN.IsWritable = p_isWritable;
         iMTargetEN.Description = p_description;
-        iMTargetEN.Value = p_value;
         //Call to IMTargetCAD
 
         _IIMTargetCAD.Modify (iMTargetEN);
@@ -119,6 +99,12 @@ public System.Collections.Generic.IList<IMTargetEN> ReadAll (int first, int size
 
         list = _IIMTargetCAD.ReadAll (first, size);
         return list;
+}
+public void AssignTarget (int p_IMTarget_OID, int p_target_OID)
+{
+        //Call to IMTargetCAD
+
+        _IIMTargetCAD.AssignTarget (p_IMTarget_OID, p_target_OID);
 }
 }
 }

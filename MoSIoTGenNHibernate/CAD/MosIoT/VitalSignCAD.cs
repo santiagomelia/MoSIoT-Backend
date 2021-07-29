@@ -122,10 +122,6 @@ public int New_ (VitalSignEN vitalSign)
                         vitalSign.Scenario.Entity
                         .Add (vitalSign);
                 }
-                if (vitalSign.Measure != null) {
-                        // Argumento OID y no colección.
-                        vitalSign.Measure = (MoSIoTGenNHibernate.EN.MosIoT.MeasureEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.MeasureEN), vitalSign.Measure.Id);
-                }
 
                 session.Save (vitalSign);
                 SessionCommit ();
@@ -259,6 +255,35 @@ public System.Collections.Generic.IList<VitalSignEN> ReadAll (int first, int siz
         }
 
         return result;
+}
+
+public void AssignMeasure (int p_VitalSign_OID, int p_measure_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.VitalSignEN vitalSignEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                vitalSignEN = (VitalSignEN)session.Load (typeof(VitalSignEN), p_VitalSign_OID);
+                vitalSignEN.Measure = (MoSIoTGenNHibernate.EN.MosIoT.MeasureEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.MeasureEN), p_measure_OID);
+
+
+
+                session.Update (vitalSignEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in VitalSignCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

@@ -39,7 +39,7 @@ public ICarePlanCAD get_ICarePlanCAD ()
         return this._ICarePlanCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, int p_template)
+public int New_ (string p_name, int p_scenario, string p_description)
 {
         CarePlanEN carePlanEN = null;
         int oid;
@@ -57,14 +57,6 @@ public int New_ (string p_name, int p_scenario, string p_description, int p_temp
         }
 
         carePlanEN.Description = p_description;
-
-
-        if (p_template != -1) {
-                // El argumento p_template -> Property template es oid = false
-                // Lista de oids id
-                carePlanEN.Template = new MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN ();
-                carePlanEN.Template.Id = p_template;
-        }
 
         //Call to CarePlanCAD
 
@@ -107,6 +99,12 @@ public System.Collections.Generic.IList<CarePlanEN> ReadAll (int first, int size
 
         list = _ICarePlanCAD.ReadAll (first, size);
         return list;
+}
+public void AssignCarePlan (int p_CarePlan_OID, int p_template_OID)
+{
+        //Call to CarePlanCAD
+
+        _ICarePlanCAD.AssignCarePlan (p_CarePlan_OID, p_template_OID);
 }
 }
 }

@@ -39,7 +39,7 @@ public IIMAppointmentCAD get_IIMAppointmentCAD ()
         return this._IIMAppointmentCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, Nullable<DateTime> p_date, int p_appointment)
+public int New_ (string p_name, string p_description, int p_entity, Nullable<DateTime> p_date)
 {
         IMAppointmentEN iMAppointmentEN = null;
         int oid;
@@ -48,25 +48,17 @@ public int New_ (string p_name, int p_scenario, string p_description, Nullable<D
         iMAppointmentEN = new IMAppointmentEN ();
         iMAppointmentEN.Name = p_name;
 
-
-        if (p_scenario != -1) {
-                // El argumento p_scenario -> Property scenario es oid = false
-                // Lista de oids id
-                iMAppointmentEN.Scenario = new MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ();
-                iMAppointmentEN.Scenario.Id = p_scenario;
-        }
-
         iMAppointmentEN.Description = p_description;
 
-        iMAppointmentEN.Date = p_date;
 
-
-        if (p_appointment != -1) {
-                // El argumento p_appointment -> Property appointment es oid = false
+        if (p_entity != -1) {
+                // El argumento p_entity -> Property entity es oid = false
                 // Lista de oids id
-                iMAppointmentEN.Appointment = new MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN ();
-                iMAppointmentEN.Appointment.Id = p_appointment;
+                iMAppointmentEN.Entity = new MoSIoTGenNHibernate.EN.MosIoT.EntityEN ();
+                iMAppointmentEN.Entity.Id = p_entity;
         }
+
+        iMAppointmentEN.Date = p_date;
 
         //Call to IMAppointmentCAD
 
@@ -110,6 +102,12 @@ public System.Collections.Generic.IList<IMAppointmentEN> ReadAll (int first, int
 
         list = _IIMAppointmentCAD.ReadAll (first, size);
         return list;
+}
+public void AssignAppoint (int p_IMAppointment_OID, int p_appointment_OID)
+{
+        //Call to IMAppointmentCAD
+
+        _IIMAppointmentCAD.AssignAppoint (p_IMAppointment_OID, p_appointment_OID);
 }
 }
 }

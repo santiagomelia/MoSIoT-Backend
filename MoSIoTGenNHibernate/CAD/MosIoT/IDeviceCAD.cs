@@ -29,5 +29,8 @@ DeviceEN ReadOID (int id
 
 
 System.Collections.Generic.IList<DeviceEN> ReadAll (int first, int size);
+
+
+void AssignDeviceTemplate (int p_Device_OID, int p_deviceTemplate_OID);
 }
 }

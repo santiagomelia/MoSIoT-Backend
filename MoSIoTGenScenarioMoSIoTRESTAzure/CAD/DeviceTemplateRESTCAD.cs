@@ -96,7 +96,7 @@ public IList<PropertyEN> Properties (int id)
         return result;
 }
 
-public IList<TelemetryEN> Telemetries (int id)
+public IList<TelemetryEN> DeviceTelemetries (int id)
 {
         IList<TelemetryEN> result = null;
 

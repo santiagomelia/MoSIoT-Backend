@@ -39,7 +39,7 @@ public IIMCommandCAD get_IIMCommandCAD ()
         return this._IIMCommandCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, MoSIoTGenNHibernate.Enumerated.MosIoT.ServiceTypeEnum p_serviceType, string p_description, int p_entity, int p_command)
+public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, MoSIoTGenNHibernate.Enumerated.MosIoT.ServiceTypeEnum p_serviceType, string p_description, int p_entity)
 {
         IMCommandEN iMCommandEN = null;
         int oid;
@@ -60,14 +60,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 // Lista de oids id
                 iMCommandEN.Entity = new MoSIoTGenNHibernate.EN.MosIoT.EntityEN ();
                 iMCommandEN.Entity.Id = p_entity;
-        }
-
-
-        if (p_command != -1) {
-                // El argumento p_command -> Property command es oid = false
-                // Lista de oids id
-                iMCommandEN.Command = new MoSIoTGenNHibernate.EN.MosIoT.CommandEN ();
-                iMCommandEN.Command.Id = p_command;
         }
 
         //Call to IMCommandCAD
@@ -113,6 +105,12 @@ public System.Collections.Generic.IList<IMCommandEN> ReadAll (int first, int siz
 
         list = _IIMCommandCAD.ReadAll (first, size);
         return list;
+}
+public void AssignCommand (int p_IMCommand_OID, int p_command_OID)
+{
+        //Call to IMCommandCAD
+
+        _IIMCommandCAD.AssignCommand (p_IMCommand_OID, p_command_OID);
 }
 }
 }

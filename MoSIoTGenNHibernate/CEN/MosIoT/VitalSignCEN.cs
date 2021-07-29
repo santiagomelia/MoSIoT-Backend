@@ -39,7 +39,7 @@ public IVitalSignCAD get_IVitalSignCAD ()
         return this._IVitalSignCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, int p_measure)
+public int New_ (string p_name, int p_scenario, string p_description)
 {
         VitalSignEN vitalSignEN = null;
         int oid;
@@ -57,14 +57,6 @@ public int New_ (string p_name, int p_scenario, string p_description, int p_meas
         }
 
         vitalSignEN.Description = p_description;
-
-
-        if (p_measure != -1) {
-                // El argumento p_measure -> Property measure es oid = false
-                // Lista de oids id
-                vitalSignEN.Measure = new MoSIoTGenNHibernate.EN.MosIoT.MeasureEN ();
-                vitalSignEN.Measure.Id = p_measure;
-        }
 
         //Call to VitalSignCAD
 
@@ -107,6 +99,12 @@ public System.Collections.Generic.IList<VitalSignEN> ReadAll (int first, int siz
 
         list = _IVitalSignCAD.ReadAll (first, size);
         return list;
+}
+public void AssignMeasure (int p_VitalSign_OID, int p_measure_OID)
+{
+        //Call to VitalSignCAD
+
+        _IVitalSignCAD.AssignMeasure (p_VitalSign_OID, p_measure_OID);
 }
 }
 }

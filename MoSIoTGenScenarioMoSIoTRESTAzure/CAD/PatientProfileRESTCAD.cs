@@ -197,5 +197,39 @@ public IList<DisabilityEN> ProfileDisabilities (int id)
 
         return result;
 }
+
+public IList<CarePlanTemplateEN> PatientProfileCarePlanTemplate (int id)
+{
+        IList<CarePlanTemplateEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM CarePlanTemplateEN self inner join self.PatientProfile as target with target.Id=:p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<CarePlanTemplateEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in PatientProfileRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -4,7 +4,7 @@ using MoSIoTGenNHibernate.EN.MosIoT;
 
 namespace MoSIoTGenScenarioMoSIoTRESTAzure.DTO
 {
-public partial class IMCommunicationDTO                 :                           EntityDTO
+public partial class IMCommunicationDTO                 :                           EntityAttributesDTO
 
 
 {

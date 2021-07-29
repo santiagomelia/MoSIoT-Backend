@@ -82,8 +82,8 @@ public IList<ComunicationDTOA> Comunications
 }
 
 /* Rol: CareActivity o--> Appointment */
-private IList<AppointmentDTOA> appointments;
-public IList<AppointmentDTOA> Appointments
+private AppointmentDTOA appointments;
+public AppointmentDTOA Appointments
 {
         get { return appointments; }
         set { appointments = value; }

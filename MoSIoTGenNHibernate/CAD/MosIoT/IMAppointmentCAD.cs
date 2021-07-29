@@ -118,16 +118,12 @@ public int New_ (IMAppointmentEN iMAppointment)
         try
         {
                 SessionInitializeTransaction ();
-                if (iMAppointment.Scenario != null) {
+                if (iMAppointment.Entity != null) {
                         // Argumento OID y no colección.
-                        iMAppointment.Scenario = (MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN), iMAppointment.Scenario.Id);
+                        iMAppointment.Entity = (MoSIoTGenNHibernate.EN.MosIoT.EntityEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.EntityEN), iMAppointment.Entity.Id);
 
-                        iMAppointment.Scenario.Entity
+                        iMAppointment.Entity.Attributes
                         .Add (iMAppointment);
-                }
-                if (iMAppointment.Appointment != null) {
-                        // Argumento OID y no colección.
-                        iMAppointment.Appointment = (MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN), iMAppointment.Appointment.Id);
                 }
 
                 session.Save (iMAppointment);
@@ -265,6 +261,35 @@ public System.Collections.Generic.IList<IMAppointmentEN> ReadAll (int first, int
         }
 
         return result;
+}
+
+public void AssignAppoint (int p_IMAppointment_OID, int p_appointment_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMAppointmentEN iMAppointmentEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMAppointmentEN = (IMAppointmentEN)session.Load (typeof(IMAppointmentEN), p_IMAppointment_OID);
+                iMAppointmentEN.Appointment = (MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN), p_appointment_OID);
+
+
+
+                session.Update (iMAppointmentEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMAppointmentCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

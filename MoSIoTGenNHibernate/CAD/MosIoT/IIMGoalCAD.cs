@@ -29,5 +29,8 @@ IMGoalEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMGoalEN> ReadAll (int first, int size);
+
+
+void AssignGoal (int p_IMGoal_OID, int p_goal_OID);
 }
 }

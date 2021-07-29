@@ -29,5 +29,8 @@ PatientAccessEN ReadOID (int id
 
 
 System.Collections.Generic.IList<PatientAccessEN> ReadAll (int first, int size);
+
+
+void AssignAccessMode (int p_PatientAccess_OID, int p_accessMode_OID);
 }
 }

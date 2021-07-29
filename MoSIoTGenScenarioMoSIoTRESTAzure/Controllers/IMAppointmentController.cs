@@ -93,13 +93,13 @@ public HttpResponseMessage ReadAll ()
 
 
 
-[Route ("~/api/IMAppointment/AppointmentsScenario")]
+[Route ("~/api/IMAppointment/AppointmentCareActitivy")]
 
-public HttpResponseMessage AppointmentsScenario (int idIoTScenario)
+public HttpResponseMessage AppointmentCareActitivy (int idIMCareActivity)
 {
         // CAD, EN
-        IoTScenarioRESTCAD ioTScenarioRESTCAD = null;
-        IoTScenarioEN ioTScenarioEN = null;
+        IMCareActivityRESTCAD iMCareActivityRESTCAD = null;
+        IMCareActivityEN iMCareActivityEN = null;
 
         // returnValue
         List<IMAppointmentEN> en = null;
@@ -110,17 +110,17 @@ public HttpResponseMessage AppointmentsScenario (int idIoTScenario)
                 SessionInitializeWithoutTransaction ();
 
 
-                ioTScenarioRESTCAD = new IoTScenarioRESTCAD (session);
+                iMCareActivityRESTCAD = new IMCareActivityRESTCAD (session);
 
-                // Exists IoTScenario
-                ioTScenarioEN = ioTScenarioRESTCAD.ReadOIDDefault (idIoTScenario);
-                if (ioTScenarioEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "IoTScenario#" + idIoTScenario + " not found"));
+                // Exists IMCareActivity
+                iMCareActivityEN = iMCareActivityRESTCAD.ReadOIDDefault (idIMCareActivity);
+                if (iMCareActivityEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "IMCareActivity#" + idIMCareActivity + " not found"));
 
                 // Rol
                 // TODO: paginación
 
 
-                en = ioTScenarioRESTCAD.AppointmentsScenario (idIoTScenario).ToList ();
+                en = iMCareActivityRESTCAD.AppointmentCareActitivy (idIMCareActivity).ToList ();
 
 
 
@@ -240,18 +240,13 @@ public HttpResponseMessage New_ ( [FromBody] IMAppointmentDTO dto)
                 // Create
                 returnOID = iMAppointmentCEN.New_ (
                         dto.Name                                                                                 //Atributo Primitivo: p_name
-                        ,
-                        //Atributo OID: p_scenario
-                        // attr.estaRelacionado: true
-                        dto.Scenario_oid                 // association role
-
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
-                        , dto.Date                                                                                                                                                       //Atributo Primitivo: p_date
                         ,
-                        //Atributo OID: p_appointment
+                        //Atributo OID: p_entity
                         // attr.estaRelacionado: true
-                        dto.Appointment_oid                 // association role
+                        dto.Entity_oid                 // association role
 
+                        , dto.Date                                                                                                                                                       //Atributo Primitivo: p_date
                         );
                 SessionCommit ();
 
@@ -405,6 +400,50 @@ public HttpResponseMessage Destroy (int p_imappointment_oid)
 }
 
 
+
+
+
+[HttpPut]
+
+
+[Route ("~/api/IMAppointment/AssignAppoint")]
+
+public HttpResponseMessage AssignAppoint (int p_imappointment_oid, int p_appointment_oid)
+{
+        // CAD, CEN, returnValue
+        IMAppointmentRESTCAD iMAppointmentRESTCAD = null;
+        IMAppointmentCEN iMAppointmentCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                iMAppointmentRESTCAD = new IMAppointmentRESTCAD (session);
+                iMAppointmentCEN = new IMAppointmentCEN (iMAppointmentRESTCAD);
+
+                // Relationer
+                iMAppointmentCEN.AssignAppoint (p_imappointment_oid, p_appointment_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
 

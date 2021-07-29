@@ -124,12 +124,12 @@
 			
 			
 			
-			
 	<Compile Include="EN\MosIoT\DeviceEN.cs" />
 	<Compile Include="CEN\MosIoT\DeviceCEN.cs" />
 	<Compile Include="CAD\MosIoT\IDeviceCAD.cs" />
 	<Compile Include="CAD\MosIoT\DeviceCAD.cs" />
 	<Compile Include="CP\MosIoT\DeviceCP.cs" />
+			
 			
 			
 			
@@ -500,11 +500,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\PatientEN.cs" />
 	<Compile Include="CEN\MosIoT\PatientCEN.cs" />
 	<Compile Include="CAD\MosIoT\IPatientCAD.cs" />
 	<Compile Include="CAD\MosIoT\PatientCAD.cs" />
 	<Compile Include="CP\MosIoT\PatientCP.cs" />
+			
 			
 			
 			
@@ -540,11 +542,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\PatientAccessEN.cs" />
 	<Compile Include="CEN\MosIoT\PatientAccessCEN.cs" />
 	<Compile Include="CAD\MosIoT\IPatientAccessCAD.cs" />
 	<Compile Include="CAD\MosIoT\PatientAccessCAD.cs" />
 	<Compile Include="CP\MosIoT\PatientAccessCP.cs" />
+			
 			
 			
 			
@@ -568,11 +572,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMCareActivityEN.cs" />
 	<Compile Include="CEN\MosIoT\IMCareActivityCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMCareActivityCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMCareActivityCAD.cs" />
 	<Compile Include="CP\MosIoT\IMCareActivityCP.cs" />
+			
 			
 			
 			
@@ -588,11 +594,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMGoalEN.cs" />
 	<Compile Include="CEN\MosIoT\IMGoalCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMGoalCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMGoalCAD.cs" />
 	<Compile Include="CP\MosIoT\IMGoalCP.cs" />
+			
 			
 			
 			
@@ -608,11 +616,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMNutritionOrderEN.cs" />
 	<Compile Include="CEN\MosIoT\IMNutritionOrderCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMNutritionOrderCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMNutritionOrderCAD.cs" />
 	<Compile Include="CP\MosIoT\IMNutritionOrderCP.cs" />
+			
 			
 			
 			
@@ -628,11 +638,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMConditionEN.cs" />
 	<Compile Include="CEN\MosIoT\IMConditionCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMConditionCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMConditionCAD.cs" />
 	<Compile Include="CP\MosIoT\IMConditionCP.cs" />
+			
 			
 			
 			
@@ -648,11 +660,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMAdaptationTypeEN.cs" />
 	<Compile Include="CEN\MosIoT\IMAdaptationTypeCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMAdaptationTypeCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMAdaptationTypeCAD.cs" />
 	<Compile Include="CP\MosIoT\IMAdaptationTypeCP.cs" />
+			
 			
 			
 			
@@ -668,6 +682,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMPropertyEN.cs" />
 	<Compile Include="CEN\MosIoT\IMPropertyCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMPropertyCAD.cs" />
@@ -678,11 +693,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMCommandEN.cs" />
 	<Compile Include="CEN\MosIoT\IMCommandCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMCommandCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMCommandCAD.cs" />
 	<Compile Include="CP\MosIoT\IMCommandCP.cs" />
+			
 			
 			
 			
@@ -718,11 +735,13 @@
 			
 			
 			
+			
 	<Compile Include="EN\MosIoT\IMAppointmentEN.cs" />
 	<Compile Include="CEN\MosIoT\IMAppointmentCEN.cs" />
 	<Compile Include="CAD\MosIoT\IIMAppointmentCAD.cs" />
 	<Compile Include="CAD\MosIoT\IMAppointmentCAD.cs" />
 	<Compile Include="CP\MosIoT\IMAppointmentCP.cs" />
+			
 			
 			
 			

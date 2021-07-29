@@ -140,10 +140,6 @@ public int New_ (DeviceEN device)
                         device.Scenario.Entity
                         .Add (device);
                 }
-                if (device.DeviceTemplate != null) {
-                        // Argumento OID y no colección.
-                        device.DeviceTemplate = (MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN), device.DeviceTemplate.Id);
-                }
 
                 session.Save (device);
                 SessionCommit ();
@@ -295,6 +291,35 @@ public System.Collections.Generic.IList<DeviceEN> ReadAll (int first, int size)
         }
 
         return result;
+}
+
+public void AssignDeviceTemplate (int p_Device_OID, int p_deviceTemplate_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.DeviceEN deviceEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                deviceEN = (DeviceEN)session.Load (typeof(DeviceEN), p_Device_OID);
+                deviceEN.DeviceTemplate = (MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN), p_deviceTemplate_OID);
+
+
+
+                session.Update (deviceEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in DeviceCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

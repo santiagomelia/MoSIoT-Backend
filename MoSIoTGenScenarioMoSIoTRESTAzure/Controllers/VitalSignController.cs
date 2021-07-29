@@ -246,11 +246,6 @@ public HttpResponseMessage New_ ( [FromBody] VitalSignDTO dto)
                         dto.Scenario_oid                 // association role
 
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
-                        ,
-                        //Atributo OID: p_measure
-                        // attr.estaRelacionado: true
-                        dto.Measure_oid                 // association role
-
                         );
                 SessionCommit ();
 

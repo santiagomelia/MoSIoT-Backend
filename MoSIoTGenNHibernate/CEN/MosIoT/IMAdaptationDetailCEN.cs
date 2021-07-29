@@ -39,7 +39,7 @@ public IIMAdaptationDetailCAD get_IIMAdaptationDetailCAD ()
         return this._IIMAdaptationDetailCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value, int p_adaptationDetailRequired)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMAdaptationDetailEN iMAdaptationDetailEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized IMAdaptationDetailEN
         iMAdaptationDetailEN = new IMAdaptationDetailEN ();
         iMAdaptationDetailEN.Name = p_name;
-
-        iMAdaptationDetailEN.Type = p_type;
-
-        iMAdaptationDetailEN.IsOID = p_isOID;
-
-        iMAdaptationDetailEN.IsWritable = p_isWritable;
 
         iMAdaptationDetailEN.Description = p_description;
 
@@ -64,23 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 iMAdaptationDetailEN.Entity.Id = p_entity;
         }
 
-        iMAdaptationDetailEN.Value = p_value;
-
-
-        if (p_adaptationDetailRequired != -1) {
-                // El argumento p_adaptationDetailRequired -> Property adaptationDetailRequired es oid = false
-                // Lista de oids id
-                iMAdaptationDetailEN.AdaptationDetailRequired = new MoSIoTGenNHibernate.EN.MosIoT.AdaptationDetailRequiredEN ();
-                iMAdaptationDetailEN.AdaptationDetailRequired.Id = p_adaptationDetailRequired;
-        }
-
         //Call to IMAdaptationDetailCAD
 
         oid = _IIMAdaptationDetailCAD.New_ (iMAdaptationDetailEN);
         return oid;
 }
 
-public void Modify (int p_IMAdaptationDetail_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_IMAdaptationDetail_OID, string p_name, string p_description)
 {
         IMAdaptationDetailEN iMAdaptationDetailEN = null;
 
@@ -88,11 +72,7 @@ public void Modify (int p_IMAdaptationDetail_OID, string p_name, MoSIoTGenNHiber
         iMAdaptationDetailEN = new IMAdaptationDetailEN ();
         iMAdaptationDetailEN.Id = p_IMAdaptationDetail_OID;
         iMAdaptationDetailEN.Name = p_name;
-        iMAdaptationDetailEN.Type = p_type;
-        iMAdaptationDetailEN.IsOID = p_isOID;
-        iMAdaptationDetailEN.IsWritable = p_isWritable;
         iMAdaptationDetailEN.Description = p_description;
-        iMAdaptationDetailEN.Value = p_value;
         //Call to IMAdaptationDetailCAD
 
         _IIMAdaptationDetailCAD.Modify (iMAdaptationDetailEN);
@@ -119,6 +99,12 @@ public System.Collections.Generic.IList<IMAdaptationDetailEN> ReadAll (int first
 
         list = _IIMAdaptationDetailCAD.ReadAll (first, size);
         return list;
+}
+public void AssignAdaptationD (int p_IMAdaptationDetail_OID, int p_adaptationDetailRequired_OID)
+{
+        //Call to IMAdaptationDetailCAD
+
+        _IIMAdaptationDetailCAD.AssignAdaptationD (p_IMAdaptationDetail_OID, p_adaptationDetailRequired_OID);
 }
 }
 }

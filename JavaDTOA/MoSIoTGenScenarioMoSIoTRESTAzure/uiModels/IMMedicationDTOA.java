@@ -31,6 +31,10 @@ public class IMMedicationDTOA extends DTOA
 	public String getDescription () { return description; }
 	public void setDescription (String description) { this.description = description; }
 	
+	private String value;
+	public String getValue () { return value; }
+	public void setValue (String value) { this.value = value; }
+	
 	
 	/* Rol: IMMedication o--> Medication */
 	private MedicationDTOA valueMedication;
@@ -74,6 +78,13 @@ public class IMMedicationDTOA extends DTOA
 				this.description = (String) json.opt("Description");
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Value")))
+			{
+			 
+				this.value = (String) json.opt("Value");
+			 
+			}
 			
 
 			JSONObject jsonValueMedication = json.optJSONObject("ValueMedication");
@@ -110,6 +121,10 @@ public class IMMedicationDTOA extends DTOA
 		  if (this.description != null)
 			json.put("Description", this.description);
 		
+		
+		  if (this.value != null)
+			json.put("Value", this.value);
+		
 			
 
 			if (this.valueMedication != null)
@@ -140,6 +155,8 @@ public class IMMedicationDTOA extends DTOA
 	dto.setName (this.getName());
 
 	dto.setDescription (this.getDescription());
+
+	dto.setValue (this.getValue());
 
 		
 		

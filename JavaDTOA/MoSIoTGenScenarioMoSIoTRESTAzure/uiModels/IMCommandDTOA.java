@@ -31,6 +31,14 @@ public class IMCommandDTOA extends DTOA
 	public String getDescription () { return description; }
 	public void setDescription (String description) { this.description = description; }
 	
+	private DataType type;
+	public DataType getType () { return type; }
+	public void setType (DataType type) { this.type = type; }
+	
+	private ServiceType serviceType;
+	public ServiceType getServiceType () { return serviceType; }
+	public void setServiceType (ServiceType serviceType) { this.serviceType = serviceType; }
+	
 	
 	/* Rol: IMCommand o--> Command */
 	private CommandDTOA valueCommand;
@@ -74,6 +82,20 @@ public class IMCommandDTOA extends DTOA
 				this.description = (String) json.opt("Description");
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Type")))
+			{
+				int enumRawValue = (int) json.opt("Type");
+				this.type = DataType.fromRawValue(enumRawValue);
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("ServiceType")))
+			{
+				int enumRawValue = (int) json.opt("ServiceType");
+				this.serviceType = ServiceType.fromRawValue(enumRawValue);
+			 
+			}
 			
 
 			JSONObject jsonValueCommand = json.optJSONObject("ValueCommand");
@@ -110,6 +132,14 @@ public class IMCommandDTOA extends DTOA
 		  if (this.description != null)
 			json.put("Description", this.description);
 		
+		
+		  if (this.type != null)
+			json.put("Type", this.type.getRawValue());
+		
+		
+		  if (this.serviceType != null)
+			json.put("ServiceType", this.serviceType.getRawValue());
+		
 			
 
 			if (this.valueCommand != null)
@@ -140,6 +170,10 @@ public class IMCommandDTOA extends DTOA
 	dto.setName (this.getName());
 
 	dto.setDescription (this.getDescription());
+
+	dto.setType (this.getType());
+
+	dto.setServiceType (this.getServiceType());
 
 		
 		

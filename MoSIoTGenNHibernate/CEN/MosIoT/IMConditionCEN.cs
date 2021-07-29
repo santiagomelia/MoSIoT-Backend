@@ -39,7 +39,7 @@ public IIMConditionCAD get_IIMConditionCAD ()
         return this._IIMConditionCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value, int p_condition)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMConditionEN iMConditionEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized IMConditionEN
         iMConditionEN = new IMConditionEN ();
         iMConditionEN.Name = p_name;
-
-        iMConditionEN.Type = p_type;
-
-        iMConditionEN.IsOID = p_isOID;
-
-        iMConditionEN.IsWritable = p_isWritable;
 
         iMConditionEN.Description = p_description;
 
@@ -64,23 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 iMConditionEN.Entity.Id = p_entity;
         }
 
-        iMConditionEN.Value = p_value;
-
-
-        if (p_condition != -1) {
-                // El argumento p_condition -> Property condition es oid = false
-                // Lista de oids id
-                iMConditionEN.Condition = new MoSIoTGenNHibernate.EN.MosIoT.ConditionEN ();
-                iMConditionEN.Condition.Id = p_condition;
-        }
-
         //Call to IMConditionCAD
 
         oid = _IIMConditionCAD.New_ (iMConditionEN);
         return oid;
 }
 
-public void Modify (int p_IMCondition_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_IMCondition_OID, string p_name, string p_description)
 {
         IMConditionEN iMConditionEN = null;
 
@@ -88,11 +72,7 @@ public void Modify (int p_IMCondition_OID, string p_name, MoSIoTGenNHibernate.En
         iMConditionEN = new IMConditionEN ();
         iMConditionEN.Id = p_IMCondition_OID;
         iMConditionEN.Name = p_name;
-        iMConditionEN.Type = p_type;
-        iMConditionEN.IsOID = p_isOID;
-        iMConditionEN.IsWritable = p_isWritable;
         iMConditionEN.Description = p_description;
-        iMConditionEN.Value = p_value;
         //Call to IMConditionCAD
 
         _IIMConditionCAD.Modify (iMConditionEN);
@@ -119,6 +99,12 @@ public System.Collections.Generic.IList<IMConditionEN> ReadAll (int first, int s
 
         list = _IIMConditionCAD.ReadAll (first, size);
         return list;
+}
+public void AssignCondition (int p_IMCondition_OID, int p_condition_OID)
+{
+        //Call to IMConditionCAD
+
+        _IIMConditionCAD.AssignCondition (p_IMCondition_OID, p_condition_OID);
 }
 }
 }

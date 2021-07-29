@@ -29,5 +29,8 @@ IMCareActivityEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMCareActivityEN> ReadAll (int first, int size);
+
+
+void AssignCareActivity (int p_IMCareActivity_OID, int p_careActivity_OID);
 }
 }

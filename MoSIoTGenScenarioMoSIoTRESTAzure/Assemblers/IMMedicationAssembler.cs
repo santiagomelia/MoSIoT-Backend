@@ -44,6 +44,9 @@ public static IMMedicationDTOA Convert (EntityAttributesEN en, NHibernate.ISessi
                 dto.Description = en.Description;
 
 
+                dto.Value = en.Value;
+
+
                 //
                 // TravesalLink
 

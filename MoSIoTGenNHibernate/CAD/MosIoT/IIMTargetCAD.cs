@@ -29,5 +29,8 @@ IMTargetEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMTargetEN> ReadAll (int first, int size);
+
+
+void AssignTarget (int p_IMTarget_OID, int p_target_OID);
 }
 }

@@ -39,7 +39,7 @@ public IIMMedicationCAD get_IIMMedicationCAD ()
         return this._IIMMedicationCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value, int p_medication)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMMedicationEN iMMedicationEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized IMMedicationEN
         iMMedicationEN = new IMMedicationEN ();
         iMMedicationEN.Name = p_name;
-
-        iMMedicationEN.Type = p_type;
-
-        iMMedicationEN.IsOID = p_isOID;
-
-        iMMedicationEN.IsWritable = p_isWritable;
 
         iMMedicationEN.Description = p_description;
 
@@ -64,23 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 iMMedicationEN.Entity.Id = p_entity;
         }
 
-        iMMedicationEN.Value = p_value;
-
-
-        if (p_medication != -1) {
-                // El argumento p_medication -> Property medication es oid = false
-                // Lista de oids id
-                iMMedicationEN.Medication = new MoSIoTGenNHibernate.EN.MosIoT.MedicationEN ();
-                iMMedicationEN.Medication.ProductReference = p_medication;
-        }
-
         //Call to IMMedicationCAD
 
         oid = _IIMMedicationCAD.New_ (iMMedicationEN);
         return oid;
 }
 
-public void Modify (int p_IMMedication_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_IMMedication_OID, string p_name, string p_description)
 {
         IMMedicationEN iMMedicationEN = null;
 
@@ -88,11 +72,7 @@ public void Modify (int p_IMMedication_OID, string p_name, MoSIoTGenNHibernate.E
         iMMedicationEN = new IMMedicationEN ();
         iMMedicationEN.Id = p_IMMedication_OID;
         iMMedicationEN.Name = p_name;
-        iMMedicationEN.Type = p_type;
-        iMMedicationEN.IsOID = p_isOID;
-        iMMedicationEN.IsWritable = p_isWritable;
         iMMedicationEN.Description = p_description;
-        iMMedicationEN.Value = p_value;
         //Call to IMMedicationCAD
 
         _IIMMedicationCAD.Modify (iMMedicationEN);
@@ -119,6 +99,12 @@ public System.Collections.Generic.IList<IMMedicationEN> ReadAll (int first, int 
 
         list = _IIMMedicationCAD.ReadAll (first, size);
         return list;
+}
+public void AssignMedication (int p_IMMedication_OID, int p_medication_OID)
+{
+        //Call to IMMedicationCAD
+
+        _IIMMedicationCAD.AssignMedication (p_IMMedication_OID, p_medication_OID);
 }
 }
 }

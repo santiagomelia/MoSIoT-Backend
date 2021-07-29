@@ -15,6 +15,8 @@ class IMCommandDTOA : DTOA
 	
 	var name: String?;
 	var description: String?;
+	var type: DataType?;
+	var serviceType: ServiceType?;
 	
 	/* Rol: IMCommand o--> Command */
 	var valueCommand: CommandDTOA?;
@@ -41,6 +43,14 @@ class IMCommandDTOA : DTOA
 	
 		self.name = json["Name"].object as? String;
 		self.description = json["Description"].object as? String;
+		if let enumValue = json["Type"].object as? Int
+		{
+			self.type = DataType(rawValue: enumValue);
+		}
+		if let enumValue = json["ServiceType"].object as? Int
+		{
+			self.serviceType = ServiceType(rawValue: enumValue);
+		}
 		
 		if (json["ValueCommand"] != JSON.null)
 		{
@@ -65,6 +75,16 @@ class IMCommandDTOA : DTOA
 
 	
 		dictionary["Description"] = self.description;
+	
+	
+
+	
+		dictionary["Type"] = self.type?.rawValue;
+	
+	
+
+	
+		dictionary["ServiceType"] = self.serviceType?.rawValue;
 	
 	
 		

@@ -46,6 +46,11 @@
 					    </bag>
 					
 			
+		  			
+						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >	
+								<column name="FK_id_idPatientProfile"/> 
+						</many-to-one>
+											 					
 			
 			
 			
@@ -89,10 +94,6 @@
 					
 					
 					
-					
-						<many-to-one name="PatientProfile" class="MoSIoTGenNHibernate.EN.MosIoT.PatientProfileEN" >
-									<column name="FK_id_idPatientProfile"/> 
-						</many-to-one>
 					
 					
 					

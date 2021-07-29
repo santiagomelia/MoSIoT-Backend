@@ -39,7 +39,7 @@ public IIMGoalCAD get_IIMGoalCAD ()
         return this._IIMGoalCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value, int p_goal)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMGoalEN iMGoalEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized IMGoalEN
         iMGoalEN = new IMGoalEN ();
         iMGoalEN.Name = p_name;
-
-        iMGoalEN.Type = p_type;
-
-        iMGoalEN.IsOID = p_isOID;
-
-        iMGoalEN.IsWritable = p_isWritable;
 
         iMGoalEN.Description = p_description;
 
@@ -64,23 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 iMGoalEN.Entity.Id = p_entity;
         }
 
-        iMGoalEN.Value = p_value;
-
-
-        if (p_goal != -1) {
-                // El argumento p_goal -> Property goal es oid = false
-                // Lista de oids id
-                iMGoalEN.Goal = new MoSIoTGenNHibernate.EN.MosIoT.GoalEN ();
-                iMGoalEN.Goal.Id = p_goal;
-        }
-
         //Call to IMGoalCAD
 
         oid = _IIMGoalCAD.New_ (iMGoalEN);
         return oid;
 }
 
-public void Modify (int p_IMGoal_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_IMGoal_OID, string p_name, string p_description)
 {
         IMGoalEN iMGoalEN = null;
 
@@ -88,11 +72,7 @@ public void Modify (int p_IMGoal_OID, string p_name, MoSIoTGenNHibernate.Enumera
         iMGoalEN = new IMGoalEN ();
         iMGoalEN.Id = p_IMGoal_OID;
         iMGoalEN.Name = p_name;
-        iMGoalEN.Type = p_type;
-        iMGoalEN.IsOID = p_isOID;
-        iMGoalEN.IsWritable = p_isWritable;
         iMGoalEN.Description = p_description;
-        iMGoalEN.Value = p_value;
         //Call to IMGoalCAD
 
         _IIMGoalCAD.Modify (iMGoalEN);
@@ -119,6 +99,12 @@ public System.Collections.Generic.IList<IMGoalEN> ReadAll (int first, int size)
 
         list = _IIMGoalCAD.ReadAll (first, size);
         return list;
+}
+public void AssignGoal (int p_IMGoal_OID, int p_goal_OID)
+{
+        //Call to IMGoalCAD
+
+        _IIMGoalCAD.AssignGoal (p_IMGoal_OID, p_goal_OID);
 }
 }
 }

@@ -29,5 +29,8 @@ IMNutritionOrderEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMNutritionOrderEN> ReadAll (int first, int size);
+
+
+void AssignNutrition (int p_IMNutritionOrder_OID, int p_nutritionOrder_OID);
 }
 }

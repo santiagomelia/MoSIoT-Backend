@@ -246,11 +246,6 @@ public HttpResponseMessage New_ ( [FromBody] IMTelemetryDTO dto)
                         dto.Scenario_oid                 // association role
 
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
-                        ,
-                        //Atributo OID: p_telemetry
-                        // attr.estaRelacionado: true
-                        dto.Telemetry_oid                 // association role
-
                         );
                 SessionCommit ();
 

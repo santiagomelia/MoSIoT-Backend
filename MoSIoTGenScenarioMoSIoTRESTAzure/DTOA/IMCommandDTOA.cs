@@ -30,6 +30,20 @@ public string Description
         set { description = value; }
 }
 
+private MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum type;
+public MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum Type
+{
+        get { return type; }
+        set { type = value; }
+}
+
+private MoSIoTGenNHibernate.Enumerated.MosIoT.ServiceTypeEnum serviceType;
+public MoSIoTGenNHibernate.Enumerated.MosIoT.ServiceTypeEnum ServiceType
+{
+        get { return serviceType; }
+        set { serviceType = value; }
+}
+
 
 /* Rol: IMCommand o--> Command */
 private CommandDTOA valueCommand;

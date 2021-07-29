@@ -15,6 +15,7 @@ class IMMedicationDTOA : DTOA
 	
 	var name: String?;
 	var description: String?;
+	var value: String?;
 	
 	/* Rol: IMMedication o--> Medication */
 	var valueMedication: MedicationDTOA?;
@@ -41,6 +42,7 @@ class IMMedicationDTOA : DTOA
 	
 		self.name = json["Name"].object as? String;
 		self.description = json["Description"].object as? String;
+		self.value = json["Value"].object as? String;
 		
 		if (json["ValueMedication"] != JSON.null)
 		{
@@ -65,6 +67,11 @@ class IMMedicationDTOA : DTOA
 
 	
 		dictionary["Description"] = self.description;
+	
+	
+
+	
+		dictionary["Value"] = self.value;
 	
 	
 		

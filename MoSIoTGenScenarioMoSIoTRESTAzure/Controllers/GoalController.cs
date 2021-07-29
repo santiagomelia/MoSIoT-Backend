@@ -59,6 +59,7 @@ public class GoalController : BasicController
 
 
 
+
 /*PROTECTED REGION ID(MoSIoTGenScenarioMoSIoTRESTAzure_GoalControllerAzure) ENABLED START*/
 // Meter las operaciones que invoquen a las CPs
 /*PROTECTED REGION END*/

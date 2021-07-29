@@ -29,5 +29,8 @@ IMCommandEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMCommandEN> ReadAll (int first, int size);
+
+
+void AssignCommand (int p_IMCommand_OID, int p_command_OID);
 }
 }

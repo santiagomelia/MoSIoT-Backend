@@ -23,9 +23,6 @@ class DeviceTemplateDTOA : DTOA
 	/* Rol: DeviceTemplate o--> Property */
 	var properties: [PropertyDTOA]?;
 
-	/* Rol: DeviceTemplate o--> Telemetry */
-	var telemetries: [TelemetryDTOA]?;
-
 	
 	
 	
@@ -63,11 +60,6 @@ class DeviceTemplateDTOA : DTOA
 			self.properties = PropertyDTOA(fromJSONObject: json["Properties"]);
 		}
 
-		if (json["Telemetries"] != JSON.null)
-		{
-			self.telemetries = TelemetryDTOA(fromJSONObject: json["Telemetries"]);
-		}
-
 		
 	}
 	
@@ -97,8 +89,6 @@ class DeviceTemplateDTOA : DTOA
 		dictionary["Commands"] = self.commands?.toDictionary() ?? NSNull();
 
 		dictionary["Properties"] = self.properties?.toDictionary() ?? NSNull();
-
-		dictionary["Telemetries"] = self.telemetries?.toDictionary() ?? NSNull();
 
 		
 		

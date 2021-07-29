@@ -30,6 +30,13 @@ public string Description
         set { description = value; }
 }
 
+private string value;
+public string Value
+{
+        get { return value; }
+        set { value = value; }
+}
+
 
 /* Rol: IMMedication o--> Medication */
 private MedicationDTOA valueMedication;

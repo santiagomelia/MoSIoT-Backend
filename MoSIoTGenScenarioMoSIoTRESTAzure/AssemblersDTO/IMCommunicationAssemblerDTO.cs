@@ -34,14 +34,8 @@ public static IMCommunicationEN Convert (IMCommunicationDTO dto)
                         }
                         newinstance.Id = dto.Id;
                         newinstance.Name = dto.Name;
-                        if (dto.OriginAssociation_oid != null) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.IAssociationCAD associationCAD = new MoSIoTGenNHibernate.CAD.MosIoT.AssociationCAD ();
-
-                                newinstance.OriginAssociation = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN>();
-                                foreach (int entry in dto.OriginAssociation_oid) {
-                                        newinstance.OriginAssociation.Add (associationCAD.ReadOIDDefault (entry));
-                                }
-                        }
+                        newinstance.Type = dto.Type;
+                        newinstance.IsOID = dto.IsOID;
                         if (dto.TargetAssociation_oid != null) {
                                 MoSIoTGenNHibernate.CAD.MosIoT.IAssociationCAD associationCAD = new MoSIoTGenNHibernate.CAD.MosIoT.AssociationCAD ();
 
@@ -50,39 +44,39 @@ public static IMCommunicationEN Convert (IMCommunicationDTO dto)
                                         newinstance.TargetAssociation.Add (associationCAD.ReadOIDDefault (entry));
                                 }
                         }
-                        if (dto.Scenario_oid != -1) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.IIoTScenarioCAD ioTScenarioCAD = new MoSIoTGenNHibernate.CAD.MosIoT.IoTScenarioCAD ();
+                        if (dto.OriginAsociation_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IAssociationCAD associationCAD = new MoSIoTGenNHibernate.CAD.MosIoT.AssociationCAD ();
 
-                                newinstance.Scenario = ioTScenarioCAD.ReadOIDDefault (dto.Scenario_oid);
+                                newinstance.OriginAsociation = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AssociationEN>();
+                                foreach (int entry in dto.OriginAsociation_oid) {
+                                        newinstance.OriginAsociation.Add (associationCAD.ReadOIDDefault (entry));
+                                }
                         }
+                        newinstance.AssociationType = dto.AssociationType;
+                        newinstance.IsWritable = dto.IsWritable;
                         newinstance.Description = dto.Description;
+                        if (dto.Entity_oid != -1) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IEntityCAD entityCAD = new MoSIoTGenNHibernate.CAD.MosIoT.EntityCAD ();
 
-                        if (dto.Operations != null) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.IEntityOperationCAD entityOperationCAD = new MoSIoTGenNHibernate.CAD.MosIoT.EntityOperationCAD ();
+                                newinstance.Entity = entityCAD.ReadOIDDefault (dto.Entity_oid);
+                        }
+                        if (dto.Trigger_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IRecipeTriggerCAD recipeTriggerCAD = new MoSIoTGenNHibernate.CAD.MosIoT.RecipeTriggerCAD ();
 
-                                newinstance.Operations = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.EntityOperationEN>();
-                                foreach (EntityOperationDTO entry in dto.Operations) {
-                                        newinstance.Operations.Add (EntityOperationAssemblerDTO.Convert (entry));
+                                newinstance.Trigger = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.RecipeTriggerEN>();
+                                foreach (int entry in dto.Trigger_oid) {
+                                        newinstance.Trigger.Add (recipeTriggerCAD.ReadOIDDefault (entry));
                                 }
                         }
+                        if (dto.Register_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IRegisterCAD registerCAD = new MoSIoTGenNHibernate.CAD.MosIoT.RegisterCAD ();
 
-                        if (dto.Attributes != null) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.IEntityAttributesCAD entityAttributesCAD = new MoSIoTGenNHibernate.CAD.MosIoT.EntityAttributesCAD ();
-
-                                newinstance.Attributes = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN>();
-                                foreach (EntityAttributesDTO entry in dto.Attributes) {
-                                        newinstance.Attributes.Add (EntityAttributesAssemblerDTO.Convert (entry));
+                                newinstance.Register = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.RegisterEN>();
+                                foreach (int entry in dto.Register_oid) {
+                                        newinstance.Register.Add (registerCAD.ReadOIDDefault (entry));
                                 }
                         }
-
-                        if (dto.States != null) {
-                                MoSIoTGenNHibernate.CAD.MosIoT.IEntityStateCAD entityStateCAD = new MoSIoTGenNHibernate.CAD.MosIoT.EntityStateCAD ();
-
-                                newinstance.States = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.EntityStateEN>();
-                                foreach (EntityStateDTO entry in dto.States) {
-                                        newinstance.States.Add (EntityStateAssemblerDTO.Convert (entry));
-                                }
-                        }
+                        newinstance.Value = dto.Value;
                 }
         }
         catch (Exception ex)

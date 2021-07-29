@@ -122,10 +122,6 @@ public int New_ (CarePlanEN carePlan)
                         carePlan.Scenario.Entity
                         .Add (carePlan);
                 }
-                if (carePlan.Template != null) {
-                        // Argumento OID y no colección.
-                        carePlan.Template = (MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN), carePlan.Template.Id);
-                }
 
                 session.Save (carePlan);
                 SessionCommit ();
@@ -259,6 +255,35 @@ public System.Collections.Generic.IList<CarePlanEN> ReadAll (int first, int size
         }
 
         return result;
+}
+
+public void AssignCarePlan (int p_CarePlan_OID, int p_template_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.CarePlanEN carePlanEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                carePlanEN = (CarePlanEN)session.Load (typeof(CarePlanEN), p_CarePlan_OID);
+                carePlanEN.Template = (MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN), p_template_OID);
+
+
+
+                session.Update (carePlanEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in CarePlanCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

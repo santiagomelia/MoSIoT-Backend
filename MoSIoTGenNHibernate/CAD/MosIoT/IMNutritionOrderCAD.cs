@@ -122,10 +122,6 @@ public int New_ (IMNutritionOrderEN iMNutritionOrder)
                         iMNutritionOrder.Entity.Attributes
                         .Add (iMNutritionOrder);
                 }
-                if (iMNutritionOrder.NutritionOrder != null) {
-                        // Argumento OID y no colección.
-                        iMNutritionOrder.NutritionOrder = (MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN), iMNutritionOrder.NutritionOrder.Id);
-                }
 
                 session.Save (iMNutritionOrder);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMNutritionOrderEN iMNutritionOrder)
                 iMNutritionOrderEN.Name = iMNutritionOrder.Name;
 
 
-                iMNutritionOrderEN.Type = iMNutritionOrder.Type;
-
-
-                iMNutritionOrderEN.IsOID = iMNutritionOrder.IsOID;
-
-
-                iMNutritionOrderEN.IsWritable = iMNutritionOrder.IsWritable;
-
-
                 iMNutritionOrderEN.Description = iMNutritionOrder.Description;
-
-
-                iMNutritionOrderEN.Value = iMNutritionOrder.Value;
 
                 session.Update (iMNutritionOrderEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMNutritionOrderEN> ReadAll (int first, 
         }
 
         return result;
+}
+
+public void AssignNutrition (int p_IMNutritionOrder_OID, int p_nutritionOrder_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMNutritionOrderEN iMNutritionOrderEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMNutritionOrderEN = (IMNutritionOrderEN)session.Load (typeof(IMNutritionOrderEN), p_IMNutritionOrder_OID);
+                iMNutritionOrderEN.NutritionOrder = (MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN), p_nutritionOrder_OID);
+
+
+
+                session.Update (iMNutritionOrderEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMNutritionOrderCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

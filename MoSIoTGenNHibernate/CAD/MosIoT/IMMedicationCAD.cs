@@ -122,10 +122,6 @@ public int New_ (IMMedicationEN iMMedication)
                         iMMedication.Entity.Attributes
                         .Add (iMMedication);
                 }
-                if (iMMedication.Medication != null) {
-                        // Argumento OID y no colección.
-                        iMMedication.Medication = (MoSIoTGenNHibernate.EN.MosIoT.MedicationEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.MedicationEN), iMMedication.Medication.ProductReference);
-                }
 
                 session.Save (iMMedication);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMMedicationEN iMMedication)
                 iMMedicationEN.Name = iMMedication.Name;
 
 
-                iMMedicationEN.Type = iMMedication.Type;
-
-
-                iMMedicationEN.IsOID = iMMedication.IsOID;
-
-
-                iMMedicationEN.IsWritable = iMMedication.IsWritable;
-
-
                 iMMedicationEN.Description = iMMedication.Description;
-
-
-                iMMedicationEN.Value = iMMedication.Value;
 
                 session.Update (iMMedicationEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMMedicationEN> ReadAll (int first, int 
         }
 
         return result;
+}
+
+public void AssignMedication (int p_IMMedication_OID, int p_medication_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMMedicationEN iMMedicationEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMMedicationEN = (IMMedicationEN)session.Load (typeof(IMMedicationEN), p_IMMedication_OID);
+                iMMedicationEN.Medication = (MoSIoTGenNHibernate.EN.MosIoT.MedicationEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.MedicationEN), p_medication_OID);
+
+
+
+                session.Update (iMMedicationEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMMedicationCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

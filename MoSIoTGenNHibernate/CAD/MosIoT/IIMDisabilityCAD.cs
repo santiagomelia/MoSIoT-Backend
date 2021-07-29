@@ -29,5 +29,8 @@ IMDisabilityEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMDisabilityEN> ReadAll (int first, int size);
+
+
+void AssignDisability (int p_IMDisability_OID, int p_disability_OID);
 }
 }

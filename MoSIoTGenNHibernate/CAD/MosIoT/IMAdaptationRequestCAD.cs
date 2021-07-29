@@ -122,10 +122,6 @@ public int New_ (IMAdaptationRequestEN iMAdaptationRequest)
                         iMAdaptationRequest.Entity.Attributes
                         .Add (iMAdaptationRequest);
                 }
-                if (iMAdaptationRequest.AdaptationRequest != null) {
-                        // Argumento OID y no colección.
-                        iMAdaptationRequest.AdaptationRequest = (MoSIoTGenNHibernate.EN.MosIoT.AdaptationRequestEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AdaptationRequestEN), iMAdaptationRequest.AdaptationRequest.Id);
-                }
 
                 session.Save (iMAdaptationRequest);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMAdaptationRequestEN iMAdaptationRequest)
                 iMAdaptationRequestEN.Name = iMAdaptationRequest.Name;
 
 
-                iMAdaptationRequestEN.Type = iMAdaptationRequest.Type;
-
-
-                iMAdaptationRequestEN.IsOID = iMAdaptationRequest.IsOID;
-
-
-                iMAdaptationRequestEN.IsWritable = iMAdaptationRequest.IsWritable;
-
-
                 iMAdaptationRequestEN.Description = iMAdaptationRequest.Description;
-
-
-                iMAdaptationRequestEN.Value = iMAdaptationRequest.Value;
 
                 session.Update (iMAdaptationRequestEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMAdaptationRequestEN> ReadAll (int firs
         }
 
         return result;
+}
+
+public void AssignAdaptationR (int p_IMAdaptationRequest_OID, int p_adaptationRequest_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationRequestEN iMAdaptationRequestEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMAdaptationRequestEN = (IMAdaptationRequestEN)session.Load (typeof(IMAdaptationRequestEN), p_IMAdaptationRequest_OID);
+                iMAdaptationRequestEN.AdaptationRequest = (MoSIoTGenNHibernate.EN.MosIoT.AdaptationRequestEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.AdaptationRequestEN), p_adaptationRequest_OID);
+
+
+
+                session.Update (iMAdaptationRequestEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMAdaptationRequestCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

@@ -31,10 +31,6 @@ PatientProfileEN ReadOID (int id
 System.Collections.Generic.IList<PatientProfileEN> ReadAll (int first, int size);
 
 
-PatientProfileEN ReadOID2 (int id
-                           );
-
-
-System.Collections.Generic.IList<PatientProfileEN> ReadAll2 (int first, int size);
+void AssignCarePlanTemplate (int p_PatientProfile_OID, System.Collections.Generic.IList<int> p_carePlanTemplate_OIDs);
 }
 }

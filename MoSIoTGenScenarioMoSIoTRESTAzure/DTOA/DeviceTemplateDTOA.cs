@@ -53,13 +53,5 @@ public IList<PropertyDTOA> Properties
         get { return properties; }
         set { properties = value; }
 }
-
-/* Rol: DeviceTemplate o--> Telemetry */
-private IList<TelemetryDTOA> telemetries;
-public IList<TelemetryDTOA> Telemetries
-{
-        get { return telemetries; }
-        set { telemetries = value; }
-}
 }
 }

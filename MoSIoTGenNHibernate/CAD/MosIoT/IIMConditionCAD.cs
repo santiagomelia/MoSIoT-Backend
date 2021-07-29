@@ -29,5 +29,8 @@ IMConditionEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMConditionEN> ReadAll (int first, int size);
+
+
+void AssignCondition (int p_IMCondition_OID, int p_condition_OID);
 }
 }

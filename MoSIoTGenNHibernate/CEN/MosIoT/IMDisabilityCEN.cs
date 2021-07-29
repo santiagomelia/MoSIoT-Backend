@@ -39,7 +39,7 @@ public IIMDisabilityCAD get_IIMDisabilityCAD ()
         return this._IIMDisabilityCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value, int p_disability)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMDisabilityEN iMDisabilityEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized IMDisabilityEN
         iMDisabilityEN = new IMDisabilityEN ();
         iMDisabilityEN.Name = p_name;
-
-        iMDisabilityEN.Type = p_type;
-
-        iMDisabilityEN.IsOID = p_isOID;
-
-        iMDisabilityEN.IsWritable = p_isWritable;
 
         iMDisabilityEN.Description = p_description;
 
@@ -64,23 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 iMDisabilityEN.Entity.Id = p_entity;
         }
 
-        iMDisabilityEN.Value = p_value;
-
-
-        if (p_disability != -1) {
-                // El argumento p_disability -> Property disability es oid = false
-                // Lista de oids id
-                iMDisabilityEN.Disability = new MoSIoTGenNHibernate.EN.MosIoT.DisabilityEN ();
-                iMDisabilityEN.Disability.Id = p_disability;
-        }
-
         //Call to IMDisabilityCAD
 
         oid = _IIMDisabilityCAD.New_ (iMDisabilityEN);
         return oid;
 }
 
-public void Modify (int p_IMDisability_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_IMDisability_OID, string p_name, string p_description)
 {
         IMDisabilityEN iMDisabilityEN = null;
 
@@ -88,11 +72,7 @@ public void Modify (int p_IMDisability_OID, string p_name, MoSIoTGenNHibernate.E
         iMDisabilityEN = new IMDisabilityEN ();
         iMDisabilityEN.Id = p_IMDisability_OID;
         iMDisabilityEN.Name = p_name;
-        iMDisabilityEN.Type = p_type;
-        iMDisabilityEN.IsOID = p_isOID;
-        iMDisabilityEN.IsWritable = p_isWritable;
         iMDisabilityEN.Description = p_description;
-        iMDisabilityEN.Value = p_value;
         //Call to IMDisabilityCAD
 
         _IIMDisabilityCAD.Modify (iMDisabilityEN);
@@ -119,6 +99,12 @@ public System.Collections.Generic.IList<IMDisabilityEN> ReadAll (int first, int 
 
         list = _IIMDisabilityCAD.ReadAll (first, size);
         return list;
+}
+public void AssignDisability (int p_IMDisability_OID, int p_disability_OID)
+{
+        //Call to IMDisabilityCAD
+
+        _IIMDisabilityCAD.AssignDisability (p_IMDisability_OID, p_disability_OID);
 }
 }
 }

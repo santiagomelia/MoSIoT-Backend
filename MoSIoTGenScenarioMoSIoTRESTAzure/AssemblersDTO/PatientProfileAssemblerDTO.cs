@@ -49,6 +49,14 @@ public static PatientProfileEN Convert (PatientProfileDTO dto)
                                 }
                         }
                         newinstance.Id = dto.Id;
+                        if (dto.CarePlanTemplate_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.ICarePlanTemplateCAD carePlanTemplateCAD = new MoSIoTGenNHibernate.CAD.MosIoT.CarePlanTemplateCAD ();
+
+                                newinstance.CarePlanTemplate = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.CarePlanTemplateEN>();
+                                foreach (int entry in dto.CarePlanTemplate_oid) {
+                                        newinstance.CarePlanTemplate.Add (carePlanTemplateCAD.ReadOIDDefault (entry));
+                                }
+                        }
 
                         if (dto.Diseases != null) {
                                 MoSIoTGenNHibernate.CAD.MosIoT.IConditionCAD conditionCAD = new MoSIoTGenNHibernate.CAD.MosIoT.ConditionCAD ();

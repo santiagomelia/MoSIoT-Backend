@@ -39,7 +39,7 @@ public IIMTelemetryCAD get_IIMTelemetryCAD ()
         return this._IIMTelemetryCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, int p_telemetry)
+public int New_ (string p_name, int p_scenario, string p_description)
 {
         IMTelemetryEN iMTelemetryEN = null;
         int oid;
@@ -57,14 +57,6 @@ public int New_ (string p_name, int p_scenario, string p_description, int p_tele
         }
 
         iMTelemetryEN.Description = p_description;
-
-
-        if (p_telemetry != -1) {
-                // El argumento p_telemetry -> Property telemetry es oid = false
-                // Lista de oids id
-                iMTelemetryEN.Telemetry = new MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN ();
-                iMTelemetryEN.Telemetry.Id = p_telemetry;
-        }
 
         //Call to IMTelemetryCAD
 
@@ -107,6 +99,12 @@ public System.Collections.Generic.IList<IMTelemetryEN> ReadAll (int first, int s
 
         list = _IIMTelemetryCAD.ReadAll (first, size);
         return list;
+}
+public void AssignTelemetry (int p_IMTelemetry_OID, int p_telemetry_OID)
+{
+        //Call to IMTelemetryCAD
+
+        _IIMTelemetryCAD.AssignTelemetry (p_IMTelemetry_OID, p_telemetry_OID);
 }
 }
 }

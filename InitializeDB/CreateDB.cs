@@ -144,9 +144,22 @@ public static void InitializeData ()
                 careActivity.New_ (idCarePlanT, TypePeriodicityEnum.daily, "Realizar un paseo", 40, "parque", "", TypeActivityEnum.sportActivity, " ", "Paseo");
 
                 int idActivityMed = careActivity.New_ (idCarePlanT, TypePeriodicityEnum.perHour, "Tomar Ceregumil", 0, "en casa", "", TypeActivityEnum.medication, "", "Tomar medicamento mente activa");
+                int idActivityCom = careActivity.New_(idCarePlanT, TypePeriodicityEnum.daily, "Notificacion", 0, "en casa", "", TypeActivityEnum.comunication, "", "Notificacion paraa que tome Ceregumil");
+                int idActivityNut = careActivity.New_(idCarePlanT, TypePeriodicityEnum.daily, "Comer nueces", 0, "en casa", "", TypeActivityEnum.nutritionOrder, "", "Comer  50 gr. de nueces");
+                int idActivityApp = careActivity.New_(idCarePlanT, TypePeriodicityEnum.monthly, "Cita con el Neurologo", 0, "clinica", "", TypeActivityEnum.appointment, "", "Revision con el neurologo");
+
 
                 MedicationCEN medicationCEN = new MedicationCEN ();
-                medicationCEN.New_ (idActivityMed, 346864, "Ceregumil Original 500 ml", " ", "Tomar una cucharada 3 veces al dia", "cucharada", FormTypeEnum.powder, "346864");
+                int idMedication  =  medicationCEN.New_ (idActivityMed, 346864, "Ceregumil Original 500 ml", " ", "Tomar una cucharada 3 veces al dia", "cucharada", FormTypeEnum.powder, "346864");
+                
+                ComunicationCEN comunicationCEN = new ComunicationCEN();
+                int idComuncation = comunicationCEN.New_(SeverityEventEnum.info, "Recuerde tomar Ceregumil en el desayuno", DateTime.Now);
+                
+                NutritionOrderCEN nutricionCEN = new NutritionOrderCEN();
+                int idNutricion = nutricionCEN.New_("Comer 50gr de nueces al dia", "", idActivityNut, "comeNueces");
+
+                AppointmentCEN appCEN = new AppointmentCEN();
+                int idAppoint = appCEN.New_(true, "Cita por google meet", "http://google.meet/34", "", idActivityApp);
 
                 GoalCEN goal = new GoalCEN ();
                 int idGoal = goal.New_ (idCarePlanT, PriorityTypeEnum.high, CareStatusEnum.active, idCondition, "Mejorar los indicadores cognitivos", CategoryGoalEnum.behavioral, " ", "Mejora cognitiva");
@@ -172,18 +185,25 @@ public static void InitializeData ()
 
 
                 PatientCEN patientCEN = new PatientCEN ();
-                patientCEN.New_ ("Juan Lucas", idScenarioIoT, "Es un paciente nuevo", idPatientProfile, idUser);
+                int idPAtient = patientCEN.New_ ("Juan Lucas", idScenarioIoT, "Es un paciente nuevo", idUser);
+                patientCEN.AssignPatientProfile (idPAtient, idPatientProfile);
 
                 PatientAccessCEN patientAccessCEN = new PatientAccessCEN ();
-                patientAccessCEN.New_ ("PatientAccessSmartphone", idScenarioIoT, "patient Access Smartphone", idAccessMode);
-
+                int idPatientAccess = patientAccessCEN.New_ ("PatientAccessSmartphone", idScenarioIoT, "patient Access Smartphone");
+                patientAccessCEN.AssignAccessMode (idPatientAccess, idAccessMode);
 
                 DeviceCEN deviceCEN = new DeviceCEN ();
-                deviceCEN.New_ ("Iphone 12", idScenarioIoT, "Iphone 12 120 Gb", false, "1212", true, "1818181818181", "firm1", "Apple", deviceT2);
+                int idDevice = deviceCEN.New_ ("Iphone 12", idScenarioIoT, "Iphone 12 120 Gb", false, "1212", true, "1818181818181", "firm1", "Apple");
+                deviceCEN.AssignDeviceTemplate (idDevice, deviceT2);
 
                 CarePlanCEN carePlanCEN = new CarePlanCEN ();
-                carePlanCEN.New_ ("Care Plan Alzheimer", idScenarioIoT, "El carePlan adecuado para el alzheimer", idCarePlanT);
+                int idCarePlan = carePlanCEN.New_ ("Care Plan Alzheimer", idScenarioIoT, "El carePlan adecuado para el alzheimer");
+                carePlanCEN.AssignCarePlan (idCarePlan, idCarePlanT);
 
+
+                VitalSignCEN vitalCEN = new VitalSignCEN ();
+                int idVitalSign = vitalCEN.New_ ("Pulsaciones por minuto", idScenarioIoT, "Recoge las pulsaciones por minuto del paciente");
+                vitalCEN.AssignMeasure (idVitalSign, idMeasure);
 
                 int idUserRelated = userCEN.New_ ("Berna", true, GenderTypeEnum.female, false, "1234", "Juana", "Madre de Lucas", "juana@gmail.com");
 
@@ -192,6 +212,30 @@ public static void InitializeData ()
 
                 RelatedPersonCEN relatedPersonCEN = new RelatedPersonCEN ();
                 relatedPersonCEN.New_ ("Juana Berna", idScenarioIoT, "Madre de Berna", idUserRelated);
+
+                IMCareActivityCEN imcareAct = new IMCareActivityCEN ();
+                int idCareActivity = imcareAct.New_ ("revision1", idScenarioIoT, "");
+
+                IMAppointmentCEN imAppoin = new IMAppointmentCEN ();
+                int  idIMAppoint =  imAppoin.New_ ("citaRevision", "cita para la revision", idCareActivity, new DateTime (2021, 8, 1));
+                imAppoin.AssignAppoint(idIMAppoint, idAppoint);
+
+                int idCareActivity2 = imcareAct.New_ ("comunicacion1", idScenarioIoT, "");
+              
+                IMCommunicationCEN imCom = new IMCommunicationCEN ();
+                int idImCom = imCom.New_ ("MensajeRev", "Mensaje de aviso para la revision", idCareActivity2);
+                imCom.AssignCommunication(idImCom, idComuncation);
+
+
+                int idCareActivity3 = imcareAct.New_ ("medicacion1", idScenarioIoT, "");
+
+                IMMedicationCEN imMed = new IMMedicationCEN ();
+                int idImMed = imMed.New_ ("MedicacionMemoria", "Medicamento para la memoria", idCareActivity3);
+
+                imMed.AssignMedication(idImMed, idMedication);
+
+                /// IMAppointment , IMCareActivity, IMVitalSign, IMCommunication, IMDisability, IMMedication
+                // IMCommunicationCEN
 
 
                 // Invocamos a la fachada REST de Azure IoT Central

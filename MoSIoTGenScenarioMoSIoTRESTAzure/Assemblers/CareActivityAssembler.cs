@@ -73,13 +73,7 @@ public static CareActivityDTOA Convert (CareActivityEN en, NHibernate.ISession s
                 }
 
                 /* Rol: CareActivity o--> Appointment */
-                dto.Appointments = null;
-                List<AppointmentEN> Appointments = careActivityRESTCAD.Appointments (en.Id).ToList ();
-                if (Appointments != null) {
-                        dto.Appointments = new List<AppointmentDTOA>();
-                        foreach (AppointmentEN entry in Appointments)
-                                dto.Appointments.Add (AppointmentAssembler.Convert (entry, session));
-                }
+                dto.Appointments = AppointmentAssembler.Convert ((AppointmentEN)en.Appointment, session);
 
                 /* Rol: CareActivity o--> Medication */
                 dto.Medications = MedicationAssembler.Convert ((MedicationEN)en.Medication, session);

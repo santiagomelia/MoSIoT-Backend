@@ -132,7 +132,7 @@ public int New_ (AppointmentEN appointment)
                         appointment.CareActivity = (MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.CareActivityEN), appointment.CareActivity.Id);
 
                         appointment.CareActivity.Appointment
-                        .Add (appointment);
+                                = appointment;
                 }
 
                 session.Save (appointment);

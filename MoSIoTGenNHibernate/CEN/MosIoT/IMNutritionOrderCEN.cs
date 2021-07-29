@@ -39,7 +39,7 @@ public IIMNutritionOrderCAD get_IIMNutritionOrderCAD ()
         return this._IIMNutritionOrderCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value, int p_nutritionOrder)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMNutritionOrderEN iMNutritionOrderEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized IMNutritionOrderEN
         iMNutritionOrderEN = new IMNutritionOrderEN ();
         iMNutritionOrderEN.Name = p_name;
-
-        iMNutritionOrderEN.Type = p_type;
-
-        iMNutritionOrderEN.IsOID = p_isOID;
-
-        iMNutritionOrderEN.IsWritable = p_isWritable;
 
         iMNutritionOrderEN.Description = p_description;
 
@@ -64,23 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 iMNutritionOrderEN.Entity.Id = p_entity;
         }
 
-        iMNutritionOrderEN.Value = p_value;
-
-
-        if (p_nutritionOrder != -1) {
-                // El argumento p_nutritionOrder -> Property nutritionOrder es oid = false
-                // Lista de oids id
-                iMNutritionOrderEN.NutritionOrder = new MoSIoTGenNHibernate.EN.MosIoT.NutritionOrderEN ();
-                iMNutritionOrderEN.NutritionOrder.Id = p_nutritionOrder;
-        }
-
         //Call to IMNutritionOrderCAD
 
         oid = _IIMNutritionOrderCAD.New_ (iMNutritionOrderEN);
         return oid;
 }
 
-public void Modify (int p_IMNutritionOrder_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_IMNutritionOrder_OID, string p_name, string p_description)
 {
         IMNutritionOrderEN iMNutritionOrderEN = null;
 
@@ -88,11 +72,7 @@ public void Modify (int p_IMNutritionOrder_OID, string p_name, MoSIoTGenNHiberna
         iMNutritionOrderEN = new IMNutritionOrderEN ();
         iMNutritionOrderEN.Id = p_IMNutritionOrder_OID;
         iMNutritionOrderEN.Name = p_name;
-        iMNutritionOrderEN.Type = p_type;
-        iMNutritionOrderEN.IsOID = p_isOID;
-        iMNutritionOrderEN.IsWritable = p_isWritable;
         iMNutritionOrderEN.Description = p_description;
-        iMNutritionOrderEN.Value = p_value;
         //Call to IMNutritionOrderCAD
 
         _IIMNutritionOrderCAD.Modify (iMNutritionOrderEN);
@@ -119,6 +99,12 @@ public System.Collections.Generic.IList<IMNutritionOrderEN> ReadAll (int first, 
 
         list = _IIMNutritionOrderCAD.ReadAll (first, size);
         return list;
+}
+public void AssignNutrition (int p_IMNutritionOrder_OID, int p_nutritionOrder_OID)
+{
+        //Call to IMNutritionOrderCAD
+
+        _IIMNutritionOrderCAD.AssignNutrition (p_IMNutritionOrder_OID, p_nutritionOrder_OID);
 }
 }
 }

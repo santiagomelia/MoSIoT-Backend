@@ -15,7 +15,7 @@
 		 */
 		
 		
-		public class IMCommunicationDTO extends    		EntityDTO
+		public class IMCommunicationDTO extends    		EntityAttributesDTO
 	    implements IDTO
 	    {
 				private Integer comunication_oid;

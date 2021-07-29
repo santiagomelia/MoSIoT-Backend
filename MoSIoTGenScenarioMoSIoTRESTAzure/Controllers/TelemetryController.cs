@@ -34,20 +34,19 @@ public class TelemetryController : BasicController
 
 
 
-
 [HttpGet]
 
 
 
 
 
-[Route ("~/api/Telemetry/MeasureTelemetries")]
+[Route ("~/api/Telemetry/DeviceTelemetries")]
 
-public HttpResponseMessage MeasureTelemetries (int idMeasure)
+public HttpResponseMessage DeviceTelemetries (int idDeviceTemplate)
 {
         // CAD, EN
-        MeasureRESTCAD measureRESTCAD = null;
-        MeasureEN measureEN = null;
+        DeviceTemplateRESTCAD deviceTemplateRESTCAD = null;
+        DeviceTemplateEN deviceTemplateEN = null;
 
         // returnValue
         List<TelemetryEN> en = null;
@@ -58,17 +57,17 @@ public HttpResponseMessage MeasureTelemetries (int idMeasure)
                 SessionInitializeWithoutTransaction ();
 
 
-                measureRESTCAD = new MeasureRESTCAD (session);
+                deviceTemplateRESTCAD = new DeviceTemplateRESTCAD (session);
 
-                // Exists Measure
-                measureEN = measureRESTCAD.ReadOIDDefault (idMeasure);
-                if (measureEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "Measure#" + idMeasure + " not found"));
+                // Exists DeviceTemplate
+                deviceTemplateEN = deviceTemplateRESTCAD.ReadOIDDefault (idDeviceTemplate);
+                if (deviceTemplateEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "DeviceTemplate#" + idDeviceTemplate + " not found"));
 
                 // Rol
                 // TODO: paginación
 
 
-                en = measureRESTCAD.MeasureTelemetries (idMeasure).ToList ();
+                en = deviceTemplateRESTCAD.DeviceTelemetries (idDeviceTemplate).ToList ();
 
 
 

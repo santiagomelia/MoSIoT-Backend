@@ -178,19 +178,7 @@ public void Modify (EntityAttributesEN entityAttributes)
                 entityAttributesEN.Name = entityAttributes.Name;
 
 
-                entityAttributesEN.Type = entityAttributes.Type;
-
-
-                entityAttributesEN.IsOID = entityAttributes.IsOID;
-
-
-                entityAttributesEN.IsWritable = entityAttributes.IsWritable;
-
-
                 entityAttributesEN.Description = entityAttributes.Description;
-
-
-                entityAttributesEN.Value = entityAttributes.Value;
 
                 session.Update (entityAttributesEN);
                 SessionCommit ();

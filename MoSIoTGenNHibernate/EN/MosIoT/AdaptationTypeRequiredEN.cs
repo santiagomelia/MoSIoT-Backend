@@ -33,13 +33,6 @@ private MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN accessMode;
 
 
 
-/**
- *	Atributo iMAdaptationType
- */
-private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN> iMAdaptationType;
-
-
-
 
 
 
@@ -67,35 +60,28 @@ public virtual MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN AccessMode {
 
 
 
-public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN> IMAdaptationType {
-        get { return iMAdaptationType; } set { iMAdaptationType = value;  }
-}
-
-
-
 
 
 public AdaptationTypeRequiredEN()
 {
-        iMAdaptationType = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN>();
 }
 
 
 
-public AdaptationTypeRequiredEN(int id, MoSIoTGenNHibernate.Enumerated.MosIoT.AdaptationTypeValueEnum adaptionRequest, string description, MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN accessMode, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN> iMAdaptationType
+public AdaptationTypeRequiredEN(int id, MoSIoTGenNHibernate.Enumerated.MosIoT.AdaptationTypeValueEnum adaptionRequest, string description, MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN accessMode
                                 )
 {
-        this.init (Id, adaptionRequest, description, accessMode, iMAdaptationType);
+        this.init (Id, adaptionRequest, description, accessMode);
 }
 
 
 public AdaptationTypeRequiredEN(AdaptationTypeRequiredEN adaptationTypeRequired)
 {
-        this.init (Id, adaptationTypeRequired.AdaptionRequest, adaptationTypeRequired.Description, adaptationTypeRequired.AccessMode, adaptationTypeRequired.IMAdaptationType);
+        this.init (Id, adaptationTypeRequired.AdaptionRequest, adaptationTypeRequired.Description, adaptationTypeRequired.AccessMode);
 }
 
 private void init (int id
-                   , MoSIoTGenNHibernate.Enumerated.MosIoT.AdaptationTypeValueEnum adaptionRequest, string description, MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN accessMode, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN> iMAdaptationType)
+                   , MoSIoTGenNHibernate.Enumerated.MosIoT.AdaptationTypeValueEnum adaptionRequest, string description, MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN accessMode)
 {
         this.Id = id;
 
@@ -105,8 +91,6 @@ private void init (int id
         this.Description = description;
 
         this.AccessMode = accessMode;
-
-        this.IMAdaptationType = iMAdaptationType;
 }
 
 public override bool Equals (object obj)

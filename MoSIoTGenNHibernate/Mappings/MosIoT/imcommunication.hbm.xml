@@ -6,10 +6,10 @@
 		    
 			
 				
-<joined-subclass name="IMCommunicationEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityEN" table="IMCommunication"> 
+<joined-subclass name="IMCommunicationEN" extends="MoSIoTGenNHibernate.EN.MosIoT.EntityAttributesEN" table="IMCommunication"> 
 	<key>
     	
-				<column name="id"/>
+				<column name="idEntityAttributes"/>
 		
     	
    	</key>

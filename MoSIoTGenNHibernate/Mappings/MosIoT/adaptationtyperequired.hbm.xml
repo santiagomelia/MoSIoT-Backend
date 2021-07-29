@@ -28,18 +28,6 @@
 								<column name="FK_idAccessMode_idAccessMode"/> 
 						</many-to-one>
 											 					
-			
-		  			
-						<bag name="IMAdaptationType" >
-							<key>
-							
-								
-								<column name="FK_idAdaptationTypeRequired_idAdaptationTypeRequired"/>
-					      	</key>
-							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.IMAdaptationTypeEN"/>
-					    </bag>
-					
-					
 					
 					
 					

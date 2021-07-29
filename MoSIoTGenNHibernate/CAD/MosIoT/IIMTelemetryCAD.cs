@@ -29,5 +29,8 @@ IMTelemetryEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMTelemetryEN> ReadAll (int first, int size);
+
+
+void AssignTelemetry (int p_IMTelemetry_OID, int p_telemetry_OID);
 }
 }

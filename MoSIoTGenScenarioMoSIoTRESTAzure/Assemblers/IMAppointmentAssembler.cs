@@ -14,7 +14,7 @@ namespace MoSIoTGenScenarioMoSIoTRESTAzure.Assemblers
 {
 public static class IMAppointmentAssembler
 {
-public static IMAppointmentDTOA Convert (EntityEN en, NHibernate.ISession session = null)
+public static IMAppointmentDTOA Convert (EntityAttributesEN en, NHibernate.ISession session = null)
 {
         IMAppointmentDTOA dto = null;
         IMAppointmentRESTCAD iMAppointmentRESTCAD = null;

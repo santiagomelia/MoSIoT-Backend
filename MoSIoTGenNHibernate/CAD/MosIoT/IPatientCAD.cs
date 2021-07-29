@@ -29,5 +29,8 @@ PatientEN ReadOID (int id
 
 
 System.Collections.Generic.IList<PatientEN> ReadAll (int first, int size);
+
+
+void AssignPatientProfile (int p_Patient_OID, int p_patientProfile_OID);
 }
 }

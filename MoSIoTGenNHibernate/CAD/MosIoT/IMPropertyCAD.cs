@@ -122,10 +122,6 @@ public int New_ (IMPropertyEN iMProperty)
                         iMProperty.Entity.Attributes
                         .Add (iMProperty);
                 }
-                if (iMProperty.Property != null) {
-                        // Argumento OID y no colección.
-                        iMProperty.Property = (MoSIoTGenNHibernate.EN.MosIoT.PropertyEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.PropertyEN), iMProperty.Property.Id);
-                }
 
                 session.Save (iMProperty);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMPropertyEN iMProperty)
                 iMPropertyEN.Name = iMProperty.Name;
 
 
-                iMPropertyEN.Type = iMProperty.Type;
-
-
-                iMPropertyEN.IsOID = iMProperty.IsOID;
-
-
-                iMPropertyEN.IsWritable = iMProperty.IsWritable;
-
-
                 iMPropertyEN.Description = iMProperty.Description;
-
-
-                iMPropertyEN.Value = iMProperty.Value;
 
                 session.Update (iMPropertyEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMPropertyEN> ReadAll (int first, int si
         }
 
         return result;
+}
+
+public void AssignProperty (int p_IMProperty_OID, int p_property_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMPropertyEN iMPropertyEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMPropertyEN = (IMPropertyEN)session.Load (typeof(IMPropertyEN), p_IMProperty_OID);
+                iMPropertyEN.Property = (MoSIoTGenNHibernate.EN.MosIoT.PropertyEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.PropertyEN), p_property_OID);
+
+
+
+                session.Update (iMPropertyEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMPropertyCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

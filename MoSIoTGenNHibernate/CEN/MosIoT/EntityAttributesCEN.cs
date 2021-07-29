@@ -39,7 +39,7 @@ public IEntityAttributesCAD get_IEntityAttributesCAD ()
         return this._IEntityAttributesCAD;
 }
 
-public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, int p_entity, string p_value)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         EntityAttributesEN entityAttributesEN = null;
         int oid;
@@ -47,12 +47,6 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
         //Initialized EntityAttributesEN
         entityAttributesEN = new EntityAttributesEN ();
         entityAttributesEN.Name = p_name;
-
-        entityAttributesEN.Type = p_type;
-
-        entityAttributesEN.IsOID = p_isOID;
-
-        entityAttributesEN.IsWritable = p_isWritable;
 
         entityAttributesEN.Description = p_description;
 
@@ -64,15 +58,13 @@ public int New_ (string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEn
                 entityAttributesEN.Entity.Id = p_entity;
         }
 
-        entityAttributesEN.Value = p_value;
-
         //Call to EntityAttributesCAD
 
         oid = _IEntityAttributesCAD.New_ (entityAttributesEN);
         return oid;
 }
 
-public void Modify (int p_EntityAttributes_OID, string p_name, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum p_type, bool p_isOID, bool p_isWritable, string p_description, string p_value)
+public void Modify (int p_EntityAttributes_OID, string p_name, string p_description)
 {
         EntityAttributesEN entityAttributesEN = null;
 
@@ -80,11 +72,7 @@ public void Modify (int p_EntityAttributes_OID, string p_name, MoSIoTGenNHiberna
         entityAttributesEN = new EntityAttributesEN ();
         entityAttributesEN.Id = p_EntityAttributes_OID;
         entityAttributesEN.Name = p_name;
-        entityAttributesEN.Type = p_type;
-        entityAttributesEN.IsOID = p_isOID;
-        entityAttributesEN.IsWritable = p_isWritable;
         entityAttributesEN.Description = p_description;
-        entityAttributesEN.Value = p_value;
         //Call to EntityAttributesCAD
 
         _IEntityAttributesCAD.Modify (entityAttributesEN);

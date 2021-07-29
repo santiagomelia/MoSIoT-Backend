@@ -87,6 +87,72 @@ public HttpResponseMessage ReadAll ()
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/IMAdaptationRequest/PaAdaptionRequest")]
+
+public HttpResponseMessage PaAdaptionRequest (int idPatientAccess)
+{
+        // CAD, EN
+        PatientAccessRESTCAD patientAccessRESTCAD = null;
+        PatientAccessEN patientAccessEN = null;
+
+        // returnValue
+        List<IMAdaptationRequestEN> en = null;
+        List<IMAdaptationRequestDTOA> returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                patientAccessRESTCAD = new PatientAccessRESTCAD (session);
+
+                // Exists PatientAccess
+                patientAccessEN = patientAccessRESTCAD.ReadOIDDefault (idPatientAccess);
+                if (patientAccessEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "PatientAccess#" + idPatientAccess + " not found"));
+
+                // Rol
+                // TODO: paginación
+
+
+                en = patientAccessRESTCAD.PaAdaptionRequest (idPatientAccess).ToList ();
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = new List<IMAdaptationRequestDTOA>();
+                        foreach (IMAdaptationRequestEN entry in en)
+                                returnValue.Add (IMAdaptationRequestAssembler.Convert (entry, session));
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null || returnValue.Count == 0)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
 
 
 
@@ -174,20 +240,11 @@ public HttpResponseMessage New_ ( [FromBody] IMAdaptationRequestDTO dto)
                 // Create
                 returnOID = iMAdaptationRequestCEN.New_ (
                         dto.Name                                                                                 //Atributo Primitivo: p_name
-                        , dto.Type                                                                                                                                                       //Atributo Primitivo: p_type
-                        , dto.IsOID                                                                                                                                                      //Atributo Primitivo: p_isOID
-                        , dto.IsWritable                                                                                                                                                 //Atributo Primitivo: p_isWritable
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
                         ,
                         //Atributo OID: p_entity
                         // attr.estaRelacionado: true
                         dto.Entity_oid                 // association role
-
-                        , dto.Value                                                                                                                                                      //Atributo Primitivo: p_value
-                        ,
-                        //Atributo OID: p_adaptationRequest
-                        // attr.estaRelacionado: true
-                        dto.AdaptationRequest_oid                 // association role
 
                         );
                 SessionCommit ();
@@ -260,15 +317,7 @@ public HttpResponseMessage Modify (int idIMAdaptationRequest, [FromBody] IMAdapt
                 iMAdaptationRequestCEN.Modify (idIMAdaptationRequest,
                         dto.Name
                         ,
-                        dto.Type
-                        ,
-                        dto.IsOID
-                        ,
-                        dto.IsWritable
-                        ,
                         dto.Description
-                        ,
-                        dto.Value
                         );
 
                 // Return modified object
@@ -348,6 +397,50 @@ public HttpResponseMessage Destroy (int p_imadaptationrequest_oid)
 }
 
 
+
+
+
+[HttpPut]
+
+
+[Route ("~/api/IMAdaptationRequest/AssignAdaptationR")]
+
+public HttpResponseMessage AssignAdaptationR (int p_imadaptationrequest_oid, int p_adaptationrequest_oid)
+{
+        // CAD, CEN, returnValue
+        IMAdaptationRequestRESTCAD iMAdaptationRequestRESTCAD = null;
+        IMAdaptationRequestCEN iMAdaptationRequestCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                iMAdaptationRequestRESTCAD = new IMAdaptationRequestRESTCAD (session);
+                iMAdaptationRequestCEN = new IMAdaptationRequestCEN (iMAdaptationRequestRESTCAD);
+
+                // Relationer
+                iMAdaptationRequestCEN.AssignAdaptationR (p_imadaptationrequest_oid, p_adaptationrequest_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
 

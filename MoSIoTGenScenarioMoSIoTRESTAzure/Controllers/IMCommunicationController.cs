@@ -93,13 +93,13 @@ public HttpResponseMessage ReadAll ()
 
 
 
-[Route ("~/api/IMCommunication/CommunicationsScenario")]
+[Route ("~/api/IMCommunication/CommunicationCareActivity")]
 
-public HttpResponseMessage CommunicationsScenario (int idIoTScenario)
+public HttpResponseMessage CommunicationCareActivity (int idIMCareActivity)
 {
         // CAD, EN
-        IoTScenarioRESTCAD ioTScenarioRESTCAD = null;
-        IoTScenarioEN ioTScenarioEN = null;
+        IMCareActivityRESTCAD iMCareActivityRESTCAD = null;
+        IMCareActivityEN iMCareActivityEN = null;
 
         // returnValue
         List<IMCommunicationEN> en = null;
@@ -110,17 +110,17 @@ public HttpResponseMessage CommunicationsScenario (int idIoTScenario)
                 SessionInitializeWithoutTransaction ();
 
 
-                ioTScenarioRESTCAD = new IoTScenarioRESTCAD (session);
+                iMCareActivityRESTCAD = new IMCareActivityRESTCAD (session);
 
-                // Exists IoTScenario
-                ioTScenarioEN = ioTScenarioRESTCAD.ReadOIDDefault (idIoTScenario);
-                if (ioTScenarioEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "IoTScenario#" + idIoTScenario + " not found"));
+                // Exists IMCareActivity
+                iMCareActivityEN = iMCareActivityRESTCAD.ReadOIDDefault (idIMCareActivity);
+                if (iMCareActivityEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "IMCareActivity#" + idIMCareActivity + " not found"));
 
                 // Rol
                 // TODO: paginación
 
 
-                en = ioTScenarioRESTCAD.CommunicationsScenario (idIoTScenario).ToList ();
+                en = iMCareActivityRESTCAD.CommunicationCareActivity (idIMCareActivity).ToList ();
 
 
 
@@ -240,16 +240,11 @@ public HttpResponseMessage New_ ( [FromBody] IMCommunicationDTO dto)
                 // Create
                 returnOID = iMCommunicationCEN.New_ (
                         dto.Name                                                                                 //Atributo Primitivo: p_name
-                        ,
-                        //Atributo OID: p_scenario
-                        // attr.estaRelacionado: true
-                        dto.Scenario_oid                 // association role
-
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
                         ,
-                        //Atributo OID: p_comunication
+                        //Atributo OID: p_entity
                         // attr.estaRelacionado: true
-                        dto.Comunication_oid                 // association role
+                        dto.Entity_oid                 // association role
 
                         );
                 SessionCommit ();
@@ -402,6 +397,50 @@ public HttpResponseMessage Destroy (int p_imcommunication_oid)
 }
 
 
+
+
+
+[HttpPut]
+
+
+[Route ("~/api/IMCommunication/AssignCommunication")]
+
+public HttpResponseMessage AssignCommunication (int p_imcommunication_oid, int p_comunication_oid)
+{
+        // CAD, CEN, returnValue
+        IMCommunicationRESTCAD iMCommunicationRESTCAD = null;
+        IMCommunicationCEN iMCommunicationCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                iMCommunicationRESTCAD = new IMCommunicationRESTCAD (session);
+                iMCommunicationCEN = new IMCommunicationCEN (iMCommunicationRESTCAD);
+
+                // Relationer
+                iMCommunicationCEN.AssignCommunication (p_imcommunication_oid, p_comunication_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
 

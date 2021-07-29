@@ -246,11 +246,6 @@ public HttpResponseMessage New_ ( [FromBody] CarePlanDTO dto)
                         dto.Scenario_oid                 // association role
 
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
-                        ,
-                        //Atributo OID: p_template
-                        // attr.estaRelacionado: true
-                        dto.Template_oid                 // association role
-
                         );
                 SessionCommit ();
 
@@ -402,6 +397,50 @@ public HttpResponseMessage Destroy (int p_careplan_oid)
 }
 
 
+
+
+
+[HttpPut]
+
+
+[Route ("~/api/CarePlan/AssignCarePlan")]
+
+public HttpResponseMessage AssignCarePlan (int p_careplan_oid, int p_template_oid)
+{
+        // CAD, CEN, returnValue
+        CarePlanRESTCAD carePlanRESTCAD = null;
+        CarePlanCEN carePlanCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                carePlanRESTCAD = new CarePlanRESTCAD (session);
+                carePlanCEN = new CarePlanCEN (carePlanRESTCAD);
+
+                // Relationer
+                carePlanCEN.AssignCarePlan (p_careplan_oid, p_template_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
 
 
 

@@ -81,15 +81,12 @@
 			
 			
 		  			
-						<bag name="Appointment" cascade="delete">
-							<key>
-							
-								
-								<column name="FK_idCareActivity_idCareActivity"/>
-					      	</key>
-							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN"/>
-					    </bag>
 					
+							<many-to-one name="Appointment" class="MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN" cascade="delete">
+								<column name="FK_idAppointment_idAppointment"/> 
+        					</many-to-one>
+					 
+						
 					
 					
 					

@@ -29,5 +29,8 @@ CarePlanEN ReadOID (int id
 
 
 System.Collections.Generic.IList<CarePlanEN> ReadAll (int first, int size);
+
+
+void AssignCarePlan (int p_CarePlan_OID, int p_template_OID);
 }
 }

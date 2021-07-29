@@ -115,16 +115,12 @@ public int New_ (IMCommunicationEN iMCommunication)
         try
         {
                 SessionInitializeTransaction ();
-                if (iMCommunication.Scenario != null) {
+                if (iMCommunication.Entity != null) {
                         // Argumento OID y no colección.
-                        iMCommunication.Scenario = (MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN), iMCommunication.Scenario.Id);
+                        iMCommunication.Entity = (MoSIoTGenNHibernate.EN.MosIoT.EntityEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.EntityEN), iMCommunication.Entity.Id);
 
-                        iMCommunication.Scenario.Entity
+                        iMCommunication.Entity.Attributes
                         .Add (iMCommunication);
-                }
-                if (iMCommunication.Comunication != null) {
-                        // Argumento OID y no colección.
-                        iMCommunication.Comunication = (MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN), iMCommunication.Comunication.Id);
                 }
 
                 session.Save (iMCommunication);
@@ -259,6 +255,35 @@ public System.Collections.Generic.IList<IMCommunicationEN> ReadAll (int first, i
         }
 
         return result;
+}
+
+public void AssignCommunication (int p_IMCommunication_OID, int p_comunication_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMCommunicationEN iMCommunicationEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMCommunicationEN = (IMCommunicationEN)session.Load (typeof(IMCommunicationEN), p_IMCommunication_OID);
+                iMCommunicationEN.Comunication = (MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN), p_comunication_OID);
+
+
+
+                session.Update (iMCommunicationEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMCommunicationCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

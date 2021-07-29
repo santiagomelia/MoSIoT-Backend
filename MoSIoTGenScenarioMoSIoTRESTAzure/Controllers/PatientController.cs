@@ -247,11 +247,6 @@ public HttpResponseMessage New_ ( [FromBody] PatientDTO dto)
 
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
                         ,
-                        //Atributo OID: p_patientProfile
-                        // attr.estaRelacionado: true
-                        dto.PatientProfile_oid                 // association role
-
-                        ,
                         //Atributo OID: p_userPatient
                         // attr.estaRelacionado: true
                         dto.UserPatient_oid                 // association role

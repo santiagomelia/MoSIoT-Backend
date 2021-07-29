@@ -39,7 +39,7 @@ public IDeviceCAD get_IDeviceCAD ()
         return this._IDeviceCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, bool p_deviceSwitch, string p_tag, bool p_isSimulated, string p_serialNumber, string p_firmVersion, string p_trademark, int p_deviceTemplate)
+public int New_ (string p_name, int p_scenario, string p_description, bool p_deviceSwitch, string p_tag, bool p_isSimulated, string p_serialNumber, string p_firmVersion, string p_trademark)
 {
         DeviceEN deviceEN = null;
         int oid;
@@ -69,14 +69,6 @@ public int New_ (string p_name, int p_scenario, string p_description, bool p_dev
         deviceEN.FirmVersion = p_firmVersion;
 
         deviceEN.Trademark = p_trademark;
-
-
-        if (p_deviceTemplate != -1) {
-                // El argumento p_deviceTemplate -> Property deviceTemplate es oid = false
-                // Lista de oids id
-                deviceEN.DeviceTemplate = new MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN ();
-                deviceEN.DeviceTemplate.Id = p_deviceTemplate;
-        }
 
         //Call to DeviceCAD
 
@@ -125,6 +117,12 @@ public System.Collections.Generic.IList<DeviceEN> ReadAll (int first, int size)
 
         list = _IDeviceCAD.ReadAll (first, size);
         return list;
+}
+public void AssignDeviceTemplate (int p_Device_OID, int p_deviceTemplate_OID)
+{
+        //Call to DeviceCAD
+
+        _IDeviceCAD.AssignDeviceTemplate (p_Device_OID, p_deviceTemplate_OID);
 }
 }
 }

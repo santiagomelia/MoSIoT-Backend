@@ -39,7 +39,7 @@ public IPatientAccessCAD get_IPatientAccessCAD ()
         return this._IPatientAccessCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, int p_accessMode)
+public int New_ (string p_name, int p_scenario, string p_description)
 {
         PatientAccessEN patientAccessEN = null;
         int oid;
@@ -57,14 +57,6 @@ public int New_ (string p_name, int p_scenario, string p_description, int p_acce
         }
 
         patientAccessEN.Description = p_description;
-
-
-        if (p_accessMode != -1) {
-                // El argumento p_accessMode -> Property accessMode es oid = false
-                // Lista de oids id
-                patientAccessEN.AccessMode = new MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN ();
-                patientAccessEN.AccessMode.Id = p_accessMode;
-        }
 
         //Call to PatientAccessCAD
 
@@ -107,6 +99,12 @@ public System.Collections.Generic.IList<PatientAccessEN> ReadAll (int first, int
 
         list = _IPatientAccessCAD.ReadAll (first, size);
         return list;
+}
+public void AssignAccessMode (int p_PatientAccess_OID, int p_accessMode_OID)
+{
+        //Call to PatientAccessCAD
+
+        _IPatientAccessCAD.AssignAccessMode (p_PatientAccess_OID, p_accessMode_OID);
 }
 }
 }

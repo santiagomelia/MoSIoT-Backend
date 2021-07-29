@@ -29,5 +29,8 @@ IMAppointmentEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMAppointmentEN> ReadAll (int first, int size);
+
+
+void AssignAppoint (int p_IMAppointment_OID, int p_appointment_OID);
 }
 }

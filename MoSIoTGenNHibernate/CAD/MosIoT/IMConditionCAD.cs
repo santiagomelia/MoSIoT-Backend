@@ -122,10 +122,6 @@ public int New_ (IMConditionEN iMCondition)
                         iMCondition.Entity.Attributes
                         .Add (iMCondition);
                 }
-                if (iMCondition.Condition != null) {
-                        // Argumento OID y no colección.
-                        iMCondition.Condition = (MoSIoTGenNHibernate.EN.MosIoT.ConditionEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.ConditionEN), iMCondition.Condition.Id);
-                }
 
                 session.Save (iMCondition);
                 SessionCommit ();
@@ -157,19 +153,7 @@ public void Modify (IMConditionEN iMCondition)
                 iMConditionEN.Name = iMCondition.Name;
 
 
-                iMConditionEN.Type = iMCondition.Type;
-
-
-                iMConditionEN.IsOID = iMCondition.IsOID;
-
-
-                iMConditionEN.IsWritable = iMCondition.IsWritable;
-
-
                 iMConditionEN.Description = iMCondition.Description;
-
-
-                iMConditionEN.Value = iMCondition.Value;
 
                 session.Update (iMConditionEN);
                 SessionCommit ();
@@ -271,6 +255,35 @@ public System.Collections.Generic.IList<IMConditionEN> ReadAll (int first, int s
         }
 
         return result;
+}
+
+public void AssignCondition (int p_IMCondition_OID, int p_condition_OID)
+{
+        MoSIoTGenNHibernate.EN.MosIoT.IMConditionEN iMConditionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                iMConditionEN = (IMConditionEN)session.Load (typeof(IMConditionEN), p_IMCondition_OID);
+                iMConditionEN.Condition = (MoSIoTGenNHibernate.EN.MosIoT.ConditionEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.ConditionEN), p_condition_OID);
+
+
+
+                session.Update (iMConditionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMConditionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
 }
 }
 }

@@ -39,7 +39,7 @@ public IIMCommunicationCAD get_IIMCommunicationCAD ()
         return this._IIMCommunicationCAD;
 }
 
-public int New_ (string p_name, int p_scenario, string p_description, int p_comunication)
+public int New_ (string p_name, string p_description, int p_entity)
 {
         IMCommunicationEN iMCommunicationEN = null;
         int oid;
@@ -48,22 +48,14 @@ public int New_ (string p_name, int p_scenario, string p_description, int p_comu
         iMCommunicationEN = new IMCommunicationEN ();
         iMCommunicationEN.Name = p_name;
 
-
-        if (p_scenario != -1) {
-                // El argumento p_scenario -> Property scenario es oid = false
-                // Lista de oids id
-                iMCommunicationEN.Scenario = new MoSIoTGenNHibernate.EN.MosIoT.IoTScenarioEN ();
-                iMCommunicationEN.Scenario.Id = p_scenario;
-        }
-
         iMCommunicationEN.Description = p_description;
 
 
-        if (p_comunication != -1) {
-                // El argumento p_comunication -> Property comunication es oid = false
+        if (p_entity != -1) {
+                // El argumento p_entity -> Property entity es oid = false
                 // Lista de oids id
-                iMCommunicationEN.Comunication = new MoSIoTGenNHibernate.EN.MosIoT.ComunicationEN ();
-                iMCommunicationEN.Comunication.Id = p_comunication;
+                iMCommunicationEN.Entity = new MoSIoTGenNHibernate.EN.MosIoT.EntityEN ();
+                iMCommunicationEN.Entity.Id = p_entity;
         }
 
         //Call to IMCommunicationCAD
@@ -107,6 +99,12 @@ public System.Collections.Generic.IList<IMCommunicationEN> ReadAll (int first, i
 
         list = _IIMCommunicationCAD.ReadAll (first, size);
         return list;
+}
+public void AssignCommunication (int p_IMCommunication_OID, int p_comunication_OID)
+{
+        //Call to IMCommunicationCAD
+
+        _IIMCommunicationCAD.AssignCommunication (p_IMCommunication_OID, p_comunication_OID);
 }
 }
 }

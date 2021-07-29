@@ -29,5 +29,8 @@ IMMedicationEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMMedicationEN> ReadAll (int first, int size);
+
+
+void AssignMedication (int p_IMMedication_OID, int p_medication_OID);
 }
 }

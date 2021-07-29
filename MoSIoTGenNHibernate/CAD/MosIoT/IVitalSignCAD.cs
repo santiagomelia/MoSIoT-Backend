@@ -29,5 +29,8 @@ VitalSignEN ReadOID (int id
 
 
 System.Collections.Generic.IList<VitalSignEN> ReadAll (int first, int size);
+
+
+void AssignMeasure (int p_VitalSign_OID, int p_measure_OID);
 }
 }

@@ -246,11 +246,6 @@ public HttpResponseMessage New_ ( [FromBody] PatientAccessDTO dto)
                         dto.Scenario_oid                 // association role
 
                         , dto.Description                                                                                                                                                //Atributo Primitivo: p_description
-                        ,
-                        //Atributo OID: p_accessMode
-                        // attr.estaRelacionado: true
-                        dto.AccessMode_oid                 // association role
-
                         );
                 SessionCommit ();
 

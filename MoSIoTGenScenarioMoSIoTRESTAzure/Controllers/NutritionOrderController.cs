@@ -35,6 +35,70 @@ public class NutritionOrderController : BasicController
 
 
 
+[HttpGet]
+
+
+
+
+
+[Route ("~/api/NutritionOrder/ValueNutrition")]
+
+public HttpResponseMessage ValueNutrition (int idIMNutritionOrder)
+{
+        // CAD, EN
+        IMNutritionOrderRESTCAD iMNutritionOrderRESTCAD = null;
+        IMNutritionOrderEN iMNutritionOrderEN = null;
+
+        // returnValue
+        NutritionOrderEN en = null;
+        NutritionOrderDTOA returnValue = null;
+
+        try
+        {
+                SessionInitializeWithoutTransaction ();
+
+
+                iMNutritionOrderRESTCAD = new IMNutritionOrderRESTCAD (session);
+
+                // Exists IMNutritionOrder
+                iMNutritionOrderEN = iMNutritionOrderRESTCAD.ReadOIDDefault (idIMNutritionOrder);
+                if (iMNutritionOrderEN == null) throw new HttpResponseException (this.Request.CreateResponse (HttpStatusCode.NotFound, "IMNutritionOrder#" + idIMNutritionOrder + " not found"));
+
+                // Rol
+                // TODO: paginación
+
+
+                en = iMNutritionOrderRESTCAD.ValueNutrition (idIMNutritionOrder);
+
+
+
+                // Convert return
+                if (en != null) {
+                        returnValue = NutritionOrderAssembler.Convert (en, session);
+                }
+        }
+
+        catch (Exception e)
+        {
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 204 - Empty
+        if (returnValue == null)
+                return this.Request.CreateResponse (HttpStatusCode.NoContent);
+        // Return 200 - OK
+        else return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
+
+
+
 
 
 

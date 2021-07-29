@@ -252,11 +252,6 @@ public HttpResponseMessage New_ ( [FromBody] DeviceDTO dto)
                         , dto.SerialNumber                                                                                                                                                       //Atributo Primitivo: p_serialNumber
                         , dto.FirmVersion                                                                                                                                                //Atributo Primitivo: p_firmVersion
                         , dto.Trademark                                                                                                                                                  //Atributo Primitivo: p_trademark
-                        ,
-                        //Atributo OID: p_deviceTemplate
-                        // attr.estaRelacionado: true
-                        dto.DeviceTemplate_oid                 // association role
-
                         );
                 SessionCommit ();
 

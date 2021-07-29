@@ -24,12 +24,5 @@ private int accessMode_oid;
 public int AccessMode_oid {
         get { return accessMode_oid; } set { accessMode_oid = value;  }
 }
-
-
-
-private System.Collections.Generic.IList<int> iMAdaptationType_oid;
-public System.Collections.Generic.IList<int> IMAdaptationType_oid {
-        get { return iMAdaptationType_oid; } set { iMAdaptationType_oid = value;  }
-}
 }
 }

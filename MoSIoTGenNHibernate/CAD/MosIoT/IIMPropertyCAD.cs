@@ -29,5 +29,8 @@ IMPropertyEN ReadOID (int id
 
 
 System.Collections.Generic.IList<IMPropertyEN> ReadAll (int first, int size);
+
+
+void AssignProperty (int p_IMProperty_OID, int p_property_OID);
 }
 }
