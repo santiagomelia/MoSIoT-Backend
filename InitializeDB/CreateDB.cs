@@ -196,6 +196,13 @@ public static void InitializeData ()
                 int idDevice = deviceCEN.New_ ("Iphone 12", idScenarioIoT, "Iphone 12 120 Gb", false, "1212", true, "1818181818181", "firm1", "Apple");
                 deviceCEN.AssignDeviceTemplate (idDevice, deviceT2);
 
+                IMPropertyCEN iMPropertyCEN = new IMPropertyCEN();
+                iMPropertyCEN.New_("Property1", "Description Property 1", idDevice);
+
+                IMCommandCEN iMCommandCEN = new IMCommandCEN();
+                iMCommandCEN.New_("Command 1", DataTypeEnum.Integer, ServiceTypeEnum.actuation, "Description Command 1",  idDevice);
+
+
                 CarePlanCEN carePlanCEN = new CarePlanCEN ();
                 int idCarePlan = carePlanCEN.New_ ("Care Plan Alzheimer", idScenarioIoT, "El carePlan adecuado para el alzheimer");
                 carePlanCEN.AssignCarePlan (idCarePlan, idCarePlanT);
@@ -215,12 +222,14 @@ public static void InitializeData ()
 
                 IMCareActivityCEN imcareAct = new IMCareActivityCEN ();
                 int idCareActivity = imcareAct.New_ ("revision1", idScenarioIoT, "");
+                imcareAct.AssignCareActivity(idCareActivity, idActivityApp);
 
                 IMAppointmentCEN imAppoin = new IMAppointmentCEN ();
                 int  idIMAppoint =  imAppoin.New_ ("citaRevision", "cita para la revision", idCareActivity, new DateTime (2021, 8, 1));
                 imAppoin.AssignAppoint(idIMAppoint, idAppoint);
 
                 int idCareActivity2 = imcareAct.New_ ("comunicacion1", idScenarioIoT, "");
+                imcareAct.AssignCareActivity(idCareActivity2, idActivityCom);
               
                 IMCommunicationCEN imCom = new IMCommunicationCEN ();
                 int idImCom = imCom.New_ ("MensajeRev", "Mensaje de aviso para la revision", idCareActivity2);
@@ -228,14 +237,27 @@ public static void InitializeData ()
 
 
                 int idCareActivity3 = imcareAct.New_ ("medicacion1", idScenarioIoT, "");
-
+                imcareAct.AssignCareActivity(idCareActivity3, idActivityMed);
                 IMMedicationCEN imMed = new IMMedicationCEN ();
                 int idImMed = imMed.New_ ("MedicacionMemoria", "Medicamento para la memoria", idCareActivity3);
-
                 imMed.AssignMedication(idImMed, idMedication);
 
+                int idCareActivity4 = imcareAct.New_("nutrition1", idScenarioIoT, "");
+                imcareAct.AssignCareActivity(idCareActivity4, idActivityNut);
+                IMNutritionOrderCEN imNut = new IMNutritionOrderCEN();
+                int idImNut = imNut.New_("NutricionMemoria", "Alimento para la memoria", idCareActivity4);
+
+                IMGoalCEN iMGoalCEN = new IMGoalCEN();
+                iMGoalCEN.New_("MejoraCognitiva", "Mejorar los indicadores cognitivos", idCarePlan);
+
+                IMTargetCEN imTargetCEN = new IMTargetCEN();
+                imTargetCEN.New_("ReducirPulsaciones", "Reducir pulsaciones a 70", idCarePlan);
+
+                
+
                 /// IMAppointment , IMCareActivity, IMVitalSign, IMCommunication, IMDisability, IMMedication
-                // IMCommunicationCEN
+                // IMCommunicationCEN esto es un ejemplo de como tambien me esta pasa esto es una prueba
+                // ahora no se , si va bien o no, creo que ahora
 
 
                 // Invocamos a la fachada REST de Azure IoT Central
@@ -253,7 +275,7 @@ public static void InitializeData ()
 
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
