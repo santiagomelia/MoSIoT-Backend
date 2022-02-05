@@ -37,6 +37,11 @@ public class IMTelemetryDTOA extends DTOA
 	public TelemetryDTOA getTelemetry () { return telemetry; }
 	public void setTelemetry (TelemetryDTOA telemetry) { this.telemetry = telemetry; }
 
+	/* Rol: IMTelemetry o--> IMTelemetryValues */
+	private ArrayList<IMTelemetryValuesDTOA> teleValues;
+	public ArrayList<IMTelemetryValuesDTOA> getTeleValues () { return teleValues; }
+	public void setTeleValues (ArrayList<IMTelemetryValuesDTOA> teleValues) { this.teleValues = teleValues; }
+
 	
 	
 	// endregion
@@ -84,6 +89,15 @@ public class IMTelemetryDTOA extends DTOA
 				this.telemetry = tmp;
 			}
 
+
+			JSONObject jsonTeleValues = json.optJSONObject("TeleValues");
+			if (jsonTeleValues != null)
+			{
+				IMTelemetryValuesDTOA tmp = new IMTelemetryValuesDTOA();
+				tmp.setFromJSON(jsonTeleValues);
+				this.teleValues = tmp;
+			}
+
 			
 		}
 		catch (Exception e)
@@ -117,6 +131,12 @@ public class IMTelemetryDTOA extends DTOA
 				json.put("Telemetry", this.telemetry.toJSON());
 			}
 
+
+			if (this.teleValues != null)
+			{
+				json.put("TeleValues", this.teleValues.toJSON());
+			}
+
 			
 		}
 		catch (JSONException e)
@@ -145,6 +165,7 @@ public class IMTelemetryDTOA extends DTOA
 		
 		// Roles
 					// TODO: from DTOA [ Telemetry ] (dataType : TelemetryDTOA) to DTO [ Telemetry ]
+					// TODO: from DTOA [ TeleValues ] (dataType : ArrayList<IMTelemetryValuesDTOA>) to DTO [ IMTelemetryValues ]
 		
 		
 		return dto;

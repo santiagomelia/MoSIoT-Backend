@@ -28,6 +28,9 @@
 				var type: DeviceType?;
 				    	 
 		 
+				var accessMode_oid: [Int]?;
+				    	 
+		 
 				var isEdge: Bool?;
 				    	 
 	   	   
@@ -98,6 +101,9 @@
 				
 					dictionary["type"] = self.type?.rawValue;
 				
+
+					dictionary["accessMode_oid"] = self.accessMode_oid;
+			
 
 				
 					dictionary["isEdge"] = self.isEdge;

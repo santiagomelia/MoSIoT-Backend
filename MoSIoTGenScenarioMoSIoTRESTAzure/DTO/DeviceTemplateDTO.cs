@@ -30,6 +30,13 @@ private MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum type;
 public MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum Type {
         get { return type; } set { type = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> accessMode_oid;
+public System.Collections.Generic.IList<int> AccessMode_oid {
+        get { return accessMode_oid; } set { accessMode_oid = value;  }
+}
+
 private bool isEdge;
 public bool IsEdge {
         get { return isEdge; } set { isEdge = value;  }

@@ -78,5 +78,19 @@ public string Email
         get { return email; }
         set { email = value; }
 }
+
+private string name;
+public string Name
+{
+        get { return name; }
+        set { name = value; }
+}
+
+private string description;
+public string Description
+{
+        get { return description; }
+        set { description = value; }
+}
 }
 }

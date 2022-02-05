@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="MoSIoTGenNHibernate"
+		                   namespace="MoSIoTGenNHibernate.EN.MosIoT">
+		    
+		    
+			
+				<class name="IMTelemetryValuesEN" table="IMTelemetryValues"> 
+				  	
+						<id name="Id" column="idIMTelemetryValues" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="TimeStamp" type="timestamp"> 
+						<column name="timeStamp"  not-null="true"/>
+					</property>
+					<property name="Valu" type="string"> 
+						<column name="valu"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="IMTelemetry" class="MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryEN" >	
+								<column name="FK_id_idIMTelemetry"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="IMTelemetryValuesENReadAllHQL">from IMTelemetryValuesEN</query>
+		</hibernate-mapping>
+	

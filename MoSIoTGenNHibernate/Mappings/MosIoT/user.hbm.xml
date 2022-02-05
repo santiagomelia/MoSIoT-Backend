@@ -127,5 +127,6 @@
 		 </class>	
 		  
 		  <query name="UserENReadAllHQL">from UserEN</query>
+		  <query name="UserENdamePorEmailHQL"><![CDATA[FROM UserEN usu where usu.Email = :p_email]]></query>
 		</hibernate-mapping>
 	

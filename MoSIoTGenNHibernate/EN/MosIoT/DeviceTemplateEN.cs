@@ -48,6 +48,13 @@ private MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum type;
 
 
 /**
+ *	Atributo accessMode
+ */
+private System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> accessMode;
+
+
+
+/**
  *	Atributo isEdge
  */
 private bool isEdge;
@@ -93,6 +100,12 @@ public virtual MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum Type {
 
 
 
+public virtual System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> AccessMode {
+        get { return accessMode; } set { accessMode = value;  }
+}
+
+
+
 public virtual bool IsEdge {
         get { return isEdge; } set { isEdge = value;  }
 }
@@ -106,24 +119,25 @@ public DeviceTemplateEN()
         property = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN>();
         command = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.CommandEN>();
         telemetry = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN>();
+        accessMode = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN>();
 }
 
 
 
-public DeviceTemplateEN(int id, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> property, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CommandEN> command, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN> telemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum type, bool isEdge
+public DeviceTemplateEN(int id, string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> property, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CommandEN> command, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN> telemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum type, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> accessMode, bool isEdge
                         )
 {
-        this.init (Id, name, property, command, telemetry, type, isEdge);
+        this.init (Id, name, property, command, telemetry, type, accessMode, isEdge);
 }
 
 
 public DeviceTemplateEN(DeviceTemplateEN deviceTemplate)
 {
-        this.init (Id, deviceTemplate.Name, deviceTemplate.Property, deviceTemplate.Command, deviceTemplate.Telemetry, deviceTemplate.Type, deviceTemplate.IsEdge);
+        this.init (Id, deviceTemplate.Name, deviceTemplate.Property, deviceTemplate.Command, deviceTemplate.Telemetry, deviceTemplate.Type, deviceTemplate.AccessMode, deviceTemplate.IsEdge);
 }
 
 private void init (int id
-                   , string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> property, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CommandEN> command, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN> telemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum type, bool isEdge)
+                   , string name, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.PropertyEN> property, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.CommandEN> command, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN> telemetry, MoSIoTGenNHibernate.Enumerated.MosIoT.DeviceTypeEnum type, System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN> accessMode, bool isEdge)
 {
         this.Id = id;
 
@@ -137,6 +151,8 @@ private void init (int id
         this.Telemetry = telemetry;
 
         this.Type = type;
+
+        this.AccessMode = accessMode;
 
         this.IsEdge = isEdge;
 }

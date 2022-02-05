@@ -100,6 +100,7 @@ public void ModifyDefault (DeviceTemplateEN deviceTemplate)
                 deviceTemplateEN.Type = deviceTemplate.Type;
 
 
+
                 deviceTemplateEN.IsEdge = deviceTemplate.IsEdge;
 
                 session.Update (deviceTemplateEN);

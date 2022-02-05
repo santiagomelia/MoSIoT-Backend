@@ -38,5 +38,13 @@ public TelemetryDTOA Telemetry
         get { return telemetry; }
         set { telemetry = value; }
 }
+
+/* Rol: IMTelemetry o--> IMTelemetryValues */
+private IList<IMTelemetryValuesDTOA> teleValues;
+public IList<IMTelemetryValuesDTOA> TeleValues
+{
+        get { return teleValues; }
+        set { teleValues = value; }
+}
 }
 }

@@ -30,5 +30,8 @@ System.Collections.Generic.IList<UserEN> ReadAll (int first, int size);
 int New_ (UserEN user);
 
 void Modify (UserEN user);
+
+
+System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.UserEN> DamePorEmail (string p_email);
 }
 }

@@ -19,6 +19,9 @@ class IMTelemetryDTOA : DTOA
 	/* Rol: IMTelemetry o--> Telemetry */
 	var telemetry: TelemetryDTOA?;
 
+	/* Rol: IMTelemetry o--> IMTelemetryValues */
+	var teleValues: [IMTelemetryValuesDTOA]?;
+
 	
 	
 	
@@ -47,6 +50,11 @@ class IMTelemetryDTOA : DTOA
 			self.telemetry = TelemetryDTOA(fromJSONObject: json["Telemetry"]);
 		}
 
+		if (json["TeleValues"] != JSON.null)
+		{
+			self.teleValues = IMTelemetryValuesDTOA(fromJSONObject: json["TeleValues"]);
+		}
+
 		
 	}
 	
@@ -69,6 +77,8 @@ class IMTelemetryDTOA : DTOA
 	
 		
 		dictionary["Telemetry"] = self.telemetry?.toDictionary() ?? NSNull();
+
+		dictionary["TeleValues"] = self.teleValues?.toDictionary() ?? NSNull();
 
 		
 		

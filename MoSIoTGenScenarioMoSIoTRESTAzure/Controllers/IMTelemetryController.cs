@@ -17,6 +17,8 @@ using MoSIoTGenNHibernate.CP.MosIoT;
 
 /*PROTECTED REGION ID(usingMoSIoTGenScenarioMoSIoTRESTAzure_IMTelemetryControllerAzure) ENABLED START*/
 // Meter las referencias para las operaciones que invoquen a las CPs
+
+
 /*PROTECTED REGION END*/
 
 
@@ -398,6 +400,96 @@ public HttpResponseMessage Destroy (int p_imtelemetry_oid)
 
 
 
+
+
+[HttpPut]
+
+
+[Route ("~/api/IMTelemetry/AssignTelemetry")]
+
+public HttpResponseMessage AssignTelemetry (int p_imtelemetry_oid, int p_telemetry_oid)
+{
+        // CAD, CEN, returnValue
+        IMTelemetryRESTCAD iMTelemetryRESTCAD = null;
+        IMTelemetryCEN iMTelemetryCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                iMTelemetryRESTCAD = new IMTelemetryRESTCAD (session);
+                iMTelemetryCEN = new IMTelemetryCEN (iMTelemetryRESTCAD);
+
+                // Relationer
+                iMTelemetryCEN.AssignTelemetry (p_imtelemetry_oid, p_telemetry_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
+
+[HttpPost]
+
+[Route ("~/api/IMTelemetry/ReadTelemetry")]
+
+
+public HttpResponseMessage ReadTelemetry (int p_oid)
+{
+        // CAD, CEN, returnValue
+        IMTelemetryRESTCAD iMTelemetryRESTCAD = null;
+        IMTelemetryCEN iMTelemetryCEN = null;
+        string returnValue;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                iMTelemetryRESTCAD = new IMTelemetryRESTCAD (session);
+                iMTelemetryCEN = new IMTelemetryCEN (iMTelemetryRESTCAD);
+
+
+                // Operation
+                returnValue = iMTelemetryCEN.ReadTelemetry (p_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK, returnValue);
+}
 
 
 

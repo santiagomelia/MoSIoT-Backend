@@ -274,6 +274,8 @@
 	<Compile Include="AssemblersDTO\IMCommunicationAssemblerDTO.cs" />
 	<Compile Include="DTO\IMAppointmentDTO.cs" />
 	<Compile Include="AssemblersDTO\IMAppointmentAssemblerDTO.cs" />
+	<Compile Include="DTO\IMTelemetryValuesDTO.cs" />
+	<Compile Include="AssemblersDTO\IMTelemetryValuesAssemblerDTO.cs" />
 	
 
     
@@ -526,6 +528,11 @@
 		<Compile Include="DTOA\IMNutritionOrderDTOA.cs" />
 		<Compile Include="Assemblers\IMNutritionOrderAssembler.cs" />
 		<Compile Include="Controllers\IMNutritionOrderController.cs" />
+		
+		<Compile Include="CAD\IMTelemetryValuesRESTCAD.cs" />
+		<Compile Include="DTOA\IMTelemetryValuesDTOA.cs" />
+		<Compile Include="Assemblers\IMTelemetryValuesAssembler.cs" />
+		<Compile Include="Controllers\IMTelemetryValuesController.cs" />
 		
 	
 	

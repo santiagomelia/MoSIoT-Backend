@@ -10,11 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoSIoTGenMosIoTRESTAzure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIExterna", "APIExterna\APIExterna.csproj", "{67ED5C38-E48C-4E10-969C-333A3E9C95AC}"
 EndProject
-
-
-
-
-
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

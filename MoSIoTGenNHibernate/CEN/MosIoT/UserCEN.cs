@@ -61,17 +61,6 @@ public System.Collections.Generic.IList<UserEN> ReadAll (int first, int size)
         list = _IUserCAD.ReadAll (first, size);
         return list;
 }
-public string Login (int p_User_OID, string p_pass)
-{
-        string result = null;
-        UserEN en = _IUserCAD.ReadOIDDefault (p_User_OID);
-
-        if (en != null && en.Pass.Equals (Utils.Util.GetEncondeMD5 (p_pass)))
-                result = this.GetToken (en.Id);
-
-        return result;
-}
-
 public int New_ (string p_surnames, bool p_isActive, MoSIoTGenNHibernate.Enumerated.MosIoT.GenderTypeEnum p_type, bool p_isDiseased, String p_pass, string p_name, string p_description, string p_email)
 {
         UserEN userEN = null;
@@ -121,6 +110,10 @@ public void Modify (int p_User_OID, string p_surnames, bool p_isActive, MoSIoTGe
         _IUserCAD.Modify (userEN);
 }
 
+public System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.UserEN> DamePorEmail (string p_email)
+{
+        return _IUserCAD.DamePorEmail (p_email);
+}
 
 
 

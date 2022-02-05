@@ -50,6 +50,15 @@ public static IMTelemetryDTOA Convert (EntityEN en, NHibernate.ISession session 
                 /* Rol: IMTelemetry o--> Telemetry */
                 dto.Telemetry = TelemetryAssembler.Convert ((TelemetryEN)enHijo.Telemetry, session);
 
+                /* Rol: IMTelemetry o--> IMTelemetryValues */
+                dto.TeleValues = null;
+                List<IMTelemetryValuesEN> TeleValues = iMTelemetryRESTCAD.TeleValues (en.Id).ToList ();
+                if (TeleValues != null) {
+                        dto.TeleValues = new List<IMTelemetryValuesDTOA>();
+                        foreach (IMTelemetryValuesEN entry in TeleValues)
+                                dto.TeleValues.Add (IMTelemetryValuesAssembler.Convert (entry, session));
+                }
+
 
                 //
                 // Service

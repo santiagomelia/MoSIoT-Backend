@@ -22,6 +22,10 @@
 				public Integer  getTelemetry_oid () { return telemetry_oid; } 
 				public void setTelemetry_oid (Integer value) { telemetry_oid = value;  } 
 				    	 
+				private ArrayList<Integer> iMTelemetryValues_oid;
+				public ArrayList<Integer>  getIMTelemetryValues_oid () { return iMTelemetryValues_oid; } 
+				public void setIMTelemetryValues_oid (ArrayList<Integer> value) { iMTelemetryValues_oid = value;  } 
+				    	 
 	   
 			    public JSONObject toJSON ()
 				{
@@ -34,6 +38,17 @@
 						{
 							json.put("Telemetry_oid", this.telemetry_oid.intValue());
 						}
+
+						if (this.iMTelemetryValues_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.iMTelemetryValues_oid.size(); ++i)
+							{
+								jsonArray.put(this.iMTelemetryValues_oid.get(i));
+							}
+							json.put("IMTelemetryValues_oid", jsonArray);
+						}
+		
 						
 					}
 					catch (JSONException e)

@@ -13,6 +13,9 @@
 		 
 				var telemetry_oid: Int?;
 				    	 
+		 
+				var iMTelemetryValues_oid: [Int]?;
+				    	 
 	   	   
 			// MARK: - Constructor
 			
@@ -32,6 +35,9 @@
 
 
 					dictionary["telemetry_oid"] = self.telemetry_oid;
+			
+
+					dictionary["iMTelemetryValues_oid"] = self.iMTelemetryValues_oid;
 			
 						
 				return dictionary;

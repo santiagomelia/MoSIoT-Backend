@@ -19,5 +19,18 @@ namespace MoSIoTGenNHibernate.CEN.MosIoT
 {
 public partial class UserCEN
 {
+public string Login (string p_email, string p_pass)
+{
+        /*PROTECTED REGION ID(MoSIoTGenNHibernate.CEN.MosIoT_User_login) ENABLED START*/
+        string result = null;
+
+        IList<UserEN> en = _IUserCAD.DamePorEmail (p_email);
+
+        if (en.Count > 0 && en [0].Pass.Equals (Utils.Util.GetEncondeMD5 (p_pass)))
+                result = this.GetToken (en [0].Id);
+
+        return result;
+        /*PROTECTED REGION END*/
+}
 }
 }

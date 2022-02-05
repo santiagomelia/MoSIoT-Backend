@@ -63,6 +63,12 @@ public static UserDTOA Convert (UserEN en, NHibernate.ISession session = null)
                 dto.Email = en.Email;
 
 
+                dto.Name = en.Name;
+
+
+                dto.Description = en.Description;
+
+
                 //
                 // TravesalLink
 
