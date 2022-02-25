@@ -274,6 +274,8 @@
 	<Compile Include="AssemblersDTO\IMCommunicationAssemblerDTO.cs" />
 	<Compile Include="DTO\IMAppointmentDTO.cs" />
 	<Compile Include="AssemblersDTO\IMAppointmentAssemblerDTO.cs" />
+	<Compile Include="DTO\IMTelemetryValuesDTO.cs" />
+	<Compile Include="AssemblersDTO\IMTelemetryValuesAssemblerDTO.cs" />
 	
 
     

@@ -405,6 +405,50 @@ public HttpResponseMessage Destroy (int p_patient_oid)
 
 
 
+[HttpPut]
+
+
+[Route ("~/api/Patient/AssignPatientProfile")]
+
+public HttpResponseMessage AssignPatientProfile (int p_patient_oid, int p_patientprofile_oid)
+{
+        // CAD, CEN, returnValue
+        PatientRESTCAD patientRESTCAD = null;
+        PatientCEN patientCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                patientRESTCAD = new PatientRESTCAD (session);
+                patientCEN = new PatientCEN (patientRESTCAD);
+
+                // Relationer
+                patientCEN.AssignPatientProfile (p_patient_oid, p_patientprofile_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
 
 
 

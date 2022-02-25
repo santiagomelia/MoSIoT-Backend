@@ -57,6 +57,14 @@ public static DeviceTemplateEN Convert (DeviceTemplateDTO dto)
                                 }
                         }
                         newinstance.Type = dto.Type;
+                        if (dto.AccessMode_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IAccessModeCAD accessModeCAD = new MoSIoTGenNHibernate.CAD.MosIoT.AccessModeCAD ();
+
+                                newinstance.AccessMode = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN>();
+                                foreach (int entry in dto.AccessMode_oid) {
+                                        newinstance.AccessMode.Add (accessModeCAD.ReadOIDDefault (entry));
+                                }
+                        }
                         newinstance.IsEdge = dto.IsEdge;
                 }
         }

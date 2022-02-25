@@ -1525,7 +1525,7 @@ namespace IoTCentral
                         if (status_ == "200") 
                         {
                             var objectResponse_ = await ReadObjectResponseAsync<DeviceTemplate>(response_, headers_).ConfigureAwait(false);
-                            return objectResponse_.Object;
+                           
                         }
                         else
                         if (status_ != "200" && status_ != "204")
@@ -1547,7 +1547,90 @@ namespace IoTCentral
             {
             }
         }
-    
+
+        public async System.Threading.Tasks.Task<JObject> ListDeviceTelemetries(string device_id, string telemetry)
+        {
+            if (device_id == null)
+                throw new System.ArgumentNullException("device_id");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/devices/{device_id}/telemetry/").Append(telemetry).Append("?api-version=1.0");
+            urlBuilder_.Replace("{device_id}", System.Uri.EscapeDataString(ConvertToString(device_id, System.Globalization.CultureInfo.InvariantCulture)));
+
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, System.Threading.CancellationToken.None).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200")
+                        {
+                            //  var objectResponse_ = await ReadObjectResponseAsync<DeviceTelemetry>(response_, headers_).ConfigureAwait(false);
+                            // return objectResponse_.Object;
+                            using (var responseStream = await response_.Content.ReadAsStreamAsync().ConfigureAwait(false))
+                            using (var streamReader = new System.IO.StreamReader(responseStream))
+
+                            using (JsonTextReader reader = new Newtonsoft.Json.JsonTextReader(streamReader))
+                            {
+                                JsonCreator creator = new JsonCreator(reader);
+                                var obj = creator.ReadCompleteJson();
+                                // DeviceTelemetry objTelemetry = new DeviceTelemetry();
+                                //objTelemetry.Timestamp = obj.Properties["Timestamp"].;
+                               // string json = JsonConvert.SerializeObject(obj, Formatting.None);
+                                return obj;
+                            }
+
+                        }
+                        else
+                        if (status_ != "200" && status_ != "204")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+
+                        return default(JObject);
+                    }
+                  
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error en la invocación a Azure IoT Central");
+                return null;
+            }
+            finally
+            {
+            }
+        }
+
+
+
+
         /// <summary>Get devices for a template</summary>
         /// <param name="device_template_id">Unique ID of the device template.</param>
         /// <returns>Success</returns>

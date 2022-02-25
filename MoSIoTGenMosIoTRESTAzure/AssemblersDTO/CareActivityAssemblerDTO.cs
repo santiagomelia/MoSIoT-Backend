@@ -66,10 +66,7 @@ public static CareActivityEN Convert (CareActivityDTO dto)
                         if (dto.Appointment != null) {
                                 MoSIoTGenNHibernate.CAD.MosIoT.IAppointmentCAD appointmentCAD = new MoSIoTGenNHibernate.CAD.MosIoT.AppointmentCAD ();
 
-                                newinstance.Appointment = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.AppointmentEN>();
-                                foreach (AppointmentDTO entry in dto.Appointment) {
-                                        newinstance.Appointment.Add (AppointmentAssemblerDTO.Convert (entry));
-                                }
+                                newinstance.Appointment = AppointmentAssemblerDTO.Convert (dto.Appointment);
                         }
                 }
         }

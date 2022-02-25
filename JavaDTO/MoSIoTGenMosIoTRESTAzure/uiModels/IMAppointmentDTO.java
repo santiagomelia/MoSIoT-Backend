@@ -15,7 +15,7 @@
 		 */
 		
 		
-		public class IMAppointmentDTO extends    		EntityDTO
+		public class IMAppointmentDTO extends    		EntityAttributesDTO
 	    implements IDTO
 	    {
 				private java.util.Date date;

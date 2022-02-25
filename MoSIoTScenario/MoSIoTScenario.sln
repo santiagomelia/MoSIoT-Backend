@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIExterna", "..\APIExterna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTCentral", "..\IoTCentral\IoTCentral.csproj", "{85EA2150-933A-4F77-8925-76C0E3E0BB2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoSTTesting", "MoSTTesting\MoSTTesting.csproj", "{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,14 @@ Global
 		{85EA2150-933A-4F77-8925-76C0E3E0BB2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85EA2150-933A-4F77-8925-76C0E3E0BB2C}.Release|x86.ActiveCfg = Release|Any CPU
 		{85EA2150-933A-4F77-8925-76C0E3E0BB2C}.Release|x86.Build.0 = Release|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Debug|x86.Build.0 = Debug|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Release|x86.ActiveCfg = Release|Any CPU
+		{ED4F1CE1-D369-44CF-A45C-C22EC95DB61E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

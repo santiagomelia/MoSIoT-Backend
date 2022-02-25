@@ -27,7 +27,7 @@ class CareActivityDTOA : DTOA
 	var nutritionOrders: NutritionOrderDTOA?;
 
 	/* Rol: CareActivity o--> Appointment */
-	var appointments: [AppointmentDTOA]?;
+	var appointments: AppointmentDTOA?;
 
 	
 	

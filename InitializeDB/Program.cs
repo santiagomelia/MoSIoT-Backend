@@ -15,14 +15,14 @@ class Program
 static void Main (string[] args)
 {
         System.Console.WriteLine ("-----------------------------------------------------------------------------");
-        System.Console.WriteLine ("A new database called: MoSIoTGenNHibernate will be created (the previous information will be deleted).");
+        System.Console.WriteLine ("A new database called: MosIoTGenNHibernate will be created (the previous information will be deleted).");
         System.Console.WriteLine ("-----------------------------------------------------------------------------");
         System.Console.WriteLine ("Are you sure?(Y/N) ");
         String ans = Console.ReadLine ();
         try
         {
                 if (ans.ToLower () == "y") {
-                        CreateDB.Create ("MoSIoTGenNHibernate", "nhibernateUser", "nhibernatePass");
+                        CreateDB.Create ("MosIoTGenNHibernate", "nhibernateUser", "nhibernatePass");
                         var cfg = new Configuration ();
                         cfg.Configure ();
                         cfg.AddAssembly (typeof(PatientProfileEN).Assembly);

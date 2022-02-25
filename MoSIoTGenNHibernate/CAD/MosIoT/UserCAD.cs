@@ -307,5 +307,35 @@ public void Modify (UserEN user)
                 SessionClose ();
         }
 }
+public System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.UserEN> DamePorEmail (string p_email)
+{
+        System.Collections.Generic.IList<MoSIoTGenNHibernate.EN.MosIoT.UserEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UserEN self where FROM UserEN usu where usu.Email = :p_email";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UserENdamePorEmailHQL");
+                query.SetParameter ("p_email", p_email);
+
+                result = query.List<MoSIoTGenNHibernate.EN.MosIoT.UserEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in UserCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

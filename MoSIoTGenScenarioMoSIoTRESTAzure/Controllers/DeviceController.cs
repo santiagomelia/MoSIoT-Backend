@@ -418,6 +418,50 @@ public HttpResponseMessage Destroy (int p_device_oid)
 
 
 
+[HttpPut]
+
+
+[Route ("~/api/Device/AssignDeviceTemplate")]
+
+public HttpResponseMessage AssignDeviceTemplate (int p_device_oid, int p_devicetemplate_oid)
+{
+        // CAD, CEN, returnValue
+        DeviceRESTCAD deviceRESTCAD = null;
+        DeviceCEN deviceCEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+
+                deviceRESTCAD = new DeviceRESTCAD (session);
+                deviceCEN = new DeviceCEN (deviceRESTCAD);
+
+                // Relationer
+                deviceCEN.AssignDeviceTemplate (p_device_oid, p_devicetemplate_oid);
+                SessionCommit ();
+        }
+
+        catch (Exception e)
+        {
+                SessionRollBack ();
+
+                if (e.GetType () == typeof(HttpResponseException)) throw e;
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) && e.Message.Equals ("El token es incorrecto")) throw new HttpResponseException (HttpStatusCode.Forbidden);
+                else if (e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.ModelException) || e.GetType () == typeof(MoSIoTGenNHibernate.Exceptions.DataLayerException)) throw new HttpResponseException (HttpStatusCode.BadRequest);
+                else throw new HttpResponseException (HttpStatusCode.InternalServerError);
+        }
+        finally
+        {
+                SessionClose ();
+        }
+
+        // Return 200 - OK
+        return this.Request.CreateResponse (HttpStatusCode.OK);
+}
+
+
+
 
 
 

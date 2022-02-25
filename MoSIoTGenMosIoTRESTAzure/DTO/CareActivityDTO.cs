@@ -59,8 +59,8 @@ private string name;
 public string Name {
         get { return name; } set { name = value;  }
 }
-private System.Collections.Generic.IList<AppointmentDTO> appointment;
-public System.Collections.Generic.IList<AppointmentDTO> Appointment {
+private AppointmentDTO appointment;
+public AppointmentDTO Appointment {
         get { return appointment; } set { appointment = value;  }
 }
 }

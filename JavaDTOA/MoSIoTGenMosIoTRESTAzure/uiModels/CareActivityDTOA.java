@@ -59,9 +59,9 @@ public class CareActivityDTOA extends DTOA
 	public void setNutritionOrders (NutritionOrderDTOA nutritionOrders) { this.nutritionOrders = nutritionOrders; }
 
 	/* Rol: CareActivity o--> Appointment */
-	private ArrayList<AppointmentDTOA> appointments;
-	public ArrayList<AppointmentDTOA> getAppointments () { return appointments; }
-	public void setAppointments (ArrayList<AppointmentDTOA> appointments) { this.appointments = appointments; }
+	private AppointmentDTOA appointments;
+	public AppointmentDTOA getAppointments () { return appointments; }
+	public void setAppointments (AppointmentDTOA appointments) { this.appointments = appointments; }
 
 	
 	
@@ -254,7 +254,7 @@ public class CareActivityDTOA extends DTOA
 		// Roles
 					// TODO: from DTOA [ Medications ] (dataType : MedicationDTOA) to DTO [ Medication ]
 					// TODO: from DTOA [ NutritionOrders ] (dataType : NutritionOrderDTOA) to DTO [ NutritionOrder ]
-					// TODO: from DTOA [ Appointments ] (dataType : ArrayList<AppointmentDTOA>) to DTO [ Appointment ]
+					// TODO: from DTOA [ Appointments ] (dataType : AppointmentDTOA) to DTO [ Appointment ]
 		
 		
 		return dto;

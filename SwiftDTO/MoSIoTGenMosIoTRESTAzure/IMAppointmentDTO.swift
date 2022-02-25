@@ -8,7 +8,7 @@
 		import Foundation
 		import SwiftyJSON
 	
-		 class IMAppointmentDTO :    		EntityDTO
+		 class IMAppointmentDTO :    		EntityAttributesDTO
 	    {
 		 
 				var date: NSDate?;

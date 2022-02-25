@@ -175,6 +175,7 @@ public HttpResponseMessage New_ ( [FromBody] UserDTO dto)
                 returnOID = userCEN.New_ (
                         dto.Surnames                                                                             //Atributo Primitivo: p_surnames
                         , dto.IsActive                                                                                                                                                   //Atributo Primitivo: p_isActive
+                        , dto.Type                                                                                                                                                       //Atributo Primitivo: p_type
                         , dto.IsDiseased                                                                                                                                                 //Atributo Primitivo: p_isDiseased
                         , dto.Pass                                                                                                                                                       //Atributo Primitivo: p_pass
                         , dto.Name                                                                                                                                                       //Atributo Primitivo: p_name

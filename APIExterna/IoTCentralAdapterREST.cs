@@ -14,6 +14,7 @@ using Microsoft.Azure.Devices.Provisioning.Client;
 using Microsoft.Azure.Devices.Provisioning.Client.Transport;
 using Microsoft.Azure.Devices.Shared;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace APIExterna
 {
@@ -58,6 +59,35 @@ namespace APIExterna
 
         }
 
+        async public Task<JObject> ListarDeviceTelemetry(string idDevice, string Telemetry)
+        {
+            JObject result = null;
+            try
+            {
+                var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Add("Authorization", ACCESS_TOKEN);
+                httpClient.DefaultRequestHeaders.Add("api-version", VERSION);
+                var deviceTemplatesClient = new DeviceTemplatesClient(httpClient);
+                deviceTemplatesClient.BaseUrl = "https://" + APP_NAME + ".azureiotcentral.com/api/";
+                // string deviceTemplate = @"dtmi:continuousPatientMonitoringTemplate:Smart_Vitals_Patch_220;1";
+
+                result = await deviceTemplatesClient.ListDeviceTelemetries(idDevice, Telemetry);
+
+              //  int milliseconds = 5000;
+               // Thread.Sleep(milliseconds);
+
+                // string json = JsonConvert.SerializeObject(result, Formatting.None);
+                //Console.WriteLine(json);
+                //return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+           
+            return result;
+        }
+
 
         async public void ModificarDeviceTemplate()
         {
@@ -97,6 +127,8 @@ namespace APIExterna
             Console.WriteLine(json);
 
         }
+
+
 
 
     

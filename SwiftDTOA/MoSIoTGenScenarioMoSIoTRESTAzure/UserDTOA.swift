@@ -22,6 +22,8 @@ class UserDTOA : DTOA
 	var type: GenderType?;
 	var isDiseased: Bool?;
 	var email: String?;
+	var name: String?;
+	var description: String?;
 	
 	
 	
@@ -56,6 +58,8 @@ class UserDTOA : DTOA
 		}
 		self.isDiseased = json["IsDiseased"].object as? Bool;
 		self.email = json["Email"].object as? String;
+		self.name = json["Name"].object as? String;
+		self.description = json["Description"].object as? String;
 		
 		
 	}
@@ -110,6 +114,16 @@ class UserDTOA : DTOA
 
 	
 		dictionary["Email"] = self.email;
+	
+	
+
+	
+		dictionary["Name"] = self.name;
+	
+	
+
+	
+		dictionary["Description"] = self.description;
 	
 	
 		

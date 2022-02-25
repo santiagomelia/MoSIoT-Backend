@@ -59,6 +59,14 @@ public class UserDTOA extends DTOA
 	public String getEmail () { return email; }
 	public void setEmail (String email) { this.email = email; }
 	
+	private String name;
+	public String getName () { return name; }
+	public void setName (String name) { this.name = name; }
+	
+	private String description;
+	public String getDescription () { return description; }
+	public void setDescription (String description) { this.description = description; }
+	
 	
 	
 	
@@ -147,6 +155,20 @@ public class UserDTOA extends DTOA
 				this.email = (String) json.opt("Email");
 			 
 			}
+
+			if (!JSONObject.NULL.equals(json.opt("Name")))
+			{
+			 
+				this.name = (String) json.opt("Name");
+			 
+			}
+
+			if (!JSONObject.NULL.equals(json.opt("Description")))
+			{
+			 
+				this.description = (String) json.opt("Description");
+			 
+			}
 			
 			
 		}
@@ -202,6 +224,14 @@ public class UserDTOA extends DTOA
 		  if (this.email != null)
 			json.put("Email", this.email);
 		
+		
+		  if (this.name != null)
+			json.put("Name", this.name);
+		
+		
+		  if (this.description != null)
+			json.put("Description", this.description);
+		
 			
 			
 		}
@@ -240,6 +270,10 @@ public class UserDTOA extends DTOA
 	dto.setIsDiseased (this.getIsDiseased());
 
 	dto.setEmail (this.getEmail());
+
+	dto.setName (this.getName());
+
+	dto.setDescription (this.getDescription());
 
 		
 		

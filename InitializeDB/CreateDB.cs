@@ -10,6 +10,10 @@ using MoSIoTGenNHibernate.CEN.MosIoT;
 using MoSIoTGenNHibernate.CAD.MosIoT;
 using MoSIoTGenNHibernate.Enumerated.MosIoT;
 using APIExterna;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+//using APIExterna;
 
 
 /*PROTECTED REGION END*/
@@ -88,7 +92,7 @@ public static void InitializeData ()
                 int idUserShahab = userCEN.New_ ("shahabsur", true, GenderTypeEnum.male, false, "1234", "shahab", "Shahab", "shahab@ua.es");
 
 
-                int idUser = userCEN.New_ ("Lucas Grijander", true, GenderTypeEnum.male, true, "1234", "Chiquito", "Paciente Alzheimer", "lucas@ua.es");
+                int idUser = userCEN.New_ ("Lucas Sanz", true, GenderTypeEnum.male, true, "1234", "Chiquito", "Paciente Alzheimer", "lucas@ua.es");
 
 
                 DeviceTemplateCEN deviceTCEN = new DeviceTemplateCEN ();
@@ -98,18 +102,23 @@ public static void InitializeData ()
 
 
                 CommandCEN commandCEN = new CommandCEN ();
-                commandCEN.New_ (deviceT1, "Command 1", true, OperationTypeEnum.GetByID, "get device by id");
+                int com1 = commandCEN.New_ (deviceT1, "Command 1", true, OperationTypeEnum.GetByID, "get device by id");
 
                 PropertyCEN propertyCEN = new PropertyCEN ();
-                propertyCEN.New_ (deviceT1, "property 1", true, true);
+                int prop1 = propertyCEN.New_ (deviceT1, "property 1", true, true);
 
                 TelemetryCEN telemetryCEN = new TelemetryCEN ();
-                int idTelemetry = telemetryCEN.New_ (deviceT1, 2, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum.Integer, TypeUnitEnum.steps, "Heart beats", TelemetryTypeEnum.event_);
+                int idTelemetryHeart = telemetryCEN.New_ (deviceT1, 2, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum.Integer, TypeUnitEnum.steps, "Heart Rate", TelemetryTypeEnum.event_);
+                int idTelemetryBlood = telemetryCEN.New_ (deviceT1, 2, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum.Double, TypeUnitEnum.steps, "Blood Pressure", TelemetryTypeEnum.event_);
+                int idTelemetryTemp = telemetryCEN.New_ (deviceT1, 2, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum.Integer, TypeUnitEnum.steps, "Temperature body", TelemetryTypeEnum.event_);
+                int idTelemetryRespiratory = telemetryCEN.New_ (deviceT1, 2, MoSIoTGenNHibernate.Enumerated.MosIoT.DataTypeEnum.Double, TypeUnitEnum.steps, "Respiratory Rate", TelemetryTypeEnum.event_);
 
 
-                EventTelemetryCEN eventTelemetry = new EventTelemetryCEN ();
-                int eventTel1 = eventTelemetry.New_ (idTelemetry, "evento", MoSIoTGenNHibernate.Enumerated.MosIoT.SeverityEventEnum.info);
-
+                SensorTelemetryCEN sensorTelemetry = new SensorTelemetryCEN ();
+                int sensorTel1 = sensorTelemetry.New_ (idTelemetryHeart, "sensorHeart", "Heart beat type");
+                int sensorTel2 = sensorTelemetry.New_ (idTelemetryBlood, "sensorBP", "Blood Pressure type");
+                int sensorTel3 = sensorTelemetry.New_ (idTelemetryTemp, "sensorTemperature", "Temperature type");
+                int sensorTel4 = sensorTelemetry.New_ (idTelemetryRespiratory, "sensorRespiratory", "Respiratory type");
 
                 PatientProfileCEN patientProfile = new PatientProfileCEN ();
                 int idPatientProfile = patientProfile.New_ (LanguageCodeEnum.es, "Espana", HazardValueEnum.olfactoryHazard, "patient with Alzheimer", "patient with a mild Alzheimer with a cognitive disability");
@@ -122,6 +131,9 @@ public static void InitializeData ()
 
                 AccessModeCEN accessMode = new AccessModeCEN ();
                 int idAccessMode = accessMode.New_ (idPatientProfile, AccessModeValueEnum.textual, "Acceso al Smartphone", idDisability, "accessMode Smartphone");
+                accessMode.AsignarDevice (idAccessMode, new List<int>() {
+                                deviceT1
+                        });
 
                 AdaptationRequestCEN adaptRequest = new AdaptationRequestCEN ();
                 adaptRequest.New_ (AccessModeValueEnum.auditory, idAccessMode, LanguageCodeEnum.es, "adaptation auditive");
@@ -136,46 +148,50 @@ public static void InitializeData ()
                 CarePlanTemplateCEN carePlan = new CarePlanTemplateCEN ();
                 int idCarePlanT = carePlan.New_ (CareStatusEnum.active, CarePlanIntentEnum.proposal, "Plan de cuidados para persona con Alzheimer", DateTime.Now, 100, "cuidadosAlzheimer", "Se describen todos los objetivos y actividades necesarias para que se cuide a una persona que presenta Alzheimer");
 
+                carePlan.AddPatientProfile (idCarePlanT, idPatientProfile);
 
                 carePlan.AddCondition (idCarePlanT, new List<int> { idCondition });
 
 
                 CareActivityCEN careActivity = new CareActivityCEN ();
-                careActivity.New_ (idCarePlanT, TypePeriodicityEnum.daily, "Realizar un paseo", 40, "parque", "", TypeActivityEnum.sportActivity, " ", "Paseo");
+                careActivity.New_ (idCarePlanT, TypePeriodicityEnum.daily, "Realizar un paseo", 40, "parque", "2233333", TypeActivityEnum.sportActivity, "232222 ", "Paseo");
 
-                int idActivityMed = careActivity.New_ (idCarePlanT, TypePeriodicityEnum.perHour, "Tomar Ceregumil", 0, "en casa", "", TypeActivityEnum.medication, "", "Tomar medicamento mente activa");
-                int idActivityCom = careActivity.New_(idCarePlanT, TypePeriodicityEnum.daily, "Notificacion", 0, "en casa", "", TypeActivityEnum.comunication, "", "Notificacion paraa que tome Ceregumil");
-                int idActivityNut = careActivity.New_(idCarePlanT, TypePeriodicityEnum.daily, "Comer nueces", 0, "en casa", "", TypeActivityEnum.nutritionOrder, "", "Comer  50 gr. de nueces");
-                int idActivityApp = careActivity.New_(idCarePlanT, TypePeriodicityEnum.monthly, "Cita con el Neurologo", 0, "clinica", "", TypeActivityEnum.appointment, "", "Revision con el neurologo");
+                int idActivityMed = careActivity.New_ (idCarePlanT, TypePeriodicityEnum.perHour, "Tomar Ceregumil", 0, "en casa", "111222", TypeActivityEnum.medication, "2333333", "Tomar medicamento mente activa");
+                int idActivityCom = careActivity.New_ (idCarePlanT, TypePeriodicityEnum.daily, "Notificacion", 0, "en casa", "122222", TypeActivityEnum.comunication, "6676767", "Notificacion paraa que tome Ceregumil");
+                int idActivityNut = careActivity.New_ (idCarePlanT, TypePeriodicityEnum.daily, "Comer nueces", 0, "en casa", "9999656", TypeActivityEnum.nutritionOrder, "889988", "Comer  50 gr. de nueces");
+                int idActivityApp = careActivity.New_ (idCarePlanT, TypePeriodicityEnum.monthly, "Cita con el Neurologo", 0, "clinica", "", TypeActivityEnum.appointment, "56656566", "Revision con el neurologo");
 
 
                 MedicationCEN medicationCEN = new MedicationCEN ();
-                int idMedication  =  medicationCEN.New_ (idActivityMed, 346864, "Ceregumil Original 500 ml", " ", "Tomar una cucharada 3 veces al dia", "cucharada", FormTypeEnum.powder, "346864");
-                
-                ComunicationCEN comunicationCEN = new ComunicationCEN();
-                int idComuncation = comunicationCEN.New_(SeverityEventEnum.info, "Recuerde tomar Ceregumil en el desayuno", DateTime.Now);
-                
-                NutritionOrderCEN nutricionCEN = new NutritionOrderCEN();
-                int idNutricion = nutricionCEN.New_("Comer 50gr de nueces al dia", "", idActivityNut, "comeNueces");
+                int idMedication = medicationCEN.New_ (idActivityMed, 346864, "Ceregumil Original 500 ml", " ", "Tomar una cucharada 3 veces al dia", "cucharada", FormTypeEnum.powder, "346864");
 
-                AppointmentCEN appCEN = new AppointmentCEN();
-                int idAppoint = appCEN.New_(true, "Cita por google meet", "http://google.meet/34", "", idActivityApp);
+                ComunicationCEN comunicationCEN = new ComunicationCEN ();
+                int idComuncation = comunicationCEN.New_ (SeverityEventEnum.info, "Recuerde tomar Ceregumil en el desayuno", DateTime.Now);
+
+                NutritionOrderCEN nutricionCEN = new NutritionOrderCEN ();
+                int idNutricion = nutricionCEN.New_ ("eat 50gr of nustnell per day", "223333", idActivityNut, "comeNueces");
+
+                AppointmentCEN appCEN = new AppointmentCEN ();
+                int idAppoint = appCEN.New_ (true, "Appointment through google meet", "http://google.meet/34", "454545", idActivityApp);
 
                 GoalCEN goal = new GoalCEN ();
                 int idGoal = goal.New_ (idCarePlanT, PriorityTypeEnum.high, CareStatusEnum.active, idCondition, "Mejorar los indicadores cognitivos", CategoryGoalEnum.behavioral, " ", "Mejora cognitiva");
 
                 TargetCEN target = new TargetCEN ();
 
-                int idTarget = target.New_ (idGoal, "70", "Reducir las pulsaciones a 70", DateTime.Today.AddDays (60));
+                int idTarget = target.New_ (idGoal, "70", "Reduce heart beats until 70", DateTime.Today.AddDays (60));
+                int idTarget2 = target.New_ (idGoal, "70", "Temperature under 37 degrees", DateTime.Today.AddDays (60));
 
 
                 MeasureCEN measureCEN = new MeasureCEN ();
-                int idMeasure = measureCEN.New_ ("Pulsaciones_minuto", "Pulsaciones por minuto", " ");
+                int idMeasure = measureCEN.New_ ("HeartRateMeasure", "measure heart rate", "12343");
+                int idMeasure2 = measureCEN.New_ ("TemperatureBodyMeasure", "measure body temperature", "12343");
 
                 target.AddMeasure (idTarget, idMeasure);
+                target.AddMeasure (idTarget, idMeasure2);
 
-                measureCEN.AddTelemetries (idMeasure, new List<int> { idTelemetry });
-
+                measureCEN.AddTelemetries (idMeasure, new List<int> { idTelemetryHeart });
+                measureCEN.AddTelemetries (idMeasure2, new List<int> { idTelemetryTemp });
 
 
                 // SCENARIO
@@ -193,14 +209,27 @@ public static void InitializeData ()
                 patientAccessCEN.AssignAccessMode (idPatientAccess, idAccessMode);
 
                 DeviceCEN deviceCEN = new DeviceCEN ();
-                int idDevice = deviceCEN.New_ ("Iphone 12", idScenarioIoT, "Iphone 12 120 Gb", false, "1212", true, "1818181818181", "firm1", "Apple");
+                int idDevice = deviceCEN.New_ ("1qsi9p8t5l2", idScenarioIoT, "Smartring", false, "1212", true, "1818181818181", "firm1", "Apple");
                 deviceCEN.AssignDeviceTemplate (idDevice, deviceT2);
 
-                IMPropertyCEN iMPropertyCEN = new IMPropertyCEN();
-                iMPropertyCEN.New_("Property1", "Description Property 1", idDevice);
+                IMPropertyCEN iMPropertyCEN = new IMPropertyCEN ();
+                int idImProp1 = iMPropertyCEN.New_ ("Property1", "Description Property 1", idDevice);
+                iMPropertyCEN.AssignProperty (idImProp1, prop1);
 
-                IMCommandCEN iMCommandCEN = new IMCommandCEN();
-                iMCommandCEN.New_("Command 1", DataTypeEnum.Integer, ServiceTypeEnum.actuation, "Description Command 1",  idDevice);
+                IMCommandCEN iMCommandCEN = new IMCommandCEN ();
+                int idImCom = iMCommandCEN.New_ ("Command 1", DataTypeEnum.Integer, ServiceTypeEnum.actuation, "Description Command 1", idDevice);
+                iMCommandCEN.AssignCommand (idImCom, com1);
+
+                IMTelemetryCEN iMTelemetry = new IMTelemetryCEN ();
+                int idTele1 = iMTelemetry.New_ ("HeartRate", idScenarioIoT, "Heart Rate");
+                int idTele2 = iMTelemetry.New_ ("BodyTemperature", idScenarioIoT, "Body Temperature");
+                int idTele3 = iMTelemetry.New_ ("BloodPressure", idScenarioIoT, "Blood Pressure");
+                int idTele4 = iMTelemetry.New_ ("RespiratoryRate", idScenarioIoT, "Respiratory Rate");
+
+                iMTelemetry.AssignTelemetry (idTele1, idTelemetryHeart);
+                iMTelemetry.AssignTelemetry (idTele2, idTelemetryTemp);
+                iMTelemetry.AssignTelemetry (idTele3, idTelemetryBlood);
+                iMTelemetry.AssignTelemetry (idTele4, idTelemetryRespiratory);
 
 
                 CarePlanCEN carePlanCEN = new CarePlanCEN ();
@@ -222,38 +251,38 @@ public static void InitializeData ()
 
                 IMCareActivityCEN imcareAct = new IMCareActivityCEN ();
                 int idCareActivity = imcareAct.New_ ("revision1", idScenarioIoT, "");
-                imcareAct.AssignCareActivity(idCareActivity, idActivityApp);
+                imcareAct.AssignCareActivity (idCareActivity, idActivityApp);
 
                 IMAppointmentCEN imAppoin = new IMAppointmentCEN ();
-                int  idIMAppoint =  imAppoin.New_ ("citaRevision", "cita para la revision", idCareActivity, new DateTime (2021, 8, 1));
-                imAppoin.AssignAppoint(idIMAppoint, idAppoint);
+                int idIMAppoint = imAppoin.New_ ("citaRevision", "cita para la revision", idCareActivity, new DateTime (2021, 8, 1));
+                imAppoin.AssignAppoint (idIMAppoint, idAppoint);
 
                 int idCareActivity2 = imcareAct.New_ ("comunicacion1", idScenarioIoT, "");
-                imcareAct.AssignCareActivity(idCareActivity2, idActivityCom);
-              
+                imcareAct.AssignCareActivity (idCareActivity2, idActivityCom);
+
                 IMCommunicationCEN imCom = new IMCommunicationCEN ();
-                int idImCom = imCom.New_ ("MensajeRev", "Mensaje de aviso para la revision", idCareActivity2);
-                imCom.AssignCommunication(idImCom, idComuncation);
+                int idImCommu = imCom.New_ ("MensajeRev", "Mensaje de aviso para la revision", idCareActivity2);
+                imCom.AssignCommunication (idImCommu, idComuncation);
 
 
                 int idCareActivity3 = imcareAct.New_ ("medicacion1", idScenarioIoT, "");
-                imcareAct.AssignCareActivity(idCareActivity3, idActivityMed);
+                imcareAct.AssignCareActivity (idCareActivity3, idActivityMed);
                 IMMedicationCEN imMed = new IMMedicationCEN ();
                 int idImMed = imMed.New_ ("MedicacionMemoria", "Medicamento para la memoria", idCareActivity3);
-                imMed.AssignMedication(idImMed, idMedication);
+                imMed.AssignMedication (idImMed, idMedication);
 
-                int idCareActivity4 = imcareAct.New_("nutrition1", idScenarioIoT, "");
-                imcareAct.AssignCareActivity(idCareActivity4, idActivityNut);
-                IMNutritionOrderCEN imNut = new IMNutritionOrderCEN();
-                int idImNut = imNut.New_("NutricionMemoria", "Alimento para la memoria", idCareActivity4);
+                int idCareActivity4 = imcareAct.New_ ("nutrition1", idScenarioIoT, "");
+                imcareAct.AssignCareActivity (idCareActivity4, idActivityNut);
+                IMNutritionOrderCEN imNut = new IMNutritionOrderCEN ();
+                int idImNut = imNut.New_ ("NutricionMemoria", "Alimento para la memoria", idCareActivity4);
 
-                IMGoalCEN iMGoalCEN = new IMGoalCEN();
-                iMGoalCEN.New_("MejoraCognitiva", "Mejorar los indicadores cognitivos", idCarePlan);
+                IMGoalCEN iMGoalCEN = new IMGoalCEN ();
+                iMGoalCEN.New_ ("MejoraCognitiva", "Mejorar los indicadores cognitivos", idCarePlan);
 
-                IMTargetCEN imTargetCEN = new IMTargetCEN();
-                imTargetCEN.New_("ReducirPulsaciones", "Reducir pulsaciones a 70", idCarePlan);
+                IMTargetCEN imTargetCEN = new IMTargetCEN ();
+                imTargetCEN.New_ ("ReducirPulsaciones", "Reducir pulsaciones a 70", idCarePlan);
 
-                
+
 
                 /// IMAppointment , IMCareActivity, IMVitalSign, IMCommunication, IMDisability, IMMedication
                 // IMCommunicationCEN esto es un ejemplo de como tambien me esta pasa esto es una prueba
@@ -261,10 +290,28 @@ public static void InitializeData ()
 
 
                 // Invocamos a la fachada REST de Azure IoT Central
-                //IoTCentralAdapterREST iotAdapter = new IoTCentralAdapterREST();
-                ////  iotAdapter.ListarDeviceTemplate();
-                //iotAdapter.GetToken();
-                //iotAdapter.ListarDeviceTemplates();
+                //IoTCentralAdapterREST iotAdapter = new IoTCentralAdapterREST ();
+                //////  iotAdapter.ListarDeviceTemplate();
+                ////iotAdapter.GetToken();
+                //IList<IMTelemetryEN> listaTelementrias = iMTelemetry.ReadAll (0, -1);
+
+                //foreach (IMTelemetryEN telemetria in listaTelementrias) {
+                //        Task<JObject> task = iotAdapter.ListarDeviceTelemetry ("1qsi9p8t5l2", telemetria.Name);
+
+                //        JObject obj = task.Result;
+
+                //        IMTelemetryValuesCEN telValue = new IMTelemetryValuesCEN ();
+                //        string value = "No value";
+                //        if (obj ["value"] != null && obj ["value"].ToString () != "") {
+                //                value = obj ["value"].ToString ();
+                //        }
+                //        else{
+                //                value = JsonConvert.SerializeObject (obj, Formatting.None);
+                //        }
+                //        telValue.New_ (DateTime.Now, value, telemetria.Id);
+                //        Console.WriteLine ("Valor Telemetria: " + telemetria.Name + "Timestamp" + obj ["timestamp"] + " value: " + obj ["value"]);
+                //}
+
 
 
                 // Invocamos a la fachada MQTT de Azure IoT Central
@@ -276,7 +323,7 @@ public static void InitializeData ()
 
                 /*PROTECTED REGION END*/
             }
-        catch (Exception ex)
+            catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
                 throw ex;

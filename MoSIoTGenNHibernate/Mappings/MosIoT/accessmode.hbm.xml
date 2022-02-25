@@ -42,6 +42,16 @@
 					    </bag>
 					
 			
+		  			
+						<bag name="DeviceTemplate" table="[deviceTemplate_accessModeRequired]" inverse="true" >
+							<key>
+								
+									<column name="FK_idAccessMode_idAccessModeRequired"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN">
+									<column name="FK_idDeviceTemplate_idDeviceTemplate"/> 
+      						</many-to-many>
+    					</bag>
 			
 			
 		  			
@@ -77,15 +87,6 @@
 					
 					
 					
-					
-						<bag name="DeviceTemplate" table="[deviceTemplate_accessModeRequired]" >
-							<key>
-									<column name="FK_idAccessMode_idAccessModeRequired"/> 
-							</key>
-      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN">
-									<column name="FK_idDeviceTemplate_idDeviceTemplate"/> 
-      						</many-to-many>
-    					</bag>		
 					
 					
 					

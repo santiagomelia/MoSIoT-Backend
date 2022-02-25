@@ -32,6 +32,14 @@ public static IMTelemetryEN Convert (IMTelemetryDTO dto)
 
                                 newinstance.Telemetry = telemetryCAD.ReadOIDDefault (dto.Telemetry_oid);
                         }
+                        if (dto.IMTelemetryValues_oid != null) {
+                                MoSIoTGenNHibernate.CAD.MosIoT.IIMTelemetryValuesCAD iMTelemetryValuesCAD = new MoSIoTGenNHibernate.CAD.MosIoT.IMTelemetryValuesCAD ();
+
+                                newinstance.IMTelemetryValues = new System.Collections.Generic.List<MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryValuesEN>();
+                                foreach (int entry in dto.IMTelemetryValues_oid) {
+                                        newinstance.IMTelemetryValues.Add (iMTelemetryValuesCAD.ReadOIDDefault (entry));
+                                }
+                        }
                         newinstance.Id = dto.Id;
                         newinstance.Name = dto.Name;
                         if (dto.OriginAssociation_oid != null) {

@@ -21,9 +21,6 @@
 		 
 				var accessMode_oid: Int?;
 				    	 
-		 
-				var iMAdaptationType_oid: [Int]?;
-				    	 
 	   	   
 			// MARK: - Constructor
 			
@@ -55,9 +52,6 @@
 				
 
 					dictionary["accessMode_oid"] = self.accessMode_oid;
-			
-
-					dictionary["iMAdaptationType_oid"] = self.iMAdaptationType_oid;
 			
 						
 				return dictionary;

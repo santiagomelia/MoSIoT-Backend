@@ -18,11 +18,23 @@
 					
 			
 			
+			
+		  			
+						<bag name="IMTelemetryValues" >
+							<key>
+							
+								
+								<column name="FK_id_idIMTelemetry"/>
+					      	</key>
+							<one-to-many class="MoSIoTGenNHibernate.EN.MosIoT.IMTelemetryValuesEN"/>
+					    </bag>
+					
 					
 					
 						<many-to-one name="Telemetry" class="MoSIoTGenNHibernate.EN.MosIoT.TelemetryEN" >
 									<column name="FK_idTelemetry_idTelemetry"/> 
 						</many-to-one>
+					
 		
  	  
 		 </joined-subclass>

@@ -69,9 +69,9 @@
 				public String getName () { return name; } 
 				public void setName  (String value) { name = value;  } 
 				    	 
-				private ArrayList<AppointmentDTO> appointment;
-				public ArrayList<AppointmentDTO> getAppointment () { return appointment; } 
-				public void setAppointment (ArrayList<AppointmentDTO> value) { appointment = value;  } 
+				private AppointmentDTO appointment;
+				public AppointmentDTO getAppointment () { return appointment; } 
+				public void setAppointment (AppointmentDTO value) { appointment = value;  } 
 				    	 
 	   
 			    public JSONObject toJSON ()
@@ -135,12 +135,7 @@
 
 						if (this.appointment != null)
 						{
-							JSONArray jsonArray = new JSONArray();
-							for (int i = 0; i < this.appointment.size(); ++i)
-							{
-								jsonArray.put(this.appointment.get(i).toJSON());
-							}
-							json.put("Appointment", jsonArray);
+							json.put("Appointment", this.appointment.toJSON());
 						}
 						
 					}

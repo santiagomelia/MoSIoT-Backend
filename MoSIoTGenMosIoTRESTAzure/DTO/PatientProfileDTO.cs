@@ -30,6 +30,13 @@ private int id;
 public int Id {
         get { return id; } set { id = value;  }
 }
+
+
+private System.Collections.Generic.IList<int> carePlanTemplate_oid;
+public System.Collections.Generic.IList<int> CarePlanTemplate_oid {
+        get { return carePlanTemplate_oid; } set { carePlanTemplate_oid = value;  }
+}
+
 private System.Collections.Generic.IList<ConditionDTO> diseases;
 public System.Collections.Generic.IList<ConditionDTO> Diseases {
         get { return diseases; } set { diseases = value;  }

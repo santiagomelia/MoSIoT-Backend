@@ -59,6 +59,18 @@
 					
 			
 			
+		  			
+						<bag name="AccessMode" table="[deviceTemplate_accessModeRequired]"  >
+							<key>
+								
+									<column name="FK_idDeviceTemplate_idDeviceTemplate"/> 
+							</key>
+      						<many-to-many class="MoSIoTGenNHibernate.EN.MosIoT.AccessModeEN">
+									<column name="FK_idAccessMode_idAccessModeRequired"/> 
+      						</many-to-many>
+    					</bag>
+			
+					
 					
 					
 					

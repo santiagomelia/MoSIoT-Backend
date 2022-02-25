@@ -91,6 +91,7 @@ public void ModifyDefault (IMTelemetryEN iMTelemetry)
                 SessionInitializeTransaction ();
                 IMTelemetryEN iMTelemetryEN = (IMTelemetryEN)session.Load (typeof(IMTelemetryEN), iMTelemetry.Id);
 
+
                 session.Update (iMTelemetryEN);
                 SessionCommit ();
         }

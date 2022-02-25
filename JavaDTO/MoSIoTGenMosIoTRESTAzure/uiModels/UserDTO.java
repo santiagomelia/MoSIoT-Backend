@@ -114,10 +114,9 @@
 				
 						  json.put("IsActive", this.isActive);
 				
-					    if (this.type != null){											
+				
 						  json.put("Type", this.type.getRawValue());
 				
-						}
 				
 						  json.put("IsDiseased", this.isDiseased);
 				

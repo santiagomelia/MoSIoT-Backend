@@ -41,6 +41,10 @@
 				public Integer getId () { return id; } 
 				public void setId  (Integer value) { id = value;  } 
 				    	 
+				private ArrayList<Integer> carePlanTemplate_oid;
+				public ArrayList<Integer>  getCarePlanTemplate_oid () { return carePlanTemplate_oid; } 
+				public void setCarePlanTemplate_oid (ArrayList<Integer> value) { carePlanTemplate_oid = value;  } 
+				    	 
 				private ArrayList<ConditionDTO> diseases;
 				public ArrayList<ConditionDTO> getDiseases () { return diseases; } 
 				public void setDiseases (ArrayList<ConditionDTO> value) { diseases = value;  } 
@@ -92,6 +96,17 @@
 				
 						  json.put("Id", this.id.intValue());
 				
+
+						if (this.carePlanTemplate_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.carePlanTemplate_oid.size(); ++i)
+							{
+								jsonArray.put(this.carePlanTemplate_oid.get(i));
+							}
+							json.put("CarePlanTemplate_oid", jsonArray);
+						}
+		
 
 						if (this.diseases != null)
 						{

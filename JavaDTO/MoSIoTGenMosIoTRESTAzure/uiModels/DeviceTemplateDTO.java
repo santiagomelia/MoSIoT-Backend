@@ -41,6 +41,10 @@
 				public DeviceType getType () { return type; } 
 				public void setType  (DeviceType value) { type = value;  } 
 				    	 
+				private ArrayList<Integer> accessMode_oid;
+				public ArrayList<Integer>  getAccessMode_oid () { return accessMode_oid; } 
+				public void setAccessMode_oid (ArrayList<Integer> value) { accessMode_oid = value;  } 
+				    	 
 				private Boolean isEdge;
 				public Boolean getIsEdge () { return isEdge; } 
 				public void setIsEdge  (Boolean value) { isEdge = value;  } 
@@ -91,6 +95,17 @@
 				
 						  json.put("Type", this.type.getRawValue());
 				
+
+						if (this.accessMode_oid != null)
+						{
+							JSONArray jsonArray = new JSONArray();
+							for (int i = 0; i < this.accessMode_oid.size(); ++i)
+							{
+								jsonArray.put(this.accessMode_oid.get(i));
+							}
+							json.put("AccessMode_oid", jsonArray);
+						}
+		
 				
 						  json.put("IsEdge", this.isEdge);
 				

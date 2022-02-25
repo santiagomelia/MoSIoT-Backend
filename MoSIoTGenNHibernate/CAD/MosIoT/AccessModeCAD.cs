@@ -296,6 +296,7 @@ public void AsignarDevice (int p_AccessMode_OID, System.Collections.Generic.ILis
                 foreach (int item in p_deviceTemplate_OIDs) {
                         deviceTemplateENAux = new MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN ();
                         deviceTemplateENAux = (MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN)session.Load (typeof(MoSIoTGenNHibernate.EN.MosIoT.DeviceTemplateEN), item);
+                        deviceTemplateENAux.AccessMode.Add (accessModeEN);
 
                         accessModeEN.DeviceTemplate.Add (deviceTemplateENAux);
                 }

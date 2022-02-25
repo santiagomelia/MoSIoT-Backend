@@ -82,12 +82,14 @@
 				
 						  json.put("Name", this.name);
 				
-				
+					    if (this.type != null){											
 						  json.put("Type", this.type.getRawValue());
 				
-				
+						}
+					    if (this.isOID != null){											
 						  json.put("IsOID", this.isOID);
 				
+						}
 
 						if (this.targetAssociation_oid != null)
 						{
@@ -114,9 +116,10 @@
 						  json.put("AssociationType", this.associationType.getRawValue());
 				
 						}
-				
+					    if (this.isWritable != null){											
 						  json.put("IsWritable", this.isWritable);
 				
+						}
 				
 						  json.put("Description", this.description);
 				
@@ -147,9 +150,10 @@
 							json.put("Register_oid", jsonArray);
 						}
 		
-				
+					    if (this.value != null){											
 						  json.put("Value", this.value);
 				
+						}
 						
 					}
 					catch (JSONException e)

@@ -63,5 +63,39 @@ public TelemetryEN Telemetry (int id)
 
         return result;
 }
+
+public IList<IMTelemetryValuesEN> TeleValues (int id)
+{
+        IList<IMTelemetryValuesEN> result = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+
+                String sql = @"select self FROM IMTelemetryValuesEN self inner join self.IMTelemetry as target with target.Id=:p_Id";
+                IQuery query = session.CreateQuery (sql).SetParameter ("p_Id", id);
+
+
+
+
+                result = query.List<IMTelemetryValuesEN>();
+
+                SessionCommit ();
+        }
+
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                if (ex is MoSIoTGenNHibernate.Exceptions.ModelException) throw ex;
+                throw new MoSIoTGenNHibernate.Exceptions.DataLayerException ("Error in IMTelemetryRESTCAD.", ex);
+        }
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
